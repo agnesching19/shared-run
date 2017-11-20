@@ -1,3 +1,22 @@
 <h1>Results</h1>
 
-<%= link_to "Add Run", new_run_path(@run) %>
+<ul>
+  <% @runs.each do |run| %>
+    <li><%= run.description %> (<%= run.distance %>km) - <%= run.location %> | <%= link_to "Show", run_path(run) %></li>
+  <% end %>
+</ul>
+
+<p>
+<% if user_signed_in? %>
+  <%= link_to "Add Run", new_run_path(@run) %>
+<% end %>
+</p>
+
+<p>
+<%= link_to "Log In", new_user_session_path %>
+</p>
+
+<p>
+<%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+</p>
+

@@ -12,8 +12,8 @@ class RunsController < ApplicationController
   end
 
   @hash = Gmaps4rails.build_markers(@run) do |run, marker|
-      marker.lat run.latitude
-      marker.lng run.longitude
+    marker.lat run.latitude
+    marker.lng run.longitude
   end
 
   def new
