@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171120141037) do
+ActiveRecord::Schema.define(version: 20171120145051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,37 @@ ActiveRecord::Schema.define(version: 20171120141037) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
+  create_table "invites", force: :cascade do |t|
+    t.string "status"
+    t.bigint "run_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["run_id"], name: "index_invites_on_run_id"
+    t.index ["user_id"], name: "index_invites_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.bigint "run_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["run_id"], name: "index_messages_on_run_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "preferences", force: :cascade do |t|
+    t.time "time"
+    t.date "date"
+    t.string "location"
+    t.integer "sociability"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_preferences_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -78,6 +109,10 @@ ActiveRecord::Schema.define(version: 20171120141037) do
   end
 
   add_foreign_key "events", "users"
+  add_foreign_key "invites", "runs"
+  add_foreign_key "invites", "users"
+  add_foreign_key "messages", "runs"
+  add_foreign_key "preferences", "users"
   add_foreign_key "reviews", "runs"
   add_foreign_key "reviews", "users"
   add_foreign_key "runs", "users"

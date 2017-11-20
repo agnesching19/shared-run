@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  time: 2017-11-20 14:46:25
+  date: 2017-11-20
+  location: MyString
+  sociability: 1
+  user: one
+
+two:
+  time: 2017-11-20 14:46:25
+  date: 2017-11-20
+  location: MyString
+  sociability: 1
+  user: two
