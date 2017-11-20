@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :runs
   has_many :events
   has_many :reviews
-  validates :first_name, :last_name, :email, presence: true
+  validates :email, presence: true
 
   mount_uploader :photo, PhotoUploader
 end
