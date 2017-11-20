@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171120140626) do
+ActiveRecord::Schema.define(version: 20171120141037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(version: 20171120140626) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "run_id"
+    t.boolean "punctuality"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["run_id"], name: "index_reviews_on_run_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "runs", force: :cascade do |t|
@@ -68,5 +78,7 @@ ActiveRecord::Schema.define(version: 20171120140626) do
   end
 
   add_foreign_key "events", "users"
+  add_foreign_key "reviews", "runs"
+  add_foreign_key "reviews", "users"
   add_foreign_key "runs", "users"
 end
