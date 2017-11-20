@@ -6,3 +6,7 @@
 <% if policy(@run).destroy? %>
   <%= link_to "Delete", run_path(@run), class: "btn btn-default", method: :delete, data: { confirm: "Are you sure you want to delete?" } %>
 <% end %>
+
+<% if policy(@run).edit? %>
+  <%= link_to "Edit", edit_run_path(@run), class: "btn btn-default" %>
+<% end %>
