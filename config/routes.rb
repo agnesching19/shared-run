@@ -3,5 +3,12 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :events
-  resources :runs
+  resources :runs do
+    resources :invites, only: [:new, :create]
+    resources :reviews, only: [:index, :new, :create]
+  end
+
+  resources :invites, only: [:index, :show, :edit, :update, :destroy]
+  resources :reviews, only: [:show, :edit, :update, :destroy]
+
 end
