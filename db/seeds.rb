@@ -44,26 +44,26 @@ def users(number)
   puts ""
 end
 
-def runs(number, user_id = User.all.ids.sample)
-  puts "--- creating #{number} runs ---"
-  number.times {
-    location = Faker::Address.city
-    photos = ["lix2bqmp4kzdpu4sqjiy","mgnhkqe23bgfg2uway9y","gdvenzf37gdoo6k9sspj", "ao1a6omwlx7gw2oabpoa", "ruhpzvv14g7bqysd6pxj", "op2mfyxt21d6mttstfdk", "xanuac8m6wjhlgxvi2zy", "pzxictxdgsc6mjkzq2sz", "noi6220drtm0csy2wxkm", "srf6dxogamsz5g1tk6og", "czhi6wgl4kyhaukjmxzz"]
-    photo = "http://res.cloudinary.com/joycelewagon/image/upload/v1510744215/#{photos.sample}.jpg"
-    maximum = Faker::Number.between(1, 4)
-    capacity = (maximum / 2).round(0) + 1
-    description = "A great run with #{capacity} people"
-    date = Time.now
-    Run.create!({
-      user_id: user_id, location: location,
-      remote_photo_url: photo, capacity: capacity, distance: 10,
-      description: description, date: date
-    })
-  }
-  puts "    #{Run.first.date} has been added to the db"
-  puts "--- run seeding completed ---"
-  puts ""
-end
+# def runs(number, user_id = User.all.ids.sample)
+#   puts "--- creating #{number} runs ---"
+#   number.times {
+#     location = Faker::Address.city
+#     photos = ["lix2bqmp4kzdpu4sqjiy","mgnhkqe23bgfg2uway9y","gdvenzf37gdoo6k9sspj", "ao1a6omwlx7gw2oabpoa", "ruhpzvv14g7bqysd6pxj", "op2mfyxt21d6mttstfdk", "xanuac8m6wjhlgxvi2zy", "pzxictxdgsc6mjkzq2sz", "noi6220drtm0csy2wxkm", "srf6dxogamsz5g1tk6og", "czhi6wgl4kyhaukjmxzz"]
+#     photo = "http://res.cloudinary.com/joycelewagon/image/upload/v1510744215/#{photos.sample}.jpg"
+#     maximum = Faker::Number.between(1, 4)
+#     capacity = (maximum / 2).round(0) + 1
+#     description = "A great run with #{capacity} people"
+#     date = Time.now
+#     Run.create!({
+#       user_id: user_id, location: location,
+#       remote_photo_url: photo, capacity: capacity, distance: 10,
+#       description: description, date: date
+#     })
+#   }
+#   puts "    #{Run.first.date} has been added to the db"
+#   puts "--- run seeding completed ---"
+#   puts ""
+# end
 
 # def rentals(number, user_id = User.all.ids.sample, van_id = Van.all.ids.sample)
 #   puts "--- creating #{number} rentals ---"
