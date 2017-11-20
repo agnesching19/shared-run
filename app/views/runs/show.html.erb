@@ -1,0 +1,12 @@
+<h1><%= @run.description %></h1>
+<h2><%= @run.location %> | <%= @run.distance %>km </h2>
+
+<%= link_to "Back to Search Results", runs_path %>
+
+<% if policy(@run).destroy? %>
+  <%= link_to "Delete", run_path(@run), class: "btn btn-default", method: :delete, data: { confirm: "Are you sure you want to delete?" } %>
+<% end %>
+
+<% if policy(@run).edit? %>
+  <%= link_to "Edit", edit_run_path(@run), class: "btn btn-default" %>
+<% end %>

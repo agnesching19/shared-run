@@ -4,16 +4,26 @@ class RunsController < ApplicationController
 
   def index
     @runs = policy_scope(Run).where.not(latitude: nil, longitude: nil).order(created_at: :desc)
+
+    @coordinates = @runs.map do |run|
+      if run.latitude && run.longitude
+        {
+          lat: run.latitude,
+          lng: run.longitude,
+          infowindow: render_to_string(partial: "runs/infowindow", locals: {run: run}),
+        }
+      end
+    end
+    @results = params[:query].present? ? Run.global_search(params[:query]) : Run.all
   end
 
   def show
     authorize @run
-    @run = Run.new
   end
 
   @hash = Gmaps4rails.build_markers(@run) do |run, marker|
-      marker.lat run.latitude
-      marker.lng run.longitude
+    marker.lat run.latitude
+    marker.lng run.longitude
   end
 
   def new
@@ -33,6 +43,10 @@ class RunsController < ApplicationController
   end
 
   def edit
+    authorize @run
+  end
+
+  def update
     authorize @run
     if @run.update(run_params)
       redirect_to run_path(@run)
