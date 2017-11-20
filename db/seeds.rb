@@ -3,10 +3,10 @@ require 'faker'
 def prepare
   puts "--- cleaning the db ---"
   User.destroy_all
-  puts "    destroying all reviews..."
-  Review.destroy_all
   puts "    destroying all runs..."
   Run.destroy_all
+  puts "    destroying all reviews..."
+  Review.destroy_all
   puts "    destroying all events..."
   Event.destroy_all
   puts "--- database now clean ---"
@@ -44,87 +44,86 @@ def users(number)
   puts ""
 end
 
-# def runs(number, user_id = User.all.ids.sample)
-#   puts "--- creating #{number} runs ---"
-#   number.times {
-#     location = Faker::Address.city
-#     photos = ["lix2bqmp4kzdpu4sqjiy","mgnhkqe23bgfg2uway9y","gdvenzf37gdoo6k9sspj", "ao1a6omwlx7gw2oabpoa", "ruhpzvv14g7bqysd6pxj", "op2mfyxt21d6mttstfdk", "xanuac8m6wjhlgxvi2zy", "pzxictxdgsc6mjkzq2sz", "noi6220drtm0csy2wxkm", "srf6dxogamsz5g1tk6og", "czhi6wgl4kyhaukjmxzz"]
-#     photo = "http://res.cloudinary.com/joycelewagon/image/upload/v1510744215/#{photos.sample}.jpg"
-#     maximum = Faker::Number.between(1, 4)
-#     capacity = (maximum / 2).round(0) + 1
-#     description = "A great run with #{capacity} people"
-#     date = Time.now
-#     Run.create!({
-#       user_id: user_id, location: location,
-#       remote_photo_url: photo, capacity: capacity, distance: 10,
-#       description: description, date: date
-#     })
-#   }
-#   puts "    #{Run.first.date} has been added to the db"
-#   puts "--- run seeding completed ---"
-#   puts ""
-# end
+def runs(number)
+  puts "--- creating #{number} runs ---"
+  number.times {
+    user_id = User.all.ids.sample
+    location = Faker::Address.city
+    maximum = Faker::Number.between(1, 6)
+    capacity = (maximum / 2).round(0) + 1
+    description = "Have a great run with #{capacity} people"
+    date = Faker::Date.forward(rand(0..60))
+    distance = Faker::Number.between(1, 20)
 
-# def rentals(number, user_id = User.all.ids.sample, van_id = Van.all.ids.sample)
-#   puts "--- creating #{number} rentals ---"
-#   number.times {
-#     days_forward = (rand() * 100).round(0)
-#     days_rented = 7
-#     start_date = Faker::Time.forward(days_forward, :morning)
-#     end_date = Faker::Time.forward(days_forward + days_rented, :morning)
-#     photos = ["lix2bqmp4kzdpu4sqjiy","mgnhkqe23bgfg2uway9y","gdvenzf37gdoo6k9sspj", "ao1a6omwlx7gw2oabpoa", "ruhpzvv14g7bqysd6pxj", "op2mfyxt21d6mttstfdk", "xanuac8m6wjhlgxvi2zy", "pzxictxdgsc6mjkzq2sz", "noi6220drtm0csy2wxkm", "srf6dxogamsz5g1tk6og", "czhi6wgl4kyhaukjmxzz"]
-#     photo = "http://res.cloudinary.com/joycelewagon/image/upload/v1510744215/#{photos.sample}.jpg"
-#     price = ((rand() * 100).round(0) + 20)*3
-#     status = ["pending", "confirmed", "cancelled"].sample
-#     Rental.create!({
-#       start_date: start_date, end_date: end_date, remote_photo_url: photo,
-#       price: price,status: status, user_id: user_id, van_id: van_id
-#     })
-#   }
-#   puts "    A rental starting on #{Rental.first.start_date} has been added to the db"
-#   puts "--- rental seeding completed ---"
-#   puts ""
-# end
+    Run.create!({
+      user_id: user_id, location: location,
+      capacity: capacity, distance: distance,
+      description: description, date: date
+    })
+  }
 
-# def reviews(number,  user_id = User.all.ids.sample, run_id = Run.all.ids.sample)
-#   puts "--- creating #{number} rentals ---"
-#   # Creating the review variables
-#   date = ["January", "February", "March", "April" ,"May", "June", "July", "August", "September", "October", "November" ,"December"]
-#   places = ["Newquay", "Penzance", "Bude", "Turo", "St Ives", "Looe", "Marazion","Falmouth", "Fowey", "Padstow"]
-#   journey = ["forever", "a long time", "not too long", "a short while", "no time at all"]
-#   owner = ["plain rude", "a bit unfriendly", "friendly", "really friendly", "superb"]
-#   adjective1 = ["terrible", "poor", "so so", "good", "amazing"]
-#   adjective2 = ["rusty", "tired", "good enough", "so comfy", "super cool"]
-#   # Times iterator to create new class instances
-#   number.times {
-#     punctuality = ((1..5).to_a).sample
-#     sample = score - 1
-#     description = "I rented this van last #{date.sample} and had a #{adjective1[sample]} time. We drove down to #{places.sample} which took #{journey.sample}. The van itself was #{adjective2[sample]} and as for the owner they were just #{owner.sample}"
-#     photos = ["lix2bqmp4kzdpu4sqjiy","mgnhkqe23bgfg2uway9y","gdvenzf37gdoo6k9sspj", "ao1a6omwlx7gw2oabpoa", "ruhpzvv14g7bqysd6pxj", "op2mfyxt21d6mttstfdk", "xanuac8m6wjhlgxvi2zy", "pzxictxdgsc6mjkzq2sz", "noi6220drtm0csy2wxkm", "srf6dxogamsz5g1tk6og", "czhi6wgl4kyhaukjmxzz"]
-#     photo = "http://res.cloudinary.com/joycelewagon/image/upload/v1510744215/#{photos.sample}.jpg"
-#     user_id = User.all.ids.sample
-#     Review.create!({
-#       description: description, remote_photo_url: photo
-#     })
-#   }
-#   puts "    A review with a score of on #{Review.first.score} has been added to the db"
-#   puts "--- review seeding completed ---"
-#   puts ""
-# end
+  puts "  New run #{Run.first.location} has been added to the database"
+  puts "--- run seeding completed ---"
+  puts ""
+end
+
+def events(number)
+  puts "--- creating #{number} events ---"
+
+  number.times {
+    user_id = User.all.ids.sample
+    date = Faker::Date.forward(rand(0..75))
+    date_diff = date - Date.today
+    time = Faker::Time.forward(date_diff, :morning)
+    location = Faker::Address.city
+    distance = Faker::Number.between(1, 20)
+    description = "The run you can't miss this year!"
+    Event.create!({
+      user_id: user_id, date: date, time: time, location: location,
+      distance: distance, description: description
+    })
+  }
+
+  puts "    An event on #{Event.first.date} has been added to the database"
+  puts "--- event seeding completed ---"
+  puts ""
+end
+
+def reviews(number)
+  puts "--- creating #{number} reviews ---"
+  # Creating the review variables
+  date = ["January", "February", "March", "April" ,"May", "June", "July", "August", "September", "October", "November" ,"December"]
+  places = ["Newquay", "Penzance", "Bude", "Turo", "St Ives", "Looe", "Marazion","Falmouth", "Fowey", "Padstow"]
+  journey = ["forever", "a long time", "not too long", "a short while", "no time at all"]
+  owner = ["plain rude", "a bit unfriendly", "friendly", "really friendly", "superb"]
+  adjective1 = ["terrible", "poor", "so so", "good", "amazing"]
+  adjective2 = ["rusty", "tired", "good enough", "so comfy", "super cool"]
+
+  number.times {
+    user_id = User.all.ids.sample
+    run_id = Run.all.ids.sample
+    punctuality = ((1..5).to_a).sample
+
+    Review.create!({
+      user_id: user_id, run_id: run_id, punctuality: punctuality
+    })
+  }
+  puts "    A review with a figure of #{Review.first.punctuality} has been added to the database"
+  puts "--- review seeding completed ---"
+  puts ""
+end
 
 prepare
 puts "--- seeding the database ---"
 # Creating the static user for the user journey
 static_user
-users(5)
-# Creating 3 vans belonging to the static user for the user journey
-runs(3)
-# Creating random vans for seeded users
-# vans(10)
-# # Creating 5 rentals belonging to the static user for the user journey
-# rentals(5, User.first.id)
-# # Creating random rentals for seeded users
-# rentals(10)
-# # Creating random reviews for seeded users
-# reviews(100)
-# puts "whooop - all seeding completed :-)"
+# Creating 5 users
+users(15)
+# Creating 5 runs belonging to the random 5 users for the user journey
+runs(15)
+# Creating 5 events belonging to the random 5 users for the user journey
+events(10)
+# Creating random reviews for seeded users
+reviews(5)
+
+puts "whooop - all seeding completed ;)"
