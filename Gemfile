@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.3.5'
 
-gem 'jbuilder', '~> 2.0'
+# gem 'jbuilder', '~> 2.0'
 gem 'pg'
 gem 'puma'
 gem 'rails', '5.1.4'
@@ -35,6 +35,7 @@ gem 'gmaps4rails'
 gem 'letter_opener', group: :development
 gem 'postmark-rails'
 gem 'gibbon'
+gem 'omniauth-facebook'
 
 source 'https://rails-assets.org' do
   gem "rails-assets-underscore"

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { sessions: 'users/sessions'}
-  root to: 'pages#home'
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" } do
+    get 'logout' => 'devise/sessions#destroy'
+  end
 
   resources :events
   resources :runs do
@@ -10,5 +11,8 @@ Rails.application.routes.draw do
 
   resources :invites, only: [:index, :show, :edit, :update, :destroy]
   resources :reviews, only: [:show, :edit, :update, :destroy]
+
+  root to: "pages#home"
+  get 'users/:id/dashboard', to: 'users#dashboard', as: 'dashboard'
 
 end

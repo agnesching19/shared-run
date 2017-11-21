@@ -38,7 +38,7 @@
 
 <!-- JavaScript -->
 <% content_for(:after_js) do %>
-  <%= javascript_tag do %>
+  <script>
     <!-- Map Display -->
     var handler = Gmaps.build('Google');
     handler.buildMap({ internal: { id: 'map' } }, function() {
@@ -51,6 +51,5 @@
         handler.getMap().setZoom(14);
       }
     });
-  <% end %>
-  <% end %>
-
+  </script>
+<% end %>
