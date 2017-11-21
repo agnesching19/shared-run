@@ -5,17 +5,8 @@ class RunsController < ApplicationController
 
   def index
     @runs = policy_scope(Run).where.not(latitude: nil, longitude: nil).order(created_at: :desc)
-
-    @coordinates = @runs.map do |run|
-      if run.latitude && run.longitude
-        {
-          lat: run.latitude,
-          lng: run.longitude,
-          infowindow: render_to_string(partial: "runs/infowindow", locals: {run: run}),
-        }
-      end
-    end
     search_run
+    set_runs
   end
 
   def show
@@ -82,8 +73,10 @@ class RunsController < ApplicationController
         end
       end
     else
-      @runs = Run.all
-    # @runs = params[:query].present? ? Run.global_search(params[:query]) : Run.all
+          @runs = Run.all
+          #policy_scope(Run).where.not(latitude: nil, longitude: nil).order(created_at: :desc)
+    # @runs = params[:search][:location].present? ? Run.global_search(params[:search][:run_date]) : Run.all
+
     end
   end
 
@@ -94,7 +87,7 @@ class RunsController < ApplicationController
   end
 
   def search_params
-    params.require(:search).permit(:location, :proximity)
+    params.require(:search).permit(:location, :proximity, :run_date)
   end
 
   def set_run
@@ -103,5 +96,17 @@ class RunsController < ApplicationController
 
   def set_user
     @user = current_user
+  end
+
+  def set_runs
+     @coordinates = @runs.map do |run|
+      if run.latitude && run.longitude
+        {
+          lat: run.latitude,
+          lng: run.longitude,
+          infowindow: render_to_string(partial: "runs/infowindow", locals: {run: run}),
+        }
+      end
+    end
   end
 end
