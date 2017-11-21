@@ -1,0 +1,10 @@
+<%= simple_form_for(@event) do |e| %>
+  <%= e.input :date %>
+  <%= e.input :time %>
+  <%= e.input :location, priority: ['EN'], input_html: {id: "locationInput"} %>
+  <%= e.input :distance %>
+  <%= e.input :description %>
+  <%= e.input :surface %>
+  <%= e.input :price %>
+  <%= e.submit "Submit", class: "btn btn-default" %>
+<% end %>
