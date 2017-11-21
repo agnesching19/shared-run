@@ -14,10 +14,9 @@ class Run < ApplicationRecord
   # Enables pgsearch
   include PgSearch
   pg_search_scope :global_search,
-    against: [ :location ]
-
+    against: [ :location]
     # ,
     # associated_against: {
-    #   runs: [ :date]
+    #   runs: [ :run_date]
     # }
 end
