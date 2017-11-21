@@ -25,4 +25,9 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   # def after_confirmation_path_for(resource_name, resource)
   #   super(resource_name, resource)
   # end
+
+  def after_sign_up_or_sign_in_path_for(resource)
+    User.where(id: resource.id).update_all(online: true)
+    dashboard_path
+  end
 end
