@@ -1,14 +1,24 @@
-<div class="background" style="background-image: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.1)), url(<%= image_path 'landing.jpg' %>">
-  <div id="landing-buttons">
-    <%= link_to runs_path, class: "landing-button" do  %>
-      <i class="fa fa-location-arrow" aria-hidden="true"></i>
-    <% end %>
-    <%= link_to runs_path, class: "landing-button" do   %>
-      <i class="fa fa-cube" aria-hidden="true"></i>
-    <% end %>
-    <%= link_to runs_path, class: "landing-button" do  %>
-      <i class="fa fa-user-o" aria-hidden="true"></i>
-    <% end %>
+<div class="wrapper">
+  <div class="left">
+    <div class="background" style="background-image: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.1)), url(<%= image_path 'landing.jpg' %>">
+    </div>
+  </div>
+
+  <div class="right">
+    <div class="content">
+      <div id="title"><h1><strong>S H A R E D . R U N</strong></h1></div>
+      <div id="landing-buttons">
+        <%= link_to runs_path, class: "landing-button" do  %>
+          <i class="fa fa-location-arrow" aria-hidden="true"></i>
+        <% end %>
+        <%= link_to runs_path, class: "landing-button" do   %>
+          <i class="fa fa-cube" aria-hidden="true"></i>
+        <% end %>
+        <%= link_to runs_path, class: "landing-button" do  %>
+          <i class="fa fa-user-o" aria-hidden="true"></i>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -16,6 +26,5 @@
 
 <% content_for(:after_js) do %>
   <script>
-    const
   </script>
 <% end %>

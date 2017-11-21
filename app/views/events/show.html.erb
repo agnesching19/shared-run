@@ -1,1 +1,37 @@
-<h1>In this page you can view a single event.</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      Date: <%= @event.date %> - <%= @event.time.strftime("at %I:%M%p") %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4">
+      Location: <%= @event.location %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4">
+      Distance: <%= @event.distance %> KM
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4">
+      Description: <%= @event.description %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4">
+      Price: £<%= @event.price %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4">
+      Surface: <%= @event.surface %>
+    </div>
+  </div>
+</div>
