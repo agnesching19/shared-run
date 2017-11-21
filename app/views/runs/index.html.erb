@@ -23,8 +23,10 @@
   <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
 </p>
 
+<!-- JavaScript -->
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
+    <!-- Map Display -->
     var handler = Gmaps.build('Google');
     handler.buildMap({ internal: { id: 'map' } }, function() {
       markers = handler.addMarkers(<%= raw @coordinates.to_json %>);
