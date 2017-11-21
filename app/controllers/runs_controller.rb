@@ -63,19 +63,18 @@ class RunsController < ApplicationController
   end
 
   def search_run
-    proximity = 5
-
     if params[:search].present?
       unless params[:search][:location] == ""
+        proximity = params[:search][:proximity].to_f
         @search = Search.new(search_params)
         @search.user_id = current_user.id
         @search.save
         @last_search = @user.searches.order(created_at: :desc).first
         @runs = Run.near([@last_search.latitude, @last_search.longitude], proximity)
-        if @runs.empty?
+        if @runs.length == 0
           @runs = Run.near([@last_search.latitude, @last_search.longitude], proximity * 2 )
           @search_widened = "No runs found we widended your search to #{proximity * 2} km"
-        elsif @runs.empty?
+        elsif @runs.length == 0
           @runs = Run.near([@last_search.latitude, @last_search.longitude], proximity * 3 )
           @search_widened = "No runs found we widended your search to #{proximity * 3} km"
         else
@@ -95,7 +94,7 @@ class RunsController < ApplicationController
   end
 
   def search_params
-    params.require(:search).permit(:location)
+    params.require(:search).permit(:location, :proximity)
   end
 
   def set_run
