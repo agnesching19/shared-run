@@ -14,7 +14,7 @@ class RunsController < ApplicationController
         }
       end
     end
-    @results = params[:query].present? ? Run.global_search(params[:query]) : Run.all
+    @runs = params[:query].present? ? Run.global_search(params[:query]) : Run.all
   end
 
   def show

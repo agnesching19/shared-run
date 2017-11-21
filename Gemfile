@@ -35,6 +35,7 @@ gem 'gmaps4rails'
 gem 'letter_opener', group: :development
 gem 'postmark-rails'
 gem 'gibbon'
+gem 'omniauth-facebook'
 
 source 'https://rails-assets.org' do
   gem "rails-assets-underscore"
