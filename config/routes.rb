@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :invites, only: [:index, :show, :edit, :update, :destroy]
   resources :reviews, only: [:show, :edit, :update, :destroy]
 
+  root to: "pages#home"
+
   # devise_scope :user do
     # delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
     # get 'sign_in', :to => 'devise/sessions#new', :as => :new_user_session
