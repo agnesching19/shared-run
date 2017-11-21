@@ -1,27 +1,63 @@
 // CSS for Landing Page
 
-.background {
-  width: calc(100vw + 150px);
+.wrapper {
+  width: 100vw;
   height: 100vh;
-  background-position: -150px -125px;
-  background-size: cover;
-  background-repeat: no-repeat;
+  display: flex;
+  position: relative;
+}
+
+.left {
+  width: 65vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  float: left;
+  display: inline-block;
+
+  .background {
+    background-position: 90%;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
+.right {
+  width: 35vw;
+  display: flex;
+}
+
+.content {
+  height: 100%;
+  width: 100%;
+  // display: flex;
+  align-items: center;
+  background-color: white;
+  justify-content: center;
+
+  h1 {
+    font-size: 40px;
+    // position: absolute;
+  }
 }
 
 #landing-buttons {
   display: flex;
   justify-content: space-between;
-  position: absolute;
-  top: 220px;
-  right: 150px;
   width: 35%;
+  // position: relative;
 }
 
 .landing-button {
   padding: 20px 30px;
   background-color: rgba(255,255,255,0.6);
   color: black;
-  font-size: 30px;
+  font-size: 20px;
   border-radius: 50%;
   text-decoration: none;
 
