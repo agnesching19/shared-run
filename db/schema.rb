@@ -106,15 +106,15 @@ ActiveRecord::Schema.define(version: 20171121140058) do
     t.string "location"
     t.time "pace"
     t.string "schedule"
+    t.string "username"
+    t.string "strava_id"
+    t.string "power_id"
+    t.string "nike_id"
     t.string "provider"
     t.string "uid"
     t.string "facebook_picture_url"
     t.string "token"
     t.datetime "token_expiry"
-    t.string "username"
-    t.string "strava_id"
-    t.string "power_id"
-    t.string "nike_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["nike_id"], name: "index_users_on_nike_id", unique: true
     t.index ["power_id"], name: "index_users_on_power_id", unique: true
