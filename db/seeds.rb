@@ -73,9 +73,7 @@ def events(number)
   number.times {
     user_id = User.all.ids.sample
     date = Faker::Date.forward(rand(0..75))
-    date_diff = date - Date.today
-# how to pick out the time separately from faker?
-    time = Faker::Time.forward(date_diff, :morning)
+    time = Time.now.strftime("at %I:%M%p")
     location = Faker::Address.city
     distance = Faker::Number.between(1, 20)
     description = "The run you can't miss this year!"
@@ -96,9 +94,7 @@ def reviews(number)
   number.times {
     user_id = User.all.ids.sample
     run_id = Run.all.ids.sample
-
-# how to use random on boolean?
-    punctuality = true
+    punctuality = [true, false].shuffle
 
     Review.create!({
       user_id: user_id, run_id: run_id, punctuality: punctuality
