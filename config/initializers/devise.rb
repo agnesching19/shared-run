@@ -250,15 +250,11 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  config.omniauth :facebook, "APP_ID", "APP_SECRET", scope: 'email', info_fields: 'email,name'
-
-  config.omniauth :facebook, ENV['FB_APP_ID'], ENV['FB_APP_SECRET'],
-                  scope: 'public_profile,email',
-                  info_fields: 'email,first_name,last_name,gender,birthday,location,picture',
-                  client_options: {
-                      site: 'https://graph.facebook.com/v2.11',
-                      authorize_url: "https://www.facebook.com/v2.11/dialog/oauth"
-                  }
+  config.omniauth :facebook, ENV["FB_ID"], ENV["FB_SECRET"],
+    scope: 'email',
+    info_fields: 'email, first_name, last_name',
+    image_size: 'square',  # 50x50, guaranteed ratio
+    secure_image_url: true
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
