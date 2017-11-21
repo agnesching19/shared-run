@@ -1,8 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.3.5'
 
-gem 'figaro'
-gem 'cloudinary', '1.1.7'
 gem 'jbuilder', '~> 2.0'
 gem 'pg'
 gem 'puma'
@@ -17,13 +15,26 @@ gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
+gem 'faker'
+
+# Authentication and Authorisation
 gem 'devise'
 gem 'pundit'
-gem 'faker'
+
+# Photo Uploads
+gem 'figaro'
+gem 'cloudinary', '1.1.7'
 gem 'carrierwave', '~> 1.2'
+
+# Geocoding and Maps Display
 gem 'geocoder'
 gem 'coffee-rails'
 gem 'gmaps4rails'
+
+# Mailer
+gem 'letter_opener', group: :development
+gem 'postmark-rails'
+gem 'gibbon'
 
 source 'https://rails-assets.org' do
   gem "rails-assets-underscore"
