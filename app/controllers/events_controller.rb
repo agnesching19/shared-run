@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
-    @events = policy_scope(Event)
+    @events = policy_scope(Event.all)
   end
 
   def new
@@ -12,7 +12,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.user = current_user
+    @event.user_id = current_user.id
     authorize @event
     if @event.save
       redirect_to events_path
