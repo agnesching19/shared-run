@@ -2,6 +2,8 @@ require 'faker'
 
 def prepare
   puts "--- cleaning the db ---"
+  Search.destroy_all
+  puts "--- cleaning the db ---"
   User.destroy_all
   puts "    destroying all runs..."
   Run.destroy_all
@@ -57,7 +59,7 @@ def runs(number)
 
     Run.create!({
       user_id: user_id, location: location,
-      capacity: capacity, distance: distance,
+      capacity: capacity, run_distance: distance,
       description: description, date: date
     })
   }

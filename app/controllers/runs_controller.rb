@@ -1,6 +1,7 @@
 class RunsController < ApplicationController
   before_action :set_run, only: [:show, :edit, :update, :destroy]
   skip_before_action :authenticate_user!, only: [:index, :show]
+  before_action :set_user, only: [:index]
 
   def index
     @runs = policy_scope(Run).where.not(latitude: nil, longitude: nil).order(created_at: :desc)
@@ -14,7 +15,7 @@ class RunsController < ApplicationController
         }
       end
     end
-    @runs = params[:query].present? ? Run.global_search(params[:query]) : Run.all
+    search_run
   end
 
   def show
@@ -61,13 +62,47 @@ class RunsController < ApplicationController
     redirect_to runs_path
   end
 
+  def search_run
+    proximity = 5
+
+    if params[:search].present?
+      unless params[:search][:location] == ""
+        @search = Search.new(search_params)
+        @search.user_id = current_user.id
+        @search.save
+        @last_search = @user.searches.order(created_at: :desc).first
+        @runs = Run.near([@last_search.latitude, @last_search.longitude], proximity)
+        if @runs.empty?
+          @runs = Run.near([@last_search.latitude, @last_search.longitude], proximity * 2 )
+          @search_widened = "No runs found we widended your search to #{proximity * 2} km"
+        elsif @runs.empty?
+          @runs = Run.near([@last_search.latitude, @last_search.longitude], proximity * 3 )
+          @search_widened = "No runs found we widended your search to #{proximity * 3} km"
+        else
+          @search_widened = "Sorry even after widening your search we didnt find any shared runs within #{proximity *3} of you"
+        end
+      end
+    else
+      @runs = Run.all
+    # @runs = params[:query].present? ? Run.global_search(params[:query]) : Run.all
+    end
+  end
+
   private
 
   def run_params
-    params.require(:run).permit(:location, :date, :description, :distance, :capacity, :photo, :shared)
+    params.require(:run).permit(:location, :date, :description, :run_distance, :capacity, :photo, :shared)
+  end
+
+  def search_params
+    params.require(:search).permit(:location)
   end
 
   def set_run
     @run = Run.find(params[:id])
+  end
+
+  def set_user
+    @user = current_user
   end
 end
