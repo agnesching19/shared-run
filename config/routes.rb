@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   resources :invites, only: [:index, :show, :edit, :update, :destroy]
   resources :reviews, only: [:show, :edit, :update, :destroy]
 
+  root to: "pages#home"
 end
