@@ -1,1 +1,7 @@
-<div class="container"><h1>In this page you can view a single event.</h1></div>
+<div class="container">
+  <%= @event.date %> - <%= @event.time %>
+  <%= @event.location %>
+  <p>Distance:<%= @event.distance %></>
+    <%= @event.description %>
+
+</div>

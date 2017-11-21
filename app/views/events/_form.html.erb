@@ -5,7 +5,25 @@
   <%= e.input :distance, collection: 1..42, prompt: "Kilometer(s)" %>
   <%= e.input :description, placeholder: "A casual Saturday run along with local bar exploration afterwards.." %>
   <%= e.input :surface, collection: [ "Grass", "Earth", "Woodland Trails", "Synthetic Track", "Sand", "Asphalt", "Treadmill", "Concrete", "Snow"] %>
-  <%= e.input :price, collection: 1..30, prompt: "£" %>
+  <%= e.input :price, collection: 0..30, prompt: "£" %>
 
   <%= e.submit "Submit", class: "btn btn-default" %>
+<% end %>
+
+
+
+<%= content_for(:after_js) do %>
+  <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=#{ENV['GOOGLE_API_BROWSER_KEY']}"></script>
+
+  <script>
+    var runLocation = document.getElementById("locationInput");
+    if (runLocation) {
+      var autocomplete = new google.maps.places.Autocomplete(runLocation, { types: ['geocode'] });
+      google.maps.event.addDomListener(runLocation, 'keydown', function(e) {
+        if (e.keyCode == 13) {
+          e.preventDefault(); // Do not submit the form on Enter.
+        }
+      });
+    }
+  </script>
 <% end %>
