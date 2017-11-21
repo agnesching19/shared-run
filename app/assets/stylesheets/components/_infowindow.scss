@@ -1,0 +1,26 @@
+.window {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h1 {
+    font-size: 20px;
+  }
+
+  h2 {
+    font-size: 14px;
+    margin: 0px 0px 5px 0px !important;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  #description {
+
+  }
+
+  #photo {
+    padding: 10px 0px 10px 15px;
+  }
+}
