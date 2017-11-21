@@ -1,1 +1,37 @@
-// Specific CSS for your home-page
+// CSS for Landing Page
+
+.background {
+  width: calc(100vw + 150px);
+  height: 100vh;
+  background-position: -150px -125px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#landing-buttons {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 220px;
+  right: 150px;
+  width: 35%;
+}
+
+.landing-button {
+  padding: 20px 30px;
+  background-color: rgba(255,255,255,0.6);
+  color: black;
+  font-size: 30px;
+  border-radius: 50%;
+  text-decoration: none;
+
+  &:link, &:hover, &:active, &:focus, &:visited {
+    text-decoration: none;
+  }
+
+  &:hover {
+    color: $red;
+    background-color: rgba(255,255,255,1);
+    transition: 0.5s;
+  }
+}
