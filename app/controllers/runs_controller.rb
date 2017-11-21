@@ -64,7 +64,7 @@ class RunsController < ApplicationController
   private
 
   def run_params
-    params.require(:run).permit(:location, :date, :description, :distance, :capacity, :photo, :shared)
+    params.require(:run).permit(:location, :date, :description, :run_distance, :capacity, :photo, :shared)
   end
 
   def set_run

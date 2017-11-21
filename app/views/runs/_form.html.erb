@@ -1,7 +1,7 @@
 <%= simple_form_for(@run) do |r| %>
   <%= r.input :date %>
   <%= r.input :location, priority: ['EN'], input_html: {id: "locationInput"} %>
-  <%= r.input :distance %>
+  <%= r.input :run_distance %>
   <%= r.input :description %>
   <%= r.input :capacity %>
   <%= r.input :photo %>
