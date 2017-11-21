@@ -74,6 +74,7 @@ def events(number)
     user_id = User.all.ids.sample
     date = Faker::Date.forward(rand(0..75))
     date_diff = date - Date.today
+# how to pick out the time separately from faker?
     time = Faker::Time.forward(date_diff, :morning)
     location = Faker::Address.city
     distance = Faker::Number.between(1, 20)
@@ -91,18 +92,13 @@ end
 
 def reviews(number)
   puts "--- creating #{number} reviews ---"
-  # Creating the review variables
-  date = ["January", "February", "March", "April" ,"May", "June", "July", "August", "September", "October", "November" ,"December"]
-  places = ["Newquay", "Penzance", "Bude", "Turo", "St Ives", "Looe", "Marazion","Falmouth", "Fowey", "Padstow"]
-  journey = ["forever", "a long time", "not too long", "a short while", "no time at all"]
-  owner = ["plain rude", "a bit unfriendly", "friendly", "really friendly", "superb"]
-  adjective1 = ["terrible", "poor", "so so", "good", "amazing"]
-  adjective2 = ["rusty", "tired", "good enough", "so comfy", "super cool"]
 
   number.times {
     user_id = User.all.ids.sample
     run_id = Run.all.ids.sample
-    punctuality = ((1..5).to_a).sample
+
+# how to use random on boolean?
+    punctuality = true
 
     Review.create!({
       user_id: user_id, run_id: run_id, punctuality: punctuality
