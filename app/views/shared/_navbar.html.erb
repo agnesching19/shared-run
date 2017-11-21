@@ -6,10 +6,10 @@
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
-
+    <!-- Search -->
+    <%= render "shared/search" %>
     <% if user_signed_in? %>
-
-    <!-- Links when logged in -->
+    <!-- Links when Logged In -->
       <!-- Add New Run/Event -->
       <%= link_to "ALL EVENTS", events_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "ADD NEW RUN", new_run_path, class: "navbar-wagon-item navbar-wagon-link" %>
@@ -21,17 +21,17 @@
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
               <%= link_to dashboard_path(current_user), method: :get do %>
-                <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+                <i class="fa fa-user"></i> <%= t(".profile", default: "Dashboard") %>
               <% end %>
             </li>
              <li>
               <%= link_to runs_path, method: :get do %>
-                <i class="fa fa-tachometer"></i> <%= t(".dashboard", default: "Dashboard") %>
+                <i class="fa fa-tachometer"></i> <%= t(".dashboard", default: "Messages") %>
               <% end %>
             </li>
             <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log Out") %>
               <% end %>
             </li>
           </ul>
