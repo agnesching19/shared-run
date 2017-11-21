@@ -17,3 +17,4 @@ class EventPolicy < ApplicationPolicy
     record.user == user
   end
 end
+
