@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   resources :reviews, only: [:show, :edit, :update, :destroy]
 
   root to: "pages#home"
+  get 'users/:id/dashboard', to: 'users#dashboard', as: 'dashboard'
+
 end

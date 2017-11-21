@@ -100,9 +100,6 @@ GEM
       domain_name (~> 0.5)
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
-    jbuilder (2.7.0)
-      activesupport (>= 4.2.0)
-      multi_json (>= 1.2)
     json (2.1.0)
     jwt (1.5.6)
     launchy (2.4.3)
@@ -277,7 +274,6 @@ DEPENDENCIES
   geocoder
   gibbon
   gmaps4rails
-  jbuilder (~> 2.0)
   letter_opener
   listen (~> 3.0.5)
   omniauth-facebook
