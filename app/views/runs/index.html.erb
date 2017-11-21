@@ -8,7 +8,7 @@
 
 <ul>
   <% @runs.each do |run| %>
-    <li><%= run.description %> (<%= run.distance %>km) - <%= run.location %> | <%= link_to "Show", run_path(run) %></li>
+    <li><%= run.description %> (<%= run.run_distance %>km) - <%= run.location %> | <%= link_to "Show", run_path(run) %></li>
   <% end %>
 </ul>
 
