@@ -10,7 +10,8 @@
     <% if user_signed_in? %>
 
     <!-- Links when logged in -->
-      <!-- Add New Van -->
+      <!-- Add New Run/Event -->
+      <%= link_to "ADD NEW EVENT", new_event_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "ADD NEW RUN", new_run_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
       <!-- Avatar with dropdown menu -->
