@@ -4,7 +4,7 @@
   <%= e.input :location, priority: ['EN'], input_html: {id: "locationInput"}, placeholder: 'Postcode, City..'  %>
   <%= e.input :distance, collection: 1..42, prompt: "Kilometer(s)" %>
   <%= e.input :description, placeholder: "A casual Saturday run along with local bar exploration afterwards.." %>
-  <%= e.input :surface, collection: [ "Grass", "Earth", "Woodland Trails", "Synthetic Track", "Sand", "Asphalt", "Treadmill", "Concrete", "Snow"] %>
+  <%= e.input :surface, collection: [ "Grass", "Earth", "Woodland Trails", "Synthetic Track", "Sand", "Asphalt", "Treadmill", "Concrete", "Snow"], prompt: 'Select'%>
   <%= e.input :price, collection: 0..30, prompt: "£" %>
 
   <%= e.submit "Submit", class: "btn btn-default" %>
