@@ -1,20 +1,37 @@
 <div class="container">
-  <h1>!!!Upcoming Events!!!</h1>
+  <h1>Upcoming Events</h1>
 
-  <ul>
+  <ul class="main">
     <% @events.each do |event| %>
-      <li><%= event.date %> (<%= event.distance %>km) - <%= event.description %> | <%= link_to "Show", event_path(event) %>
+
+      <li class="date">
+        <h3><%= event.date %>  <%= link_to '<i class="fa fa-info-circle" aria-hidden="true"></i>'.html_safe, event_path(event) %></h3>
       </li>
+
+      <li class="events">
+        <ul class="events-detail">
+          <li>
+            <span class="event-time"><%= event.time.strftime("at %I:%M%p") %></span>
+            <span class="event-location">Location: <%= event.location %></span>
+            <br>
+            <span class="event-distance">Distance: <%= event.distance %>km</span>
+            <br>
+            <span class="event-description"><%= event.description %></span>
+
+          </li>
+        </ul>
+      </li>
+
     <% end %>
   </ul>
 
   <p>
     <% if user_signed_in? %>
-      <%= link_to "Add Event", new_event_path(@event) %>
+      <%= link_to "Add Event", new_event_path(@event), class: "btn btn-default" %>
     <% end %>
   </p>
 
   <p>
-    <%= link_to "Log Out", destroy_user_session_path %>
+    <%= link_to "Log Out", destroy_user_session_path, class: "btn btn-default" %>
   </p>
 </div>
