@@ -3,10 +3,10 @@
   <!-- Banner -->
   <div class="show-banner">
     <!-- Map Background -->
-    <div id="map" class="show-map"></div>
+    <div id="show-map"></div>
     <!-- Title -->
     <div class="show-summary">
-      <h1><%= @run.description.split.map {|r| r.capitalize}.join(" ") %></h1>
+      <h1><%= @run.title.split.map {|r| r.capitalize}.join(" ") %></h1>
       <h2><%= @run.location %> | <%= @run.run_distance %>km </h2>
       <!-- Links -->
       <h5>
@@ -34,8 +34,12 @@
       <p>Sociability: <%= @run.user.sociability %></p>
       <p>Pace: <%= @run.user.pace %></p>
     </div>
+    <!-- Run Description -->
+    <div class="show-run-description">
+      <p>Description: <%= @run.description %></p>
+    </div>
     <!-- Run Details -->
-    <div class="show-run">
+    <div class="show-run-details">
       <p>Location: <%= @run.location %></p>
       <p>Distance: <%= @run.run_distance %>km</p>
     </div>
@@ -49,13 +53,13 @@
 
 <!-- JavaScript -->
 
-<%= content_for(:title, @run.description.split.map {|r| r.capitalize}.join(" ")) %>
+<%= content_for(:title, @run.title.split.map {|r| r.capitalize}.join(" ")) %>
 
 <% content_for(:after_js) do %>
 
   <script>
     var handler = Gmaps.build("Google", { markers: { clusterer: undefined } });
-    handler.buildMap({ internal: { id: "map" } }, function() {
+    handler.buildMap({ internal: { id: "show-map" } }, function() {
       markers = handler.addMarkers(
         [
           {
