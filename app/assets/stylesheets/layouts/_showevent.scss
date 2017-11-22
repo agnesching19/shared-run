@@ -1,0 +1,41 @@
+.event-wrapper {
+  display: flex;
+}
+
+.event-display {
+  padding: 0px 10px 0px 10px;
+  list-style: none;
+  width: 80%;
+}
+
+.events {
+  display: flex;
+  align-items: center;
+  padding: 15px 30px;
+}
+
+.event-description {
+  flex: 1 0 auto;
+  padding: 10px 10px;
+  margin-left: 50px;
+  align-items: center;
+  width: 1000px;
+  border: 1px solid rgba(0,0,0,0.5);
+  border-radius: 10px;
+  h4, p {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    margin: 15px;
+    font-size: 18px;
+  }
+}
+
+.event-map {
+  height: 400px;
+  width: 400px;
+  position: absolute;
+  top: 120px;
+  right: 120px;
+  flex: 0 0 auto;
+  border: 1px solid rgba(0,0,0,0.5);
+}

@@ -276,6 +276,7 @@ DEPENDENCIES
   gmaps4rails
   letter_opener
   listen (~> 3.0.5)
+  nokogiri
   omniauth-facebook
   pg
   pg_search
