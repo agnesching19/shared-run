@@ -1,21 +1,39 @@
 <!-- Map -->
-<div id="map" style="width: 100%; height: 300px;"></div>
+<div class="results-wrapper">
+  <div id="map"></div>
 
-<% if @search_widened %>
-  <h2><%= @search_widened  %></h2>
-<% end %>
-
-<ul>
-  <% @runs.each do |run| %>
-    <li><%= run.description %> (<%= run.run_distance %>km) - <%= run.location %> | <%= link_to "Show", run_path(run) %></li>
+  <% if @search_widened %>
+    <h2><%= @search_widened  %></h2>
   <% end %>
-</ul>
+
+  <!-- Results Display -->
+  <ul class="results-display">
+    <% @runs.each do |run| %>
+    <% photo_url = @user.photo? ? @user.photo : 'lix2bqmp4kzdpu4sqjiy' %>
+      <li class="result">
+        <div class="result-user">
+          <%= cl_image_tag photo_url, height: 80, width: 80, crop: :thumb %>
+        </div>
+        <div class="result-description">
+          <h4><%= run.description.upcase %></h4>
+          <h4>HOSTED BY <%= @user.first_name.upcase %></h4>
+          <%= link_to "Show", run_path(run), class: "result-link" %>
+        </div>
+        <div class="result-details">
+          <p><%= run.location.upcase %> </p>
+          <p><%= run.run_distance %> KM</p>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+
+</div>
 
 <!-- JavaScript -->
 <% content_for(:after_js) do %>
   <script>
     <!-- Map Display -->
-    var handler = Gmaps.build('Google');
+    const handler = Gmaps.build('Google');
     handler.buildMap({ internal: { id: 'map' } }, function() {
       markers = handler.addMarkers(<%= raw @coordinates.to_json %>);
       handler.bounds.extendWith(markers);
