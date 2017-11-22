@@ -2,7 +2,7 @@ class Run < ApplicationRecord
   belongs_to :user
   has_many :messages
   has_many :invites
-  validates :location, :date, :description, :run_distance, :capacity, presence: true
+  validates :location, :date, :title, :description, :run_distance, :capacity, presence: true
 
   # Enables photo uploads
   mount_uploader :photo, PhotoUploader
