@@ -1,25 +1,25 @@
 <div class="container">
-  <h1>!!!Upcoming Events!!!</h1>
+  <h1>Upcoming Events</h1>
 
   <ul class="main">
     <% @events.each do |event| %>
+
       <li class="date">
         <h3><%= event.date %></h3>
-        <p>Schedule of Event</p>
-      </li>
-      <li class="events">
-        <ul class="events-detail">
-          <%= link_to "", event_path(event) %>
-            <span class="event-time"><%= event.time %></span>
-            <span class="event-location"><%= event.location %></span>
-            <br>
-            <span class="event-distance"><%= event.distance %></span>
-            <br>
-            <span class="event-description"><%= event.description %></span>
-          </a>
-        </ul>
+
       </li>
 
+      <li class="events">
+        <ul class="events-detail">
+            <span class="event-time"><%= event.time %></span>
+            <br>
+            <span class="event-location"><%= event.location %></span>
+            <br>
+            <span class="event-distance">Distance: <%= event.distance %>km</span>
+            <br>
+            <span class="event-description"><%= event.description %></span>
+        </ul>
+      </li>
 
     <% end %>
   </ul>
