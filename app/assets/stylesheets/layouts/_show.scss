@@ -1,10 +1,12 @@
 .show-wrapper {
   // display: flex;
+  background-color: #393939;
+  color: #FCEA60;
 }
 
 #show-map {
   height: 300px;
-  width: 100;
+  width: 100vw;
   flex: 0 0 auto;
 }
 
