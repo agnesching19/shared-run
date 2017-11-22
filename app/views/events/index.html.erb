@@ -1,29 +1,26 @@
 <div class="container">
   <h1>Upcoming Events</h1>
 
-  <ul class="main">
+  <div class="row">
     <% @events.each do |event| %>
-
-      <li class="date">
-        <h3><%= event.date %>  <%= link_to '<i class="fa fa-info-circle" aria-hidden="true"></i>'.html_safe, event_path(event) %></h3>
-      </li>
-
-      <li class="events">
-        <ul class="events-detail">
-          <li>
-            <span class="event-time"><%= event.time.strftime("at %I:%M%p") %></span>
-            <span class="event-location">Location: <%= event.location %></span>
-            <br>
-            <span class="event-distance">Distance: <%= event.distance %>km</span>
-            <br>
-            <span class="event-description"><%= event.description %></span>
-
-          </li>
-        </ul>
-      </li>
-
+      <div class="col-xs-12 col-sm-6">
+        <div class="event-card">
+          <div class="event-card-date">
+            <h3><%= event.date %></h3>
+          </div>
+          <div class="event-card-content">
+            <ul class="list-inline event-icons">
+              <li><i class="fa fa-clock-o" aria-hidden="true"></i> <%= event.time.strftime("at %I:%M%p") %></li>
+              <li><i class="fa fa-map-marker" aria-hidden="true"></i> <%= event.location %></li>
+              <li><i class="fa fa-level-up" aria-hidden="true"></i> <%= event.distance %>km</li>
+            </ul>
+            <p><%= event.description %></p>
+          </div>
+          <%= link_to "", event_path(event), class: "event-card-link" %>
+        </div>
+      </div>
     <% end %>
-  </ul>
+  </div>
 
   <p>
     <% if user_signed_in? %>
