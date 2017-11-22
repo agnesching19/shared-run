@@ -2,10 +2,38 @@
   display: flex;
 }
 
+.results-display {
+  padding: 0px 10px 0px 10px;
+  list-style: none;
+  width: 80%;
+}
+
+.result {
+  display: flex;
+  align-items: center;
+  padding: 15px 10px;
+  border-bottom: 2px solid rgba(0,0,0,0.4);
+}
+
+.result-description {
+  flex: 1 0 auto;
+  padding: 0px 10px;
+  align-items: center;
+  max-width: 60%;
+
+  h4 {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    margin: 0px;
+    font-size: 18px;
+  }
+}
+
 .map {
-  height: calc(100vh - 50px);
-  width: 45%;
-  position: sticky !important;
-  top: 0px !important;
+  height: 400px;
+  width: 400px;
+  position: absolute;
+  top: 120px;
+  right: 100px;
   flex: 0 0 auto;
 }
