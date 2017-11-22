@@ -1,39 +1,28 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-4">
-      Date: <%= @event.date %> - <%= @event.time.strftime("at %I:%M%p") %>
-    </div>
-  </div>
+<div class="results-wrapper">
+  <div class="map"></div>
 
-  <div class="row">
-    <div class="col-sm-4">
-      Location: <%= @event.location %>
-    </div>
-  </div>
+  <% if @search_widened %>
+    <h2><%= @search_widened  %></h2>
+  <% end %>
 
-  <div class="row">
-    <div class="col-sm-4">
-      Distance: <%= @event.distance %> KM
-    </div>
-  </div>
+  <!-- Event details -->
+  <ul class="results-display">
 
-  <div class="row">
-    <div class="col-sm-4">
-      Description: <%= @event.description %>
-    </div>
-  </div>
+    <% photo_url = current_user.photo? ? current_user.photo : 'lix2bqmp4kzdpu4sqjiy' %>
+      <li class="result">
 
-  <div class="row">
-    <div class="col-sm-4">
-      Price: £<%= @event.price %>
-    </div>
-  </div>
+        <div class="result-description">
 
-  <div class="row">
-    <div class="col-sm-4">
-      Surface: <%= @event.surface %>
-    </div>
-  </div>
+          <h4>HOSTED BY <%= @event.user.first_name.upcase %></h4>
+        </div>
+        <div class="result-details">
+          <p><%= @event.location.upcase.match(/^(.+?),/).to_s %> <%= @event.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
+          <p><%= @event.distance %> KM</p>
+        </div>
+      </li>
+
+  </ul>
+
 </div>
 
 <%= link_to "Back to All Events", events_path %>
@@ -44,4 +33,20 @@
 
 <% if policy(@event).edit? %>
   <%= link_to "Edit", edit_event_path(@event), class: "btn btn-default" %>
+<% end %>
+
+<% content_for(:after_js) do %>
+  <script>
+    const handler = Gmaps.build("Google");
+    handler.buildMap({ internal: { id: "map" } }, function() {
+      markers = handler.addMarkers(<%= raw @coordinates.to_json %>);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      if (markers.length == 0) {
+        handler.getMap().setZoom(2);
+      } else if (markers.length == 1) {
+        handler.getMap().setZoom(14);
+      }
+    });
+  </script>
 <% end %>

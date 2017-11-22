@@ -1,6 +1,6 @@
 <!-- Map -->
 <div class="results-wrapper">
-  <div id="map"></div>
+  <div class="map"></div>
 
   <% if @search_widened %>
     <h2><%= @search_widened  %></h2>
@@ -15,8 +15,8 @@
           <%= cl_image_tag photo_url, height: 80, width: 80, crop: :thumb %>
         </div>
         <div class="result-description">
-          <h4><%= link_to run.title.upcase, run_path(run) %></h4>
-          <h4>HOSTED BY <%= @user.first_name.upcase %></h4>
+          <h4><%= link_to run.description.upcase, run_path(run) %></h4>
+          <h4>HOSTED BY <%= run.user.first_name.upcase %></h4>       
         </div>
         <div class="result-details">
           <p><%= run.location.upcase.match(/^(.+?),/).to_s %> <%= run.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
