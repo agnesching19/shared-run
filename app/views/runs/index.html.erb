@@ -9,23 +9,25 @@
   <!-- Results Display -->
   <ul class="results-display">
     <% @runs.each do |run| %>
-    <% photo_url = @user.photo? ? @user.photo : 'lix2bqmp4kzdpu4sqjiy' %>
-      <li class="result">
-        <div class="result-user">
-          <%= cl_image_tag photo_url, height: 80, width: 80, crop: :thumb %>
-        </div>
-        <div class="result-description">
-          <h4><%= link_to run.description.upcase, run_path(run) %></h4>
-          <h4>HOSTED BY <%= run.user.first_name.upcase %></h4>       
-        </div>
-        <div class="result-details">
-          <p><%= run.location.upcase.match(/^(.+?),/).to_s %> <%= run.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
-          <p><%= run.run_distance %> KM | CAPACITY: <%= run.capacity %></p>
-        </div>
-      </li>
+      <div class="result-link">
+        <% photo_url = @user.photo? ? @user.photo : 'lix2bqmp4kzdpu4sqjiy' %>
+        <li class="result">
+          <div class="result-user">
+            <%= cl_image_tag photo_url, height: 80, width: 80, crop: :thumb %>
+          </div>
+          <div class="result-description">
+            <h4><%= run.title.upcase %></h4>
+            <h4>HOSTED BY <%= @user.first_name.upcase %></h4>
+          </div>
+          <div class="result-details">
+            <p><%= run.location.upcase.match(/^(.+?),/).to_s %> <%= run.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
+            <p><%= run.run_distance %> KM | CAPACITY: <%= run.capacity %></p>
+          </div>
+          <%= link_to "", run_path(run), class: "result-link-url" %>
+        </li>
+      </div>
     <% end %>
   </ul>
-
 </div>
 
 <%= content_for(:title, "shared.run | Run Together - Anytime, Anywhere") %>
