@@ -1,28 +1,31 @@
-<div class="results-wrapper">
-  <div class="map"></div>
+<div class="event-wrapper">
 
   <% if @search_widened %>
     <h2><%= @search_widened  %></h2>
   <% end %>
 
   <!-- Event details -->
-  <ul class="results-display">
+  <ul class="event-display">
 
     <% photo_url = current_user.photo? ? current_user.photo : 'lix2bqmp4kzdpu4sqjiy' %>
-      <li class="result">
+    <li class="events">
 
-        <div class="result-description">
+      <div class="event-description">
+        <p><%= @event.date %> - <%= @event.time.strftime("at %I:%M%p") %></p>
+        <p>HOSTED BY <%= @event.user.first_name.upcase %></p>
 
-          <h4>HOSTED BY <%= @event.user.first_name.upcase %></h4>
-        </div>
-        <div class="result-details">
-          <p><%= @event.location.upcase.match(/^(.+?),/).to_s %> <%= @event.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
-          <p><%= @event.distance %> KM</p>
-        </div>
-      </li>
+        <h4><%= @event.location.upcase.match(/^(.+?),/).to_s %> <%= @event.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></h4>
+        <h4>Distance: <%= @event.distance %> KM</h4>
+        <h4>Surface: <%= @event.surface %></h4>
+        <h4>Price: £<%= @event.price %></h4>
+        <h4>Description: <%= @event.description %></h4>
+      </div>
+    </li>
 
   </ul>
 
+  <!-- Event map -->
+  <div class="map">This is ideally a map of event.</div>
 </div>
 
 <%= link_to "Back to All Events", events_path %>
@@ -35,6 +38,7 @@
   <%= link_to "Edit", edit_event_path(@event), class: "btn btn-default" %>
 <% end %>
 
+<!-- JS for the map -->
 <% content_for(:after_js) do %>
   <script>
     const handler = Gmaps.build("Google");
