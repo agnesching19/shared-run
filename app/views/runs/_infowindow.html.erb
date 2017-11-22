@@ -1,5 +1,5 @@
 <%= link_to run_path(run) do %>
-  <p><strong><%= run.description.split.map {|r| r.capitalize}.join(" ") %></strong></p>
+  <p><strong><%= run.title.split.map {|r| r.capitalize}.join(" ") %></strong></p>
   <p>Organised by <%= run.user.first_name.capitalize %></p>
   <p><%= run.location.match(/^(.+?),/).to_s %> <%= run.location.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
   <p><%= run.run_distance %>km</p>
