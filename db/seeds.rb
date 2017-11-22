@@ -36,6 +36,7 @@ def users(number)
     first_name = name.first
     last_name = name.last
     photo = "https://picsum.photos/200/300/?random"
+    bio = "I love running!"
     User.create!({
       email: email, password: password,
       first_name: first_name,last_name: last_name, photo: photo
@@ -53,6 +54,7 @@ def runs(number)
     location = Faker::Address.city
     maximum = Faker::Number.between(1, 6)
     capacity = (maximum / 2).round(0) + 1
+    title = "Amazing Run"
     description = "Have a great run with #{capacity} people"
     date = Faker::Date.forward(rand(0..60))
     distance = Faker::Number.between(1, 20)
