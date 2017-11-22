@@ -70,6 +70,15 @@
           <p><%= @run.run_distance %> kilometres</p>
         </div>
       </div>
+      <div class="run-detail">
+        <div class="detail-icon">
+          <i class="fa fa-clock-o" aria-hidden="true"></i>
+        </div>
+        <div class="detail-content">
+          <h4>TIME</h4>
+          <p><%= @run.time.strftime("%I:%M %p")  %></p>
+        </div>
+      </div>
     </div>
     <!-- Booking -->
       <h6>
