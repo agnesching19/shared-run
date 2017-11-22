@@ -1,12 +1,234 @@
-<h1><%= @run.description %></h1>
-<h2><%= @run.location %> | <%= @run.run_distance %>km </h2>
+<div class="show-wrapper">
 
-<%= link_to "Back to Search Results", runs_path %>
+  <!-- Banner -->
+  <div class="show-banner">
+    <!-- Map Background -->
+    <div class="show-map"></div>
+    <!-- Title -->
+    <div class="show-summary">
+      <h1><%= @run.description.split.map {|r| r.capitalize}.join(" ") %></h1>
+      <h2><%= @run.location %> | <%= @run.run_distance %>km </h2>
+      <!-- Links -->
+      <h5>
+        <%= link_to "BACK TO SEARCH", runs_path, class: "btn btn-default" %>
+        <% if policy(@run).edit? %>
+          <%= link_to "EDIT", edit_run_path(@run), class: "btn btn-default" %>
+        <% end %>
+        <% if policy(@run).destroy? %>
+          <%= link_to "DELETE", run_path(@run), class: "btn btn-default", method: :delete, data: { confirm: "Are you sure you want to delete?" } %>
+        <% end %>
+      </h5>
+    </div>
+  </div>
 
-<% if policy(@run).destroy? %>
-  <%= link_to "Delete", run_path(@run), class: "btn btn-default", method: :delete, data: { confirm: "Are you sure you want to delete?" } %>
-<% end %>
+  <!-- Content -->
+  <div class="show-info">
+    <!-- User Photo -->
+    <div class="show-user-photo">
+      <% photo_url = @run.user.photo? ? @run.user.photo : 'lix2bqmp4kzdpu4sqjiy' %>
+      <%= cl_image_tag photo_url, height: 80, width: 80, crop: :thumb %>
+    </div>
+    <!-- User Information -->
+    <div class="show-user-info">
+      <h3><%= @run.user.first_name.capitalize %> <%= @run.user.last_name.capitalize %></h3>
+      <p>Sociability: <%= @run.user.sociability %></p>
+      <p>Pace: <%= @run.user.pace %></p>
+    </div>
+    <!-- Run Details -->
+    <div class="show-run">
+      <p>Location: <%= @run.location %></p>
+      <p>Distance: <%= @run.run_distance %>km</p>
+    </div>
+    <!-- Booking -->
+    <div class="show-booking">
+      <%= link_to "Say Hi!", new_run_invite_path(@run) %>
+    </div>
+  </div>
 
-<% if policy(@run).edit? %>
-  <%= link_to "Edit", edit_run_path(@run), class: "btn btn-default" %>
+</div>
+
+<!-- JavaScript -->
+
+<%= content_for(:title, @run.description.split.map {|r| r.capitalize}.join(" ")) %>
+
+<% content_for(:after_js) do %>
+
+<script>
+  var handler = Gmaps.build("Google", { markers: { clusterer: undefined } });
+  handler.buildMap({ internal: { id: "show-map" } }, function() {
+    markers = handler.addMarkers(
+      [
+        {
+          "lat": <%= @run.latitude %>,
+          "lng": <%= @run.longitude %>
+        }
+      ]
+    );
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    handler.getMap().setZoom(14);
+  });
+  // Snazzy Maps - Theme: Cleaner Midnight
+  var styles = [
+    {
+        "featureType": "all",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#ffffff"
+            },
+            {
+                "weight": "0.20"
+            },
+            {
+                "lightness": "28"
+            },
+            {
+                "saturation": "23"
+            },
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "all",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+            {
+                "color": "#494949"
+            },
+            {
+                "lightness": 13
+            },
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "all",
+        "elementType": "labels.icon",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#000000"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#144b53"
+            },
+            {
+                "lightness": 14
+            },
+            {
+                "weight": 1.4
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "all",
+        "stylers": [
+            {
+                "color": "#08304b"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#0c4152"
+            },
+            {
+                "lightness": 5
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#000000"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#0b434f"
+            },
+            {
+                "lightness": 25
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#000000"
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#0b3d51"
+            },
+            {
+                "lightness": 16
+            }
+        ]
+    },
+    {
+        "featureType": "road.local",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#000000"
+            }
+        ]
+    },
+    {
+        "featureType": "transit",
+        "elementType": "all",
+        "stylers": [
+            {
+                "color": "#146474"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "all",
+        "stylers": [
+            {
+                "color": "#021019"
+            }
+        ]
+    }
+  ];
+  </script>
 <% end %>

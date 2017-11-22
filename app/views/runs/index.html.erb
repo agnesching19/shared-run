@@ -28,12 +28,12 @@
 
 </div>
 
-<!-- JavaScript -->
+<%= content_for(:title, "shared.run | Run Together - Anytime, Anywhere") %>
+
 <% content_for(:after_js) do %>
   <script>
-    <!-- Map Display -->
-    const handler = Gmaps.build('Google');
-    handler.buildMap({ internal: { id: 'map' } }, function() {
+    const handler = Gmaps.build("Google");
+    handler.buildMap({ internal: { id: "map" } }, function() {
       markers = handler.addMarkers(<%= raw @coordinates.to_json %>);
       handler.bounds.extendWith(markers);
       handler.fitMapToBounds();
