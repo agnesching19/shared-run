@@ -1,12 +1,14 @@
 require 'faker'
+require 'open-uri'
+require 'nokogiri'
 
 def prepare
   puts "--- cleaning the db ---"
   Search.destroy_all
-  puts "--- cleaning the db ---"
-  User.destroy_all
   puts "    destroying all runs..."
   Run.destroy_all
+  puts "--- cleaning the db ---"
+  User.destroy_all
   puts "    destroying all reviews..."
   Review.destroy_all
   puts "    destroying all events..."
@@ -62,8 +64,10 @@ def runs(number)
     Run.create!({
       user_id: user_id, location: location,
       capacity: capacity, run_distance: distance,
-      description: description, date: date
+      description: description, date: date,
+      title: title
     })
+    sleep(2)
   }
 
   puts "  New run #{Run.first.location} has been added to the database"
@@ -72,6 +76,7 @@ def runs(number)
 end
 
 def events(number)
+
   puts "--- creating #{number} events ---"
 
   number.times {
@@ -109,6 +114,34 @@ def reviews(number)
   puts ""
 end
 
+def scrape_events(number)
+  url = "https://www.runnersworld.co.uk/event/search"
+  html = open(url).read
+  html_doc = Nokogiri::HTML(html)
+
+  # number.times {
+  html_doc.css('.results--list').first(number).each_with_index do |comp, index|
+    puts index + 1
+    date = comp.search('.results--date').text
+    dates = date.split(' ')
+    day = dates[1].to_i
+    month = Date::MONTHNAMES.index(dates[2])
+    year = dates[3]
+    actual_date = Date.parse("#{day}/#{month}/#{year}")
+    time = Time.parse(dates.last)
+    # description =  tr.search('td')[1].text
+    location = comp.search('.results--location').text
+    description = comp.search('.events--title').text
+    distance = (5..20).to_a.sample
+    surface = ['Trail', 'Road', 'Track'].sample
+    event = Event.new(date: actual_date, time: time, location: location, description: description, distance: distance, surface: surface)
+    event.user = User.first
+    event.save
+    puts "----- #{description} created"
+  end
+
+end
+
 prepare
 puts "--- seeding the database ---"
 # Creating the static user for the user journey
@@ -121,5 +154,8 @@ runs(15)
 events(10)
 # Creating random reviews for seeded users
 reviews(5)
+# Creating scraped events for seeded users
+
+scrape_events(10)
 
 puts "whooop - all seeding completed ;)"
