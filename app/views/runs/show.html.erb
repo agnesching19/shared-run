@@ -41,12 +41,12 @@
     </div>
     <!-- Run Details -->
     <div class="show-run-details">
-      <p>Location: <%= @run.location %></p>
-      <p>Distance: <%= @run.run_distance %>km</p>
+      <p><i class="fa fa-map-marker" aria-hidden="true"></i> <%= @run.location %></p>
+      <p><i class="fa fa-road" aria-hidden="true"></i> <%= @run.run_distance %> kilometres</p>
     </div>
     <!-- Booking -->
     <div class="show-booking">
-      <%= link_to "Say Hi!", new_run_message_path(@run) %>
+      <h1><%= link_to "👋🏼 SCHEDULE A RUN", new_run_message_path(@run) %></h1>
     </div>
   </div>
 
