@@ -19,7 +19,7 @@
           <h4>HOSTED BY <%= @user.first_name.upcase %></h4>
         </div>
         <div class="result-details">
-          <p><%= run.location.upcase %> </p>
+          <p><%= run.location.upcase.match(/^(.+?),/).to_s.gsub(",", "") %> <%= run.location.upcase.match(/,\s*([^,]+)$/) %></p>
           <p><%= run.run_distance %> KM</p>
         </div>
       </li>
