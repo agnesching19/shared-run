@@ -21,27 +21,41 @@
     </div>
   </div>
 
+  <!-- Placeholders -->
+<!--   <div class="show-user-info-placeholder padding">
+    <h1>ABOUT <%= @run.user.first_name.upcase %></h1>
+  </div>
+  <div class="show-user-info-placeholder padding">
+    <h1>RUN DESCRIPTION</h1>
+  </div>
+  <div class="show-run-details-placeholder padding">
+    <h1>SCHEDULE A RUN</h1>
+  </div> -->
+
   <!-- Content -->
   <div class="show-info">
     <!-- User Photo -->
-    <div class="show-user-photo">
-      <% photo_url = @run.user.photo? ? @run.user.photo : 'lix2bqmp4kzdpu4sqjiy' %>
-      <%= cl_image_tag photo_url, height: 150, width: 150, crop: :thumb %>
-    </div>
-    <!-- User Information -->
-    <div class="show-user-info">
-      <h3><%= @run.user.first_name.capitalize %> <%= @run.user.last_name.capitalize %></h3>
-      <p><%= @run.user.bio? ? "" : @run.user.bio %></p>
-      <p>Sociability: <%= @run.user.sociability %></p>
-      <p>Pace: <%= @run.user.pace %></p>
+    <div class="show-user-info padding">
+      <div class="show-user-photo">
+        <% photo_url = @run.user.photo? ? @run.user.photo : 'lix2bqmp4kzdpu4sqjiy' %>
+        <%= cl_image_tag photo_url, height: 120, width: 120, crop: :thumb %>
+      </div>
+      <div class="show-user-contents">
+        <h3><%= link_to @run.user.first_name.upcase, dashboard_path(@run.user) %></h3>
+        <p>Bio: <%= @run.user.bio %></p>
+        <p>Sociability: <%= @run.user.sociability %></p>
+        <p>Pace: <%= @run.user.pace %></p>
+        <p>Location: <%= @run.user.location %></p>
+        <p>Reviews:</p>
+      </div>
     </div>
     <!-- Run Description -->
-    <div class="show-run-description">
+    <div class="show-run-description padding">
       <h4>RUN DETAILS</h4>
       <p><%= @run.description %></p>
     </div>
     <!-- Run Details -->
-    <div class="show-run-details">
+    <div class="show-run-details padding">
       <div class="run-detail">
         <div class="detail-icon">
           <i class="fa fa-map-marker" aria-hidden="true"></i>
@@ -71,7 +85,10 @@
       </div>
     <!-- Booking -->
 
-      <h6><%= link_to "👋🏼 SCHEDULE A RUN", new_run_message_path(@run) %></h6>
+      <h6>
+        <%= link_to "👋🏼 SCHEDULE A RUN", new_run_message_path(@run), class: "btn btn-default" %>
+        <div class="fb-share-button btn btn-default" data-href="https://developers.facebook.com/docs/plugins/" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"><i class="fa fa-facebook-square" aria-hidden="true"></i> SHARE</a></div>
+    </h6>
     </div>
   </div>
 
@@ -443,6 +460,5 @@
       handler.fitMapToBounds();
       handler.getMap().setZoom(14);
     });
-
   </script>
 <% end %>
