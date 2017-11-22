@@ -27,11 +27,11 @@
 
   <p>
     <% if user_signed_in? %>
-      <%= link_to "Add Event", new_event_path(@event) %>
+      <%= link_to "Add Event", new_event_path(@event), class: "btn btn-default" %>
     <% end %>
   </p>
 
   <p>
-    <%= link_to "Log Out", destroy_user_session_path %>
+    <%= link_to "Log Out", destroy_user_session_path, class: "btn btn-default" %>
   </p>
 </div>
