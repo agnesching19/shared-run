@@ -7,8 +7,9 @@
   box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
   position: relative;
   height: 130px;
+  color: $gray;
   &:hover {
-    box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+    box-shadow: 4px 4px 6px rgba(255,255,255,0.7);
     .event-card-date {
       color: $red;
     }
