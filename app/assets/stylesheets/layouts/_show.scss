@@ -1,4 +1,6 @@
-.show-wrapper {
+// CSS for Runs show page
+
+body {
   background-color: #393939;
   color: white;
 }
@@ -33,23 +35,24 @@
 
 .show-info {
   display: grid;
-  grid-template-rows: 50% 50%;
   grid-template-columns: 1fr 1fr 1fr;
-  height: calc(50vh - 30px);
-}
+  height: calc(100vh - 360px);
 
-.show-user-info {
-  grid-column: 1 / span 2;
-  grid-row: 2 / span 1;
-  display: flex;
-  justify-content: flex-start;
+  .show-user-info {
+    grid-column: 1 / span 1;
+    text-align: center;
 
-  h3, p {
-    margin: 0px !important;
+    h3 {
+      margin: 10px 0px !important;
+    }
+
+    p {
+      margin: 0px !important;
+    }
   }
 
-  .show-user-contents {
-    padding-left: 15px;
+  .show-user-reviews {
+    margin-bottom: 10px;
   }
 }
 
@@ -58,19 +61,22 @@
 }
 
 .show-run-description {
-  grid-column: 1 / span 2;
+  grid-column: 2 / span 1;
+
+  .show-run-buddies {
+    margin-top: 30px;
+  }
 
   h4 {
-    margin: 0px 0px 5px 0px !important;
+    margin: 0px 0px 10px 0px !important;
   }
 }
 
 .show-run-details {
   grid-column: 3 / span 1;
-  grid-row: 1 / span 2;
 
   .run-detail {
-    padding-bottom: 15px;
+    padding-bottom: 30px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -78,15 +84,27 @@
 
   .detail-icon {
     font-size: 30px;
-    min-width: 70px;
+    min-width: 75px;
     text-align: center;
   }
 
-  h4, p {
+  .show-run-action {
+    text-align: center;
+
+    h5 {
+      margin-top: 0px !important;
+    }
+  }
+
+  h4 {
+    margin: 0px 0px 5px 0px !important;
+  }
+
+  p {
     margin: 0px !important;
   }
 }
 
 .padding {
-  padding: 20px;
+  padding: 25px;
 }
