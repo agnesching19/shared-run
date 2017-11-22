@@ -1,6 +1,6 @@
 <!-- Map -->
 <div class="results-wrapper">
-  <div class="map"></div>
+  <div id="results-map"></div>
 
   <% if @search_widened %>
     <h2><%= @search_widened  %></h2>
@@ -35,7 +35,7 @@
 <% content_for(:after_js) do %>
   <script>
     const handler = Gmaps.build("Google");
-    handler.buildMap({ internal: { id: "map" } }, function() {
+    handler.buildMap({ internal: { id: "results-map" } }, function() {
       markers = handler.addMarkers(<%= raw @coordinates.to_json %>);
       handler.bounds.extendWith(markers);
       handler.fitMapToBounds();
