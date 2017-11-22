@@ -1,16 +1,16 @@
-<div class="results-wrapper">
+<div class="event-wrapper">
 
   <% if @search_widened %>
     <h2><%= @search_widened  %></h2>
   <% end %>
 
   <!-- Event details -->
-  <ul class="results-display">
+  <ul class="event-display">
 
     <% photo_url = current_user.photo? ? current_user.photo : 'lix2bqmp4kzdpu4sqjiy' %>
-    <li class="result">
+    <li class="events">
 
-      <div class="result-description">
+      <div class="event-description">
         <p><%= @event.date %> - <%= @event.time.strftime("at %I:%M%p") %></p>
         <p>HOSTED BY <%= @event.user.first_name.upcase %></p>
 
@@ -25,7 +25,7 @@
   </ul>
 
   <!-- Event map -->
-  <div class="map"></div>
+  <div class="map">This is ideally a map of event.</div>
 </div>
 
 <%= link_to "Back to All Events", events_path %>
