@@ -20,7 +20,7 @@
         </div>
         <div class="result-details">
           <p><%= run.location.upcase.match(/^(.+?),/).to_s %> <%= run.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
-          <p><%= run.run_distance %> KM</p>
+          <p><%= run.run_distance %> KM | <%= run.capacity %> SPOTS AVAILABLE</p>
         </div>
       </li>
     <% end %>
