@@ -1,5 +1,9 @@
 .event-wrapper {
   display: flex;
+  background: {
+     image: asset_url("runner.png");
+     size: cover;
+  }
 }
 
 .event-display {
@@ -19,15 +23,28 @@
   padding: 10px 10px;
   margin-left: 50px;
   align-items: center;
+  height: 500px;
   width: 1000px;
-  border: 1px solid rgba(0,0,0,0.5);
+  border: 1px solid rgba(0,0,0,0.3);
   border-radius: 10px;
   h4, p {
     overflow-wrap: break-word;
     word-wrap: break-word;
     margin: 15px;
-    font-size: 18px;
+    font-size: 25px;
+    color: $gray;
   }
+  h5 {
+    font-size: 20px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    margin: 15px;
+    color: $gray;
+  }
+}
+
+.event-description {
+  background-color: transparentize(white, .2)
 }
 
 .event-map {
