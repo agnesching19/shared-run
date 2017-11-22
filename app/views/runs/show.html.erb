@@ -60,9 +60,17 @@
           <p><%= @run.run_distance %> kilometres</p>
         </div>
       </div>
-    </div>
+      <div class="run-detail">
+        <div class="detail-icon">
+          <i class="fa fa-clock-o" aria-hidden="true"></i>
+        </div>
+        <div class="detail-content">
+          <h4>TIME</h4>
+          <p><%= @run.time.strftime("%I:%M %p") %></p>
+        </div>
+      </div>
     <!-- Booking -->
-    <div class="show-booking">
+
       <h6><%= link_to "👋🏼 SCHEDULE A RUN", new_run_message_path(@run) %></h6>
     </div>
   </div>

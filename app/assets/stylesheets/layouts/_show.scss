@@ -50,9 +50,13 @@
 
 .show-run-details {
   grid-column: 4 / span 1;
+  grid-row: 1 / span 2;
 
   .run-detail {
-    padding-bottom: 10px;
+    padding-bottom: 15px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
   }
 
   h4, p {
@@ -60,17 +64,8 @@
   }
 }
 
-.show-booking {
-  grid-row: 2 / span 1;
-  grid-column: 4 / span 1;
-}
-
-.run-detail {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
 .detail-icon {
   font-size: 30px;
+  min-width: 70px;
+  text-align: center;
 }
