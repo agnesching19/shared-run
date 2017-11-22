@@ -5,19 +5,20 @@
     <% @events.each do |event| %>
 
       <li class="date">
-        <h3><%= event.date %></h3>
-
+        <h3><%= event.date %>  <%= link_to '<i class="fa fa-info-circle" aria-hidden="true"></i>'.html_safe, event_path(event) %></h3>
       </li>
 
       <li class="events">
         <ul class="events-detail">
-            <span class="event-time"><%= event.time %></span>
-            <br>
-            <span class="event-location"><%= event.location %></span>
+          <li>
+            <span class="event-time"><%= event.time.strftime("at %I:%M%p") %></span>
+            <span class="event-location">Location: <%= event.location %></span>
             <br>
             <span class="event-distance">Distance: <%= event.distance %>km</span>
             <br>
             <span class="event-description"><%= event.description %></span>
+
+          </li>
         </ul>
       </li>
 
@@ -26,11 +27,11 @@
 
   <p>
     <% if user_signed_in? %>
-      <%= link_to "Add Event", new_event_path(@event) %>
+      <%= link_to "Add Event", new_event_path(@event), class: "btn btn-default" %>
     <% end %>
   </p>
 
   <p>
-    <%= link_to "Log Out", destroy_user_session_path %>
+    <%= link_to "Log Out", destroy_user_session_path, class: "btn btn-default" %>
   </p>
 </div>
