@@ -15,7 +15,7 @@
           <%= cl_image_tag photo_url, height: 80, width: 80, crop: :thumb %>
         </div>
         <div class="result-description">
-          <h4><%= link_to run.description.upcase, run_path(run) %></h4>
+          <h4><%= link_to run.title.upcase, run_path(run) %></h4>
           <h4>HOSTED BY <%= @user.first_name.upcase %></h4>
         </div>
         <div class="result-details">
