@@ -1,11 +1,11 @@
 <%= simple_form_for(@run) do |r| %>
-  <%= r.input :title %>
-  <%= r.input :description %>
+  <%= r.input :title, placeholder: "e.g. Casual Saturday jog by the River Thames" %>
+  <%= r.input :description, placeholder: "Please give a more detailed description of your run - e.g. meeting locations, points of interest, level of difficulty." %>
   <%= r.input :date %>
   <%= r.input :time %>
-  <%= r.input :location, priority: ['EN'], input_html: {id: "locationInput"} %>
-  <%= r.input :run_distance %>
-  <%= r.input :capacity %>
+  <%= r.input :location, priority: ["EN"], input_html: {id: "locationInput"} %>
+  <%= r.input :run_distance, placeholder: "Kilometre(s)" %>
+  <%= r.input :capacity, placeholder: "Number of people" %>
   <%= r.submit "Submit", class: "btn btn-default" %>
 <% end %>
 
@@ -16,8 +16,8 @@
   <script>
     var runLocation = document.getElementById("locationInput");
     if (runLocation) {
-      var autocomplete = new google.maps.places.Autocomplete(runLocation, { types: ['geocode'] });
-      google.maps.event.addDomListener(runLocation, 'keydown', function(e) {
+      var autocomplete = new google.maps.places.Autocomplete(runLocation, { types: ["geocode"] });
+      google.maps.event.addDomListener(runLocation, "keydown", function(e) {
         if (e.keyCode == 13) {
           e.preventDefault(); // Do not submit the form on Enter.
         }
