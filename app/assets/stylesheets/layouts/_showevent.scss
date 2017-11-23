@@ -18,7 +18,7 @@
   padding: 15px 30px;
 }
 
-.event-description {
+.event-content {
   flex: 1 0 auto;
   padding: 10px 10px;
   margin-left: 50px;
@@ -27,6 +27,7 @@
   width: 800px;
   border: 1px solid rgba(0,0,0,0.3);
   border-radius: 10px;
+  box-shadow: 10px 10px 5px #888888;
   h4, p {
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -34,17 +35,18 @@
     font-size: 25px;
     color: $gray;
   }
-  h5 {
-    font-size: 20px;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    margin: 15px;
-    color: $gray;
-  }
+}
+
+.event-content {
+  background-color: transparentize(white, .2);
 }
 
 .event-description {
-  background-color: transparentize(white, .2)
+  border: 1px solid rgba(0,0,0,0.3);
+  width: 480px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: transparentize(white, .5);
 }
 
 .event-map {
