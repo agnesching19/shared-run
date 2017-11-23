@@ -10,6 +10,7 @@ gem 'pg_search'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
+gem 'bootstrap-datepicker-rails'
 gem 'font-awesome-sass'
 gem 'sass-rails'
 gem 'simple_form'
