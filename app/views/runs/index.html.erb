@@ -13,7 +13,7 @@
         <% photo_url = run.user.photo? ? run.user.photo : 'lix2bqmp4kzdpu4sqjiy' %>
         <li class="result">
           <div class="result-user">
-            <%= cl_image_tag photo_url, height: 80, width: 80, crop: :thumb %>
+            <%= cl_image_tag photo_url, crop: :thumb, class: "result-user-photo" %>
           </div>
           <div class="result-description">
             <h4><%= run.title.upcase %></h4>
