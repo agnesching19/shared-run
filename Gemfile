@@ -16,6 +16,7 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 gem 'faker'
+gem 'jquery-rails'
 
 # Authentication and Authorisation
 gem 'devise'
