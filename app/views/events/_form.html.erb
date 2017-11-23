@@ -1,11 +1,11 @@
 <%= simple_form_for(@event) do |e| %>
   <%= e.input :date %>
   <%= e.input :time %>
-  <%= e.input :location, priority: ['EN'], input_html: {id: "locationInput"}, placeholder: 'Postcode, City..'  %>
-  <%= e.input :distance, collection: 1..42, prompt: "Kilometer(s)" %>
-  <%= e.input :description, placeholder: "A casual Saturday run along with local bar exploration afterwards.." %>
-  <%= e.input :surface, collection: [ "Grass", "Earth", "Woodland Trails", "Synthetic Track", "Sand", "Asphalt", "Treadmill", "Concrete", "Snow"], prompt: 'Select'%>
-  <%= e.input :price, collection: 0..30, prompt: "£" %>
+  <%= e.input :location, priority: ["EN"], input_html: {id: "locationInput"}, placeholder: "Enter a location"  %>
+  <%= e.input :distance, placeholder: "Kilometre(s)" %>
+  <%= e.input :description, placeholder: "e.g. A casual Saturday run along with local bar exploration afterwards" %>
+  <%= e.input :surface, collection: [ "Grass", "Earth", "Woodland Trails", "Synthetic Track", "Sand", "Asphalt", "Treadmill", "Concrete", "Snow"], prompt: "Select"%>
+  <%= e.input :price, prompt: "£" %>
 
   <%= e.submit "Submit", class: "btn btn-default" %>
 <% end %>
@@ -17,8 +17,8 @@
   <script>
     var runLocation = document.getElementById("locationInput");
     if (runLocation) {
-      var autocomplete = new google.maps.places.Autocomplete(runLocation, { types: ['geocode'] });
-      google.maps.event.addDomListener(runLocation, 'keydown', function(e) {
+      var autocomplete = new google.maps.places.Autocomplete(runLocation, { types: ["geocode"] });
+      google.maps.event.addDomListener(runLocation, "keydown", function(e) {
         if (e.keyCode == 13) {
           e.preventDefault(); // Do not submit the form on Enter.
         }

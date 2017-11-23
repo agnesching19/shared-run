@@ -1,1 +1,16 @@
-<h1>This is a runs/:id/messages page</h1>
+<div class="container">
+  <h1>MESSAGES WITH <%= @run.user.first_name.upcase %></h1>
+  <% @messages.each do |message| %>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+
+        <div class="messages">
+          <P><%= message.id %> | <%= message.content %> </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to "BACK TO RUN", run_path(@run), class: " btn btn-default" %>
+
