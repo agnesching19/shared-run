@@ -3,6 +3,11 @@ Rails.application.routes.draw do
     get 'logout' => 'devise/sessions#destroy'
   end
 
+  as :user do
+    get 'users/profile', :to => 'devise/registrations#edit', :as => :user_root
+    patch 'users', :to => 'devise/registrations#update'
+  end
+
   resources :events
   resources :runs do
     resources :invites, only: [:new, :create]
