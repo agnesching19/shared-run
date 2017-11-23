@@ -1,11 +1,61 @@
-<div class="search">
-  <%= form_tag(runs_path, method: :get) do |f| %>
-        <input type="text" name="search[location]" placeholder="Where do you want to run?">
-        <input type="number" name="search[proximity]" step="0.5" value="0.5" min=0>
-        <input type="date" name="search[run_date]" value=<% Date.today %>>
-        <input type="time" name="search[time]" value=<% Time.now %>>
-        <button class="btn btn-default" style="border-radius: 50%; font-size: 12px; padding: 5px 10px !important" %>
+<div class="search-home-page">
+<!-- <form>
+  <div class="form-row align-items-center">
+     <div class="col-sm-3">
+      <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
+
+      <div class="input-group mb-2 mb-sm-0">
+        <div class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+        <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Where?">
+      </div>
+    </div>
+  </div>
+   <div class="form-row align-items-center">
+      <div class="col-sm-3">
+      <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
+      <div class="input-group mb-2 mb-sm-0">
+        <div class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+        <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="When?">
+      </div>
+    </div>
+  </div>
+    <div class="col-sm-3">
+      <div class="text-left">
+      <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+    </div>
+</form> -->
+
+<form>
+  <div class="form-group">
+     <div class="input-group mb-2 mb-sm-0">
+      <div class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Where?">
+      </div>
+  </div>
+
+
+    <div class="form-group">
+     <div class="input-group mb-2 mb-sm-0">
+        <div class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="When?">
+      </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+</div>
+<!--   <%= form_tag(runs_path, method: :get) do |f| %>
+       <form class="form-inline">
+        <input class="form-control" type="text" name="search[location]" placeholder="Where do you want to run?">
+        <input class="form-control" type="number" name="search[proximity]" step="0.5" value="0.5" min=0>
+        <input class="form-control" type="date" name="search[run_date]" value=<% Date.today %>>
+        <input class="form-control" type="time" name="search[time]" value=<% Time.now %>>
+      </div>
+  <button class="btn btn-default" style="border-radius: 50%; font-size: 12px; padding: 5px 10px !important" %>
       <i class="fa fa-search" aria-hidden="true"></i>
     </button>
-  <% end %>
-</div>
+<% end %> -->
+
