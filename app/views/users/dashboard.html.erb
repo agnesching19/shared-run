@@ -7,17 +7,24 @@
     <%= @status %>
   </div>
 
+
   <div class="stats">
     <p>Total Runs: <%= @user.runs.count %></p>
-    <p>Total Distance Covered: </p>
-    <p>Average Pace: </p>
-  </div>
+
+    <% sum_of_dist = 0 %>
+
+    <% @user.runs.each do |run| %>
+     <% sum_of_dist += run.run_distance %>
+     <%# sum_of_dist += distance %>
+    <% end %>
+    <p>Total Distance Covered: <%= sum_of_dist %></p>
+
+ </div>
 
   <div class="achievements">
     <p>Longest Run:</p>
     <p>Longest Distance:</p>
-    <p>Fastest Pace:</p>
-  </div>
+   </div>
 
   <div class="history">
     <p>Hosted Runs: <%= @hosted %></p>
@@ -29,3 +36,7 @@
 </div>
 
 <%= content_for(:title, "Dashboard") %>
+
+
+  <!--  <p>Fastest Pace:</p> -->
+  <!--  <p>Average Pace: </p> -->
