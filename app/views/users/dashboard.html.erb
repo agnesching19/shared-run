@@ -1,1 +1,32 @@
-HI
+<div class="dashboard-container">
+
+  <%= cl_image_tag @user.photo %>
+  <%= @user.first_name %> <%= @user.last_name %>
+  <%= @user.location %>
+  <%= @user.bio %>
+
+  <div class="status">
+    <%= @status %>
+  </div>
+
+  <div class="stats">
+    <p>Total Runs: <%= @user.runs.count %></p>
+    <p>Total Distance Covered: %></p>
+    <p>Average Pace: </p>
+  </div>
+
+  <div class="achievements">
+    Fastest
+    <p>Longest Run: @user.run.time</p>
+  </div>
+
+  <div class="history">
+    <p>Hosted Runs</p>
+    <p>Upcoming Runs: @</p>
+    <p>Past Runs: @past</p>
+  </div>
+
+  <%= link_to "Edit", edit_user_registration_path, class: "btn btn-default" %>
+</div>
+
+<%= content_for(:title, "Dashboard") %>

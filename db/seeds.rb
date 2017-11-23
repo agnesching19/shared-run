@@ -1,6 +1,6 @@
-require 'faker'
-require 'open-uri'
-require 'nokogiri'
+require "faker"
+require "open-uri"
+require "nokogiri"
 
 def prepare
   puts "--- cleaning the db ---"
