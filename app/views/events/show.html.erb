@@ -1,24 +1,19 @@
 <div class="event-wrapper">
-
-  <% if @search_widened %>
-    <h2><%= @search_widened  %></h2>
-  <% end %>
-
 <!-- Event details -->
   <ul class="event-display">
 
     <% photo_url = current_user.photo? ? current_user.photo : 'lix2bqmp4kzdpu4sqjiy' %>
     <li class="events">
 
-      <div class="event-description">
-        <p><%= @event.date %> - <%= @event.time.strftime("at %I:%M%p") %></p>
+      <div class="event-content">
+        <p><i class="fa fa-clock-o" aria-hidden="true"></i> <%= @event.date %>  <%= @event.time.strftime("at %I:%M%p") %></p>
         <p>HOSTED BY <%= @event.user.first_name.upcase %></p>
 
-        <h4><%= @event.location.upcase.match(/^(.+?),/).to_s %> <%= @event.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></h4>
-        <h5>Distance: <%= @event.distance %> KM</h5>
-        <h5>Surface: <%= @event.surface %></h5>
-        <h5>Price: £<%= @event.price %></h5>
-        <h4><%= @event.description %></h4>
+        <h4><i class="fa fa-map-marker" aria-hidden="true"></i> <%= @event.location.upcase.match(/^(.+?),/).to_s %> <%= @event.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></h4>
+        <h4><i class="fa fa-road" aria-hidden="true"></i> <%= @event.distance %> KM</h4>
+        <h4><i class="fa fa-blind" aria-hidden="true"></i> <%= @event.surface %></h4>
+        <h4><i class="fa fa-gbp" aria-hidden="true"></i> <%= @event.price %></h4>
+        <h4 class="event-description"><%= @event.description %></h4>
       </div>
     </li>
 

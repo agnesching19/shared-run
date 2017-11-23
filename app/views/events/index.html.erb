@@ -11,8 +11,9 @@
           <div class="event-card-content">
             <ul class="list-inline event-icons">
               <li><i class="fa fa-clock-o" aria-hidden="true"></i> <%= event.time.strftime("at %I:%M%p") %></li>
+              <br>
               <li><i class="fa fa-map-marker" aria-hidden="true"></i> <%= event.location %></li>
-              <li><i class="fa fa-level-up" aria-hidden="true"></i> <%= event.distance %>km</li>
+              <li><i class="fa fa-road" aria-hidden="true"></i> <%= event.distance %>km</li>
             </ul>
             <p><%= event.description %></p>
           </div>
@@ -22,13 +23,12 @@
     <% end %>
   </div>
 
+<!-- User policy scope -->
   <p>
     <% if user_signed_in? %>
       <%= link_to "Add Event", new_event_path(@event), class: "btn btn-default" %>
+      <%= link_to "Log Out", destroy_user_session_path, class: "btn btn-default" %>
     <% end %>
   </p>
 
-  <p>
-    <%= link_to "Log Out", destroy_user_session_path, class: "btn btn-default" %>
-  </p>
 </div>

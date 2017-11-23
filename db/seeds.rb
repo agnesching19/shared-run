@@ -86,9 +86,10 @@ def events(number)
     location = Faker::Address.city
     distance = Faker::Number.between(1, 20)
     description = "The run you can't miss this year!"
+    price = rand(1..30)
     Event.create!({
       user_id: user_id, date: date, time: time, location: location,
-      distance: distance, description: description
+      distance: distance, description: description, price: price
     })
   }
 
