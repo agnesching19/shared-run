@@ -6,12 +6,13 @@ class UsersController < ApplicationController
 
   def run_history
     @upcoming = 0
-    @past = 0
+    @hosted = 0
     @user.runs each do |run|
       if run.time < Time.now
-        @past += 1
+        @hosted += 1
       else
         @upcoming += 1
+      end
     end
   end
 
@@ -22,5 +23,6 @@ class UsersController < ApplicationController
       @status = "It's been #{-@days_to_go} days since your last run!"
     else
       @status = "#{@days_to_go} days until your next run!"
+    end
   end
 end
