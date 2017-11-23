@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :runs
   has_many :events
   has_many :reviews
+  has_many :messages
   has_many :searches
   validates :email, :first_name, :last_name, presence: true
 
