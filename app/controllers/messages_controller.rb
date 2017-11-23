@@ -8,6 +8,7 @@ class MessagesController < ApplicationController
 
   def show
     authorize @message
+    @message = Message.new
   end
 
   def new
@@ -21,9 +22,15 @@ class MessagesController < ApplicationController
     @message.user_id = current_user.id
     authorize @message
     if @message.save
-      redirect_to run_messages_path(@message)
+      respond_to do |format|
+        format.html { redirect_to run_messages_path(@message) }
+        format.js
+      end
     else
-      render :new
+      respond_to do |format|
+        format.html { render "messages/show" }
+        format.js
+      end
     end
   end
 

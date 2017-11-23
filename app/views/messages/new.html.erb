@@ -1,7 +1,4 @@
-<div class="container">
+<div class="message-container">
   <h1>This is a new message page</h1>
-  <%= simple_form_for([@run, @message]) do |m| %>
-    <%= m.input :content %>
-    <%= m.submit "Submit", class: "btn btn-default" %>
-  <% end %>
+  <%= render "messages/form", run: @run, message: @message  %>
 </div>
