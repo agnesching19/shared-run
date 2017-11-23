@@ -12,8 +12,7 @@
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
-    <script src="bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
-    <link rel="stylesheet" href="bower_components/sweetalert2/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.3/sweetalert2.min.css" />
 
   </head>
 
@@ -31,4 +30,3 @@
 
     <%= yield(:after_js) %>
   </body>
-</html>

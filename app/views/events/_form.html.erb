@@ -7,10 +7,14 @@
   <%= e.input :surface, collection: [ "Grass", "Earth", "Woodland Trails", "Synthetic Track", "Sand", "Asphalt", "Treadmill", "Concrete", "Snow"], prompt: "Select"%>
   <%= e.input :price, prompt: "£" %>
 
-  <%= e.submit "Submit", class: "btn btn-default" %>
+  <%= e.submit "Submit", class: "btn btn-default", onclick: "sweet();" %>
 <% end %>
 
+<!-- JS for sweet alert -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.3/sweetalert2.all.min.js" integrity="sha256-Cc+yDzt4WAIOQNyXND0m3zCkxy8mSRJXLGy+5oGaHHM=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="app/assets/javascripts/sweetalert2.js"></script>
 
+<!-- JS for google map -->
 <%= content_for(:after_js) do %>
   <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=#{ENV['GOOGLE_API_BROWSER_KEY']}"></script>
 
