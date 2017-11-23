@@ -1,0 +1,8 @@
+const newMessage = document.getElementById("new_run_message");
+<% if @message.errors.any? %>
+  newMessage.innerHTML = "<%= j render 'messages/form', run: @run, message: @message %>";
+<% else %>
+  const messages = document.getElementById("messages");
+  messages.insertAdjacentHTML("beforeend", "<%= j render 'messages/show', message: @message %>");
+  newMessage.innerHTML = "<%= j render 'messages/form', run: @run, message: Message.new %>";
+<% end %>

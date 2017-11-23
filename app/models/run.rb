@@ -1,6 +1,6 @@
 class Run < ApplicationRecord
   belongs_to :user
-  has_many :messages
+  has_many :messages, dependent: :destroy
   has_many :invites
   validates :location, :date, :title, :description, :run_distance, :capacity, presence: true
 
