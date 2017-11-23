@@ -2,12 +2,13 @@
 <!-- Event details -->
   <ul class="event-display">
 
-    <% photo_url = current_user.photo? ? current_user.photo : 'lix2bqmp4kzdpu4sqjiy' %>
+
     <li class="events">
 
       <div class="event-content">
+        <p>HOSTED BY <%= @event.user.first_name.upcase %> <%= cl_image_tag @event.user.photo, class: "event-avatar" %></p>
         <p><i class="fa fa-clock-o" aria-hidden="true"></i> <%= @event.date %>  <%= @event.time.strftime("at %I:%M%p") %></p>
-        <p>HOSTED BY <%= @event.user.first_name.upcase %></p>
+
 
         <h4><i class="fa fa-map-marker" aria-hidden="true"></i> <%= @event.location.upcase.match(/^(.+?),/).to_s %> <%= @event.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></h4>
         <h4><i class="fa fa-road" aria-hidden="true"></i> <%= @event.distance %> KM</h4>
@@ -20,7 +21,7 @@
   </ul>
 
 <!-- Event map -->
-  <div class="event-map">This is ideally a map of event.</div>
+  <div id="show-event-map" class="event-map">This is ideally a map of event.</div>
 </div>
 
 <%= link_to "Back to All Events", events_path, class: "btn btn-default" %>
@@ -37,308 +38,25 @@
 <!-- JS for the map -->
 <% content_for(:after_js) do %>
 
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
-
-  <script type="text/javascript">
-  var myLatlng = new google.maps.LatLng(48.8655909, 2.378983);
-
-  var myOptions = {
-    zoom: 16,
-    center: myLatlng,
-    scrollwheel: false,
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
-    styles: [{
-        "elementType": "labels.text",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]},{
-        "featureType": "landscape.natural",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "color": "#f5f5f2"
-            },
-            {
-                "visibility": "on"
-            }
-        ]},{
-        "featureType": "administrative",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]},{
-        "featureType": "transit",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]},{
-        "featureType": "poi.attraction",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]},{
-        "featureType": "landscape.man_made",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "color": "#ffffff"
-            },
-            {
-                "visibility": "on"
-            }
-        ]},{
-        "featureType": "poi.business",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]},{
-        "featureType": "poi.medical",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]},{
-        "featureType": "poi.place_of_worship",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]},{
-        "featureType": "poi.school",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]},{
-        "featureType": "poi.sports_complex",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]},{
-        "featureType": "road.highway",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#ffffff"
-            },
-            {
-                "visibility": "simplified"
-            }
-        ]},{
-        "featureType": "road.arterial",
-        "stylers": [
-            {
-                "visibility": "simplified"
-            },
-            {
-                "color": "#ffffff"
-            }
-        ]},{
-        "featureType": "road.highway",
-        "elementType": "labels.icon",
-        "stylers": [
-            {
-                "color": "#ffffff"
-            },
-            {
-                "visibility": "off"
-            }
-        ]},
-                {
-        "featureType": "road.highway",
-        "elementType": "labels.icon",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
+  <script>
+    // Google Maps
+    var handler = Gmaps.build("Google");
+    handler.buildMap({
+      provider: {
+        // function defined in app/assets/javascript/map_styles.js
+        styles: getStyles()
+      }, internal: { id: "show-event-map" } }, function() {
+      markers = handler.addMarkers(
+        [
+          {
+            "lat": <%= raw @event.latitude %>,
+            "lng": <%= raw @event.longitude %>
+          }
         ]
-                },
-                {
-        "featureType": "road.arterial",
-        "stylers": [
-            {
-                "color": "#ffffff"
-            }
-        ]
-                },
-                {
-        "featureType": "road.local",
-        "stylers": [
-            {
-                "color": "#ffffff"
-            }
-        ]
-                },
-                {
-        "featureType": "poi.park",
-        "elementType": "labels.icon",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-                },
-                {
-        "featureType": "poi",
-        "elementType": "labels.icon",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-                },
-                {
-        "featureType": "water",
-        "stylers": [
-            {
-                "color": "#71c8d4"
-            }
-        ]
-                },
-                {
-        "featureType": "landscape",
-        "stylers": [
-            {
-                "color": "#e5e8e7"
-            }
-        ]
-                },
-                {
-        "featureType": "poi.park",
-        "stylers": [
-            {
-                "color": "#8ba129"
-            }
-        ]
-                },
-                {
-        "featureType": "road",
-        "stylers": [
-            {
-                "color": "#ffffff"
-            }
-        ]
-                },
-                {
-        "featureType": "poi.sports_complex",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#c7c7c7"
-            },
-            {
-                "visibility": "off"
-            }
-        ]
-                },
-                {
-        "featureType": "water",
-        "stylers": [
-            {
-                "color": "#a0d3d3"
-            }
-        ]
-                },
-                {
-        "featureType": "poi.park",
-        "stylers": [
-            {
-                "color": "#91b65d"
-            }
-        ]
-                },
-                {
-        "featureType": "poi.park",
-        "stylers": [
-            {
-                "gamma": 1.51
-            }
-        ]
-                },
-                {
-        "featureType": "road.local",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-                },
-                {
-        "featureType": "road.local",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "visibility": "on"
-            }
-        ]
-                },
-                {
-        "featureType": "poi.government",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-                },
-                {
-        "featureType": "landscape",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-                },
-                {
-        "featureType": "road",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-                },
-                {
-        "featureType": "road.arterial",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "visibility": "simplified"
-            }
-        ]
-                },
-                {
-        "featureType": "road.local",
-        "stylers": [
-            {
-                "visibility": "simplified"
-            }
-        ]
-                },
-                {
-                    "featureType": "road"
-                },
-                {
-                    "featureType": "road"
-                },
-                {},
-                {
-                    "featureType": "road.highway"
-                }]
-  };
-
-  var map = new google.maps.Map(document.getElementById('map'), myOptions);
-  var marker = new google.maps.Marker({
-    position: myLatlng,
-    map: map,
-    title: "You are here!"
-  });
+      );
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      handler.getMap().setZoom(14);
+    });
   </script>
 <% end %>
