@@ -60,12 +60,13 @@ def runs(number)
     description = "Have a great run with #{capacity} people"
     date = Faker::Date.forward(rand(0..60))
     distance = Faker::Number.between(1, 20)
+    time = Time.now.strftime("at %I:%M%p")
 
     Run.create!({
       user_id: user_id, location: location,
       capacity: capacity, run_distance: distance,
       description: description, date: date,
-      title: title
+      title: title, time:time
     })
     sleep(2)
   }
