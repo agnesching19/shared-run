@@ -8,10 +8,11 @@
   <div class="navbar-wagon-right hidden-xs hidden-sm">
     <!-- Search -->
     <%= render "shared/search" %>
+    <!-- All events -->
+    <%= link_to "ALL EVENTS", events_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <% if user_signed_in? %>
     <!-- Links when Logged In -->
-      <!-- Add New Run/Event -->
-      <%= link_to "ALL EVENTS", events_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <!-- Add New Run -->
       <%= link_to "ADD NEW RUN", new_run_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
       <!-- Avatar with dropdown menu -->
