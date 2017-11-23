@@ -5,7 +5,6 @@ Rails.application.routes.draw do
 
   as :user do
     get 'users/profile', :to => 'devise/registrations#edit', :as => :user_root
-    patch 'users', :to => 'devise/registrations#update'
   end
 
   resources :events
