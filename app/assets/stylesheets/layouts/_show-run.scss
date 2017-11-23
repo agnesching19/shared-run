@@ -33,6 +33,12 @@ body {
   }
 }
 
+.show-user-avatar {
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+}
+
 .show-info {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -103,6 +109,12 @@ body {
   p {
     margin: 0px !important;
   }
+}
+
+.buddy-photo {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
 }
 
 .padding {
