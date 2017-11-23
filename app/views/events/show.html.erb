@@ -2,12 +2,13 @@
 <!-- Event details -->
   <ul class="event-display">
 
-    <% photo_url = current_user.photo? ? current_user.photo : 'lix2bqmp4kzdpu4sqjiy' %>
+
     <li class="events">
 
       <div class="event-content">
+        <p>HOSTED BY <%= @event.user.first_name.upcase %> <%= cl_image_tag @event.user.photo, class: "event-avatar" %></p>
         <p><i class="fa fa-clock-o" aria-hidden="true"></i> <%= @event.date %>  <%= @event.time.strftime("at %I:%M%p") %></p>
-        <p>HOSTED BY <%= @event.user.first_name.upcase %></p>
+
 
         <h4><i class="fa fa-map-marker" aria-hidden="true"></i> <%= @event.location.upcase.match(/^(.+?),/).to_s %> <%= @event.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></h4>
         <h4><i class="fa fa-road" aria-hidden="true"></i> <%= @event.distance %> KM</h4>

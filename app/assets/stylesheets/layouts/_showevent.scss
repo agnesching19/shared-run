@@ -1,3 +1,9 @@
+.event-avatar {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+
 .event-wrapper {
   display: flex;
   background: {
@@ -45,7 +51,11 @@
   border: 1px solid rgba(0,0,0,0.3);
   width: 480px;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 30px;
+  font-size: 30px;
+  text-align: center;
+  letter-spacing: 2px;
+
   background-color: transparentize(white, .5);
 }
 
