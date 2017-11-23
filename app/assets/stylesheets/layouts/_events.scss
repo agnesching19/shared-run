@@ -1,0 +1,45 @@
+.event-card {
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  position: relative;
+  height: 150px;
+  color: $gray;
+  border-radius: 5px;
+  &:hover {
+    box-shadow: 4px 4px 6px rgba(255,255,255,0.7);
+    .event-card-date {
+      color: $red;
+    }
+  }
+}
+
+.event-card-date {
+  flex: 0 0 200px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  transition: .5s;
+  h3 {
+    margin: 0;
+  }
+}
+
+.event-card-content {
+  .event-icons {
+    font-size: 14px;
+    opacity: .7;
+  }
+}
+
+.event-card-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}

@@ -1,0 +1,110 @@
+// CSS for Runs show page
+
+body {
+  background-color: #393939;
+  color: white;
+}
+
+.show-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#show-map {
+  height: 300px;
+  width: 100vw;
+  flex: 0 0 auto;
+}
+
+.show-summary {
+  position: absolute;
+  left: 40px;
+  z-index: 2;
+
+  h4 {
+    font-size: 20px;
+  }
+
+  .btn {
+    font-size: 14px !important;
+    margin: 5px;
+    border-radius: 5px;
+  }
+}
+
+.show-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: calc(100vh - 360px);
+
+  .show-user-info {
+    grid-column: 1 / span 1;
+    text-align: center;
+
+    h3 {
+      margin: 10px 0px !important;
+    }
+
+    p {
+      margin: 0px !important;
+    }
+  }
+
+  .show-user-reviews {
+    margin-bottom: 10px;
+  }
+}
+
+.btn a {
+  text-decoration: none;
+}
+
+.show-run-description {
+  grid-column: 2 / span 1;
+
+  .show-run-buddies {
+    margin-top: 30px;
+  }
+
+  h4 {
+    margin: 0px 0px 10px 0px !important;
+  }
+}
+
+.show-run-details {
+  grid-column: 3 / span 1;
+
+  .run-detail {
+    padding-bottom: 30px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .detail-icon {
+    font-size: 30px;
+    min-width: 75px;
+    text-align: center;
+  }
+
+  .show-run-action {
+    text-align: center;
+
+    h5 {
+      margin-top: 0px !important;
+    }
+  }
+
+  h4 {
+    margin: 0px 0px 5px 0px !important;
+  }
+
+  p {
+    margin: 0px !important;
+  }
+}
+
+.padding {
+  padding: 25px;
+}

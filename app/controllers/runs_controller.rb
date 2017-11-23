@@ -64,12 +64,12 @@ class RunsController < ApplicationController
         @runs = Run.near([@last_search.latitude, @last_search.longitude], proximity)
         if @runs.length == 0
           @runs = Run.near([@last_search.latitude, @last_search.longitude], proximity * 2 )
-          @search_widened = "No runs found we widended your search to #{proximity * 2} km"
+          @search_widened = "No runs found - we widened your search to #{proximity * 2} km"
         elsif @runs.length == 0
           @runs = Run.near([@last_search.latitude, @last_search.longitude], proximity * 3 )
-          @search_widened = "No runs found we widended your search to #{proximity * 3} km"
+          @search_widened = "No runs found - we widended your search to #{proximity * 3} km"
         else
-          @search_widened = "Sorry even after widening your search we didnt find any shared runs within #{proximity *3} of you"
+          @search_widened = "Sorry, we didn't find any shared runs within #{proximity *3} of you even after widening your search"
         end
       end
     else
@@ -83,7 +83,7 @@ class RunsController < ApplicationController
   private
 
   def run_params
-    params.require(:run).permit(:location, :date, :description, :run_distance, :capacity, :photo, :shared)
+    params.require(:run).permit(:title, :time, :location, :date, :description, :run_distance, :capacity, :photo, :shared)
   end
 
   def search_params

@@ -1,12 +1,14 @@
-require 'faker'
+require "faker"
+require "open-uri"
+require "nokogiri"
 
 def prepare
   puts "--- cleaning the db ---"
   Search.destroy_all
-  puts "--- cleaning the db ---"
-  User.destroy_all
   puts "    destroying all runs..."
   Run.destroy_all
+  puts "--- cleaning the db ---"
+  User.destroy_all
   puts "    destroying all reviews..."
   Review.destroy_all
   puts "    destroying all events..."
@@ -36,6 +38,7 @@ def users(number)
     first_name = name.first
     last_name = name.last
     photo = "https://picsum.photos/200/300/?random"
+    bio = "I love running!"
     User.create!({
       email: email, password: password,
       first_name: first_name,last_name: last_name, photo: photo
@@ -53,6 +56,7 @@ def runs(number)
     location = Faker::Address.city
     maximum = Faker::Number.between(1, 6)
     capacity = (maximum / 2).round(0) + 1
+    title = "Amazing Run"
     description = "Have a great run with #{capacity} people"
     date = Faker::Date.forward(rand(0..60))
     distance = Faker::Number.between(1, 20)
@@ -60,8 +64,10 @@ def runs(number)
     Run.create!({
       user_id: user_id, location: location,
       capacity: capacity, run_distance: distance,
-      description: description, date: date
+      description: description, date: date,
+      title: title
     })
+    sleep(2)
   }
 
   puts "  New run #{Run.first.location} has been added to the database"
@@ -70,6 +76,7 @@ def runs(number)
 end
 
 def events(number)
+
   puts "--- creating #{number} events ---"
 
   number.times {
@@ -79,9 +86,10 @@ def events(number)
     location = Faker::Address.city
     distance = Faker::Number.between(1, 20)
     description = "The run you can't miss this year!"
+    price = rand(1..30)
     Event.create!({
       user_id: user_id, date: date, time: time, location: location,
-      distance: distance, description: description
+      distance: distance, description: description, price: price
     })
   }
 
@@ -107,6 +115,34 @@ def reviews(number)
   puts ""
 end
 
+def scrape_events(number)
+  url = "https://www.runnersworld.co.uk/event/search"
+  html = open(url).read
+  html_doc = Nokogiri::HTML(html)
+
+  # number.times {
+  html_doc.css('.results--list').first(number).each_with_index do |comp, index|
+    puts index + 1
+    date = comp.search('.results--date').text
+    dates = date.split(' ')
+    day = dates[1].to_i
+    month = Date::MONTHNAMES.index(dates[2])
+    year = dates[3]
+    actual_date = Date.parse("#{day}/#{month}/#{year}")
+    time = Time.parse(dates.last)
+    # description =  tr.search('td')[1].text
+    location = comp.search('.results--location').text
+    description = comp.search('.events--title').text
+    distance = (5..20).to_a.sample
+    surface = ['Trail', 'Road', 'Track'].sample
+    event = Event.new(date: actual_date, time: time, location: location, description: description, distance: distance, surface: surface)
+    event.user = User.first
+    event.save
+    puts "----- #{description} created"
+  end
+
+end
+
 prepare
 puts "--- seeding the database ---"
 # Creating the static user for the user journey
@@ -119,5 +155,8 @@ runs(15)
 events(10)
 # Creating random reviews for seeded users
 reviews(5)
+# Creating scraped events for seeded users
+
+scrape_events(10)
 
 puts "whooop - all seeding completed ;)"

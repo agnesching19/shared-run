@@ -1,12 +1,479 @@
-<h1><%= @run.description %></h1>
-<h2><%= @run.location %> | <%= @run.run_distance %>km </h2>
+<div class="show-wrapper">
 
-<%= link_to "Back to Search Results", runs_path %>
+  <!-- Banner -->
+  <div class="show-banner">
+    <!-- Map Background -->
+    <div id="show-map"></div>
+    <!-- Title -->
+    <div class="show-summary">
+      <h1><%= @run.title.upcase %></h1>
+      <h4><%= @run.location.upcase %></h4>
+      <br>
+      <!-- Links -->
+      <h5>
+        <% if policy(@run).edit? %>
+          <%= link_to "EDIT", edit_run_path(@run), class: "btn btn-default" %>
+        <% end %>
+        <% if policy(@run).destroy? %>
+          <%= link_to "DELETE", run_path(@run), class: "btn btn-default", method: :delete, data: { confirm: "Are you sure you want to delete?" } %>
+        <% end %>
+      </h5>
+    </div>
+  </div>
 
-<% if policy(@run).destroy? %>
-  <%= link_to "Delete", run_path(@run), class: "btn btn-default", method: :delete, data: { confirm: "Are you sure you want to delete?" } %>
-<% end %>
+  <!-- Placeholders -->
+<!--   <div class="show-user-info-placeholder padding">
+    <h1>ABOUT <%= @run.user.first_name.upcase %></h1>
+  </div>
+  <div class="show-user-info-placeholder padding">
+    <h1>RUN DESCRIPTION</h1>
+  </div>
+  <div class="show-run-details-placeholder padding">
+    <h1>SCHEDULE A RUN</h1>
+  </div> -->
 
-<% if policy(@run).edit? %>
-  <%= link_to "Edit", edit_run_path(@run), class: "btn btn-default" %>
+  <!-- Content -->
+  <div class="show-info">
+
+    <!-- User Photo -->
+    <div class="show-user-info padding">
+      <div class="show-user-photo">
+        <% photo_url = @run.user.photo? ? @run.user.photo : 'lix2bqmp4kzdpu4sqjiy' %>
+        <%= cl_image_tag photo_url, height: 120, width: 120, crop: :thumb %>
+      </div>
+      <div class="show-user-contents">
+        <h3><%= link_to @run.user.first_name.upcase, dashboard_path(@run.user) %></h3>
+        <div class="show-user-reviews">
+          <p>
+            <i class="fa fa-thumbs-up" aria-hidden="true"></i> 21 &nbsp
+            <i class="fa fa-thumbs-down" aria-hidden="true"></i> 0
+          </p>
+        </div>
+        <div class="show-user-bio">
+          <p><%= @run.user.bio? ? @run.user.bio : "This is a default bio." %></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Run Description -->
+    <div class="show-run-description padding">
+      <h4>RUN DETAILS</h4>
+      <p><%= @run.description %></p>
+      <div class="show-run-buddies">
+        <h4>RUNNING BUDDIES (<%= @run.capacity %>)</h4>
+        <div class="buddy-avatars">
+          <%= cl_image_tag photo_url, height: 60, width: 60, crop: :thumb %>
+          <%= cl_image_tag photo_url, height: 60, width: 60, crop: :thumb %>
+          <%= cl_image_tag photo_url, height: 60, width: 60, crop: :thumb %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Run Details -->
+    <div class="show-run-details padding">
+      <div class="run-detail">
+        <div class="detail-icon">
+          <i class="fa fa-map-marker" aria-hidden="true"></i>
+        </div>
+        <div class="detail-content">
+          <h4>LOCATION</h4>
+          <p><%= @run.location %></p>
+        </div>
+      </div>
+      <div class="run-detail">
+        <div class="detail-icon">
+          <i class="fa fa-road" aria-hidden="true"></i>
+        </div>
+        <div class="detail-content">
+          <h4>DISTANCE</h4>
+          <p><%= @run.run_distance %> kilometres</p>
+        </div>
+      </div>
+      <div class="run-detail">
+        <div class="detail-icon">
+          <i class="fa fa-clock-o" aria-hidden="true"></i>
+        </div>
+        <div class="detail-content">
+          <h4>TIME</h4>
+          <p><%= @run.time  %></p>
+        </div>
+      </div>
+      <!-- Booking/Share Buttons -->
+      <div class="show-run-action">
+        <h5>
+          <%= link_to "👋🏼 SCHEDULE", new_run_message_path(@run), class: "btn btn-default" %>&nbsp &nbsp
+          <div class="fb-share-button btn btn-default" data-href="https://developers.facebook.com/docs/plugins/" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcamper-rentals.herokuapp.com%2Fplugins%2F&amp;src=sdkpreparse"><i class="fa fa-facebook-square" aria-hidden="true"></i> SHARE</a></div>
+        </h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript -->
+
+<%= content_for(:title, @run.title.split.map {|r| r.capitalize}.join(" ")) %>
+
+<% content_for(:after_js) do %>
+
+  <script>
+    // Snazzy Maps - Theme: Dark No Tekst
+    var styles = [
+                  {
+                  "featureType": "all",
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                      {
+                          "saturation": 36
+                      },
+                      {
+                          "color": "#000000"
+                      },
+                      {
+                          "lightness": 40
+                      }
+                  ]
+                  },
+                  {
+                      "featureType": "all",
+                      "elementType": "labels.text.stroke",
+                      "stylers": [
+                          {
+                              "visibility": "on"
+                          },
+                          {
+                              "color": "#000000"
+                          },
+                          {
+                              "lightness": 16
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "all",
+                      "elementType": "labels.icon",
+                      "stylers": [
+                          {
+                              "visibility": "off"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "administrative",
+                      "elementType": "geometry.fill",
+                      "stylers": [
+                          {
+                              "color": "#000000"
+                          },
+                          {
+                              "lightness": 20
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "administrative",
+                      "elementType": "geometry.stroke",
+                      "stylers": [
+                          {
+                              "color": "#000000"
+                          },
+                          {
+                              "lightness": 17
+                          },
+                          {
+                              "weight": 1.2
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "administrative",
+                      "elementType": "labels",
+                      "stylers": [
+                          {
+                              "visibility": "off"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "administrative.country",
+                      "elementType": "all",
+                      "stylers": [
+                          {
+                              "visibility": "simplified"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "administrative.country",
+                      "elementType": "geometry",
+                      "stylers": [
+                          {
+                              "visibility": "simplified"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "administrative.country",
+                      "elementType": "labels.text",
+                      "stylers": [
+                          {
+                              "visibility": "simplified"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "administrative.province",
+                      "elementType": "all",
+                      "stylers": [
+                          {
+                              "visibility": "off"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "administrative.locality",
+                      "elementType": "all",
+                      "stylers": [
+                          {
+                              "visibility": "simplified"
+                          },
+                          {
+                              "saturation": "-100"
+                          },
+                          {
+                              "lightness": "30"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "administrative.locality",
+                      "elementType": "labels",
+                      "stylers": [
+                          {
+                              "visibility": "off"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "administrative.neighborhood",
+                      "elementType": "all",
+                      "stylers": [
+                          {
+                              "visibility": "off"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "administrative.land_parcel",
+                      "elementType": "all",
+                      "stylers": [
+                          {
+                              "visibility": "off"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "landscape",
+                      "elementType": "all",
+                      "stylers": [
+                          {
+                              "visibility": "simplified"
+                          },
+                          {
+                              "gamma": "0.00"
+                          },
+                          {
+                              "lightness": "74"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "landscape",
+                      "elementType": "geometry",
+                      "stylers": [
+                          {
+                              "color": "#000000"
+                          },
+                          {
+                              "lightness": 20
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "landscape.man_made",
+                      "elementType": "all",
+                      "stylers": [
+                          {
+                              "lightness": "3"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "poi",
+                      "elementType": "all",
+                      "stylers": [
+                          {
+                              "visibility": "off"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "poi",
+                      "elementType": "geometry",
+                      "stylers": [
+                          {
+                              "color": "#000000"
+                          },
+                          {
+                              "lightness": 21
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "poi",
+                      "elementType": "labels",
+                      "stylers": [
+                          {
+                              "visibility": "off"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "road",
+                      "elementType": "geometry",
+                      "stylers": [
+                          {
+                              "visibility": "simplified"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "road",
+                      "elementType": "labels",
+                      "stylers": [
+                          {
+                              "visibility": "off"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "road.highway",
+                      "elementType": "geometry.fill",
+                      "stylers": [
+                          {
+                              "color": "#000000"
+                          },
+                          {
+                              "lightness": 17
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "road.highway",
+                      "elementType": "geometry.stroke",
+                      "stylers": [
+                          {
+                              "color": "#000000"
+                          },
+                          {
+                              "lightness": 29
+                          },
+                          {
+                              "weight": 0.2
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "road.arterial",
+                      "elementType": "geometry",
+                      "stylers": [
+                          {
+                              "color": "#000000"
+                          },
+                          {
+                              "lightness": 18
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "road.local",
+                      "elementType": "geometry",
+                      "stylers": [
+                          {
+                              "color": "#000000"
+                          },
+                          {
+                              "lightness": 16
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "transit",
+                      "elementType": "geometry",
+                      "stylers": [
+                          {
+                              "color": "#000000"
+                          },
+                          {
+                              "lightness": 19
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "transit",
+                      "elementType": "labels",
+                      "stylers": [
+                          {
+                              "visibility": "off"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "water",
+                      "elementType": "geometry",
+                      "stylers": [
+                          {
+                              "color": "#000000"
+                          },
+                          {
+                              "lightness": 17
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "water",
+                      "elementType": "labels",
+                      "stylers": [
+                          {
+                              "visibility": "off"
+                          }
+                      ]
+                  }
+                ];
+
+    // Removing MapType from Google Maps
+    // var mapOptions = {
+    //   zoom: 14;
+    //   mapTypeId: google.maps.MapTypeId.ROADMAP,
+    //   disableDefaultUI: true
+    // };
+
+    // Google Maps
+    var handler = Gmaps.build("Google");
+    handler.buildMap({
+      provider: {
+        styles: styles
+      }, internal: { id: "show-map" } }, function() {
+      markers = handler.addMarkers(
+        [
+          {
+            "lat": <%= @run.latitude %>,
+            "lng": <%= @run.longitude %>
+          }
+        ]
+      );
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      handler.getMap().setZoom(14);
+    });
+  </script>
 <% end %>

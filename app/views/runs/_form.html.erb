@@ -1,17 +1,17 @@
 <%= simple_form_for(@run) do |r| %>
+  <%= r.input :title %>
+  <%= r.input :description %>
   <%= r.input :date %>
+  <%= r.input :time %>
   <%= r.input :location, priority: ['EN'], input_html: {id: "locationInput"} %>
   <%= r.input :run_distance %>
-  <%= r.input :description %>
   <%= r.input :capacity %>
-  <%= r.input :photo %>
-  <%= r.input :photo_cache, as: :hidden %>
   <%= r.submit "Submit", class: "btn btn-default" %>
 <% end %>
 
 <%= content_for(:after_js) do %>
 
-  <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=#{ENV['GOOGLE_API_BROWSER_KEY']}"></script>
+ <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=<%= ENV['GOOGLE_API_BROWSER_KEY'] %>"></script>
 
   <script>
     var runLocation = document.getElementById("locationInput");

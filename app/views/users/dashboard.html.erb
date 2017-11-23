@@ -1,35 +1,31 @@
-<!-- <div class="container" id="dashboard">
-  <div class="row">
-    <div class="col-md-8 offset-md-6">
-      <%=# cl_image_tag @user.photo, class: 'avatar' %>
-    </div>
+<div class="dashboard-container">
+
+  <%= cl_image_tag @user.photo %>
+  <h1><%= @user.first_name.upcase %> <%= @user.last_name.upcase %></h1>
+
+  <div class="status">
+    <%= @status %>
   </div>
 
-  <div class="row">
-    <div class="col-md-8 offset-md-6">
-      <h4>First name:</h4>
-      <h3><%= @user.first_name %></h3>
-    </div>
+  <div class="stats">
+    <p>Total Runs: <%= @user.runs.count %></p>
+    <p>Total Distance Covered: </p>
+    <p>Average Pace: </p>
   </div>
 
-  <div class="row">
-    <div class="col-md-8 offset-md-6">
-      <h4>Last name:</h4>
-      <h3><%= @user.last_name %></h3>
-    </div>
+  <div class="achievements">
+    <p>Longest Run:</p>
+    <p>Longest Distance:</p>
+    <p>Fastest Pace:</p>
   </div>
 
-  <div class="row">
-    <div class="col-md-8 offset-md-6">
-      <h4>Email:</h4>
-      <h3><%= @user.email %></h3>
-    </div>
+  <div class="history">
+    <p>Hosted Runs: <%= @hosted %></p>
+    <p>Upcoming Runs: <%= @upcoming %></p>
+    <p>Past Runs: </p>
   </div>
 
-  <div class="row">
-    <div class="col-md-8 offset-md-6">
-      <%=# link_to 'Edit', edit_user_registration_path, class: 'btn btn-success' %>
-    </div>
-  </div>
+  <%= link_to "Edit", edit_user_registration_path, class: "btn btn-default" %>
 </div>
- -->
+
+<%= content_for(:title, "Dashboard") %>
