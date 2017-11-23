@@ -9,25 +9,38 @@
 
 
   <div class="stats">
-    <p>Total Runs: <%= @user.runs.count %></p>
+
+    <!-- Hosted runs -->
+
+    <p>Hosted Runs: <%= @user.runs.count %></p>
+
+    <!-- Total distance -->
 
     <% sum_of_dist = 0 %>
-
     <% @user.runs.each do |run| %>
      <% sum_of_dist += run.run_distance %>
      <%# sum_of_dist += distance %>
     <% end %>
+
     <p>Total Distance Covered: <%= sum_of_dist %></p>
 
- </div>
+  </div>
 
   <div class="achievements">
-    <p>Longest Run:</p>
-    <p>Longest Distance:</p>
+
+    <!-- Longest distance -->
+
+    <% distances = [] %>
+    <% @user.runs.each do |run| %>
+      <% distance = run.run_distance %>
+      <% distances << distance %>
+    <% end %>
+
+    <p>Longest Distance: <%= distances.max %></p>
    </div>
 
   <div class="history">
-    <p>Hosted Runs: <%= @hosted %></p>
+    <p>Total Runs</p>
     <p>Upcoming Runs: <%= @upcoming %></p>
     <p>Past Runs: </p>
   </div>
