@@ -1,62 +1,87 @@
 // CSS for Landing Page
 
-.wrapper {
-  width: 100vw;
+.main {
+  background-color: $color-background;
   height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: $color-link;
+}
+
+.search-container {
+  position: absolute;
+  top: 25%;
+  left: 60%;
+  margin: 0 0 0 0;
+  z-index: 5;
+}
+
+.map-svg {
+  position: absolute;
+  top: 0;
+  right: 50%;
+  z-index: 1;
+  transform: scale(1.5);
+}
+
+.counters-container {
+  position: absolute;
+  bottom: 10%;
+  vertical-align: middle;
   display: flex;
-  position: relative;
-  background-color: #FCEA60;
-}
-
-.left {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  position: relative;
-  float: left;
-  display: inline-block;
-
-  .background {
-    background-position: 90%;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-    display: inline-block;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-}
-
-.right {
-  width: 20vw;
-  display: flex;
-}
-
-.content {
-  height: 100%;
   width: 100%;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-around;
+}
 
-  h1 {
-    font-size: 40px;
-  }
+.counter {
+  display: table-cell;
+  margin:1.5%;
+  font-size:50px;
+  vertical-align: middle;
+  color: $color-number-counter;
+}
+
+.counter1 {
+  display: table-cell;
+  margin:1.5%;
+  font-size:150px;
+  vertical-align: middle;
+  color: $color-number-counter;
+}
+
+.counter2 {
+  display: table-cell;
+  margin:1.5%;
+  font-size:75px;
+  vertical-align: middle;
+  color: $color-number-counter;
+}
+
+.number-counter-text {
+  font-size: 50px;
+  color:$color-number-counter-text;
+  z-index: 50;
 }
 
 #landing-buttons {
   display: flex;
   justify-content: space-between;
-  width: 35%;
+  width: 15%;
+  position: absolute;
+  right: 3%;
+  top: 3%;
 }
 
 .landing-button {
-  padding: 20px 30px;
+  padding: 10px 17px;
   background-color: rgba(255,255,255,0.6);
   color: black;
   font-size: 20px;
   border-radius: 50%;
   text-decoration: none;
+  z-index: 600;
 
   &:link, &:hover, &:active, &:focus, &:visited {
     text-decoration: none;
