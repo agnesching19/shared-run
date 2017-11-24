@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :update]
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :set_user, only: [:index, :destroy]
+  before_action :set_user, only: [:index, :destroy, :update]
 
   def index
     @events = policy_scope(Event.all).order(created_at: :desc)
@@ -33,7 +33,7 @@ class EventsController < ApplicationController
 
   def update
     authorize @event
-    if @event.update(event_path)
+    if @event.update(event_params)
       redirect_to event_path(@event)
     else
       render :edit
