@@ -5,6 +5,10 @@ class MessagePolicy < ApplicationPolicy
     end
   end
 
+  def index?
+    true
+  end
+
   def create?
     return true
   end

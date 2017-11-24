@@ -1,4 +1,4 @@
-<%= simple_form_for([@run, @message], remote: true) do |m| %>
+<%= simple_form_for([@run, @message]) do |m| %>
   <%= m.input :content, as: :text %>
   <%= m.submit "Submit", class: "btn btn-default", onclick: "sweet();" %>
 <% end %>
