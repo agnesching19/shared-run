@@ -22,16 +22,15 @@ class RunsController < ApplicationController
     # end
     search_run
     set_runs
+
+
   end
 
   def show
     authorize @run
   end
 
-  @hash = Gmaps4rails.build_markers(@run) do |run, marker|
-    marker.lat run.latitude
-    marker.lng run.longitude
-  end
+
 
   def new
     @run = Run.new
@@ -115,11 +114,13 @@ class RunsController < ApplicationController
 
   def set_runs
     @coordinates = @runs.map do |run|
-      {
-        lat: run.latitude,
-        lng: run.longitude,
-        infowindow: render_to_string(partial: "runs/infowindow", locals: {run: run}),
-      }
+      if run.latitude && run.longitude
+        {
+          lat: run.latitude,
+          lng: run.longitude,
+          infowindow: render_to_string(partial: "runs/infowindow", locals: {run: run}),
+        }
+      end
     end
   end
 end
