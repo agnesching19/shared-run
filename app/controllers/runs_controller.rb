@@ -103,7 +103,7 @@ class RunsController < ApplicationController
   private
 
   def run_params
-    params.require(:run).permit(:title, :time, :location, :date, :description, :run_distance, :capacity, :photo, :shared)
+    params.require(:run).permit(:title, :time, :location, :date, :description, :run_distance, :capacity, :photo, :shared, :pace)
   end
 
   def search_params

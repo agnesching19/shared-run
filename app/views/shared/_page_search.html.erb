@@ -16,55 +16,69 @@
 
 
 <form action="/runs" class="form-inline">
-<!--   <div class="form-group"> -->
   <div class="row text-center">
+    <!-- Location Search -->
      <div class="input-group mb-2 mb-sm-0 page-search">
       <div class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
-      <input class="form-control" type="text" name="search[location]" placeholder="Where?">
+      <% if current_user %>
+        <input class="form-control" type="text" name="search[location]" value="<%= @user.searches.empty? ? "" : @user.searches.last.location %>" placeholder="Where?">
+      <% else %>
+        <input class="form-control" type="text" name="search[location]" placeholder="Where?">
+      <% end %>
       </div>
+    <!-- Proximity Setting - defines km's from location -->
        <div class="input-group mb-2 mb-sm-0 page-search">
       <div class="input-group-addon"><i class="fa fa-map-signs" aria-hidden="true"></i></div>
-     <!--    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Proximity?"> -->
-        <input class="form-control" type="number" name="search[proximity]" step="0.5" value="0.5" min=0>
+      <% if current_user %>
+        <input class="form-control" type="number" name="search[proximity]" value="<%= @user.searches.empty? ? "" : @user.searches.last.proximity %>" type="number" name="search[proximity]" step="0.5" value="0.5" min="0">
+      <% else %>
+        <input class="form-control" type="number" name="search[proximity]" step="0.5" value="0.5" min="0">
+      <% end %>
       </div>
-     <div class="input-group mb-2 mb-sm-0 page-search">
+      <!-- Date Picker -->
+      <div class="input-group mb-2 mb-sm-0 page-search">
         <div class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
-<!--         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Date?"> -->
-        <input class="form-control" type="date" name="search[run_date]" value= <%Date.today %> >
+      <% if current_user %>
+        <input class="form-control" type="date" name="search[run_date]" value="<%= @user.searches.empty? ? "" : @user.searches.last.run_date %>" name="search[run_date]" value= <%Date.today %>>
+      <% else %>
+        <input class="form-control" type="date" name="search[run_date]" value= <%Date.today %>>
+      <% end %>
       </div>
-       <div class="input-group mb-2 mb-sm-0 page-search">
+      <!-- Time Picker -->
+      <div class="input-group mb-2 mb-sm-0 page-search">
         <div class="input-group-addon"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
-<!--         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Time?"> -->
-      <input class="form-control" type="time" name="search[run_time]" value=<%= Time.now %>>
+      <% if current_user %>
+        <input class="form-control" type="time" name="search[run_time]" value="<%= @user.searches.empty? ? "" : @user.searches.last.run_time %>" name="search[run_time]" value= <%= Time.now %>>
+      <% else %>
+        <input class="form-control" type="date" name="search[run_time]" value= <%= Time.now %>>
+      <% end %>
       </div>
-    </div>
-<!--     </div> -->
 
-<!-- <div class="container"> -->
+      <!-- Distance slider -->
    <div class="row text-center slider-padding">
     <div class="form-group">
-        <div class="range-slider">
+        <div class="range-slider distance">
           <div class="slider-id"><label for="distance">Distance</label></div>
           <span class="range-slider__value "><%= arr_dist[(params[:distance].to_i)] %></span>
-          <input class="range-slider__range form-control" id="distance" name="search[run_distance]" type="range" value="<%= params[:distance] %>" min="0" max="4">
+          <input class="range-slider__range form-control" id="distance" name="search[run_distance]" type="range" value="<%= params[:distance] %>" min="0" max="2">
         </div>
     </div>
     <div class="form-group">
-      <div class="range-slider">
+      <div class="range-slider sociability">
         <div class="slider-id"><label for="sociability">Sociability</label></div>
         <span class="range-slider__value"><%= arr_social[(params[:sociability].to_i)] %></span>
         <input class="range-slider__range form-control" name="search[sociability]" type="range" value="<%= params[:sociability] %>" min="0" max="2">
       </div>
     </div>
       <div class="form-group">
-      <div class="range-slider">
+      <div class="range-slider pace">
           <div class="slider-id"><label for="pace">Pace</label></div>
           <span class="range-slider__value"><%= arr_pace[(params[:pace].to_i)] %></span>
-          <input class="range-slider__range form-control" name="search[pace]" type="range" value="<%= params[:pace] %>" min="0" max="4">
+          <input class="range-slider__range form-control" name="search[pace]" type="range" value="<%= params[:pace] %>" min="0" max="16">
       </div>
     </div>
        <div class="form-group">
-      <div class="range-slider">
+      <div class="range-slider time">
           <div class="slider-id"><label for="time">Time</label></div>
           <span class="range-slider__value"><%= arr_time[(params[:time].to_i)] %></span>
           <input class="range-slider__range form-control" name="search[run_time]" type="range" value="<%= params[:time] %>" min="0" max="4">
