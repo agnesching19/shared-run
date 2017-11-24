@@ -1,11 +1,11 @@
 // Import Google fonts
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700i|Open+Sans:300,400,600,700');
+@import url('https://fonts.googleapis.com/css?family=Francois+One|Source+Sans+Pro:300,400,600,700');
 
 // Default fonts for body and headers
-$body-font: "Open Sans", "sans-serif";
-$headers-font: "Open Sans", "Helvetica", "sans-serif";
+$body-font: "Source Sans Pro", "sans-serif";
+$headers-font: "Francois One", "Helvetica", "sans-serif";
 
 // Home page fonts
 $font-family-fallback: sans-serif;
-$font-family: 'Open Sans';
+$font-family: "Source Sans";
 $line-height: 1.5em;
