@@ -15,7 +15,7 @@
               <li><i class="fa fa-map-marker" aria-hidden="true"></i> <%= event.location %></li>
               <li><i class="fa fa-road" aria-hidden="true"></i> <%= event.distance %>km</li>
             </ul>
-            <p><%= event.description %></p>
+            <p><%= event.description.first(50) %></p>
           </div>
           <%= link_to "", event_path(event), class: "event-card-link" %>
         </div>
