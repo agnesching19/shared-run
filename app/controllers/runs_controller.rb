@@ -20,11 +20,8 @@ class RunsController < ApplicationController
     #     # @runs = @runs.select { |r| r.time <= Time.parse(params[:time]) }
 
     # end
-
     search_run
     set_runs
-
-
   end
 
   def show
