@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171122222251) do
+ActiveRecord::Schema.define(version: 20171124122825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20171122222251) do
     t.float "longitude"
     t.string "title"
     t.time "time"
+    t.time "pace"
     t.index ["user_id"], name: "index_runs_on_user_id"
   end
 
@@ -100,6 +101,9 @@ ActiveRecord::Schema.define(version: 20171122222251) do
     t.float "proximity"
     t.date "run_date"
     t.time "run_time"
+    t.integer "sociability"
+    t.integer "run_distance"
+    t.time "pace"
     t.index ["user_id"], name: "index_searches_on_user_id"
   end
 
