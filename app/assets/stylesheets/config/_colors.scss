@@ -11,8 +11,8 @@ $light-gray: #F4F4F4;
 
 // Home page colours --- NB the map on the homepage is an svg and colours are set in the views/shared/_svg_map.html.erb
 $color-background: #FFC93C;
-$color-number-counter: #2B3445;
-$color-number-counter-text: #FFF;
+$color-number-counter: #393939;
+$color-number-counter-text: #393939;
 $color-link: #fff;
 $color-map-marker: #C16670;
 
@@ -45,7 +45,8 @@ $shade-10: #2c3e50 !default;
 $shade-1: #d7dcdf !default;
 $shade-0: #fff !default;
 $teal: #1abc9c !default;
-// slider colors
+
+// Slider colors
 $range-handle-color: $shade-10 !default;
 $range-handle-color-hover: $teal !default;
 $range-track-color: $shade-1 !default;
