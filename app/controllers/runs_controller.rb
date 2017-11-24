@@ -104,6 +104,7 @@ class RunsController < ApplicationController
     params.require(:search).permit(:location, :proximity, :run_date)
   end
 
+
   def set_run
     @run = Run.find(params[:id])
   end
