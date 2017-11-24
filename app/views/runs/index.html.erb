@@ -41,8 +41,185 @@
   <%= javascript_pack_tag 'slider' %>
 
   <script>
+    var styles = [
+                  {
+                      "featureType": "administrative.country",
+                      "elementType": "geometry.fill",
+                      "stylers": [
+                          {
+                              "lightness": "-72"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "administrative.locality",
+                      "elementType": "all",
+                      "stylers": [
+                          {
+                              "hue": "#2c2e33"
+                          },
+                          {
+                              "saturation": 7
+                          },
+                          {
+                              "lightness": 19
+                          },
+                          {
+                              "visibility": "on"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "landscape",
+                      "elementType": "all",
+                      "stylers": [
+                          {
+                              "hue": "#ffffff"
+                          },
+                          {
+                              "saturation": -100
+                          },
+                          {
+                              "lightness": 100
+                          },
+                          {
+                              "visibility": "simplified"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "poi",
+                      "elementType": "all",
+                      "stylers": [
+                          {
+                              "hue": "#ffffff"
+                          },
+                          {
+                              "saturation": -100
+                          },
+                          {
+                              "lightness": 100
+                          },
+                          {
+                              "visibility": "off"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "road",
+                      "elementType": "geometry",
+                      "stylers": [
+                          {
+                              "hue": "#bbc0c4"
+                          },
+                          {
+                              "saturation": -93
+                          },
+                          {
+                              "lightness": 31
+                          },
+                          {
+                              "visibility": "simplified"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "road",
+                      "elementType": "labels",
+                      "stylers": [
+                          {
+                              "hue": "#bbc0c4"
+                          },
+                          {
+                              "saturation": -93
+                          },
+                          {
+                              "lightness": 31
+                          },
+                          {
+                              "visibility": "on"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "road.arterial",
+                      "elementType": "labels",
+                      "stylers": [
+                          {
+                              "hue": "#bbc0c4"
+                          },
+                          {
+                              "saturation": -93
+                          },
+                          {
+                              "lightness": -2
+                          },
+                          {
+                              "visibility": "simplified"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "road.local",
+                      "elementType": "geometry",
+                      "stylers": [
+                          {
+                              "hue": "#e9ebed"
+                          },
+                          {
+                              "saturation": -90
+                          },
+                          {
+                              "lightness": -8
+                          },
+                          {
+                              "visibility": "simplified"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "transit",
+                      "elementType": "all",
+                      "stylers": [
+                          {
+                              "hue": "#e9ebed"
+                          },
+                          {
+                              "saturation": 10
+                          },
+                          {
+                              "lightness": 69
+                          },
+                          {
+                              "visibility": "on"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "water",
+                      "elementType": "all",
+                      "stylers": [
+                          {
+                              "hue": "#e9ebed"
+                          },
+                          {
+                              "saturation": -78
+                          },
+                          {
+                              "lightness": 67
+                          },
+                          {
+                              "visibility": "simplified"
+                          }
+                      ]
+                  }
+                ];
     const handler = Gmaps.build("Google");
-    handler.buildMap({ internal: { id: "results-map" } }, function() {
+    handler.buildMap({
+      provider: {
+        // function defined in app/assets/javascript/map_styles.js
+        styles: styles
+      }, internal: { id: "results-map" } }, function() {
       markers = handler.addMarkers(<%= raw @coordinates.to_json %>);
       handler.bounds.extendWith(markers);
       handler.fitMapToBounds();
