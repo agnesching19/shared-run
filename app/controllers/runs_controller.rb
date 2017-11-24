@@ -3,10 +3,28 @@ class RunsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_user, only: [:index]
 
+  require "time"
+
   def index
-    @runs = policy_scope(Run).where.not(latitude: nil, longitude: nil).order(created_at: :desc)
+    @runs = policy_scope(Run)
+    # if params[:pace].present?
+    #   @runs = @runs.select { |r| r.pace = params[:pace] }
+    # end
+
+# z =  arr[(params[:distance].to_i)]
+
+    # arr = [5, 10, 15, 20, 25]
+    # if params[:time].present?
+    #   # @runs = @runs.select { |r| r.run_distance <= arr[(params[:distance].to_i)] }
+    #     @runs = @runs.select { |r| r.time <= Time.parse("19:00") }
+    #     # @runs = @runs.select { |r| r.time <= Time.parse(params[:time]) }
+
+    # end
+
     search_run
     set_runs
+
+
   end
 
   def show
@@ -99,14 +117,12 @@ class RunsController < ApplicationController
   end
 
   def set_runs
-     @coordinates = @runs.map do |run|
-      if run.latitude && run.longitude
-        {
-          lat: run.latitude,
-          lng: run.longitude,
-          infowindow: render_to_string(partial: "runs/infowindow", locals: {run: run}),
-        }
-      end
+    @coordinates = @runs.map do |run|
+      {
+        lat: run.latitude,
+        lng: run.longitude,
+        infowindow: render_to_string(partial: "runs/infowindow", locals: {run: run}),
+      }
     end
   end
 end
