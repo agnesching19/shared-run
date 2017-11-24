@@ -39,7 +39,7 @@
     <div class="show-user-info padding">
       <div class="show-user-photo">
         <% photo_url = @run.user.photo? ? @run.user.photo : 'lix2bqmp4kzdpu4sqjiy' %>
-        <%= cl_image_tag photo_url, crop: :thumb, class: "show-user-avatar" %>
+        <%= cl_image_tag photo_url, crop: :fill, class: "show-user-avatar" %>
       </div>
       <div class="show-user-contents">
         <h3><%= link_to @run.user.first_name.upcase, dashboard_path(@run.user) %></h3>
@@ -62,9 +62,9 @@
       <div class="show-run-buddies">
         <h4>RUNNING BUDDIES (<%= @run.capacity %>)</h4>
         <div class="buddy-avatars">
-          <%= cl_image_tag photo_url, crop: :thumb, class: "buddy-photo" %>
-          <%= cl_image_tag photo_url, crop: :thumb, class: "buddy-photo" %>
-          <%= cl_image_tag photo_url, crop: :thumb, class: "buddy-photo" %>
+          <%= cl_image_tag photo_url, crop: :fill, class: "buddy-photo" %>
+          <%= cl_image_tag photo_url, crop: :fill, class: "buddy-photo" %>
+          <%= cl_image_tag photo_url, crop: :fill, class: "buddy-photo" %>
         </div>
       </div>
     </div>
@@ -95,7 +95,7 @@
         </div>
         <div class="detail-content">
           <h4>DATE</h4>
-          <p><%= @run.date %></p>
+          <p><%= @run.date.strftime("%A, %b %d %Y") %></p>
         </div>
       </div>
       <div class="run-detail">
