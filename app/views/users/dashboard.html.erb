@@ -1,6 +1,8 @@
 <div class="dashboard-container">
 
-  <%= cl_image_tag @user.photo, class: "dashboard-photo" %>
+  <% avatar_url = current_user.facebook_picture_url || current_user.photo %>
+  <%= cl_image_tag avatar_url, class: "avatar dropdown-toggle" %>
+
   <h1><%= @user.first_name.upcase %> <%= @user.last_name.upcase %></h1>
 
   <div class="status">
