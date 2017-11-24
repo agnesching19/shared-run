@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
-  before_action :set_run, only: [:create, :index]
-  skip_after_action :verify_policy_scoped, only: [:index, :create]
+  before_action :set_run, only: [:create, :index, :destroy]
+  skip_after_action :verify_policy_scoped, only: [:index, :create, :destroy]
   def index
     @message = Message.new
     @messages = Message.where(run: @run)
@@ -27,6 +27,13 @@ class MessagesController < ApplicationController
     #     format.js
     #   end
     # end
+  end
+
+  def destroy
+    set_message
+    authorize @message
+    @message.destroy
+    redirect_to run_messages_path(@run)
   end
 
   private
