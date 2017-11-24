@@ -38,7 +38,7 @@
     <!-- User Photo -->
     <div class="show-user-info padding">
       <div class="show-user-photo">
-        <% photo_url = @run.user.photo? ? @run.user.photo : 'lix2bqmp4kzdpu4sqjiy' %>
+        <% photo_url = @run.user.photo? ? @run.user.photo : @run.user.photo %>
         <%= cl_image_tag photo_url, crop: :fill, class: "show-user-avatar" %>
       </div>
       <div class="show-user-contents">
