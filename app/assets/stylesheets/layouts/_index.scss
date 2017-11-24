@@ -4,8 +4,8 @@
 // @import "profile";
 // @import "map";
 
-@import "results"; // Runs index page
-@import "show"; // Runs show page
-@import "showevent";
-@import "events";
+
+@import "runs"; // Runs index page
+@import "show-run"; // Runs show page
+@import "show-event";
 @import "dashboard"; // User dashboard

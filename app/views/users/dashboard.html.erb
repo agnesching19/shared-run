@@ -1,6 +1,6 @@
 <div class="dashboard-container">
 
-  <%= cl_image_tag @user.photo %>
+  <%= cl_image_tag @user.photo, class: "dashboard-photo" %>
   <h1><%= @user.first_name.upcase %> <%= @user.last_name.upcase %></h1>
 
   <div class="status">
@@ -10,26 +10,22 @@
 
   <div class="stats">
 
-    <!-- Hosted runs -->
-
+    <!-- Hosted Runs -->
     <p>Hosted Runs: <%= @user.runs.count %></p>
 
-    <!-- Total distance -->
-
-    <% sum_of_dist = 0 %>
+    <!-- Total Distance -->
+    <% distance_sum = 0 %>
     <% @user.runs.each do |run| %>
-     <% sum_of_dist += run.run_distance %>
-     <%# sum_of_dist += distance %>
+     <% distance_sum += run.run_distance %>
     <% end %>
 
-    <p>Total Distance Covered: <%= sum_of_dist %></p>
+    <p>Total Distance Covered: <%= distance_sum %></p>
 
   </div>
 
   <div class="achievements">
 
-    <!-- Longest distance -->
-
+    <!-- Longest Distance -->
     <% distances = [] %>
     <% @user.runs.each do |run| %>
       <% distance = run.run_distance %>
