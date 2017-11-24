@@ -1,18 +1,18 @@
 .event-card {
   display: flex;
-  align-items: center;
+  align-items: $event-card-background;
   background: white;
   padding: 10px;
   margin-bottom: 10px;
   box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
   position: relative;
   height: 150px;
-  color: $gray;
+  color: $event-card-text;
   border-radius: 5px;
   &:hover {
     box-shadow: 4px 4px 6px rgba(255,255,255,0.7);
     .event-card-date {
-      color: $red;
+      color: $event-card-date;
     }
   }
 }
