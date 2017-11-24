@@ -14,7 +14,7 @@ class User < ApplicationRecord
 
   mount_uploader :photo, PhotoUploader
 
-  after_create :send_welcome_email
+  # after_create :send_welcome_email
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -59,8 +59,8 @@ class User < ApplicationRecord
 
   private
 
-  def send_welcome_email
-    UserMailer.welcome(self).deliver_now
-  end
+  # def send_welcome_email
+  #   UserMailer.welcome(self).deliver_now
+  # end
 
 end
