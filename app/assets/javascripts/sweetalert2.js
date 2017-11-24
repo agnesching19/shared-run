@@ -1,7 +1,7 @@
-function sweet(){
+function sweetEvent(){
   swal(
     'Congrats!',
-    'You just created a new event!',
+    'Why not invite your friends to join!',
     'success',
   )
 }
