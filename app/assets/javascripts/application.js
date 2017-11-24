@@ -5,4 +5,5 @@
 //= require underscore
 //= require gmaps/google
 //= require_tree .
-//= reruire sweetalert2
+//= require sweetalert2
+
