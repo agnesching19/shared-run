@@ -8,6 +8,11 @@
   }
 }
 
+.message {
+  display: flex;
+  justify-content: flex-start;
+}
+
 .message-content {
   display: flex;
   max-width: 60%;
@@ -19,10 +24,21 @@
   }
 }
 
+.host {
+  .message-body {
+    background-color: $green !important;
+  }
+
+  .message-avatar {
+    border: 3px solid $green;
+  }
+}
+
 .current {
+  justify-content: flex-end;
 
   .message-body {
-    background-color: $red !important;
+    background-color: $red;
   }
 }
 
