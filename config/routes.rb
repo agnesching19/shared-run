@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :runs do
     resources :invites, only: [:new, :create]
     resources :reviews, only: [:index, :new, :create]
-    resources :messages, only: [:index, :create]
+    resources :messages, only: [:index, :create, :destroy]
   end
 
 
