@@ -6,16 +6,6 @@
   '6:00', '6:15', '6:30', '6:45',
   '7:00'] %>
 
-  <%#= form_tag(runs_path, method: :get) do |f| %>
-       <form class="form-inline">
-
-
-
-      </div>
-
-<%# end %>
-
-
 <form action="/runs" class="form-inline">
   <div class="row text-center">
     <!-- Location Search -->
@@ -60,10 +50,7 @@
     <div class="form-group">
         <div class="range-slider distance">
           <div class="slider-id"><label for="distance">Distance</label></div>
-          <%  %>
-
- <span class="range-slider__value"><%= params[:search].present? ? arr_dist[(params[:search][:run_distance].to_i)] : arr_dist[1] %></span>
-
+          <span class="range-slider__value"><%= params[:search].present? ? arr_dist[(params[:search][:run_distance].to_i)] : arr_dist[1] %></span>
           <input class="range-slider__range form-control" id="distance" name="search[run_distance]" type="range" value="<%= params[:distance] %>" min="0" max="2">
         </div>
     </div>
@@ -71,13 +58,13 @@
     <div class="form-group">
       <div class="range-slider sociability">
         <div class="slider-id"><label for="sociability">Sociability</label></div>
-
-
-         <span class="range-slider__value"><%= params[:search].present? ? arr_social[(params[:search][:sociability].to_i)] : arr_social[1] %></span>
-
-
-
-
+        <span class="range-slider__value">
+          <% if params[:search].present? %>
+           <%= arr_social[(params[:search][:sociability].to_i)] %>
+           <% else %>
+           <i class="fa fa-meh-o"></i>
+          <% end %>
+            </span>
         <input class="range-slider__range form-control" name="search[sociability]" type="range" value="<%= params[:sociability] %>" min="0" max="2">
       </div>
     </div>
@@ -85,7 +72,7 @@
       <div class="form-group">
       <div class="range-slider pace">
           <div class="slider-id"><label for="pace">Pace</label></div>
-          <span class="range-slider__value"><%= params[:search].present? ? arr_pace[(params[:search][:pace].to_i)] : arr_pace[8] %></span>
+          <span class="range-slider__value"><%= params[:search].present? ? arr_pace[(params[:search][:pace].to_i)] : arr_pace[((arr_pace.length)/2).to_i] %></span>
           <input class="range-slider__range form-control" name="search[pace]" type="range" value="<%= params[:pace] %>" min="0" max="16">
       </div>
     </div>

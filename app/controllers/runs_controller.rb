@@ -7,25 +7,14 @@ class RunsController < ApplicationController
 
   def index
     @runs = policy_scope(Run)
-    # if params[:pace].present?
-    #   @runs = @runs.select { |r| r.pace = params[:pace] }
-    # end
 
-# z =  arr[(params[:distance].to_i)]
-
-    @arr = [5, 10, 15, 20, 25]
     # if params[:time].present?
     #   # @runs = @runs.select { |r| r.run_distance <= arr[(params[:distance].to_i)] }
     #     @runs = @runs.select { |r| r.time <= Time.parse("19:00") }
     #     # @runs = @runs.select { |r| r.time <= Time.parse(params[:time]) }
-
     # end
-
-
     search_run
     set_runs
-
-
   end
 
   def show
@@ -73,6 +62,7 @@ class RunsController < ApplicationController
   end
 
   def search_run
+     arr = [5, 10, 15, 20, 25]
     if params[:search].present?
       unless params[:search][:location] == ""
         proximity = params[:search][:proximity].to_f
@@ -81,7 +71,7 @@ class RunsController < ApplicationController
         @search.save
         @last_search = @user.searches.order(created_at: :desc).first
         @runs = Run.near([@last_search.latitude, @last_search.longitude], proximity)
-        @runs = @runs.select { |r| r.run_distance >= @arr[(params[:search][:run_distance].to_i)] }
+        @runs = @runs.select { |r| r.run_distance >= arr[(params[:search][:run_distance].to_i)] }
         # if @runs.length == 0
         #   @runs = Run.near([@last_search.latitude, @last_search.longitude], proximity * 2 )
         #   @search_widened = "No runs found - we widened your search to #{proximity * 2} km"

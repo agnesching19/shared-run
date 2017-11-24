@@ -1,0 +1,67 @@
+<!-- test code -->
+
+
+
+<!-- with logic -->
+
+ <div class="row text-center slider-padding">
+    <div class="form-group">
+        <div class="range-slider distance">
+          <div class="slider-id"><label for="distance">Distance</label></div>
+          <% if current_user %>
+
+
+            <input class="form-control" type="time" name="search[run_time]"
+
+
+
+             <input class="range-slider__range form-control" id="distance" name="search[run_distance]" type="range" min="0" max="2"
+             value="<%= @user.searches.empty? ? "" : @user.searches.last.run_distance %>" value= <%= Time.now %>>
+
+
+
+
+          <% else %>
+
+
+
+            <span class="range-slider__value"><%= params[:search].present? ? arr_dist[(params[:search][:run_distance].to_i)] : arr_dist[1] %></span>
+          <input class="range-slider__range form-control" id="distance" name="search[run_distance]" type="range" value="<%= params[:distance] %>" min="0" max="2">
+
+
+
+
+
+
+
+
+
+          <% end %>
+        </div>
+    </div>
+
+
+
+
+
+<!-- without logic -->
+
+
+
+          <span class="range-slider__value"><%= params[:search].present? ? arr_dist[(params[:search][:run_distance].to_i)] : arr_dist[1] %></span>
+          <input class="range-slider__range form-control" id="distance" name="search[run_distance]" type="range" value="<%= params[:distance] %>" min="0" max="2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end of test code -->
