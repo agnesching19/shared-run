@@ -1,0 +1,60 @@
+  <% arr_dist = [5, 10, 15, 20, 25] %>
+  <% arr_social = ["low","med","high"] %>
+  <% arr_pace = [5, 10, 15, 20, 25] %>
+  <% arr_time = [5, 10, 15, 20, 25] %>
+
+<form action="/runs" class="form-inline">
+<!--   <div class="form-group"> -->
+  <div class="row text-center">
+     <div class="input-group mb-2 mb-sm-0 page-search">
+      <div class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Where?">
+      </div>
+       <div class="input-group mb-2 mb-sm-0 page-search">
+      <div class="input-group-addon"><i class="fa fa-map-signs" aria-hidden="true"></i></div>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Proximity?">
+      </div>
+     <div class="input-group mb-2 mb-sm-0 page-search">
+        <div class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Date?">
+      </div>
+       <div class="input-group mb-2 mb-sm-0 page-search">
+        <div class="input-group-addon"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Time?">
+      </div>
+    </div>
+<!--     </div> -->
+
+<!-- <div class="container"> -->
+   <div class="row text-center slider-padding">
+    <div class="form-group">
+        <div class="range-slider">
+          <div class="slider-id"><label for="distance">Distance</label></div>
+          <span class="range-slider__value "><%= arr_dist[(params[:distance].to_i)] %></span>
+          <input class="range-slider__range form-control" id="distance" name="distance" type="range" value="<%= params[:distance] %>" min="0" max="4">
+        </div>
+    </div>
+    <div class="form-group">
+      <div class="range-slider">
+        <div class="slider-id"><label for="sociability">Sociability</label></div>
+        <span class="range-slider__value"><%= arr_social[(params[:sociability].to_i)] %></span>
+        <input class="range-slider__range form-control" name="social" type="range" value="<%= params[:sociability] %>" min="0" max="2">
+      </div>
+    </div>
+      <div class="form-group">
+      <div class="range-slider">
+          <div class="slider-id"><label for="pace">Pace</label></div>
+          <span class="range-slider__value"><%= arr_pace[(params[:pace].to_i)] %></span>
+          <input class="range-slider__range form-control" name="pace" type="range" value="<%= params[:pace] %>" min="0" max="4">
+      </div>
+    </div>
+       <div class="form-group">
+      <div class="range-slider">
+          <div class="slider-id"><label for="time">Time</label></div>
+          <span class="range-slider__value"><%= arr_time[(params[:time].to_i)] %></span>
+          <input class="range-slider__range form-control" name="time" type="range" value="<%= params[:time] %>" min="0" max="4">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
