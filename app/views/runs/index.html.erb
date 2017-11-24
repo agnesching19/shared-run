@@ -1,4 +1,7 @@
 <!-- Map -->
+
+<%= render "shared/page_search" %>
+
 <div class="results-wrapper">
   <div id="results-map"></div>
 
@@ -27,17 +30,16 @@
         </li>
       </div>
     <% end %>
-  </ul>
-</div>
 
 <%= content_for(:title, "shared.run | Run Together - Anytime, Anywhere") %>
-
 
   <script>
   swal("Oops!", "Something went wrong on the page!", "error");
   </script>
 
 <% content_for(:after_js) do %>
+  <%= javascript_pack_tag 'slider' %>
+
   <script>
     const handler = Gmaps.build("Google");
     handler.buildMap({ internal: { id: "results-map" } }, function() {

@@ -1,7 +1,7 @@
 class RunPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope
+      scope.where.not(latitude: nil, longitude: nil).order(created_at: :desc)
     end
   end
 
