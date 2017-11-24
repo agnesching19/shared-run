@@ -3,6 +3,9 @@
 .main {
   background-color: $color-background;
   height: 100vh;
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
 }
 
 a {
@@ -11,11 +14,9 @@ a {
 }
 
 .search-container {
-  position: absolute;
-  top: 25%;
-  left: 60%;
-  margin: 0 0 0 0;
+  margin: 0 80px 0 0;
   z-index: 5;
+  align-self: center;
 }
 
 .map-svg {
@@ -26,6 +27,11 @@ a {
   transform: scale(1.5);
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+}
+
 .counters-container {
   position: absolute;
   bottom: 10%;
@@ -33,36 +39,34 @@ a {
   display: flex;
   width: 100%;
   justify-content: space-around;
+  right:0;
+  font-size:24px;
+  vertical-align: middle;
+  z-index: 50;
+  color: #393939;
+  text-align: right;
+  justify-content: flex-end;
+  right: 80px;
+  margin-right: 20px;
 }
 
-.counter {
-  display: table-cell;
-  margin:1.5%;
-  font-size:50px;
-  vertical-align: middle;
-  color: $color-number-counter;
-}
-
-.counter1 {
-  display: table-cell;
-  margin:1.5%;
-  font-size:150px;
-  vertical-align: middle;
-  color: $color-number-counter;
-}
-
-.counter2 {
-  display: table-cell;
-  margin:1.5%;
-  font-size:75px;
-  vertical-align: middle;
-  color: $color-number-counter;
+.number-counter-text a {
+  color: #393939;
+  font-weight: bold;
 }
 
 .number-counter-text {
-  font-size: 50px;
-  color:$color-number-counter-text;
-  z-index: 50;
+  margin-left: 30px;
+}
+
+.counter {
+  font-size: 40px !important;
+}
+.counter1 {
+  font-size: 40px !important;
+}
+.counter2 {
+  font-size: 40px !important;
 }
 
 #landing-buttons {

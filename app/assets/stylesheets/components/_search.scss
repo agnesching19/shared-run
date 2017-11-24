@@ -5,5 +5,25 @@
 }
 
 .search-home-page {
-  width: 300px;
+  width: 258px;
+}
+
+.btn-primary {
+  background-color: #FF006C;
+  border-color: #FF006C;
+}
+
+.btn-primary:hover {
+  background-color: #C16670;
+  border-color: #C16670;
+}
+
+.input-group-addon {
+  width: 42px;
+  height:  39px;
+
+}
+
+.input-group .form-control {
+  border-radius: 3px;
 }
