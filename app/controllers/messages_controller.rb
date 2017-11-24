@@ -1,37 +1,32 @@
 class MessagesController < ApplicationController
-  before_action :set_message, only: [:show, :edit, :update, :destroy]
-  before_action :set_run, only: [:new, :create, :index]
-
+  before_action :set_run, only: [:create, :index]
+  skip_after_action :verify_policy_scoped, only: [:index, :create]
   def index
-    @messages = policy_scope(Message).order(updated_at: :desc)
-  end
-
-  def show
-    authorize @message
     @message = Message.new
-  end
-
-  def new
-    @message = Message.new
+    @messages = Message.where(run: @run)
+    authorize @messages
     authorize @message
   end
 
   def create
     @message = Message.new(message_params)
-    @message.run_id = @run.id
-    @message.user_id = current_user.id
+    @message.run = @run
+    @message.user = current_user
+
     authorize @message
-    if @message.save
-      respond_to do |format|
-        format.html { redirect_to run_messages_path(@message) }
-        format.js
-      end
-    else
-      respond_to do |format|
-        format.html { render "messages/show" }
-        format.js
-      end
-    end
+    @message.save
+    redirect_to run_messages_path(@run)
+    # if @message.save
+    #   respond_to do |format|
+    #     format.html { redirect_to run_messages_path(@message) }
+    #     format.js
+    #   end
+    # else
+    #   respond_to do |format|
+    #     format.html { render "messages/show" }
+    #     format.js
+    #   end
+    # end
   end
 
   private
