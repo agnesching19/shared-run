@@ -21,3 +21,32 @@ $alert-warning: $red;
 $alert-info: $green;
 
 // Event cards
+$event-card-background: white;
+$event-card-text: $gray;
+$event-card-date: $red;
+
+// Info window
+
+
+// Navbar
+$navbar-wagon-background: #393939;
+$navbar-wagon-link: #616668;
+$navbar-wagon-link-hover: #da552f;
+$navbar-wagon-dropdown-menu: #E6E6E6;
+$navbar-wagon-dropdown-menu: #999999;
+$navbar-wagon-dropdown-menu-hover-background: transparent;
+$navbar-wagon-dropdown-menu-hover-text: black;
+$navbar-wagon-dropdown-menu-before-background: white;
+
+// Search sliders
+
+// Base Colors
+$shade-10: #2c3e50 !default;
+$shade-1: #d7dcdf !default;
+$shade-0: #fff !default;
+$teal: #1abc9c !default;
+// slider colors
+$range-handle-color: $shade-10 !default;
+$range-handle-color-hover: $teal !default;
+$range-track-color: $shade-1 !default;
+$range-label-color: $shade-10 !default;
