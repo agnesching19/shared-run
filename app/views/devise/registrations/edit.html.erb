@@ -1,46 +1,85 @@
 <div class="container">
-  <h2>Edit <%= resource_name.to_s.humanize %></h2>
+  <h2>EDIT YOUR PROFILE - <%= @user.first_name.upcase %> <%= @user.last_name.upcase %></h2>
+  <!-- resource_name.to_s.humanize -->
 
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= f.error_notification %>
 
     <div class="form-inputs">
-      <%= f.input :first_name, required: true, autofocus: true %>
-      <%= f.input :last_name, required: true, autofocus: true %>
+      <div class="col-xs-6">
+      <%= f.input :first_name, required: true, autofocus: true, label: "First Name" %>
+      </div>
+      <div class="col-xs-6">
+      <%= f.input :last_name, required: true, autofocus: true, label: "Last Name" %>
+      </div>
+        <div class="col-xs-12">
       <%= f.input :email, required: true, autofocus: true %>
+      </div>
 
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
       <% end %>
 
-      <%= f.input :sociability, collection: 1..5, prompt: "0" %>
-      <%= f.input :pace, hint: "Average pace per kilometer?" %>
-      <%= f.input :bio, hint: "We are curious about your story!" %>
-      <%= f.input :location, hint: "Postcode, city..." %>
+      <div class="col-xs-12">
+        <%= f.input :bio, placeholder: "We are curious about your story!" %>
+      </div>
 
-      <%= f.input :strava, hint: "Your strava account." %>
-      <%= f.input :nike, hint: "Your Nike+ Run account." %>
+      <div class="col-xs-6">
+        <%= f.input :sociability, collection: 1..5, prompt: "0" %>
+      </div>
+      <div class="col-xs-6">
+        <%= f.input :pace, placeholder: "What is your average pace per kilometre?", label: "Pace (per kilometre)" %>
+      </div>
 
-      <%= f.input :photo %>
-      <%= f.input :photo_cache, as: :hidden %>
+      <div class="col-xs-12">
+        <%= f.input :location, placeholder: "Where are you based?" %>
+      </div>
 
-      <%= f.input :password, autocomplete: "off", hint: "Leave it blank if you don't want to change it.", required: false %>
-      <%= f.input :password_confirmation, required: false %>
-      <%= f.input :current_password, hint: "Please confirm your changes by inputting your current password.", required: true %>
+      <div class="col-xs-6">
+        <%= f.input :strava, label: "Strava ID" %>
+      </div>
+
+      <div class="col-xs-6">
+        <%= f.input :nike, label: "Nike+ ID" %>
+      </div>
+
+      <div class="col-xs-12">
+        <%= f.input :photo %>
+        <%= f.input :photo_cache, as: :hidden %>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
+      <div class="col-xs-12">
+        <h4>Change Password</h4>
+        <%= f.input :password, autocomplete: "off", placeholder: "Leave it blank if you don't want to change your password.", required: false %>
+        <%= f.input :password_confirmation, required: false, label: "Password Confirmation" %>
+      </div>
+
+      <div class="col-xs-12"><hr></div>
+
+      <div class="col-xs-12">
+        <h4>Confirm Changes</h4>
+        <%= f.input :current_password, placeholder: "Please confirm your changes by inputting your current password.", required: true, label: "Current Password" %>
+      </div>
     </div>
 
-    <div class="form-actions">
+    <div class="form-actions col-xs-12">
       <%= f.button :submit, "Update", class: "btn btn-default", onclick: "sweet();"%>
       <%= link_to "Cancel", :back, class: "btn btn-default" %>
     </div>
   <% end %>
 
+  <div class="col-xs-12"><hr></div>
+
+<!-- Cancel account -->
+  <div class="col-xs-12 account-cancel">
+    <h5>Cancel My Account</h5>
+    <p>Unhappy? <%= link_to "Cancel My Account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+  </div>
+</div>
+
 <!-- JS for sweet alert -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.3/sweetalert2.all.min.js" integrity="sha256-Cc+yDzt4WAIOQNyXND0m3zCkxy8mSRJXLGy+5oGaHHM=" crossorigin="anonymous"></script>
   <script type="text/javascript" src="app/assets/javascripts/sweetalert2.js"></script>
 
-<!-- Cancel account -->
-  <h3>Cancel my account</h3>
-
-  <p>Unhappy? <%= link_to "Cancel My Account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-</div>
