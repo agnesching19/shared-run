@@ -22,9 +22,19 @@ body {
   left: 40px;
   z-index: 2;
 
-  h4 {
+  h4 span {
     font-size: 20px;
+    color: #393939;
+    background-color: #efefef;
+    opacity: 1;
   }
+
+  h1 span {
+    color: #393939;
+    background-color: #efefef;
+    opacity: 1;
+  }
+
 
   .btn {
     font-size: 14px !important;
@@ -37,6 +47,10 @@ body {
   border-radius: 50%;
   height: 120px;
   width: 120px;
+}
+
+.user-rating{
+  color: $yellow;
 }
 
 .show-info {
@@ -92,6 +106,7 @@ body {
     font-size: 30px;
     min-width: 75px;
     text-align: center;
+    color: $yellow
   }
 
   .show-run-action {
