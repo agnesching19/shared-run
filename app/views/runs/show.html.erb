@@ -6,8 +6,8 @@
     <div id="show-map"></div>
     <!-- Title -->
     <div class="show-summary">
-      <h1><%= @run.title.upcase %></h1>
-      <h4><%= @run.location.upcase %></h4>
+      <h1><span><%= @run.title.upcase %></span></h1>
+      <h4><span><%= @run.location.upcase %></span></h4>
       <br>
       <!-- Links -->
       <h5>
@@ -45,8 +45,8 @@
         <h3><%= link_to @run.user.first_name.upcase, dashboard_path(@run.user) %></h3>
         <div class="show-user-reviews">
           <p>
-            <i class="fa fa-thumbs-up" aria-hidden="true"></i> 21 &nbsp
-            <i class="fa fa-thumbs-down" aria-hidden="true"></i> 0
+            <i class="fa fa-thumbs-up user-rating" aria-hidden="true"></i> 21 &nbsp
+            <i class="fa fa-thumbs-down user-rating" aria-hidden="true"></i> 0
           </p>
         </div>
         <div class="show-user-bio">
