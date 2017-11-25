@@ -22,7 +22,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     authorize @booking
     if @booking.save
-      redirect_to run_path(@run)
+      redirect_to run_path(@run), notice: "Run has been scheduled!"
     else
       render :new
     end
@@ -37,7 +37,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:run)
+    params.require(:booking).permit(:run, :user)
   end
 
   def set_booking

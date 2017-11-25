@@ -16,7 +16,11 @@
   </p>
 <% else %>
   <% @user.bookings.each do |booking| %>
-    <%= booking %>
+    "Hosted by <%= booking.run.user.first_name.capitalize %> <%= booking.run.user.last_name.capitalize %>"
+    <%= booking.run.title %>
+    <%= booking.run.location %>
+    <%= booking.run.date.sfrtime("%A, %b %d %Y") %>
+    <%= booking.run.time.strftime("%l:%M %p") %>
   <% end %>
 <% end %>
 
