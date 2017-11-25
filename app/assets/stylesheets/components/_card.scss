@@ -18,14 +18,17 @@
 }
 
 .event-card-date {
-  flex: 0 0 200px;
+  flex: 0 0 150px;
   justify-content: center;
   display: flex;
   align-items: center;
   transition: .5s;
+  background-color: $yellow;
+  margin: 15px;
+  border-radius: 5px;
   h3 {
     margin: 0;
-    font-size: 1.2em;
+    font-size: 0.9em;
   }
 }
 
