@@ -22,5 +22,6 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
   get "users/:id/dashboard", to: "users#dashboard", as: "dashboard"
+  get "pages/about", to: "pages#about", as: "about"
 
 end

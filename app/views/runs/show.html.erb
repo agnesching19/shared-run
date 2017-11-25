@@ -110,7 +110,9 @@
       <!-- Booking/Share Buttons -->
       <div class="show-run-action">
         <h5>
-          <%= link_to "SCHEDULE", new_run_booking_path(@run), class: "btn btn-default" %> &nbsp &nbsp
+          <% if policy(@run).edit? == false %>
+            <%= link_to "SCHEDULE", new_run_booking_path(@run), class: "btn btn-default" %> &nbsp &nbsp
+          <% end %>
           <%= link_to "MESSAGE", run_messages_path(@run), class: "btn btn-default" %> &nbsp &nbsp
           <div class="fb-share-button btn btn-default" data-href="https://developers.facebook.com/docs/plugins/" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcamper-rentals.herokuapp.com%2Fplugins%2F&amp;src=sdkpreparse"><i class="fa fa-facebook-square" aria-hidden="true"></i> SHARE</a></div>
         </h5>

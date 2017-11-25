@@ -1,68 +1,132 @@
 <div class="dashboard-container">
 
-  <% avatar_url = current_user.facebook_picture_url || current_user.photo %>
-  <%= cl_image_tag avatar_url, class: "avatar dropdown-toggle" %>
+  <div class="dashboard-header">
+    <!-- Profile Summary -->
+    <div class="profile">
+      <% avatar_url = current_user.facebook_picture_url || current_user.photo %>
+      <%= cl_image_tag avatar_url, class: "dashboard-photo" %>
+      <h4>
+        <%= @user.first_name.upcase %> <%= @user.last_name.upcase %>
+        <%= link_to edit_user_registration_path do %>
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        <% end %>
+      </h4>
+      <p>Member since <%= @user.created_at.strftime("%B %Y") %> &nbsp | &nbsp <%= @user.location %></p>
+    </div>
 
-  <h1><%= @user.first_name.upcase %> <%= @user.last_name.upcase %></h1>
+    <!-- Stats -->
+    <div class="stats">
+      <!-- Hosted Runs -->
+      <div class="stat">
+        <h3><%= @user.runs.count %></h3>
+        <h4>RUNS HOSTED</h4>
+      </div>
 
-  <div class="status">
-    <%= @status %>
+      <!-- Total Distance -->
+      <div class="stat">
+        <% distance_sum = 0 %>
+        <% @user.runs.each do |run| %>
+         <% distance_sum += run.run_distance %>
+        <% end %>
+        <h3><%= number_with_delimiter(distance_sum) %></h3>
+        <h4>KILOMETRES RUN</h4>
+      </div>
+
+      <!-- Total Time -->
+      <div class="stat">
+        <% time_sum = 0 %>
+        <% @user.runs.each do |run| %>
+          <% time_calc = run.run_distance.to_i % run.pace.to_i %>
+          <% time_sum += time_calc.to_i %>
+        <% end %>
+        <h3><%= number_with_delimiter(time_sum) %></h3>
+        <h4>MINUTES TRAINED</h4>
+      </div>
+    </div>
   </div>
 
-  <% if @bookings.nil? %>
-  <p>
-    There are no scheduled runs.
-    <%= link_to "Would you like to schedule a run?", runs_path %>
-  </p>
-<% else %>
-  <% @user.bookings.each do |booking| %>
-    "Hosted by <%= booking.run.user.first_name.capitalize %> <%= booking.run.user.last_name.capitalize %>"
-    <%= booking.run.title %>
-    <%= booking.run.location %>
-    <%= booking.run.date.sfrtime("%A, %b %d %Y") %>
-    <%= booking.run.time.strftime("%l:%M %p") %>
-  <% end %>
-<% end %>
-
-
-  <div class="stats">
-
-    <!-- Hosted Runs -->
-    <p>Hosted Runs: <%= @user.runs.count %></p>
-
-    <!-- Total Distance -->
-    <% distance_sum = 0 %>
-    <% @user.runs.each do |run| %>
-     <% distance_sum += run.run_distance %>
+<!-- Status -->
+<!--   <div class="status">
+    <% last_trip = (@user.bookings.last.run.date - Date.today).to_i %>
+    <% if last_trip < 0 %>
+      <p>It's been <%= -last_trip %> days since you ran!</p>
+    <% else %>
+      <p>Get ready for your next run in <%= last_trip %> days!</p>
     <% end %>
+  </div> -->
 
-    <p>Total Distance Covered: <%= distance_sum %></p>
-
-  </div>
-
-  <div class="achievements">
-
-    <!-- Longest Distance -->
-    <% distances = [] %>
-    <% @user.runs.each do |run| %>
-      <% distance = run.run_distance %>
-      <% distances << distance %>
-    <% end %>
-
-    <p>Longest Distance: <%= distances.max %></p>
-   </div>
-
+  <!-- Run History -->
   <div class="history">
-    <p>Total Runs: <%= @user.runs.count + @user.bookings.count %></p>
-    <p>Upcoming Runs: </p>
-    <p>Past Runs: </p>
+    <h3>RUN HISTORY</h3>
+      <div class="log">
+        <div class="tabs">
+          <a href="#" clsas="tab active">ALL</a>
+          <a href="#" clsas="tab active">HOSTING</a>
+          <a href="#" class="tab">UPCOMING</a>
+          <a href="#" class="tab">PAST</a>
+        </div>
+        <!-- All Runs -->
+        <div class="all-runs">
+        </div>
+        <!-- Hosted Runs -->
+        <div class="hosted-runs">
+          <% @user.runs.each do |run| %>
+            <div class="log-run">
+              <%= run.title %>
+            </div>
+          <% end %>
+        </div>
+        <!-- Upcoming Runs -->
+        <!-- Past Runs -->
+
+
+
+
+      </div>
+
+      <!-- Upcoming Runs -->
+      <!-- Past Runs -->
+      <% @user.bookings.each do |booking| %>
+        <ul class="list-inline">
+          <li><%= booking.run.date.strftime("%A, %b %d %Y") %></li>
+          <li><%= booking.run.time.strftime("%l:%M %p") %></li>
+          <li>Hosted by <%= booking.run.user.first_name.capitalize %> <%= booking.run.user.last_name.capitalize %></li>
+          <li><%= booking.run.title %></li>
+          <li><%= booking.run.location %></li>
+          <li>
+            <%= link_to dashboard_path(@user), method: :delete, data: { confirm: "Are you sure you want to delete this booking?" } do %>
+              <i class="fa fa-trash-o" aria-hidden="true"></i></p>
+            <% end %>
+          </li>
+        </ul>
+      <% end %>
   </div>
 
-  <%= link_to "Edit", edit_user_registration_path, class: "btn btn-default" %>
+  <!-- Achievements -->
+  <div class="achievements">
+    <h3>ACHIEVEMENTS</h3>
+      <!-- Farthest Run -->
+      <div class="farthest-run">
+        <% distances = [] %>
+        <% @user.runs.each do |run| %>
+          <% distance = run.run_distance %>
+          <% distances << distance %>
+        <% end %>
+
+        <p>Farthest Run: <%= distances.max %></p>
+      </div>
+
+      <!-- Longest Run -->
+      <div class="longest-run">
+        <% times = [] %>
+        <% @user.runs.each do |run| %>
+          <% time_calc = run.run_distance.to_i & run.pace.to_i %>
+          <% times << time_calc.to_i %>
+        <% end %>
+
+        <p>Longest Run: <%= times.max %></p>
+      </div>
+   </div>
 </div>
 
 <%= content_for(:title, "Dashboard") %>
-
-
-  <!--  <p>Fastest Pace:</p> -->
-  <!--  <p>Average Pace: </p> -->
