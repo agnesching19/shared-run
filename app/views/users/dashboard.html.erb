@@ -56,54 +56,105 @@
   </div> -->
 
   <!-- Run History -->
-  <div class="history">
+  <div class="history breather">
     <h3>RUN HISTORY</h3>
-      <div class="log">
-        <div class="tabs">
-          <a href="#" clsas="tab active">ALL</a>
-          <a href="#" clsas="tab active">HOSTING</a>
-          <a href="#" class="tab">UPCOMING</a>
-          <a href="#" class="tab">PAST</a>
-        </div>
+    <!-- Tabs -->
+      <div class="tabs">
+        <a href="#" class="tab">ALL (<%= @user.runs.count.to_i + @user.bookings.count.to_i %>)</a>
+        <a href="#" class="tab">HOSTING (<%= @user.runs.count %>)</a>
+        <a href="#" class="tab">UPCOMING</a>
+        <a href="#" class="tab">PAST</a>
+      </div>
+      <div class="logs">
         <!-- All Runs -->
         <div class="all-runs">
         </div>
         <!-- Hosted Runs -->
-        <div class="hosted-runs">
-          <% @user.runs.each do |run| %>
-            <div class="log-run">
-              <%= run.title %>
-            </div>
-          <% end %>
-        </div>
-        <!-- Upcoming Runs -->
-        <!-- Past Runs -->
-
-
-
-
-      </div>
-
-      <!-- Upcoming Runs -->
-      <!-- Past Runs -->
-      <% @user.bookings.each do |booking| %>
-        <ul class="list-inline">
-          <li><%= booking.run.date.strftime("%A, %b %d %Y") %></li>
-          <li><%= booking.run.time.strftime("%l:%M %p") %></li>
-          <li>Hosted by <%= booking.run.user.first_name.capitalize %> <%= booking.run.user.last_name.capitalize %></li>
-          <li><%= booking.run.title %></li>
-          <li><%= booking.run.location %></li>
-          <li>
-            <%= link_to dashboard_path(@user), method: :delete, data: { confirm: "Are you sure you want to delete this booking?" } do %>
-              <i class="fa fa-trash-o" aria-hidden="true"></i></p>
+        <div class="host-runs">
+          <ul class="log">
+            <% @user.runs.each do |run| %>
+              <li class="flex">
+                <div class="log-left">
+                  <p>CONFIRMED RUNNERS: <%= run.bookings.count %></p>
+                  <ul class="list-inline">
+                    <li>
+                      <%= link_to runs_path do %>
+                        <p><i class="fa fa-envelope" aria-hidden="true"></i></p>
+                      <% end %>
+                    </li>
+                    <li>
+                      <%= link_to runs_path do %>
+                        <p><i class="fa fa-pencil" aria-hidden="true"></i></p>
+                      <% end %>
+                    </li>
+                    <li>
+                      <%= link_to runs_path do %>
+                        <p><i class="fa fa-trash" aria-hidden="true"></i></p>
+                      <% end %>
+                    </li>
+                  </ul>
+                </div>
+                <div class="log-middle">
+                  <h5><%= run.title.split.map {|r| r.upcase}.join(" ") %></h5>
+                  <p><%= run.location.upcase.match(/^(.+?),/).to_s %> <%= run.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
+                </div>
+                <div class="log-right">
+                  <p><%= run.date.strftime("%b %d %Y").upcase %></p>
+                  <p><%= run.time.strftime("%l:%M %p") %></p>
+                </div>
+              </li>
             <% end %>
-          </li>
+          </ul>
+        </div>
+      <!-- Upcoming Runs -->
+      <div class="non-host-runs">
+        <ul class="log">
+          <% @user.bookings.each do |booking| %>
+            <% if booking.run.date > Date.today %>
+
+              <li class="flex">
+                <div class="log-left">
+                  <div class="left-photo">
+                    <%= cl_image_tag booking.run.user.photo, class: "history-photo" %>
+                  </div>
+                  <div class="left-info">
+                    <p><%= booking.run.user.first_name.upcase %> <%= booking.run.user.last_name.upcase %></p>
+                    <ul class="list-inline">
+                      <li>
+                        <%= link_to runs_path do %>
+                          <p><i class="fa fa-envelope" aria-hidden="true"></i></p>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to runs_path do %>
+                          <p><i class="fa fa-trash" aria-hidden="true"></i></p>
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="log-middle">
+                  <h5><%= booking.run.title.split.map {|r| r.upcase}.join(" ") %></h5>
+                  <p><%= booking.run.location.upcase.match(/^(.+?),/).to_s %> <%= booking.run.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
+                </div>
+                <div class="log-right">
+                  <p><%= booking.run.date.strftime("%b %d %Y").upcase %></p>
+                  <p><%= booking.run.time.strftime("%l:%M %p") %></p>
+                </div>
+              </li>
+            <% end %>
+          <% end %>
+
+
+
         </ul>
-      <% end %>
+      </div>
+      <!-- Past Runs -->
+      </div>
   </div>
 
   <!-- Achievements -->
-  <div class="achievements">
+  <div class="achievements breather">
     <h3>ACHIEVEMENTS</h3>
       <!-- Farthest Run -->
       <div class="farthest-run">
