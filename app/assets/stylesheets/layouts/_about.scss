@@ -1,0 +1,22 @@
+// .overview {
+//   display: flex;
+//   justify-content: space-between;
+// }
+
+.team {
+  display: flex;
+  justify-content: space-between;
+}
+
+.member-links {
+  display: flex;
+  justify-content: space-between;
+
+  .list-inline {
+    list-style: none;
+
+    li {
+      display: inline-block;
+    }
+  }
+}

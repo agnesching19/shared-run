@@ -1,13 +1,53 @@
 .dashboard-container {
   padding: 30px;
+  width: 90%;
+  margin: auto;
 
   h1 {
     margin: 0px 0px 15px 0px !important;
   }
 }
 
-.dashboard-photo {
-  border-radius: 50%;
-  height: 150px;
-  width: 150px;
+.dashboard-header {
+  display: flex;
+  justify-content: space-around;
 }
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+}
+
+.stat {
+  text-align: center;
+  padding: 0px 35px;
+  border-right: 1px solid rgba(255,255,255,0.1);
+
+  &:last-child {
+    border-right: none;
+  }
+
+  h3 {
+    font-size: 70px;
+  }
+}
+
+.profile {
+  text-align: center;
+  min-width: 250px;
+
+  h4 {
+    margin-bottom: 3px !important;
+  }
+  p {
+    font-size: 14px;
+    margin: 0px !important;
+  }
+
+  .dashboard-photo {
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+  }
+}
+

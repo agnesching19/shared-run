@@ -6,15 +6,15 @@
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
-    <!-- Search -->
-    <%# render "shared/search" %>
-    <!-- All events -->
-    <%= link_to "ALL EVENTS", events_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <!-- About -->
+    <%= link_to "ABOUT", about_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <!-- All Events -->
+    <%= link_to "EVENTS", events_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <% if user_signed_in? %>
 
     <!-- Links when Logged In -->
-      <!-- Add New Run -->
-      <%= link_to "ADD NEW RUN", new_run_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <!-- All Runs -->
+      <%= link_to "RUNS", new_run_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
@@ -29,7 +29,7 @@
                 <i class="fa fa-tachometer"></i> &nbsp <%= t(".profile", default: "DASHBOARD") %>
               <% end %>
             </li>
-             <li>
+            <li>
               <%= link_to runs_path, method: :get do %>
                 <i class="fa fa-envelope-o"></i> &nbsp <%= t(".dashboard", default: "MESSAGES") %>
               <% end %>
@@ -44,7 +44,7 @@
       </div>
     <% else %>
       <!-- Login link (when logged out) -->
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to t(".sign_in", default: "LOG IN / SIGN UP"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <% end %>
   </div>
 
@@ -53,9 +53,21 @@
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">Profile</a></li>
-        <li><a href="#">Dashboard</a></li>
-        <li><a href="#">Log Out</a></li>
+        <li>
+          <%= link_to runs_path, method: :get do %>
+            <i class="fa fa-tachometer"></i> &nbsp <%= t(".profile", default: "DASHBOARD") %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to runs_path method: :get do %>
+            <i class="fa fa-envelope-o"></i> &nbsp <%= t(".dashboard", default: "MESSAGES") %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to runs_path do %>
+            <i class="fa fa-sign-out"></i> &nbsp <%= t(".sign_out", default: "LOG OUT") %>
+          <% end %>
+        </li>
       </ul>
     </div>
   </div>

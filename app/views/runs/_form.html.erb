@@ -7,7 +7,7 @@
   <%= r.input :run_distance, placeholder: "Kilometre(s)" %>
   <%= r.input :pace, placeholder: "MM:SS / Kilometre" %>
   <%= r.input :capacity, placeholder: "Number of people" %>
-  <%= r.submit "Submit", class: "btn btn-default", onclick: "sweet();" %>
+  <%= r.submit "Submit", class: "btn btn-default" %>
 <% end %>
 
 <!-- JS for sweet alert -->
@@ -15,8 +15,6 @@
 <script type="text/javascript" src="app/assets/javascripts/sweetalert2.js"></script> -->
 
 <%= content_for(:after_js) do %>
-
- <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=<%= ENV['GOOGLE_API_BROWSER_KEY'] %>"></script>
 
   <script>
     var runLocation = document.getElementById("locationInput");

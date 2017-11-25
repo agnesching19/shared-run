@@ -1,0 +1,26 @@
+.sessions {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  align-items: center;
+}
+
+.block {
+  height: 625px;
+  width: 750px;
+  padding: 25px 40px;
+
+  h1 {
+    margin-top: 0px !important;
+    text-align: center;
+  }
+}
+
+.left {
+  background-color: rgba(255,255,255,0.2);
+}
+
+.session-links {
+  padding-top: 10px;
+  font-size: 16px;
+}
