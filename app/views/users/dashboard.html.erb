@@ -107,11 +107,10 @@
           </ul>
         </div>
       <!-- Upcoming Runs -->
-      <div class="non-host-runs">
+      <div class="non-host-runs upcoming-runs">
         <ul class="log">
           <% @user.bookings.each do |booking| %>
-            <% if booking.run.date > Date.today %>
-
+            <% if booking.run.date >= Date.today - 1 %>
               <li class="flex">
                 <div class="log-left">
                   <div class="left-photo">
@@ -144,12 +143,47 @@
               </li>
             <% end %>
           <% end %>
-
-
-
         </ul>
       </div>
       <!-- Past Runs -->
+            <div class="non-host-runs past-runs">
+        <ul class="log">
+          <% @user.bookings.each do |booking| %>
+            <% if booking.run.date < Date.today - 1 %>
+              <li class="flex">
+                <div class="log-left">
+                  <div class="left-photo">
+                    <%= cl_image_tag booking.run.user.photo, class: "history-photo" %>
+                  </div>
+                  <div class="left-info">
+                    <p><%= booking.run.user.first_name.upcase %> <%= booking.run.user.last_name.upcase %></p>
+                    <ul class="list-inline">
+                      <li>
+                        <%= link_to runs_path do %>
+                          <p><i class="fa fa-envelope" aria-hidden="true"></i></p>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to runs_path do %>
+                          <p><i class="fa fa-trash" aria-hidden="true"></i></p>
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="log-middle">
+                  <h5><%= booking.run.title.split.map {|r| r.upcase}.join(" ") %></h5>
+                  <p><%= booking.run.location.upcase.match(/^(.+?),/).to_s %> <%= booking.run.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
+                </div>
+                <div class="log-right">
+                  <p><%= booking.run.date.strftime("%b %d %Y").upcase %></p>
+                  <p><%= booking.run.time.strftime("%l:%M %p") %></p>
+                </div>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
       </div>
   </div>
 
