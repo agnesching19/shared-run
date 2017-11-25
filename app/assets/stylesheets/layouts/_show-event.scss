@@ -12,10 +12,18 @@
   }
 }
 
+.event-time {
+  background-color: $yellow;
+  width: 280px;
+  padding-left: 10px;
+  border-radius: 5px;
+}
+
 .event-display {
   padding: 0px 10px 0px 10px;
   list-style: none;
   width: 80%;
+
 }
 
 .events {
