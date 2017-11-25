@@ -1,13 +1,41 @@
 .dashboard-container {
   padding: 30px;
+  width: 90%;
+  margin: auto;
 
   h1 {
     margin: 0px 0px 15px 0px !important;
   }
 }
 
-.dashboard-photo {
-  border-radius: 50%;
-  height: 150px;
-  width: 150px;
+.dashboard-header {
+  display: flex;
 }
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+
+  h3 {
+    font-size: 70px;
+  }
+}
+
+.profile {
+  text-align: center;
+  min-width: 250px;
+
+  h4 {
+    margin-bottom: 3px !important;
+  }
+  p {
+    font-size: 14px;
+  }
+
+  .dashboard-photo {
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+  }
+}
+
