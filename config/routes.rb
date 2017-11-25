@@ -12,13 +12,13 @@ Rails.application.routes.draw do
     resources :invites, only: [:new, :create]
     resources :reviews, only: [:index, :new, :create]
     resources :messages, only: [:index, :create, :destroy]
-    resources :bookings, only: [:new, :create]
+    resources :bookings, only: [:index, :new, :create]
   end
 
 
   resources :invites, only: [:index, :show, :edit, :update, :destroy]
   resources :reviews, only: [:show, :edit, :update, :destroy]
-  resources :bookings, only: [:show, :destroy]
+  resources :bookings, only: [:destroy]
 
   root to: "pages#home"
   get "users/:id/dashboard", to: "users#dashboard", as: "dashboard"

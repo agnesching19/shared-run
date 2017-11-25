@@ -16,11 +16,6 @@ class UsersController < ApplicationController
     authorize(@user)
   end
 
-  def run_history
-
-    end
-  end
-
   def book
     bookings = []
     @booked_runs = params[:run]

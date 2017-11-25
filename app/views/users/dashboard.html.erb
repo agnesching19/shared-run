@@ -9,6 +9,17 @@
     <%= @status %>
   </div>
 
+  <% if @bookings.nil? %>
+  <p>
+    There are no scheduled runs.
+    <%= link_to "Would you like to schedule a run?", runs_path %>
+  </p>
+<% else %>
+  <% @user.bookings.each do |booking| %>
+    <%= booking %>
+  <% end %>
+<% end %>
+
 
   <div class="stats">
 
@@ -38,8 +49,8 @@
    </div>
 
   <div class="history">
-    <p>Total Runs</p>
-    <p>Upcoming Runs: <%= @upcoming %></p>
+    <p>Total Runs: <%= @user.runs.count + @user.bookings.count %></p>
+    <p>Upcoming Runs: </p>
     <p>Past Runs: </p>
   </div>
 

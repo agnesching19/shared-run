@@ -4,7 +4,11 @@ class BookingsController < ApplicationController
   before_action :set_user, only: [:index]
 
   def index
-    @bookings = Booking.all
+    @bookings = policy_scope(Booking)
+    # authorize @booking
+    # @run = Run.find(@booking.run_id)
+    # @participant = User.find(@booking.user_id)
+    # @host = User.find(@run.user_id)
   end
 
   def new
@@ -24,13 +28,6 @@ class BookingsController < ApplicationController
     end
   end
 
-  def show
-    authorize @booking
-    @run = Run.find(@booking.run_id)
-    @participant = User.find(@booking.user_id)
-    @host = User.find(@run.user_id)
-  end
-
   def destroy
     authorize @booking
     @booking.destroy
@@ -40,7 +37,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    # params.require(:booking).permit(:run)
+    params.require(:booking).permit(:run)
   end
 
   def set_booking
