@@ -16,16 +16,11 @@ class UsersController < ApplicationController
     authorize(@user)
   end
 
-  def run_history
-    @upcoming = 0
-    @hosted = 0
-    @user.runs each do |run|
-      if run.time < Time.now
-        @hosted += 1
-      else
-        @upcoming += 1
-      end
-    end
+  def book
+    bookings = []
+    @booked_runs = params[:run]
+    bookings << @booked_runs
+    @run.capacity -= 1
   end
 
   def status
