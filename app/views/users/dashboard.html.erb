@@ -17,25 +17,31 @@
     <!-- Stats -->
     <div class="stats">
       <!-- Hosted Runs -->
-      <h3><%= @user.runs.count %></h3>
-      <h4>RUNS HOSTED</h4>
+      <div class="stat">
+        <h3><%= @user.runs.count %></h3>
+        <h4>RUNS HOSTED</h4>
+      </div>
 
       <!-- Total Distance -->
-      <% distance_sum = 0 %>
-      <% @user.runs.each do |run| %>
-       <% distance_sum += run.run_distance %>
-      <% end %>
-      <h3><%= number_with_delimiter(distance_sum) %></h3>
-      <h4>TOTAL KILOMETRES RUN</h4>
+      <div class="stat">
+        <% distance_sum = 0 %>
+        <% @user.runs.each do |run| %>
+         <% distance_sum += run.run_distance %>
+        <% end %>
+        <h3><%= number_with_delimiter(distance_sum) %></h3>
+        <h4>KILOMETRES RUN</h4>
+      </div>
 
       <!-- Total Time -->
-      <% time_sum = 0 %>
-      <% @user.runs.each do |run| %>
-        <% time_calc = run.run_distance.to_i % run.pace.to_i %>
-        <% time_sum += time_calc.to_i %>
-      <% end %>
-      <h3><%= number_with_delimiter(time_sum) %></h3>
-      <h4>MINUTES TRAINED</h4>
+      <div class="stat">
+        <% time_sum = 0 %>
+        <% @user.runs.each do |run| %>
+          <% time_calc = run.run_distance.to_i % run.pace.to_i %>
+          <% time_sum += time_calc.to_i %>
+        <% end %>
+        <h3><%= number_with_delimiter(time_sum) %></h3>
+        <h4>MINUTES TRAINED</h4>
+      </div>
     </div>
   </div>
 
@@ -52,29 +58,48 @@
   <!-- Run History -->
   <div class="history">
     <h3>RUN HISTORY</h3>
-    <% if @user.bookings.nil? %>
-      <p>
-        There are no scheduled runs.
-        <%= link_to "Would you like to schedule a run?", runs_path %>
-      </p>
-    <% else %>
+      <div class="log">
+        <div class="tabs">
+          <a href="#" clsas="tab active">ALL</a>
+          <a href="#" clsas="tab active">HOSTING</a>
+          <a href="#" class="tab">UPCOMING</a>
+          <a href="#" class="tab">PAST</a>
+        </div>
+        <!-- All Runs -->
+        <div class="all-runs">
+        </div>
+        <!-- Hosted Runs -->
+        <div class="hosted-runs">
+          <% @user.runs.each do |run| %>
+            <div class="log-run">
+              <%= run.title %>
+            </div>
+          <% end %>
+        </div>
+        <!-- Upcoming Runs -->
+        <!-- Past Runs -->
+
+
+
+
+      </div>
+
+      <!-- Upcoming Runs -->
+      <!-- Past Runs -->
       <% @user.bookings.each do |booking| %>
         <ul class="list-inline">
+          <li><%= booking.run.date.strftime("%A, %b %d %Y") %></li>
+          <li><%= booking.run.time.strftime("%l:%M %p") %></li>
           <li>Hosted by <%= booking.run.user.first_name.capitalize %> <%= booking.run.user.last_name.capitalize %></li>
           <li><%= booking.run.title %></li>
           <li><%= booking.run.location %></li>
-          <li><%= booking.run.date.strftime("%A, %b %d %Y") %></li>
-          <li><%= booking.run.time.strftime("%l:%M %p") %></li>
-
           <li>
             <%= link_to dashboard_path(@user), method: :delete, data: { confirm: "Are you sure you want to delete this booking?" } do %>
               <i class="fa fa-trash-o" aria-hidden="true"></i></p>
             <% end %>
           </li>
-
         </ul>
       <% end %>
-    <% end %>
   </div>
 
   <!-- Achievements -->
@@ -93,24 +118,15 @@
 
       <!-- Longest Run -->
       <div class="longest-run">
-        <%= times = [] %>
+        <% times = [] %>
         <% @user.runs.each do |run| %>
-          <% time = run.time.to_i %>
-          <% times << time %>
+          <% time_calc = run.run_distance.to_i & run.pace.to_i %>
+          <% times << time_calc.to_i %>
         <% end %>
 
         <p>Longest Run: <%= times.max %></p>
       </div>
-
    </div>
-
-  <div class="history">
-    <h3>RUN HISTORY</h3>
-    <p>Total Runs: <%= @user.runs.count + @user.bookings.count %></p>
-    <p>Upcoming Runs: </p>
-    <p>Past Runs: </p>
-  </div>
-
 </div>
 
 <%= content_for(:title, "Dashboard") %>
