@@ -1,16 +1,29 @@
-// .overview {
-//   display: flex;
-//   justify-content: space-between;
-// }
+.box {
+  padding: 30px;
+  text-align: center;
 
-.team {
-  display: flex;
-  justify-content: space-between;
+  h2 {
+    margin: 12.5px 0px !important;
+  }
+}
+
+.overviews {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  .overview {
+    padding: 0px 15px;
+  }
+}
+
+.members {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
 }
 
 .member-links {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 
   .list-inline {
     list-style: none;
@@ -19,4 +32,8 @@
       display: inline-block;
     }
   }
+}
+
+.colour {
+  background-color: rgba(0,0,0,0.3)
 }
