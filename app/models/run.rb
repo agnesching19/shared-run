@@ -2,6 +2,7 @@ class Run < ApplicationRecord
   belongs_to :user
   has_many :messages, dependent: :destroy
   has_many :invites
+  has_many :bookings, dependent: :destroy
   validates :location, :date, :title, :description, :run_distance, :capacity, presence: true
 
   # Enables photo uploads
@@ -14,9 +15,9 @@ class Run < ApplicationRecord
   # Enables pgsearch
   include PgSearch
   pg_search_scope :global_search,
-    against: [ :location]
+    against: [:location]
     # ,
     # associated_against: {
-    #   runs: [ :run_date]
+    #   runs: [:run_date]
     # }
 end

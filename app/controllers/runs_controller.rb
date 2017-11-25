@@ -80,10 +80,9 @@ class RunsController < ApplicationController
         # end
       end
     else
-          @runs = Run.all
-          #policy_scope(Run).where.not(latitude: nil, longitude: nil).order(created_at: :desc)
+      @runs = Run.all
+      #policy_scope(Run).where.not(latitude: nil, longitude: nil).order(created_at: :desc)
     # @runs = params[:search][:location].present? ? Run.global_search(params[:search][:run_date]) : Run.all
-
     end
   end
 
