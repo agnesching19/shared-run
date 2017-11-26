@@ -1,6 +1,10 @@
-<% @user.runs.each do |run| %>
-  <% run.messages.each do |message| %>
-    <%= run.title %>
-    <%= message.content %>
-  <% end %>
-<% end %>
+<div class="container">
+  <ul>
+    <% @user.runs.each do |run| %>
+        <li><strong><%= run.title %></strong></li>
+      <% run.messages.each do |message| %>
+        <li><%= message.content %></li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
