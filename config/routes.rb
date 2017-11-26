@@ -5,6 +5,11 @@ Rails.application.routes.draw do
 
   as :user do
     get "users/profile", to: "devise/registrations#edit", as: :user_root
+    get "users/:id/preferences/new", to: "preferences#new", as: :new_preference
+    post "users/:id/preferences", to: "preferences#create"
+    get "users/:id/preferences", to: "preferences#show", as: :preference
+    get "users/:id/preferences/edit", to: "preferences#edit", as: :edit_preference
+    patch "users/:id/preferences", to: "preferences#update"
   end
 
   resources :events
