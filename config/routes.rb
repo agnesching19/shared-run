@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   end
 
   as :user do
-    get 'users/profile', to: "devise/registrations#edit", as: :user_root
+    get "users/profile", to: "devise/registrations#edit", as: :user_root
   end
 
   resources :events
@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   resources :invites, only: [:index, :show, :edit, :update, :destroy]
   resources :reviews, only: [:show, :edit, :update, :destroy]
+  resources :messages, only: [:show]
   resources :bookings, only: [:destroy]
 
   root to: "pages#home"

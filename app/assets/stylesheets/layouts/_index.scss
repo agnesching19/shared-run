@@ -4,11 +4,11 @@
 // @import "profile";
 // @import "map";
 
-
-@import "runs"; // Runs index page
-@import "messages"; // Messages index page
-@import "show-event"; // Events index page
-@import "show-run"; // Runs show page
-@import "dashboard"; // User dashboard
 @import "home";
 @import "about";
+@import "dashboard"; // User dashboard
+@import "runs"; // Runs index page
+@import "messages"; // Messages index page
+@import "show-run"; // Runs show page
+@import "show-event"; // Events index page
+@import "show-message"; // Messages show page
