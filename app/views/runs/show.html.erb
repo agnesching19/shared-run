@@ -86,7 +86,7 @@
         </div>
         <div class="detail-content">
           <h4>DISTANCE</h4>
-          <p><%= @run.run_distance %> kilometres</p>
+          <p><%= pluralize @run.run_distance, "kilometre" %></p>
         </div>
       </div>
       <div class="run-detail">
