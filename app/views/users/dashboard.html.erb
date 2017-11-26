@@ -198,9 +198,15 @@
           <% distance = run.run_distance %>
           <% distances << distance %>
         <% end %>
-        <h4><%= distances.max %></h4>
-        <h5>KILOMETRES</h5>
-        <p>FARTHEST RUN</p>
+        <% if distances == [] %>
+          <div class="no-border"></div>
+        <% else %>
+          <div class="border">
+            <h4><%= distances.max %></h4>
+            <h5>KILOMETRES</h5>
+            <p>FARTHEST RUN</p>
+          </div>
+        <% end %>
       </div>
 
       <!-- Longest Run -->
@@ -210,9 +216,17 @@
           <% time_calc = run.run_distance.to_i % run.pace.to_i %>
           <% times << time_calc.to_i %>
         <% end %>
-        <h4><%= times.max %></h4>
-        <h5>MINUTES</h5>
-        <p>LONGEST RUN</p>
+        <% if times == [] %>
+          <div class="no-border">
+            <h2><i class="fa fa-meh-o" aria-hidden="true"></i></h2>
+          </div>
+        <% else %>
+          <div class="border">
+            <h4><%= times.max %></h4>
+            <h5>MINUTES</h5>
+            <p>LONGEST RUN</p>
+          </div>
+        <% end %>
       </div>
 
       <!-- Fastest Run -->
@@ -222,9 +236,15 @@
           <% pace = run.pace %>
           <% paces << pace %>
         <% end %>
-        <h4><%= paces.min.strftime("%H:%M") %></h4>
-        <h5>MIN/KM</h5>
-        <p>FASTEST RUN</p>
+        <% if paces == [] %>
+          <div class="no-border"></div>
+        <% else %>
+          <div class="border">
+            <h4><%= paces.min.strftime("%H:%M") %></h4>
+            <h5>MIN/KM</h5>
+            <p>FASTEST RUN</p>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
