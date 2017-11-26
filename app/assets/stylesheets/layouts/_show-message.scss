@@ -11,3 +11,28 @@
     font-family: "Source Sans Pro", "sans serif";
   }
 }
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 5px;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.message-left {
+  padding-right: 10px;
+  min-width: 350px;
+}
+
+.message-middle {
+  min-width: 150px
+}
+
+.message-right {
+  flex: 1 0 auto;
+}
