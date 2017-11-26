@@ -33,15 +33,15 @@ gem 'geocoder'
 gem 'coffee-rails'
 gem 'gmaps4rails'
 
+source 'https://rails-assets.org' do
+  gem "rails-assets-underscore"
+end
+
 # Mailer
 gem 'letter_opener', group: :development
 gem 'postmark-rails'
 gem 'gibbon'
 gem 'omniauth-facebook'
-
-source 'https://rails-assets.org' do
-  gem "rails-assets-underscore"
-end
 
 group :development, :test do
   gem 'pry-byebug'
