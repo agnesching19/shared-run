@@ -149,3 +149,32 @@
     padding-left: 15px;
   }
 }
+
+// Achievements
+
+.achievements-flex {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+
+.achievement {
+  // display: flex;
+  margin: 5px auto;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  padding: 30px 10px;
+  height: 175px;
+  width: 175px;
+  border: 5px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+
+  h4, h5 {
+    margin: 5px;
+  }
+
+  p {
+    margin: 15px 0px 0px 0px;
+  }
+}

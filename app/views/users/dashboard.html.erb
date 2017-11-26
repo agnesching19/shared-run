@@ -59,55 +59,55 @@
   <div class="history breather">
     <h3>RUN HISTORY</h3>
     <!-- Tabs -->
-      <div class="tabs">
-        <a href="#" class="tab">ALL (<%= @user.runs.count.to_i + @user.bookings.count.to_i %>)</a>
-        <a href="#" class="tab">HOSTING (<%= @user.runs.count %>)</a>
-        <a href="#" class="tab">UPCOMING</a>
-        <a href="#" class="tab">PAST</a>
+    <div class="tabs">
+      <a href="#" class="tab">ALL (<%= @user.runs.count.to_i + @user.bookings.count.to_i %>)</a>
+      <a href="#" class="tab">HOSTING (<%= @user.runs.count %>)</a>
+      <a href="#" class="tab">UPCOMING</a>
+      <a href="#" class="tab">PAST</a>
+    </div>
+    <div class="logs">
+      <!-- All Runs -->
+      <div class="non-host-runs">
       </div>
-      <div class="logs">
-        <!-- All Runs -->
-        <div class="all-runs">
-        </div>
-        <!-- Hosted Runs -->
-        <div class="host-runs">
-          <ul class="log">
-            <% @user.runs.each do |run| %>
-              <li class="flex">
-                <div class="log-left">
-                  <p>CONFIRMED RUNNERS: <%= run.bookings.count %></p>
-                  <ul class="list-inline">
-                    <li>
-                      <%= link_to runs_path do %>
-                        <p><i class="fa fa-envelope" aria-hidden="true"></i></p>
-                      <% end %>
-                    </li>
-                    <li>
-                      <%= link_to runs_path do %>
-                        <p><i class="fa fa-pencil" aria-hidden="true"></i></p>
-                      <% end %>
-                    </li>
-                    <li>
-                      <%= link_to runs_path do %>
-                        <p><i class="fa fa-trash" aria-hidden="true"></i></p>
-                      <% end %>
-                    </li>
-                  </ul>
-                </div>
-                <div class="log-middle">
-                  <h5><%= run.title.split.map {|r| r.upcase}.join(" ") %></h5>
-                  <p><%= run.location.upcase.match(/^(.+?),/).to_s %> <%= run.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
-                </div>
-                <div class="log-right">
-                  <p><%= run.date.strftime("%b %d %Y").upcase %></p>
-                  <p><%= run.time.strftime("%l:%M %p") %></p>
-                </div>
-              </li>
-            <% end %>
-          </ul>
-        </div>
+      <!-- Hosted Runs -->
+      <div class="host-runs">
+        <ul class="log">
+          <% @user.runs.each do |run| %>
+            <li class="flex">
+              <div class="log-left">
+                <p>CONFIRMED RUNNERS: <%= run.bookings.count %></p>
+                <ul class="list-inline">
+                  <li>
+                    <%= link_to runs_path do %>
+                      <p><i class="fa fa-envelope" aria-hidden="true"></i></p>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to runs_path do %>
+                      <p><i class="fa fa-pencil" aria-hidden="true"></i></p>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to runs_path do %>
+                      <p><i class="fa fa-trash" aria-hidden="true"></i></p>
+                    <% end %>
+                  </li>
+                </ul>
+              </div>
+              <div class="log-middle">
+                <h5><%= run.title.split.map {|r| r.upcase}.join(" ") %></h5>
+                <p><%= run.location.upcase.match(/^(.+?),/).to_s %> <%= run.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
+              </div>
+              <div class="log-right">
+                <p><%= run.date.strftime("%b %d %Y").upcase %></p>
+                <p><%= run.time.strftime("%l:%M %p") %></p>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
       <!-- Upcoming Runs -->
-      <div class="non-host-runs upcoming-runs">
+      <div class="non-host-runs">
         <ul class="log">
           <% @user.bookings.each do |booking| %>
             <% if booking.run.date >= Date.today - 1 %>
@@ -146,7 +146,7 @@
         </ul>
       </div>
       <!-- Past Runs -->
-            <div class="non-host-runs past-runs">
+      <div class="non-host-runs">
         <ul class="log">
           <% @user.bookings.each do |booking| %>
             <% if booking.run.date < Date.today - 1 %>
@@ -184,34 +184,50 @@
           <% end %>
         </ul>
       </div>
-      </div>
+    </div>
   </div>
 
   <!-- Achievements -->
   <div class="achievements breather">
     <h3>ACHIEVEMENTS</h3>
+    <div class="achievements-flex">
       <!-- Farthest Run -->
-      <div class="farthest-run">
+      <div class="achievement">
         <% distances = [] %>
         <% @user.runs.each do |run| %>
           <% distance = run.run_distance %>
           <% distances << distance %>
         <% end %>
-
-        <p>Farthest Run: <%= distances.max %></p>
+        <h4><%= distances.max %></h4>
+        <h5>KILOMETRES</h5>
+        <p>FARTHEST RUN</p>
       </div>
 
       <!-- Longest Run -->
-      <div class="longest-run">
+      <div class="achievement">
         <% times = [] %>
         <% @user.runs.each do |run| %>
-          <% time_calc = run.run_distance.to_i & run.pace.to_i %>
+          <% time_calc = run.run_distance.to_i % run.pace.to_i %>
           <% times << time_calc.to_i %>
         <% end %>
-
-        <p>Longest Run: <%= times.max %></p>
+        <h4><%= times.max %></h4>
+        <h5>MINUTES</h5>
+        <p>LONGEST RUN</p>
       </div>
-   </div>
+
+      <!-- Fastest Run -->
+      <div class="achievement">
+        <% paces = [] %>
+        <% @user.runs.each do |run| %>
+          <% pace = run.pace %>
+          <% paces << pace %>
+        <% end %>
+        <h4><%= paces.min.strftime("%H:%M") %></h4>
+        <h5>MIN/KM</h5>
+        <p>FASTEST RUN</p>
+      </div>
+    </div>
+  </div>
 </div>
 
 <%= content_for(:title, "Dashboard") %>
