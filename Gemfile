@@ -43,6 +43,9 @@ gem 'postmark-rails'
 gem 'gibbon'
 gem 'omniauth-facebook'
 
+# Scraping
+gem 'nokogiri'
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
@@ -51,6 +54,3 @@ group :development, :test do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
-
-# scraping
-gem "nokogiri"

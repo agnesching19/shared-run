@@ -1,0 +1,6 @@
+<% @user.runs.each do |run| %>
+  <% run.messages.each do |message| %>
+    <%= run.title %>
+    <%= message.content %>
+  <% end %>
+<% end %>
