@@ -1,6 +1,9 @@
 class MessagesController < ApplicationController
-  before_action :set_run, only: [:create, :index, :destroy]
-  skip_after_action :verify_policy_scoped, only: [:index, :create, :destroy]
+  before_action :set_run, only: [:index, :create, :destroy]
+  before_action :set_user, only: [:show]
+  before_action :set_message, only: [:destroy]
+  skip_after_action :verify_policy_scoped, only: [:index, :create, :show, :destroy]
+
   def index
     @message = Message.new
     @messages = Message.where(run: @run)
@@ -29,8 +32,12 @@ class MessagesController < ApplicationController
     # end
   end
 
+  def show
+    authorize @user.messages
+  end
+
   def destroy
-    set_message
+    # set_message
     authorize @message
     @message.destroy
     redirect_to run_messages_path(@run)
