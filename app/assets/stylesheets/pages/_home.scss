@@ -10,7 +10,11 @@
 
 a {
   text-decoration: none;
-  color: $color-link;
+  color: $dark-gray;
+}
+
+a:hover {
+  color: #C16670 !important;
 }
 
 .search-container {
@@ -60,13 +64,13 @@ form {
 }
 
 .counter {
-  font-size: 40px !important;
+  font-size: 45px !important;
 }
 .counter1 {
-  font-size: 40px !important;
+  font-size: 45px !important;
 }
 .counter2 {
-  font-size: 40px !important;
+  font-size: 45px !important;
 }
 
 #landing-buttons {
@@ -97,3 +101,10 @@ form {
     transition: 0.5s;
   }
 }
+
+#landing-buttons {
+  right: 80px;
+}
+
+
+

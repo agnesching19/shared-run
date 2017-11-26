@@ -5,12 +5,15 @@
 }
 
 .search-home-page {
-  width: 258px;
+  width: 277px;
 }
 
 .btn-primary {
   background-color: #FF006C;
-  border-color: #FF006C;
+  border-color: $dark-gray;
+  border-width: 1.5px;
+  color: $dark-gray;
+  font-weight: bold;
 }
 
 .btn-primary:hover {
@@ -19,16 +22,29 @@
 }
 
 .input-group-addon {
-  width: 42px;
-  height:  39px;
-
+  width: 42px !important;
+  height: 39px;
+  border-color: $dark-gray;
+  border-width: 1.5px;
 }
 
 .input-group .form-control {
   border-radius: 3px;
+  width: 235px;
 }
 
 .page-search {
   padding-top: 20px;
   padding-bottom: 20px;
 }
+
+.form-control {
+  border-color: $dark-gray;
+  border-width: 1.5px;
+  color: $dark-gray !important;
+}
+
+
+
+
+
