@@ -30,7 +30,7 @@
               <% end %>
             </li>
             <li>
-              <%= link_to runs_path, method: :get do %>
+              <%= link_to message_path(current_user), method: :get do %>
                 <i class="fa fa-envelope-o"></i> &nbsp <%= t(".dashboard", default: "MESSAGES") %>
               <% end %>
             </li>
@@ -59,12 +59,12 @@
           <% end %>
         </li>
         <li>
-          <%= link_to runs_path method: :get do %>
+          <%= link_to runs_path, method: :get do %>
             <i class="fa fa-envelope-o"></i> &nbsp <%= t(".dashboard", default: "MESSAGES") %>
           <% end %>
         </li>
         <li>
-          <%= link_to runs_path do %>
+          <%= link_to destroy_user_session_path do %>
             <i class="fa fa-sign-out"></i> &nbsp <%= t(".sign_out", default: "LOG OUT") %>
           <% end %>
         </li>

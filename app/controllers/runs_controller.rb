@@ -1,6 +1,6 @@
 class RunsController < ApplicationController
   before_action :set_run, only: [:show, :edit, :update, :destroy]
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_user!, only: [:index, :show, :run_show]
   before_action :set_user, only: [:index]
 
   require "time"
@@ -19,9 +19,8 @@ class RunsController < ApplicationController
 
   def show
     authorize @run
+    @disable_footer = true
   end
-
-
 
   def new
     @run = Run.new

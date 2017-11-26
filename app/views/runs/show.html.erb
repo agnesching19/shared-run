@@ -86,7 +86,7 @@
         </div>
         <div class="detail-content">
           <h4>DISTANCE</h4>
-          <p><%= @run.run_distance %> kilometres</p>
+          <p><%= pluralize @run.run_distance, "kilometre" %></p>
         </div>
       </div>
       <div class="run-detail">
@@ -121,9 +121,9 @@
   </div>
 </div>
 
-<!-- JavaScript -->
-
 <%= content_for(:title, @run.title.split.map {|r| r.capitalize}.join(" ")) %>
+
+<!-- JavaScript -->
 
 <% content_for(:after_js) do %>
 
@@ -536,3 +536,4 @@
     });
   </script>
 <% end %>
+
