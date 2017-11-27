@@ -1,6 +1,6 @@
 class PreferencesController < ApplicationController
   before_action :set_preference, only: [:edit, :update, :destroy, :update]
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_user!, only: [:index, :show, :destroy]
   before_action :set_user, only: [:index, :destroy, :update]
 
   def index
@@ -34,6 +34,13 @@ class PreferencesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @preference.user_id = current_user.id
+    authorize @preference
+    @preference.destroy
+    redirect_to preferences_path
   end
 
   private
