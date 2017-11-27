@@ -7,22 +7,35 @@
       <% end %>
     <% end %>
   </h1>
-
+<!-- Event card details -->
   <div class="row">
     <% @events.each do |event| %>
       <div class="col-xs-12 col-sm-6">
         <div class="event-card">
+<!-- Event date -->
           <div class="event-card-date">
             <h3><%= event.date.strftime('%a %d %b %Y') %></h3>
           </div>
+<!-- Event card content -->
           <div class="event-card-content">
             <ul class="list-inline event-icons">
+<!-- Event time -->
               <li><i class="fa fa-clock-o" aria-hidden="true"></i> <%= event.time.strftime("%I:%M%p") %></li>
               <br>
+<!-- Event location -->
               <li><i class="fa fa-map-marker" aria-hidden="true"></i> <%= event.location %></li>
+<!-- Event distance -->
               <li><i class="fa fa-road" aria-hidden="true"></i> <%= event.distance %>km</li>
+<!-- Event surface -->
+              <li><i class="fa fa-blind" aria-hidden="true"></i><%= event.surface %></li>
+<!-- Event price -->
+              <li><i class="fa fa-gbp" aria-hidden="true"></i><%= event.price %></li>
+
+<!-- Event description -->
+              <li>
+                <h4><%= event.description.first(50) %></h4>
+              </li>
             </ul>
-            <p><%= event.description.first(50) %></p>
           </div>
           <%= link_to "", event_path(event), class: "event-card-link" %>
         </div>
