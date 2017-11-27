@@ -36,9 +36,11 @@
       <div class="members">
   <!-- Agnes -->
         <div class="member">
-          <p><%= cl_image_tag "http://res.cloudinary.com/joycelewagon/image/upload/v1511782043/Screen_Shot_2017-11-27_at_11.26.44_ojch3u.png", :width => 100, :height => 100, :crop => :thumb %></p>
-          <h4>AGNES CHING</h4>
-          <p>This is a bio about Agnes.</p>
+          <p><%= cl_image_tag "http://res.cloudinary.com/joycelewagon/image/upload/v1511782043/Screen_Shot_2017-11-27_at_11.26.44_ojch3u.png", class: "about-avatar", :crop => :fill %></p>
+          <h4 class="member-name">AGNES CHING</h4>
+          <div class="member-bio">
+            <p>Former Police Officer. Challenge-Oriented.</p>
+          </div>
           <div class="member-links">
             <ul class="list-inline">
               <li><a href="https://www.linkedin.com/in/agnes-ching-hua-chung-67b429110/"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
@@ -50,9 +52,11 @@
         </div>
   <!-- Joe -->
         <div class="member">
-          <p><%= cl_image_tag "http://res.cloudinary.com/joycelewagon/image/upload/v1510933779/yiipsdv6mff3iny036kx.gif", :width => 100, :height => 100, :crop => :fill %></p>
-          <h4>JOE ALEXANDER</h4>
-          <p>This is a bio about Joe.</p>
+          <p><%= cl_image_tag "http://res.cloudinary.com/joycelewagon/image/upload/v1510933779/yiipsdv6mff3iny036kx.gif", class: "about-avatar", :crop => :fill  %></p>
+          <h4 class="member-name">JOE ALEXANDER</h4>
+          <div class="member-bio">
+            <p>This is a bio about Joe.</p>
+          </div>
           <div class="member-links">
             <ul class="list-inline">
               <li><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
@@ -64,9 +68,11 @@
         </div>
   <!-- Joyce -->
         <div class="member">
-          <p><%= cl_image_tag "http://res.cloudinary.com/joycelewagon/image/upload/v1511572164/b8chxd6v0xumlc1fsf63.jpg", :width => 100, :height => 100, :crop => :fill %></p>
-          <h4>JOYCE WONG</h4>
-          <p>This is a bio about Joyce.</p>
+          <p><%= cl_image_tag "http://res.cloudinary.com/joycelewagon/image/upload/v1511455436/oscb0q7qvbeoa7e5gioe.jpg", class: "about-avatar", :crop => :fill %></p>
+          <h4 class="member-name">JOYCE WONG</h4>
+          <div class="member-bio">
+            <p>This is a bio about Joyce.</p>
+          </div>
           <div class="member-links">
             <ul class="list-inline">
               <li><a href="https://www.linkedin.com/in/wcyjoyce"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
@@ -78,9 +84,11 @@
         </div>
   <!-- Zuzzana -->
         <div class="member">
-          <p><%= cl_image_tag "http://res.cloudinary.com/joycelewagon/image/upload/v1511781045/zuzanna_capoky.gif", :width => 100, :height => 100, :crop => :fill %></p>
-          <h4>ZUZANNA GLOWACKA</h4>
-          <p>This is a bio about Zuzanna.</p>
+          <p><%= cl_image_tag "http://res.cloudinary.com/joycelewagon/image/upload/v1511781045/zuzanna_capoky.gif", class: "about-avatar", :crop => :fill %></p>
+          <h4 class="member-name-z">ZUZANNA GLOWACKA</h4>
+          <div class="member-bio">
+            <p>This is a bio about Zuzanna.</p>
+          </div>
           <div class="member-links">
             <ul class="list-inline">
               <li><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
@@ -90,6 +98,7 @@
             </ul>
           </div>
         </div>
+
       </div>
     </div>
   </div>
