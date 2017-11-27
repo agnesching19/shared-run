@@ -30,6 +30,7 @@
         </li>
       </div>
     <% end %>
+  </ul>
 
 <%= content_for(:title, "shared.run | Run Together - Anytime, Anywhere") %>
 
@@ -39,7 +40,6 @@
 
 <% content_for(:after_js) do %>
   <%= javascript_pack_tag 'slider' %>
-
 
   <script>
     var styles = [
@@ -446,3 +446,6 @@
     });
   </script>
 <% end %>
+
+</div>
+
