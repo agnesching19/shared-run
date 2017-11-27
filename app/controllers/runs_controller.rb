@@ -55,7 +55,12 @@ class RunsController < ApplicationController
   def destroy
     authorize @run
     @run.destroy
-    redirect_to runs_path
+    respond_to do |format|
+      format.js
+      format.html {
+        redirect_to runs_path
+      }
+    end
   end
 
   def search_run

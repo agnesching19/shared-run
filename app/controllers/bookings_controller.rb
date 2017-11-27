@@ -31,7 +31,12 @@ class BookingsController < ApplicationController
   def destroy
     authorize @booking
     @booking.destroy
-    redirect_to run_path(@run)
+    respond_to do |format|
+      format.js
+      format.html {
+        redirect_to run_path(@run)
+      }
+    end
   end
 
   private
