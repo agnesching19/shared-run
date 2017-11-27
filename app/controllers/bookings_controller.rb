@@ -24,7 +24,7 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to run_path(@run), notice: "Run has been scheduled!"
     else
-      render :new
+      redirect_to run_path(@run), alert: "Run has already been scheduled!"
     end
   end
 
