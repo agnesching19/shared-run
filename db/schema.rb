@@ -54,7 +54,6 @@ ActiveRecord::Schema.define(version: 20171127142055) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "read", default: false
     t.index ["run_id"], name: "index_messages_on_run_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
@@ -68,17 +67,6 @@ ActiveRecord::Schema.define(version: 20171127142055) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_preferences_on_user_id"
-  end
-
-  create_table "read_marks", id: :serial, force: :cascade do |t|
-    t.string "readable_type"
-    t.integer "readable_id"
-    t.string "reader_type"
-    t.integer "reader_id"
-    t.datetime "timestamp"
-    t.index ["readable_type", "readable_id"], name: "index_read_marks_on_readable_type_and_readable_id"
-    t.index ["reader_id", "reader_type", "readable_type", "readable_id"], name: "read_marks_reader_readable_index", unique: true
-    t.index ["reader_type", "reader_id"], name: "index_read_marks_on_reader_type_and_reader_id"
   end
 
   create_table "reviews", force: :cascade do |t|
