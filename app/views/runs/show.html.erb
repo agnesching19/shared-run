@@ -62,8 +62,12 @@
       <div class="show-run-buddies">
         <h4>RUNNING BUDDIES (<%= @run.bookings.count %>/<%= @run.capacity %>)</h4>
         <div class="buddy-avatars">
-          <% @run.bookings.each do |booking| %>
-            <%= cl_image_tag booking.user.photo, crop: :fill, class: "buddy-photo" %>
+          <% if @run.bookings.empty? %>
+            <p>Be the first to schedule a run with <%= @run.user.first_name.capitalize %>!</p>
+          <% else %>
+            <% @run.bookings.each do |booking| %>
+              <%= cl_image_tag booking.user.photo, crop: :fill, class: "buddy-photo" %>
+            <% end %>
           <% end %>
         </div>
       </div>
