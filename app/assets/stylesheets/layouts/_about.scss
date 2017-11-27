@@ -1,7 +1,15 @@
 .box {
   padding: 30px;
   text-align: center;
+  h2 {
+    margin: 12.5px 0px !important;
+  }
+}
 
+.box-bottom {
+  padding: 30px;
+  text-align: center;
+  background-color: $yellow;
   h2 {
     margin: 12.5px 0px !important;
   }
@@ -14,6 +22,12 @@
   .overview {
     padding: 0px 15px;
   }
+}
+
+.overview i {
+  border-radius: 50%;
+  border: 3px solid $yellow;
+  padding: 30px;
 }
 
 .members {
@@ -69,12 +83,17 @@
 }
 
 .member-links {
+  background-color: #3E434E;
+  padding-top: 8px;
   display: flex;
   justify-content: space-around;
   .list-inline {
     list-style: none;
     li {
       display: inline-block;
+    }
+    i {
+      color: white;
     }
   }
 }
