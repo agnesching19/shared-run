@@ -14,7 +14,7 @@
       <p>
         Member since <%= @user.created_at.strftime("%B %Y") %>
         <% if @user.location? %>
-          &nbsp | & nbsp <%= user.location %>
+          &nbsp | &nbsp <%= @user.location %>
         <% end %>
       </p>
     </div>
@@ -68,6 +68,7 @@
     <div class="logs">
       <!-- All Runs -->
       <div class="non-host-runs content-filter" id="all-runs">
+        <p></p>
         <p>This will be a list of all runs.</p>
       </div>
       <!-- Hosting Runs -->
@@ -75,22 +76,22 @@
         <ul class="log">
           <% @user.runs.each do |run| %>
             <% if run.date > Date.today - 1 %>
-              <li class="flex">
+              <li class="flex" data-run-id="<%= run.id %>">
                 <div class="log-left">
                   <p>CONFIRMED RUNNERS: <%= run.bookings.count %></p>
                   <ul class="list-inline">
                     <li>
-                      <%= link_to runs_path do %>
+                      <%= link_to run_messages_path(run) do %>
                         <p><i class="fa fa-envelope" aria-hidden="true"></i></p>
                       <% end %>
                     </li>
                     <li>
-                      <%= link_to runs_path do %>
+                      <%= link_to edit_run_path(run) do %>
                         <p><i class="fa fa-pencil" aria-hidden="true"></i></p>
                       <% end %>
                     </li>
                     <li>
-                      <%= link_to runs_path do %>
+                      <%= link_to run_path(run), method: :delete, remote: true do %>
                         <p><i class="fa fa-trash" aria-hidden="true"></i></p>
                       <% end %>
                     </li>
@@ -117,23 +118,6 @@
               <li class="flex">
                 <div class="log-left">
                   <p>CONFIRMED RUNNERS: <%= run.bookings.count %></p>
-                  <ul class="list-inline">
-                    <li>
-                      <%= link_to runs_path do %>
-                        <p><i class="fa fa-envelope" aria-hidden="true"></i></p>
-                      <% end %>
-                    </li>
-                    <li>
-                      <%= link_to runs_path do %>
-                        <p><i class="fa fa-pencil" aria-hidden="true"></i></p>
-                      <% end %>
-                    </li>
-                    <li>
-                      <%= link_to runs_path do %>
-                        <p><i class="fa fa-trash" aria-hidden="true"></i></p>
-                      <% end %>
-                    </li>
-                  </ul>
                 </div>
                 <div class="log-middle">
                   <h5><%= run.title.split.map {|r| r.upcase}.join(" ") %></h5>
@@ -153,7 +137,7 @@
         <ul class="log">
           <% @user.bookings.each do |booking| %>
             <% if booking.run.date > Date.today - 1 %>
-              <li class="flex">
+              <li class="flex" data-booking-id="<%= booking.id %>">
                 <div class="log-left">
                   <div class="left-photo">
                     <%= cl_image_tag booking.run.user.photo, class: "history-photo" %>
@@ -162,12 +146,12 @@
                     <p><%= booking.run.user.first_name.upcase %> <%= booking.run.user.last_name.upcase %></p>
                     <ul class="list-inline">
                       <li>
-                        <%= link_to runs_path do %>
+                        <%= link_to run_messages_path(booking.run) do %>
                           <p><i class="fa fa-envelope" aria-hidden="true"></i></p>
                         <% end %>
                       </li>
                       <li>
-                        <%= link_to runs_path do %>
+                        <%= link_to booking_path(booking), method: :delete, remote: true do %>
                           <p><i class="fa fa-trash" aria-hidden="true"></i></p>
                         <% end %>
                       </li>
@@ -199,18 +183,6 @@
                   </div>
                   <div class="left-info">
                     <p><%= booking.run.user.first_name.upcase %> <%= booking.run.user.last_name.upcase %></p>
-                    <ul class="list-inline">
-                      <li>
-                        <%= link_to runs_path do %>
-                          <p><i class="fa fa-envelope" aria-hidden="true"></i></p>
-                        <% end %>
-                      </li>
-                      <li>
-                        <%= link_to runs_path do %>
-                          <p><i class="fa fa-trash" aria-hidden="true"></i></p>
-                        <% end %>
-                      </li>
-                    </ul>
                   </div>
                 </div>
                 <div class="log-middle">
@@ -299,7 +271,6 @@
     const all = document.getElementById("all-tab");
     all.addEventListener("click", (event) => {
       event.preventDefault();
-      console.log("hello")
       $(".content-filter").addClass("hidden")
       $("#all-runs").removeClass("hidden")
     });
@@ -307,7 +278,6 @@
     const hosting = document.getElementById("hosting-tab");
     hosting.addEventListener("click", (event) => {
       event.preventDefault();
-      console.log("hello")
       $(".content-filter").addClass("hidden")
       $("#hosting-runs").removeClass("hidden")
     });
@@ -315,7 +285,6 @@
     const hosted = document.getElementById("hosted-tab");
     hosted.addEventListener("click", (event) => {
       event.preventDefault();
-      console.log("hello")
       $(".content-filter").addClass("hidden")
       $("#hosted-runs").removeClass("hidden")
     });
@@ -323,7 +292,6 @@
     const upcoming = document.getElementById("upcoming-tab");
     upcoming.addEventListener("click", (event) => {
       event.preventDefault();
-      console.log("hello")
       $(".content-filter").addClass("hidden")
       $("#upcoming-runs").removeClass("hidden")
     });
@@ -331,7 +299,6 @@
     const past = document.getElementById("past-tab");
     past.addEventListener("click", (event) => {
       event.preventDefault();
-      console.log("hello")
       $(".content-filter").addClass("hidden")
       $("#past-runs").removeClass("hidden")
     });

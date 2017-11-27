@@ -119,7 +119,9 @@
   min-width: 250px;
 
   a {
-
+    text-decoration: none;
+    color: $light-gray;
+    opacity: 0.3;
   }
 }
 
@@ -148,6 +150,7 @@
   .log-left {
     display: flex;
     justify-content: flex-start;
+    align-items: center;
 
     .left-info a {
       text-decoration: none;
