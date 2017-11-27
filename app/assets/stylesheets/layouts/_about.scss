@@ -16,6 +16,12 @@
   }
 }
 
+.overview i {
+  border-radius: 50%;
+  border: 3px solid $yellow;
+  padding: 30px;
+}
+
 .members {
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
@@ -69,12 +75,16 @@
 }
 
 .member-links {
+  background-color: #3E434E;
   display: flex;
   justify-content: space-around;
   .list-inline {
     list-style: none;
     li {
       display: inline-block;
+    }
+    i {
+      color: white;
     }
   }
 }
