@@ -6,7 +6,7 @@
       <% avatar_url = current_user.facebook_picture_url || current_user.photo %>
       <%= cl_image_tag avatar_url, class: "dashboard-photo" %>
       <h4>
-        <%= @user.first_name.upcase %> <%= @user.last_name.upcase %>
+        <%= @user.first_name.upcase %> <%= @user.last_name.upcase %> &nbsp
         <%= link_to edit_user_registration_path do %>
           <i class="fa fa-pencil" aria-hidden="true"></i>
         <% end %>
