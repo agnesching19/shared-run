@@ -18,7 +18,7 @@
                 <h4><%= message.content %></h4>
               </div>
             <div class="message-footer">
-              <p><strong><%= message.user.first_name.capitalize %></strong> | <%= message.created_at.strftime("%d %b %Y, %l:%M %p") %>
+              <p><strong><%= message.user.first_name.capitalize %></strong>&nbsp | &nbsp<%= message.created_at.strftime("%d %b %Y, %l:%M %p") %>
                 <% if message.user == current_user %>
                   <%= link_to run_message_path(@run, message), method: :delete, data: { confirm: "Are you sure you want to delete?" } do %>
                     | <i class="fa fa-trash-o" aria-hidden="true"></i></p>
