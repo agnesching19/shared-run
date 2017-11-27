@@ -24,7 +24,7 @@
   min-width: 250px;
 
   h4 {
-    margin-bottom: 5px !important;
+    margin: 17.5px 0px 5px 0px !important;
   }
 
   p {
@@ -36,6 +36,11 @@
     border-radius: 50%;
     height: 150px;
     width: 150px;
+  }
+
+  .fa-pencil a {
+    text-decoration: none;
+    font-size: 14px;
   }
 }
 
@@ -49,7 +54,7 @@
 .stat {
   text-align: center;
   padding: 0px 35px;
-  border-right: 1px solid rgba(255,255,255,0.1);
+  border-right: 1px solid $light-gray;
 
   &:last-child {
     border-right: none;
@@ -68,17 +73,15 @@
 
 .tab {
   padding: 10px;
-  opacity: 0.3;
 
   &:link, &:hover, &:active, &:focus, &:visited {
     text-decoration: none;
     color: $light-gray;
-    opacity: 0.3;
   }
 
   &:hover {
-    opacity: 1;
-    border-bottom: 4px solid #999C9C;
+    color: $light-gray !important;
+    border-bottom: 4px solid $yellow;
   }
 }
 
@@ -88,7 +91,7 @@
   margin-top: 10px;
   padding: 0px 15px;
   list-style: none;
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid $dark-gray;
   border-radius: 5px;
 
   p {
@@ -97,6 +100,7 @@
   }
 
   h5 {
+    padding-bottom: 2.5px;
     margin: 0px !important;
     font-family: "Source Sans Pro", "sans serif";
   }
@@ -116,7 +120,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px 5px;
-  border-bottom: 1px solid rgba(255,255,255,0.2);
+  border-bottom: 1px solid $light-gray;
 
   &:last-child {
     border-bottom: none;
@@ -187,7 +191,6 @@
 
 .achievement {
   // display: flex;
-
 
   h4, h5 {
     margin: 5px;
