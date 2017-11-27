@@ -32,5 +32,6 @@ Rails.application.routes.draw do
 
   get "users/:id/dashboard", to: "users#dashboard", as: "dashboard"
   get "pages/about", to: "pages#about", as: "about"
-
+  get "pages/terms", to: "pages#terms", as: "terms"
+  get "pages/privacy", to: "pages#privacy", as: "privacy"
 end
