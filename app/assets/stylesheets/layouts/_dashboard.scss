@@ -200,3 +200,11 @@
 .no-border {
   border: none !important
 }
+
+.fa-pencil {
+  color: white;
+   opacity: 0.5;
+  &:hover {
+    opacity: 1;
+  }
+}

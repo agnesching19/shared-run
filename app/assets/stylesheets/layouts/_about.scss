@@ -24,7 +24,6 @@
 .description{
   padding: 64px;
   p {
-    width: 450px;
     margin: auto;
   }
 }
@@ -54,7 +53,6 @@
 }
 
 .overview p {
-  width: 250px;
   margin: auto;
 }
 
@@ -64,23 +62,28 @@
 }
 
 .member {
-  background-color: white;
+  background-color: #FBFDFB;
   margin: 18px;
   padding-top: 15px;
   color: $dark-blue;
-  border-radius: 8px;
+  border-radius: 3px;
   &:hover {
-    box-shadow: 5px 5px 20px #888888;
+    background-color: #E4E6E4;
   }
 }
 
-.member-name{
+.member-name {
   cursor: pointer;
   padding: 5px;
   margin: 16px;
   &:hover {
     color: $blue;
   }
+}
+
+.member-text {
+  padding-top: 10px;
+  margin-bottom: 0;
 }
 
 .member-bio{
@@ -101,6 +104,7 @@
 }
 
 .member-links {
+  margin-bottom: 0;
   background-color: #3E434E;
   padding-top: 8px;
   display: flex;
