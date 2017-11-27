@@ -29,24 +29,6 @@ class ReviewsController < ApplicationController
     @run = Run.find(@review.run_id)
   end
 
-  def edit
-    @review = Review.find(params[:id])
-    authorize @review
-  end
-
-  def update
-    @review = Review.find(params[:id])
-    authorize @review
-    @review.update(review_params)
-    redirect_to review_path(@review)
-  end
-
-  def destroy
-    @review = Review.find(params[:id])
-    authorize @review
-    @review.destroy
-  end
-
   private
 
   def set_run
