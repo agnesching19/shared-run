@@ -14,7 +14,7 @@
 
 .flex {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   padding: 15px 5px;
   border-bottom: 1px solid rgba(255,255,255,0.2);
@@ -34,5 +34,10 @@
 }
 
 .message-right {
-  flex: 1 0 auto;
+
+  h6 {
+    font-family: "Source Sans Pro", "sans serif";
+    font-size: 12px;
+    margin: 12.5px 0px 0px 0px !important;
+  }
 }

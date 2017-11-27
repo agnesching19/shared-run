@@ -1,7 +1,17 @@
 <div class="container">
-  <h1>MY MESSAGES</h1>
+  <h1>MESSAGES</h1>
 
-  <% limit = 3 %>
+  <!-- Message Display Limit -->
+  <% message_limit = 3 %>
+
+  <!-- Interested Runs Count -->
+  <% scheduled_count = [] %>
+  <% @user.messages.each do |m| %>
+    <% if m.run.user != current_user %>
+      <% scheduled_count << m.run %>
+    <% end %>
+  <% end %>
+
   <div class="logs">
 
     <div class="hosted-messages">
@@ -21,15 +31,20 @@
             <% if run.messages.empty? %>
                 <p>There are no messages yet as of <%= @user.current_sign_in_at.strftime("%d %b %Y, %l:%M %p") %>.</p>
               <% else %>
-                <% run.messages.last(limit).each do |message| %>
+                <% run.messages.last(message_limit).each do |message| %>
                   <p>
-                    <%= message.created_at.strftime("%d %b %Y, %l:%M %p") %> |
-                    <strong><%= message.user.first_name.capitalize %> <%= message.user.last_name.capitalize %></strong>:
-                    <%= message.content %>
+                    <%= message.created_at.strftime("%d %b %Y, %l:%M %p") %>
+                    <%= message.user.first_name.capitalize %> <%= message.user.last_name.capitalize %>:
+                    <% chars_limit = 75 - message.user.first_name.chars.length - message.user.last_name.chars.length - 1 %>
+                    <% if message.content.chars.length > chars_limit %>
+                      <%= message.content.chars.first(chars_limit).join %>...
+                    <% else %>
+                      <%= message.content %>
+                    <% end %>
                   </p>
                 <% end %>
-                <% if run.messages.count > limit %>
-                  <p><i>And <%= run.messages.count - limit %> more...</i></p>
+                <% if run.messages.count > message_limit %>
+                  <h6><i>And <%= run.messages.count - message_limit %> more...</i></h6>
                 <% end %>
               <% end %>
             </div>
@@ -44,8 +59,9 @@
         <% @user.bookings.each do |booking| %>
           <div class="flex">
             <div class="message-left">
-              <p><%= booking.run.title.split.map {|r| r.upcase}.join(" ") %> - hosted by <%= booking.run.user.first_name.capitalize %></p>
+              <p><%= booking.run.title.split.map {|r| r.upcase}.join(" ") %> - Hosted by <%= booking.run.user.first_name.capitalize %></p>
               <p><%= booking.run.location.upcase.match(/^(.+?),/).to_s %> <%= booking.run.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
+              </p>
             </div>
             <div class="message-middle">
               <p><%= booking.run.date.strftime("%b %d %Y").upcase %></p>
@@ -55,15 +71,15 @@
               <% if booking.run.messages.empty? %>
                 <p>There are no messages yet as of <%= @user.current_sign_in_at.strftime("%d %b %Y, %l:%M %p") %>.</p>
               <% else %>
-                <% booking.run.messages.last(limit).each do |message| %>
+                <% booking.run.messages.last(message_limit).each do |message| %>
                   <p>
-                    <%= message.created_at.strftime("%d %b %Y, %l:%M %p") %> |
-                    <strong><%= message.user.first_name.capitalize %> <%= message.user.last_name.capitalize %></strong>:
+                    <%= message.created_at.strftime("%d %b %Y, %l:%M %p") %>
+                    <%= message.user.first_name.capitalize %> <%= message.user.last_name.capitalize %>:
                     <%= message.content %>
                   </p>
                 <% end %>
-                <% if booking.run.messages.count > limit %>
-                  <p><i>And <%= booking.run.messages.count - limit %> more...</i></p>
+                <% if booking.run.messages.count > message_limit %>
+                  <h6><i>And <%= booking.run.messages.count - message_limit %> more...</i></h6>
                 <% end %>
               <% end %>
             </div>
@@ -73,34 +89,37 @@
     </div>
 
     <div class="interested-runs">
-      <h3>RUNS WHICH I'M TENTATIVELY INTERESTED IN</h3>
+      <h3>RUNS WHICH I'M TENTATIVELY INTERESTED IN (<%= scheduled_count.count %>)</h3>
       <div class="log">
         <% @user.messages.each do |booking| %>
-          <div class="flex">
-            <div class="message-left">
-              <p><%= booking.run.title.split.map {|r| r.upcase}.join(" ") %> - hosted by <%= booking.run.user.first_name.capitalize %></p>
-              <p><%= booking.run.location.upcase.match(/^(.+?),/).to_s %> <%= booking.run.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
-            </div>
-            <% booking.run.messages.last(limit).each do |message| %>
+          <% if booking.run.user != current_user %>
+            <div class="flex">
+              <div class="message-left">
+                <p><%= booking.run.title.split.map {|r| r.upcase}.join(" ") %> - Hosted by <%= booking.run.user.first_name.capitalize %></p>
+                <p><%= booking.run.location.upcase.match(/^(.+?),/).to_s %> <%= booking.run.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
+              </div>
               <div class="message-middle">
                 <p><%= booking.run.date.strftime("%b %d %Y").upcase %></p>
                 <p><%= booking.run.time.strftime("%l:%M %p") %></p>
               </div>
               <div class="message-right">
-                <p>
-                  <%= message.created_at.strftime("%d %b %Y, %l:%M %p") %> |
-                  <strong><%= message.user.first_name.capitalize %> <%= message.user.last_name.capitalize %></strong>:
+                <% booking.run.messages.last(message_limit).each do |message| %>
+                  <p>
+                    <%= message.created_at.strftime("%d %b %Y, %l:%M %p") %> |
+                    <%= message.user.first_name.capitalize %> <%= message.user.last_name.capitalize %>:
                     <%= message.content %>
-                </p>
-              <% end %>
-              <% if booking.run.messages.count > limit %>
-                <p><i>And <%= booking.run.messages.count - limit %> more...</i></p>
-              <% end %>
+                  </p>
+                  <% if booking.run.messages.count > message_limit %>
+                    <h6><i>And <%= booking.run.messages.count - message_limit %> more...</i></h6>
+                  <% end %>
+                <% end %>
+              </div>
             </div>
+          <% end %>
         <% end %>
       </div>
     </div>
-
   </div>
-
 </div>
+
+<%= content_for(:title, "My Messages") %>
