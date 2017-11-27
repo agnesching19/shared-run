@@ -40,7 +40,6 @@
       <div class="show-user-photo">
         <% photo_url = @run.user.photo? ? @run.user.photo : @run.user.photo %>
         <%= cl_image_tag photo_url, crop: :fill, class: "show-user-avatar" %>
-        <%= link_to "", dashboard_path(@run.user), class: "event-card-link" %>
       </div>
       <div class="show-user-contents">
         <h3><%= link_to @run.user.first_name.upcase, dashboard_path(@run.user) %></h3>
@@ -61,11 +60,11 @@
       <h4>RUN DETAILS</h4>
       <p><%= @run.description %></p>
       <div class="show-run-buddies">
-        <h4>RUNNING BUDDIES (<%= @run.capacity %>)</h4>
+        <h4>RUNNING BUDDIES (<%= @run.bookings.count %>/<%= @run.capacity %>)</h4>
         <div class="buddy-avatars">
-          <%= cl_image_tag photo_url, crop: :fill, class: "buddy-photo" %>
-          <%= cl_image_tag photo_url, crop: :fill, class: "buddy-photo" %>
-          <%= cl_image_tag photo_url, crop: :fill, class: "buddy-photo" %>
+          <% @run.bookings.each do |booking| %>
+            <%= cl_image_tag booking.user.photo, crop: :fill, class: "buddy-photo" %>
+          <% end %>
         </div>
       </div>
     </div>
