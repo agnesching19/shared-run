@@ -1,20 +1,22 @@
 <!-- Map -->
-<%= render "shared/page_search" %>
 
 <div class="results-wrapper">
-  <div id="results-map"></div>
+  <div class="side-bar">
+    <a href="#" id="searchExpandBtn" class="search-expand">
+      <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+    </a>
+  </div>
 
-<!--   <% if @search_widened %>
-    <h2><%= @search_widened  %></h2>
-  <% end %> -->
 
   <!-- Results Display -->
-  <ul class="results-display">
+  <div class="results-display">
+    <div class="results-filters" id="filters">
+      <%= render "shared/page_search" %>
+    </div>
     <% @runs.each do |run| %>
-      <div class="result-link">
-        <% photo_url = run.user.photo? ? run.user.photo : 'lix2bqmp4kzdpu4sqjiy' %>
-        <li class="result">
-          <div class="result-user">
+     <% photo_url = run.user.photo? ? run.user.photo : 'lix2bqmp4kzdpu4sqjiy' %>
+   <div class="result">
+         <div class="result-user">
             <%= cl_image_tag photo_url, crop: :thumb, class: "result-user-photo" %>
           </div>
           <div class="result-description">
@@ -27,16 +29,11 @@
             <p><%= run.run_distance %> KM | CAPACITY: <%= run.capacity %></p>
           </div>
           <%= link_to "", run_path(run), class: "result-link-url" %>
-        </li>
       </div>
     <% end %>
-  </ul>
-
-<%= content_for(:title, "shared.run | Run Together - Anytime, Anywhere") %>
-
-  <script>
-  // swal("Oops!", "Something went wrong on the page!", "error");
-  </script>
+  </div>
+    <div id="results-map"></div>
+  </div>
 
 <% content_for(:after_js) do %>
   <%= javascript_pack_tag 'slider' %>
@@ -444,6 +441,14 @@
         handler.getMap().setZoom(14);
       }
     });
+
+   const searchExpandBtn = document.getElementById("searchExpandBtn");
+   const filtersDiv = document.getElementById("filters");
+   searchExpandBtn.addEventListener("click", (event) => {
+     filtersDiv.classList.toggle("toggled");
+   });
+
+
   </script>
 <% end %>
 

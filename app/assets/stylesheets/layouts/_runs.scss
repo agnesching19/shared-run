@@ -7,7 +7,7 @@
 
 #results-map {
   height: calc(100vh - 50px);
-  width: 45%;
+  width: 65%;
   position: sticky !important;
   top: 0px !important;
   flex: 0 0 auto;
@@ -15,7 +15,6 @@
 
 .result-link-url {
   position: absolute;
-  margin-top: 10px;
   top: 0;
   bottom: 0;
   right: 0;
@@ -24,15 +23,35 @@
 }
 
 .results-display {
-  padding: 0px 10px;
+  padding: 10px 10px;
   list-style: none;
   width: 100%;
+  position: relative
 }
 
+.results-filters {
+  background: #393939;
+  position: absolute;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   width: 0%;
+   transition: 0.3s ease;
+   display: none;
+
+ }
+
+ .results-filters.toggled {
+    width: 100%;
+    display: block;
+    z-index: 10;
+  }
+
 .result {
+  position:relative;
   display: flex;
   align-items: center;
-  padding: 15px 10px;
+  padding: 10px 10px;
 
   &:hover {
     background-color: rgba(255,255,255,0.2);
@@ -51,8 +70,8 @@
 
 .result-user-photo {
   border-radius: 50%;
-  height: 75px;
-  width: 75px;
+  height: 60px;
+  width: 60px;
 }
 
 .result-description {
@@ -60,18 +79,18 @@
   padding: 0px 15px;
   text-align: left;
   align-items: center;
-  max-width: 60%;
+  max-width: 55%;
 
   h4 {
     overflow-wrap: break-word;
     word-wrap: break-word;
     margin: 0px;
-    font-size: 18px;
+    font-size: 16px;
   }
 
   h5 {
     margin: 5px 0px 0px 0px;
-    font-size: 15px;
+    font-size: 14px;
   }
 
   p {
@@ -81,12 +100,15 @@
 }
 
 .result-details {
-  font-size: 14px;
+  font-size: 12px;
   padding-right: 10px;
   margin-left: 10px;
 
   p {
     margin: 0px !important;
     text-align: right;
+  }
+  img {
+    width: 100%;
   }
 }
