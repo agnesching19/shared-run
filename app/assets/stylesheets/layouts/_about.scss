@@ -22,23 +22,57 @@
 }
 
 .member {
-  background-color: $gray;
-  margin: 10px;
-  padding-top: 10px;
+  background-color: white;
+  margin: 18px;
+  padding-top: 15px;
+  color: $dark-blue;
+  border-radius: 8px;
+  &:hover {
+    box-shadow: 5px 5px 20px #888888;
+  }
+}
+
+.member-name{
+  cursor: pointer;
+  padding: 5px;
+  margin: 30px;
+  &:hover {
+    color: $blue;
+  }
+}
+
+.member-name-z{
+  font-size: 19px;
+  cursor: pointer;
+  padding: 5px;
+  margin: 30px;
+  &:hover {
+    color: $blue;
+  }
+}
+
+.member-bio{
+  height: 80px;
+  width: 200px;
+}
+
+.member-bio p {
+  margin-left: 35px;
+  font-size: 18px;
+  text-align: center;
 }
 
 .about-avatar {
-  width: 50px;
-  height: 50px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
 }
 
 .member-links {
   display: flex;
   justify-content: space-around;
-
   .list-inline {
     list-style: none;
-
     li {
       display: inline-block;
     }
