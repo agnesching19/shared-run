@@ -225,5 +225,11 @@
   a {
     text-decoration: none;
     color: white;
+
+.fa-pencil {
+  color: white;
+   opacity: 0.5;
+  &:hover {
+    opacity: 1;
   }
 }
