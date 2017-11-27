@@ -13,13 +13,12 @@
   min-height: calc(100vh - 70px - 45px);
 }
 
-.footer-links, .footer-pages {
+.footer-box {
   display: flex;
   align-items: center;
-}
 
-.footer-links, .footer-pages {
   a {
+    font-size: 14px;
     color: $light-gray;
     opacity: 0.3;
     text-decoration: none;
@@ -28,10 +27,15 @@
     &:hover {
       opacity: 1;
     }
+
+    &:last-child {
+      padding: 0px 20px;
+    }
   }
 }
 
 .footer-copyright {
+  font-size: 14px;
   color: $light-gray;
   opacity: 0.3;
   text-decoration: none;
