@@ -21,8 +21,6 @@
     <%= render "shared/flashes" %>
     <%= yield %>
 
-    <%= render "shared/footer" unless @disable_footer %>
-
     <%= javascript_include_tag "https://maps.google.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>
     <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/markerclusterer/src/markerclusterer_compiled.js" %>
     <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js" %>
@@ -32,3 +30,7 @@
 
     <%= yield(:after_js) %>
   </body>
+
+  <footer>
+    <%= render "shared/footer" unless @disable_footer %>
+  </footer>

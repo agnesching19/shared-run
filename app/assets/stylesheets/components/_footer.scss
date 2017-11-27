@@ -13,28 +13,27 @@
   min-height: calc(100vh - 70px - 45px);
 }
 
-.footer-links {
+.footer-links, .footer-pages {
   display: flex;
-
   align-items: center;
 }
 
-.footer-links a {
-  color: $light-gray;
-  opacity: 0.3;
-  text-decoration: none;
-  font-size: 20px;
-  padding: 0px 10px;
-}
+.footer-links, .footer-pages {
+  a {
+    color: $light-gray;
+    opacity: 0.3;
+    text-decoration: none;
+    padding: 0px 10px;
 
-.footer-links a:hover {
-  opacity: 1;
+    &:hover {
+      opacity: 1;
+    }
+  }
 }
 
 .footer-copyright {
   color: $light-gray;
   opacity: 0.3;
   text-decoration: none;
-  font-size: 20px;
   padding: 5px 10px;
 }
