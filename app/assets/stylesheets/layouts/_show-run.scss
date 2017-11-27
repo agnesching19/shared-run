@@ -24,14 +24,10 @@ body {
 
   h4 span {
     font-size: 20px;
-    color: #393939;
-    background-color: #efefef;
     opacity: 1;
   }
 
   h1 span {
-    color: #393939;
-    background-color: #efefef;
     opacity: 1;
   }
 
@@ -47,10 +43,7 @@ body {
   border-radius: 50%;
   height: 120px;
   width: 120px;
-}
-
-.user-rating{
-  color: $yellow;
+  margin-bottom: 10px;
 }
 
 .show-info {
@@ -69,15 +62,36 @@ body {
     p {
       margin: 0px !important;
     }
+
+    a {
+      text-decoration: none;
+      color: white;
+
+      &:hover {
+        color: $light-gray !important;
+      }
+    }
   }
 
-  .show-user-reviews {
-    margin-bottom: 10px;
+  .show-user-bio {
+    margin: 15px 0px;
   }
-}
 
-.btn a {
-  text-decoration: none;
+  .show-user-action {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    a {
+      text-decoration: none;
+      color: $gray !important;
+    }
+
+    .schedule-btn {
+      width: 105px;
+    }
+  }
 }
 
 .show-run-description {
@@ -106,18 +120,6 @@ body {
     font-size: 30px;
     min-width: 75px;
     text-align: center;
-    color: $yellow
-  }
-
-  .show-run-action {
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .schedule-btn {
-      width: 105px;
-    }
   }
 
   h4 {
@@ -133,6 +135,7 @@ body {
   height: 60px;
   width: 60px;
   border-radius: 50%;
+  margin: 0px 10px 10px 0px;
 }
 
 .padding {
