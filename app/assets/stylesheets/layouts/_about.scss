@@ -1,7 +1,15 @@
 .box {
   padding: 30px;
   text-align: center;
+  h2 {
+    margin: 12.5px 0px !important;
+  }
+}
 
+.box-bottom {
+  padding: 30px;
+  text-align: center;
+  background-color: $yellow;
   h2 {
     margin: 12.5px 0px !important;
   }
@@ -76,6 +84,7 @@
 
 .member-links {
   background-color: #3E434E;
+  padding-top: 8px;
   display: flex;
   justify-content: space-around;
   .list-inline {
