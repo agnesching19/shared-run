@@ -19,19 +19,51 @@
       </p>
     </div>
 
+    <!-- Logic #1 -->
+    <% all_runs = [] %>
+    <% @user.runs.each do |run| %>
+      <% all_runs << run %>
+    <% end %>
+    <% @user.bookings.each do |booking| %>
+      <% all_runs << booking.run %>
+    <% end %>
+
+    <!-- Logic #2 -->
+    <% hosting_count = 0 %>
+    <% hosted_count = 0 %>
+    <% @user.runs.each do |run| %>
+      <% if run.date > Date.today - 1 %>
+        <% hosting_count += 1 %>
+      <% else %>
+        <% hosted_count += 1 %>
+      <% end %>
+    <% end %>
+
+    <% upcoming_count = 0 %>
+    <% past_count = 0 %>
+    <% @user.bookings.each do |booking| %>
+      <% if booking.run.date > Date.today - 1 %>
+        <% upcoming_count += 1 %>
+      <% else %>
+        <% past_count += 1 %>
+      <% end %>
+    <% end %>
+
     <!-- Stats -->
     <div class="stats">
       <!-- Hosted Runs -->
       <div class="stat">
-        <h3><%= @user.runs.count %></h3>
-        <h4><%= @user.runs.count == 1 ? "RUN" : "RUNS" %> HOSTED</h4>
+        <h3><%= hosted_count %></h3>
+        <h4><%= hosted_count == 1 ? "RUN" : "RUNS" %> HOSTED</h4>
       </div>
 
       <!-- Total Distance -->
       <div class="stat">
         <% distance_sum = 0 %>
-        <% @user.runs.each do |run| %>
-         <% distance_sum += run.run_distance %>
+        <% all_runs.each do |run| %>
+          <% if run.date <= Date.today - 1 %>
+            <% distance_sum += run.run_distance %>
+          <% end %>
         <% end %>
         <h3><%= number_with_delimiter(distance_sum) %></h3>
         <h4><%= distance_sum == 1 ? "KILOMETRE" : "KILOMETRES" %> RUN</h4>
@@ -40,11 +72,13 @@
       <!-- Total Time -->
       <div class="stat">
         <% time_sum = 0 %>
-        <% @user.runs.each do |run| %>
-          <% if run.pace.nil? %>
-            <% time_calc = 0 %>
-          <% else %>
-            <% time_calc = run.run_distance.to_i % run.pace.to_i %>
+        <% all_runs.each do |run| %>
+          <% if run.date <= Date.today - 1 %>
+            <% if run.pace.nil? %>
+              <% time_calc = 0 %>
+            <% else %>
+              <% time_calc = run.run_distance.to_i % run.pace.to_i %>
+            <% end %>
           <% end %>
           <% time_sum += time_calc.to_i %>
         <% end %>
@@ -59,45 +93,16 @@
     <h3>RUN HISTORY</h3>
     <!-- Tabs -->
     <div class="tabs">
-      <!-- Logic -->
-      <% hosting_count = 0 %>
-      <% hosted_count = 0 %>
-      <% @user.runs.each do |run| %>
-        <% if run.date > Date.today - 1 %>
-          <% hosting_count += 1 %>
-        <% else %>
-          <% hosted_count += 1 %>
-        <% end %>
-      <% end %>
-
-      <% upcoming_count = 0 %>
-      <% past_count = 0 %>
-      <% @user.bookings.each do |booking| %>
-        <% if booking.run.date > Date.today - 1 %>
-          <% upcoming_count += 1 %>
-        <% else %>
-          <% past_count += 1 %>
-        <% end %>
-      <% end %>
-
-      <a href="#" class="tab" id="all-tab" >ALL (<%= @user.runs.count.to_i + @user.bookings.count.to_i %>)</a>
+      <a href="#" class="tab" id="all-tab" >ALL (<%= all_runs.count.to_i %>)</a>
       <a href="#" class="tab" id="hosting-tab">HOSTING (<%= hosting_count %>)</a>
       <a href="#" class="tab" id="hosted-tab">HOSTED (<%= hosted_count %>)</a>
       <a href="#" class="tab" id="upcoming-tab">UPCOMING (<%= upcoming_count %>)</a>
       <a href="#" class="tab" id="past-tab">PAST (<%= past_count %>)</a>
     </div>
+
     <div class="logs">
       <!-- All Runs -->
       <div class="non-host-runs content-filter" id="all-runs">
-        <!-- Logic -->
-        <% all_runs = [] %>
-        <% @user.runs.each do |run| %>
-          <% all_runs << run %>
-        <% end %>
-        <% @user.bookings.each do |booking| %>
-          <% all_runs << booking.run %>
-        <% end %>
-
         <% unless @all_runs == [] %>
           <ul class="log">
             <% all_runs.each do |run| %>
@@ -287,58 +292,82 @@
     <div class="achievements-flex">
       <!-- Farthest Run -->
       <div class="achievement">
-        <% distances = [] %>
-        <% @user.runs.each do |run| %>
-          <% distance = run.run_distance %>
-          <% distances << distance %>
-        <% end %>
-        <% if distances == [] %>
-          <div class="no-border"></div>
-        <% else %>
-          <div class="border">
-            <h4><%= distances.max %></h4>
-            <h5>KILOMETRES</h5>
-            <p>FARTHEST RUN</p>
-          </div>
-        <% end %>
+        <div class="achievement-body">
+          <% distances = [] %>
+          <% all_runs.each do |run| %>
+            <% if run.date <= Date.today - 1 %>
+              <% distance = run.run_distance %>
+              <% distances << distance %>
+            <% end %>
+          <% end %>
+
+          <% if distances == [] %>
+            <div class="no-border"></div>
+          <% else %>
+            <div class="border">
+              <h4><%= distances.max %></h4>
+              <h5>KILOMETRES</h5>
+              <p>FARTHEST RUN</p>
+            </div>
+          <% end %>
+        </div>
+        <div class="achievement-footer">
+
+        </div>
       </div>
 
       <!-- Longest Run -->
       <div class="achievement">
-        <% times = [] %>
-        <% @user.runs.each do |run| %>
-          <% time_calc = run.run_distance.to_i % run.pace.to_i %>
-          <% times << time_calc.to_i %>
-        <% end %>
-        <% if times == [] %>
-          <div class="no-border">
-            <h2><i class="fa fa-meh-o" aria-hidden="true"></i></h2>
-          </div>
-        <% else %>
-          <div class="border">
-            <h4><%= times.max %></h4>
-            <h5>MINUTES</h5>
-            <p>LONGEST RUN</p>
-          </div>
-        <% end %>
+        <div class="achievement-body">
+          <% times = [] %>
+          <% all_runs.each do |run| %>
+            <% if run.date <= Date.today - 1 %>
+              <% time_calc = run.run_distance.to_i % run.pace.to_i %>
+              <% times << time_calc.to_i %>
+            <% end %>
+          <% end %>
+
+          <% if times == [] %>
+            <div class="no-border">
+              <h2><i class="fa fa-meh-o" aria-hidden="true"></i></h2>
+            </div>
+          <% else %>
+            <div class="border">
+              <h4><%= times.max %></h4>
+              <h5>MINUTES</h5>
+              <p>LONGEST RUN</p>
+            </div>
+          <% end %>
+        </div>
+        <div class="achievement-footer">
+          <%  %>
+        </div>
       </div>
 
       <!-- Fastest Run -->
       <div class="achievement">
-        <% paces = [] %>
-        <% @user.runs.each do |run| %>
-          <% pace = run.pace %>
-          <% paces << pace %>
-        <% end %>
-        <% if paces == [] %>
-          <div class="no-border"></div>
-        <% else %>
-          <div class="border">
-            <h4><%= paces.min.strftime("%H:%M") %></h4>
-            <h5>MIN/KM</h5>
-            <p>FASTEST RUN</p>
-          </div>
-        <% end %>
+        <div class="achievement-body">
+          <% paces = [] %>
+          <% all_runs.each do |run| %>
+            <% if run.date <= Date.today - 1 %>
+              <% pace = run.pace %>
+              <% paces << pace %>
+            <% end %>
+          <% end %>
+
+          <% if paces == [] %>
+            <div class="no-border"></div>
+          <% else %>
+            <div class="border">
+              <h4><%= paces.min.strftime("%H:%M") %></h4>
+              <h5>MIN/KM</h5>
+              <p>FASTEST RUN</p>
+            </div>
+          <% end %>
+        </div>
+        <div class="achievement-footer">
+
+        </div>
       </div>
     </div>
   </div>
