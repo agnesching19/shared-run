@@ -111,9 +111,12 @@ body {
 
   .show-run-action {
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    h5 {
-      margin-top: 0px !important;
+    .schedule-btn {
+      width: 105px;
     }
   }
 
