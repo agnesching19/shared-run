@@ -20,6 +20,7 @@ class RunsController < ApplicationController
   def show
     authorize @run
     @disable_footer = true
+    @booking = Booking.new
   end
 
   def new
