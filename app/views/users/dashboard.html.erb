@@ -36,7 +36,11 @@
       <div class="stat">
         <% time_sum = 0 %>
         <% @user.runs.each do |run| %>
-          <% time_calc = run.run_distance.to_i % run.pace.to_i %>
+          <% if run.pace.to_i = 0 %>
+            <% time_calc = 0 %>
+          <% else %>
+            <% time_calc = run.run_distance.to_i % run.pace.to_i %>
+          <% end %>
           <% time_sum += time_calc.to_i %>
         <% end %>
         <h3><%= number_with_delimiter(time_sum) %></h3>
