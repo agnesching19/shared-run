@@ -7,9 +7,10 @@ $yellow: #FFC93C;
 $orange: #E67E22;
 $green: #32B796;
 $gray: #000000;
-$light-gray: #F4F4F4;
-$dark-gray: #393939;
+$light-gray: rgb(156,156,156);
+$dark-gray: rgb(77,77,77);
 $dark-blue: #000328;
+$background: rgb(40,40,40);
 
 // Home page colours --- NB the map on the homepage is an svg and colours are set in the views/shared/_svg_map.html.erb
 $color-background: #FFC93C;
@@ -31,7 +32,7 @@ $event-card-date: $red;
 
 
 // Navbar
-$navbar-wagon-background: #393939;
+$navbar: rgb(57,57,57);
 $navbar-wagon-link: #FFFFFF;
 $navbar-wagon-link-hover: #da552f;
 $navbar-wagon-dropdown-menu: #E6E6E6;
