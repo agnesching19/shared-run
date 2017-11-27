@@ -36,7 +36,7 @@
       <div class="stat">
         <% time_sum = 0 %>
         <% @user.runs.each do |run| %>
-          <% if run.pace.to_i = 0 %>
+          <% if run.pace.nil? %>
             <% time_calc = 0 %>
           <% else %>
             <% time_calc = run.run_distance.to_i % run.pace.to_i %>
@@ -48,16 +48,6 @@
       </div>
     </div>
   </div>
-
-<!-- Status -->
-<!--   <div class="status">
-    <%#last_trip = (@user.bookings.last.run.date - Date.today).to_i %>
-    <%#if last_trip < 0 %>
-      <p>It's been <%=# -last_trip %> days since you ran!</p>
-    <%#else %>
-      <p>Get ready for your next run in <%= last_trip %> days!</p>
-    <%#end %>
-  </div> -->
 
   <!-- Run History -->
   <div class="history breather">
