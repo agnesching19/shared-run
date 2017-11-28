@@ -107,6 +107,7 @@
           <ul class="log">
             <% all_runs.each do |run| %>
               <li class="flex">
+
                 <div class="log-left display-block">
                   <% if run.user == current_user %>
                     <h5>HOST: YOU</h5>
@@ -123,6 +124,7 @@
                   <p><%= run.date.strftime("%b %d %Y").upcase %></p>
                   <p><%= run.time.strftime("%l:%M %p") %></p>
                 </div>
+                <%= link_to "", run_path(run), class: "flex-link" %>
               </li>
             <% end %>
           </ul>
@@ -201,7 +203,7 @@
           </ul>
         <% else %>
           <div class="log no-runs">
-            <p>You haven't hosted any runs before. Would you like to host a run?</p>
+            <p>You haven't hosted any runs before</p>
           </div>
         <% end %>
       </div>
@@ -279,7 +281,7 @@
           </ul>
         <% else %>
           <div class="log no-runs">
-            <p><%= link_to "You haven't scheduled any runs before." %></p>
+            <p>You haven't scheduled any runs before.</p>
           </div>
         <% end %>
       </div>
