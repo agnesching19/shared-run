@@ -6,7 +6,7 @@ class ReviewPolicy < ApplicationPolicy
   end
 
   def create?
-    return true
+    record.user == user
   end
 
   def update?
