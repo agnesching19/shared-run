@@ -20,9 +20,14 @@
               <% end %>
           </div>
         </div>
+        <br>
+        <!-- Link connected with new run -->
+        <div class="schedule-run">
+          <p>Start your training today!</p>
+          <%= link_to "SCHEDULE A RUN", new_run_path, class: "btn btn-default" %>
+        </div>
       </div>
-        <!-- Link to google form for joining event -->
-        <%= link_to "Back to All Events", events_path, class: "btn btn-default" %>
+
     </li>
   </ul>
 <!-- Event map -->
