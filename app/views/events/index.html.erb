@@ -7,36 +7,39 @@
       <% end %>
     <% end %>
   </h1>
-<!-- Event card details -->
+  <!-- Event card details -->
   <div class="row">
     <% @events.each do |event| %>
       <div class="col-xs-12 col-sm-6">
         <div class="event-card">
-<!-- Event date -->
+          <!-- Event date -->
           <div class="event-card-date">
             <h3><%= event.date.strftime('%a %d %b %Y') %></h3>
           </div>
-<!-- Event card content -->
+          <!-- Event card content -->
           <div class="event-card-content">
             <ul class="list-inline event-icons">
-<!-- Event time -->
+            <!-- Event time -->
               <li><i class="fa fa-clock-o" aria-hidden="true"></i> <%= event.time.strftime("%I:%M%p") %></li>
-              <br>
-<!-- Event location -->
+            <!-- Event location -->
               <li><i class="fa fa-map-marker" aria-hidden="true"></i> <%= event.location %></li>
-<!-- Event distance -->
+              <br>
+            <!-- Event distance -->
               <li><i class="fa fa-road" aria-hidden="true"></i> <%= event.distance %>km</li>
-<!-- Event surface -->
-              <li><i class="fa fa-blind" aria-hidden="true"></i><%= event.surface %></li>
-<!-- Event price -->
-              <li><i class="fa fa-gbp" aria-hidden="true"></i><%= event.price %></li>
-
-<!-- Event description -->
-              <li>
-                <h4><%= event.description.first(50) %></h4>
-              </li>
+            <!-- Event surface -->
+              <% if event.surface != nil %>
+                <li><i class="fa fa-blind" aria-hidden="true"></i><%= event.surface %></li>
+              <% end %>
+            <!-- Event price -->
+              <% if event.price != nil %>
+                <li><i class="fa fa-gbp" aria-hidden="true"></i><%= event.price %></li>
+              <% end %>
+            <!-- Event description -->
+            <hr>
+                <h4 class="event-text"><%= event.description.first(50) %></h4>
             </ul>
           </div>
+
           <%= link_to "", event_path(event), class: "event-card-link" %>
         </div>
       </div>
