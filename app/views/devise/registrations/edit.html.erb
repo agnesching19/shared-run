@@ -25,7 +25,7 @@
       </div>
 
       <div class="col-xs-6">
-        <%= f.input :sociability, collection: [ "1 - Shy while running", "2 - Occasionally", "3 - Love run & chat!"], prompt: "Chatty?" %>
+        <%= f.input :sociability, collection: [ "1 - I'm fully focused on the run!", "2 - I occasionally enjoy a brief chat", "3 - What's a run without any banter?"], prompt: "Chatty?" %>
       </div>
 
       <div class="col-xs-6">
@@ -66,7 +66,7 @@
     </div>
 
     <div class="form-actions col-xs-12">
-      <%= f.button :submit, "Update", class: "btn btn-default", onclick: "sweet();"%>
+      <%= f.button :submit, "Update", class: "btn btn-default" %>
       <%= link_to "Cancel", :back, class: "btn btn-default" %>
     </div>
   <% end %>
@@ -75,14 +75,8 @@
 
 <!-- Cancel account -->
   <div class="col-xs-12 account-cancel">
-    <h5>Cancel My Account</h5>
     <p>Unhappy? <%= link_to "Cancel My Account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
   </div>
 </div>
 
 <%= content_for(:title, "shared.run | Edit Profile") %>
-
-<!-- JS for sweet alert -->
- <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.3/sweetalert2.all.min.js" integrity="sha256-Cc+yDzt4WAIOQNyXND0m3zCkxy8mSRJXLGy+5oGaHHM=" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="app/assets/javascripts/sweetalert2.js"></script>
- -->
