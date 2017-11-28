@@ -1,0 +1,26 @@
+.punctuality-form {
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
+  margin: auto;
+  padding: 20px 0px;
+
+  .fa {
+    font-size: 50px;
+    margin: 0px 30px;
+    opacity: 0.5;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.7;
+    }
+
+    &.active {
+      opacity: 1;
+    }
+  }
+
+  .btn {
+    text-align: center;
+  }
+}
