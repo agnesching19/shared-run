@@ -13,23 +13,25 @@
     <div class="results-filters" id="filters">
       <%= render "shared/page_search" %>
     </div>
-    <% @runs.each do |run| %>
-      <% photo_url = run.user.photo? ? run.user.photo : 'lix2bqmp4kzdpu4sqjiy' %>
-        <div class="result">
-          <div class="result-user">
-            <%= cl_image_tag photo_url, crop: :thumb, class: "result-user-photo" %>
+    <% if @runs.capacity > 0 %>
+      <% @runs.each do |run| %>
+        <% photo_url = run.user.photo? ? run.user.photo : 'lix2bqmp4kzdpu4sqjiy' %>
+          <div class="result">
+            <div class="result-user">
+              <%= cl_image_tag photo_url, crop: :thumb, class: "result-user-photo" %>
+            </div>
+            <div class="result-description">
+              <h4><%= run.title.upcase %></h4>
+              <h5>HOSTED BY <%= run.user.first_name.upcase %></h5>
+              <p><%= run.date.strftime("%b %d %Y") %> @ <%= run.time.strftime("%l:%M %p") %></p>
+            </div>
+            <div class="result-details">
+              <p><%= run.location.upcase.match(/^(.+?),/).to_s %> <%= run.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
+              <p><%= run.run_distance %> KM | CAPACITY: <%= run.capacity %></p>
+            </div>
+            <%= link_to "", run_path(run), class: "result-link-url" %>
           </div>
-          <div class="result-description">
-            <h4><%= run.title.upcase %></h4>
-            <h5>HOSTED BY <%= run.user.first_name.upcase %></h5>
-            <p><%= run.date.strftime("%b %d %Y") %> @ <%= run.time.strftime("%l:%M %p") %></p>
-          </div>
-          <div class="result-details">
-            <p><%= run.location.upcase.match(/^(.+?),/).to_s %> <%= run.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
-            <p><%= run.run_distance %> KM | CAPACITY: <%= run.capacity %></p>
-          </div>
-          <%= link_to "", run_path(run), class: "result-link-url" %>
-        </div>
+        <% end %>
       <% end %>
     </div>
     <div id="results-map"></div>
