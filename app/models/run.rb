@@ -2,7 +2,7 @@ class Run < ApplicationRecord
   belongs_to :user
   has_many :messages, dependent: :destroy
   has_many :invites
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
   has_many :bookings, dependent: :destroy
   validates :location, :date, :title, :description, :run_distance, :capacity, presence: true
 
