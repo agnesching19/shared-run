@@ -153,14 +153,9 @@
     // //   hostedMessages.classList.toggle("show");
     // });
 
-    // const hostedMessages = document.getElementById("hosted-message");
-    // document.getElementById("hostedTitle").onclick = function() {
-    //   hostedMessages.classList.toggle("show");
-    // // };
-
-    document.getElementById("hosted-message").style.display = "none";
-    document.getElementById("hosted-title").onclick = function() {
-      document.getElementById("hosted-message").style.display = "block";
-    }
+    const hostedMessages = document.getElementById("hosted-message");
+    document.getElementById("hostedTitle").onclick = function() {
+      hostedMessages.classList.toggle("show");
+    };
   </script>
 <% end %>
