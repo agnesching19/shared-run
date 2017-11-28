@@ -103,9 +103,10 @@ class RunsController < ApplicationController
         end_of_time = " UTC 2000"
         date_time_to_parse = start_of_date + time_formatted + end_of_time
         time = Time.parse(date_time_to_parse)
-        @runs = @runs.select { |r| r.time == time}
-
-
+        thirty_mins = 30*60
+        start_window = time - thirty_mins
+        end_window = time + thirty_mins
+        @runs = @runs.select { |r| r.time >= start_window && r.time <= end_window}
         end
       end
 
