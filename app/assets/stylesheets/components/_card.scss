@@ -1,16 +1,16 @@
 .event-card {
   display: flex;
   align-items: $event-card-background;
-  background: white;
+  background: $dark-gray;
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
   position: relative;
-  height: 150px;
+  height: 200px;
   color: $event-card-text;
   border-radius: 5px;
   &:hover {
-    box-shadow: 4px 4px 6px rgba(255,255,255,0.7);
+    box-shadow: 1px 1px 2px rgba(255,255,255,0.7);
     .event-card-date {
       color: $event-card-date;
     }
@@ -18,17 +18,16 @@
 }
 
 .event-card-date {
-  flex: 0 0 150px;
+  flex: 0 0 100px;
   justify-content: center;
   display: flex;
   align-items: center;
   transition: .5s;
-  background-color: $yellow;
   margin: 15px;
   border-radius: 5px;
   h3 {
     margin: 0;
-    font-size: 0.9em;
+    font-size: 30px;
   }
 }
 
@@ -37,9 +36,15 @@
     font-size: 14px;
     opacity: .7;
   }
-  p {
-    font-size: 25px;
+  li {
+    font-size: 20px;
   }
+}
+
+.event-icons i {
+  width: 10px;
+  height: 10px;
+  margin: 10px;
 }
 
 .event-card-link {
@@ -49,4 +54,9 @@
   left: 0;
   right: 0;
   z-index: 2;
+}
+
+.event-text {
+  text-decoration-style: wavy;
+  letter-spacing: 2px;
 }
