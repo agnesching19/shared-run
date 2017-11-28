@@ -4,7 +4,7 @@ class ReservationsController < ApplicationController
   before_action :set_user, only: [:index]
 
   def index
-    @reservations = policy_scope(Reservation)
+    @reservations = policy_scope(Reservation.all)
   end
 
   def new
@@ -13,8 +13,8 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    @reservation = Reservation.new
-    @reservation.event = @event
+    @reservation = Reservation.new(reservation_params)
+    @reservation.event_id = @event.id
     @reservation.user = current_user
     authorize @reservation
     if @reservation.save
