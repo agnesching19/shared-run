@@ -14,7 +14,7 @@ sliders.forEach(slider => {
 })
 
 // Distance slider
-var arrSocial = ['<i class="fa fa-headphones" aria-hidden="true"></i>', '<i class="fa fa-meh-o" aria-hidden="true"></i>', '<i class="fa fa-volume-up" aria-hidden="true"></i>']
+var arrSocial = ['<i class="fa fa-headphones" aria-hidden="true"></i>', '<i class="fa fa-smile-o" aria-hidden="true"></i>', '<i class="fa fa-handshake-o" aria-hidden="true"></i>']
 
 var sliders = document.querySelectorAll('.sociability');
 sliders.forEach(slider => {
