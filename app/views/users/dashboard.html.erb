@@ -88,6 +88,12 @@
     </div>
   </div>
 
+  <!-- Review Pop-Up -->
+  <% booking = @user.past_bookings_without_reviews.last %>
+  <% if booking %>
+    <%= render "reviews/form", run: booking.run, review: Review.new %>
+  <% end %>
+
   <!-- Run History -->
   <div class="history breather">
     <h3>RUN HISTORY</h3>
@@ -107,7 +113,6 @@
           <ul class="log">
             <% all_runs.each do |run| %>
               <li class="flex">
-
                 <div class="log-left display-block">
                   <% if run.user == current_user %>
                     <h5>HOST: YOU</h5>
@@ -413,5 +418,9 @@
       $(".content-filter").addClass("hidden")
       $("#past-runs").removeClass("hidden")
     });
+
+    // $(document).ready(function () {
+    //   $('#memberModal').modal('show');
+    // });
   </script>
 <% end %>

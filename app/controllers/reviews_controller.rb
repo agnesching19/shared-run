@@ -1,10 +1,10 @@
 class ReviewsController < ApplicationController
-  before_action :set_run, only: [:new, :create, :index]
-  before_action :set_user, only [:new, :create]
-  skip_before_action :authenticate_user!, only: [:index]
+  before_action :set_run, only: [:new, :create]
+  before_action :set_user, only: [:index, :new, :create]
+  skip_before_action :authenticate_user!, only: [:index, :new, :create]
 
   def index
-    @reviews = policy_scope(@run.reviews).order(created_at: :desc)
+    @reviews = policy_scope(Review)
   end
 
   def new
@@ -34,6 +34,10 @@ class ReviewsController < ApplicationController
 
   def set_run
     @run = Run.find(params[:run_id])
+  end
+
+  def set_user
+    @user = current_user
   end
 
   def review_params
