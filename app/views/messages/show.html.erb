@@ -15,20 +15,20 @@
   <div class="logs">
 
     <div class="hosted-messages">
-      <h3>RUNS HOSTED BY ME (<%= @user.runs.count %>)</h3>
-      <div class="log">
-      <% @user.runs.each do |run| %>
-        <div class="flex">
-          <div class="message-left">
-            <p><%= run.title.split.map {|r| r.upcase}.join(" ") %></p>
-            <p><%= run.location.upcase.match(/^(.+?),/).to_s %> <%= run.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
-          </div>
-          <div class="message-middle">
-            <p><%= run.date.strftime("%b %d %Y").upcase %></p>
-            <p><%= run.time.strftime("%l:%M %p") %></p>
-          </div>
-          <div class="message-right">
-            <% if run.messages.empty? %>
+      <h3><a href="#" class="message-title" id="hosted-title">RUNS HOSTED BY ME (<%= @user.runs.count %>)</a></h3>
+      <div class="log message-filter" id="hosted-message hidden">
+        <% @user.runs.each do |run| %>
+          <div class="flex">
+            <div class="message-left">
+              <p><%= run.title.split.map {|r| r.upcase}.join(" ") %></p>
+              <p><%= run.location.upcase.match(/^(.+?),/).to_s %> <%= run.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
+            </div>
+            <div class="message-middle">
+              <p><%= run.date.strftime("%b %d %Y").upcase %></p>
+              <p><%= run.time.strftime("%l:%M %p") %></p>
+            </div>
+            <div class="message-right">
+              <% if run.messages.empty? %>
                 <p>There are no messages yet as of <%= @user.current_sign_in_at.strftime("%d %b %Y, %l:%M %p") %>.</p>
               <% else %>
                 <% run.messages.last(message_limit).each do |message| %>
@@ -54,8 +54,10 @@
     </div>
 
     <div class="scheduled-messages">
-      <h3>RUNS WHICH I'M SCHEDULED FOR (<%= @user.bookings.count %>)</h3>
-      <div class="log">
+      <div class="message-title" id="scheduled-title">
+        <h3>RUNS WHICH I'M SCHEDULED FOR (<%= @user.bookings.count %>)</h3>
+      </div>
+      <div class="log message-filter" id="scheduled-message">
         <% @user.bookings.each do |booking| %>
           <div class="flex">
             <div class="message-left">
@@ -89,8 +91,10 @@
     </div>
 
     <div class="interested-runs">
-      <h3>RUNS WHICH I'M TENTATIVELY INTERESTED IN (<%= scheduled_count.count %>)</h3>
-      <div class="log">
+      <div class="message-title" id="interested-title">
+        <h3>RUNS WHICH I'M TENTATIVELY INTERESTED IN (<%= scheduled_count.count %>)</h3>
+      </div>
+      <div class="log message-filter" id="interested-message">
         <% @user.messages.each do |booking| %>
           <% if booking.run.user != current_user %>
             <div class="flex">
@@ -123,3 +127,35 @@
 </div>
 
 <%= content_for(:title, "My Messages") %>
+
+<% content_for(:after_js) do %>
+  <script>
+    // const hostedTitle = document.getElementById("hosted-title");
+    // hostedTitle.addEventListener("click", (event) => {
+    //   event.preventDefault();
+    //   const hostedMessages = document.getElementById("hosted-message");
+    //   if (hostedMessages.style.display === "snone") {
+    //     hostedMessages.style.display = "block";
+    //   } else {
+    //     hostedMessages.style.display = "none";
+    //   }
+    // });
+
+    // // document.getElementById("hosted-message").style.display = "none";
+    // const hostedTitle = document.getElementById("hosted-title");
+    // hostedTitle.addEventListener("click", (event) => {
+    //   console.log(event);
+    //   document.getElementById("hosted-message");
+    //   event.target.classList.toggle("show");
+    //   // console.log(event.target);
+    // //   event.preventDefault();
+    // //   const hostedMessages = document.getElementById("hosted-message");
+    // //   hostedMessages.classList.toggle("show");
+    // });
+
+    const hostedMessages = document.getElementById("hosted-message");
+    document.getElementById("hostedTitle").onclick = function() {
+      hostedMessages.classList.toggle("show");
+    };
+  </script>
+<% end %>
