@@ -12,6 +12,8 @@ class MessagesController < ApplicationController
   end
 
   def create
+    @messages = Message.where(run: @run)
+
     @message = Message.new(message_params)
     @message.run = @run
     @message.user = current_user
