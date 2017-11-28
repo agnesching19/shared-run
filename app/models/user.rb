@@ -63,6 +63,16 @@ class User < ApplicationRecord
     runs.select { |r| r.date >= Date.today }
   end
 
+  def past_bookings
+    bookings.select { |b| b.run.date < Date.today }.sort_by { |b| b.run.date }
+  end
+
+  def past_bookings_without_reviews
+    past_bookings.select do |b|
+      b.run.reviews.empty?
+    end
+  end
+
   private
 
   # def send_welcome_email

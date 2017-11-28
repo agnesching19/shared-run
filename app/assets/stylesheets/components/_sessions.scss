@@ -23,4 +23,9 @@
 .session-links {
   padding-top: 10px;
   font-size: 16px;
+
+  a {
+    text-decoration: none !important;
+    color: white;
+  }
 }

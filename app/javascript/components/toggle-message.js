@@ -1,4 +1,4 @@
-// Javascript: Toggle for Messages in Messages showpage
+// JavaScript: Toggle for Messages in Messages showpage
 
 function hostedMessageToggle() {
   document.getElementById("hosted-title").onclick = function() {
