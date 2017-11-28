@@ -13,8 +13,8 @@
     <div class="results-filters" id="filters">
       <%= render "shared/page_search" %>
     </div>
-    <% if @runs.capacity > 0 %>
       <% @runs.each do |run| %>
+    <% if run.capacity > 0 %>
         <% photo_url = run.user.photo? ? run.user.photo : 'lix2bqmp4kzdpu4sqjiy' %>
           <div class="result">
             <div class="result-user">

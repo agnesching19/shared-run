@@ -13,6 +13,7 @@ class RunsController < ApplicationController
     #     @runs = @runs.select { |r| r.time <= Time.parse("19:00") }
     #     # @runs = @runs.select { |r| r.time <= Time.parse(params[:time]) }
     # end
+
     search_run
     set_runs
   end
@@ -73,19 +74,18 @@ class RunsController < ApplicationController
     if params[:search].present?
       unless params[:search][:location] == ""
         proximity = params[:search][:proximity].to_f
-        distance =  arr[(params[:search][:run_distance].to_i)]
+        distance =  arr[(params[:search][:run_distance].to_i)] if params[:search][:run_distance]
         sociability = (params[:search][:sociability].to_i)
         @search = Search.new(search_params)
         @search.user_id = current_user.id
         @search.save
         @last_search = @user.searches.order(created_at: :desc).first
         # Date filtering
-        @runs = Run.near([@last_search.latitude, @last_search.longitude], proximity)
+        @runs = Run.near([@last_search.latitude, @last_search.longitude], 3)
+        @runs = Run.near([@last_search.latitude, @last_search.longitude], proximity) if params[:search][:proximity].to_f
         @runs = @runs.select { |r| r.date.strftime("%Y-%m-%d") == params[:search][:run_date] }
         # Time filtering
-
-
-        if params[:search][:run_time] != ""
+        if  params[:search][:run_time]
         start_of_date = "Sat Jan 01 "
         time_formatted = (params[:search][:run_time]) + ":00"
         end_of_time = " UTC 2000"
@@ -93,16 +93,15 @@ class RunsController < ApplicationController
         time = Time.parse(date_time_to_parse)
         @runs = @runs.select { |r| r.time == time}
         end
-
         # Distance filtering
         if distance == 10
-
           @runs = @runs.select { |r| r.run_distance > (arr[(params[:search][:run_distance].to_i)] - 5) && r.run_distance < (arr[(params[:search][:run_distance].to_i)] + 5)  }
         elsif distance == 5
           @runs = @runs.select { |r| r.run_distance <= arr[(params[:search][:run_distance].to_i)] }
         elsif distance == 15
           @runs = @runs.select { |r| r.run_distance >= arr[(params[:search][:run_distance].to_i)] }
         end
+
         # Sociability filtering
         if sociability == 1
           @runs = @runs.select { |r| r.user.sociability == params[:search][:sociability].to_i}
@@ -112,12 +111,14 @@ class RunsController < ApplicationController
           @runs = @runs.select { |r| r.user.sociability == params[:search][:sociability].to_i}
         end
         # Pace filtering
-        start_of_date = "Sat Jan 01 "
-        pace_formatted = "0" + arr_pace[(params[:search][:pace]).to_i] + ":00"
-        end_of_time = " UTC 2000"
-        date_time_to_parse = start_of_date + pace_formatted + end_of_time
-        pace = Time.parse(date_time_to_parse)
-        @runs = @runs.select { |r| r.pace <= pace}
+        if  params[:search][:pace]
+          start_of_date = "Sat Jan 01 "
+          pace_formatted = "0" + arr_pace[(params[:search][:pace]).to_i] + ":00"
+          end_of_time = " UTC 2000"
+          date_time_to_parse = start_of_date + pace_formatted + end_of_time
+          pace = Time.parse(date_time_to_parse)
+          @runs = @runs.select { |r| r.pace <= pace}
+        end
 
 
         # if @runs.length == 0
