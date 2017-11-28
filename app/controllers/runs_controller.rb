@@ -82,6 +82,18 @@ class RunsController < ApplicationController
         # Date filtering
         @runs = Run.near([@last_search.latitude, @last_search.longitude], proximity)
         @runs = @runs.select { |r| r.date.strftime("%Y-%m-%d") == params[:search][:run_date] }
+        # Time filtering
+
+
+        if params[:search][:run_time] != ""
+        start_of_date = "Sat Jan 01 "
+        time_formatted = (params[:search][:run_time]) + ":00"
+        end_of_time = " UTC 2000"
+        date_time_to_parse = start_of_date + time_formatted + end_of_time
+        time = Time.parse(date_time_to_parse)
+        @runs = @runs.select { |r| r.time == time}
+        end
+
         # Distance filtering
         if distance == 10
 
