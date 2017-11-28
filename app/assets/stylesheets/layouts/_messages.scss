@@ -102,3 +102,19 @@
 .show {
   display: block;
 }
+
+.footer-message-show {
+  position: sticky !important;
+  align-items: center;
+  bottom: 0 !important;
+  display: flex;
+  width: 100%;
+  background-color: transparent;
+  text-align: center;
+  height: 50px;
+  justify-content: space-between;
+}
+
+.message-list {
+  min-height: calc(100vh - 50px - 50px);
+}

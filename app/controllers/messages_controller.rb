@@ -36,6 +36,7 @@ class MessagesController < ApplicationController
 
   def show
     authorize @user.messages
+    @disable_footer = true
   end
 
   def destroy

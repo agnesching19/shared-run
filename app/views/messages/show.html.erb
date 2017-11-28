@@ -1,116 +1,85 @@
 <div class="container">
-  <h1>MESSAGES</h1>
+  <div class="message-list">
+    <h1>MESSAGES</h1>
 
-  <!-- Message Display Limit -->
-  <% message_limit = 3 %>
+    <!-- Message Display Limit -->
+    <% message_limit = 3 %>
 
-  <!-- Interested Runs Count -->
-  <% scheduled_count = [] %>
-  <% @user.messages.each do |m| %>
-    <% if m.run.user != current_user %>
-      <% scheduled_count << m.run %>
+    <!-- Interested Runs Count -->
+    <% scheduled_count = [] %>
+    <% @user.messages.each do |m| %>
+      <% if m.run.user != current_user %>
+        <% scheduled_count << m.run %>
+      <% end %>
     <% end %>
-  <% end %>
 
-  <div class="logs">
+    <div class="logs">
 
-    <div class="hosted-messages">
-      <h3><a href="#" class="message-title" id="hosted-title">RUNS HOSTED BY ME (<%= @user.runs.count %>)</a></h3>
-      <div class="log message-filter hidden" id="hosted-message">
-        <% @user.runs.each do |run| %>
-          <div class="flex">
-            <div class="message-left">
-              <p><%= run.title.split.map {|r| r.upcase}.join(" ") %></p>
-              <p><%= run.location.upcase.match(/^(.+?),/).to_s %> <%= run.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
-            </div>
-            <div class="message-middle">
-              <p><%= run.date.strftime("%b %d %Y").upcase %></p>
-              <p><%= run.time.strftime("%l:%M %p") %></p>
-            </div>
-            <div class="message-right">
-              <% if run.messages.empty? %>
-                <p>There are no messages yet as of <%= @user.current_sign_in_at.strftime("%d %b %Y, %l:%M %p") %>.</p>
-              <% else %>
-                <% run.messages.last(message_limit).each do |message| %>
-                  <p>
-                    <%= message.created_at.strftime("%d %b %Y, %l:%M %p") %>
-                    <%= message.user.first_name.capitalize %> <%= message.user.last_name.capitalize %>:
-                    <% chars_limit = 75 - message.user.first_name.chars.length - message.user.last_name.chars.length - 1 %>
-                    <% if message.content.chars.length > chars_limit %>
-                      <%= message.content.chars.first(chars_limit).join %>...
-                    <% else %>
-                      <%= message.content %>
-                    <% end %>
-                  </p>
+      <div class="hosted-messages">
+        <h3><a href="#" class="message-title" id="hosted-title">RUNS HOSTED BY ME (<%= @user.runs.count %>)</a></h3>
+        <div class="log message-filter hidden" id="hosted-message">
+          <% @user.runs.each do |run| %>
+            <div class="flex">
+              <div class="message-left">
+                <p><%= run.title.split.map {|r| r.upcase}.join(" ") %></p>
+                <p><%= run.location.upcase.match(/^(.+?),/).to_s %> <%= run.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
+              </div>
+              <div class="message-middle">
+                <p><%= run.date.strftime("%b %d %Y").upcase %></p>
+                <p><%= run.time.strftime("%l:%M %p") %></p>
+              </div>
+              <div class="message-right">
+                <% if run.messages.empty? %>
+                  <p>There are no messages yet as of <%= @user.current_sign_in_at.strftime("%d %b %Y, %l:%M %p") %>.</p>
+                <% else %>
+                  <% run.messages.last(message_limit).each do |message| %>
+                    <p>
+                      <%= message.created_at.strftime("%d %b %Y, %l:%M %p") %>
+                      <%= message.user.first_name.capitalize %> <%= message.user.last_name.capitalize %>:
+                      <% chars_limit = 75 - message.user.first_name.chars.length - message.user.last_name.chars.length - 1 %>
+                      <% if message.content.chars.length > chars_limit %>
+                        <%= message.content.chars.first(chars_limit).join %>...
+                      <% else %>
+                        <%= message.content %>
+                      <% end %>
+                    </p>
+                  <% end %>
+                  <% if run.messages.count > message_limit %>
+                    <h6><i>And <%= run.messages.count - message_limit %> more...</i></h6>
+                  <% end %>
                 <% end %>
-                <% if run.messages.count > message_limit %>
-                  <h6><i>And <%= run.messages.count - message_limit %> more...</i></h6>
-                <% end %>
-              <% end %>
+              </div>
+              <%= link_to "", run_path(run), class: "flex-link" %>
             </div>
-            <%= link_to "", run_path(run), class: "flex-link" %>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
-    </div>
 
-    <div class="scheduled-messages">
-      <h3><a href="#" class="message-title" id="scheduled-title">RUNS WHICH I'M SCHEDULED FOR (<%= @user.bookings.count %>)</a></h3>
-      <div class="log message-filter hidden" id="scheduled-message">
-        <% @user.bookings.each do |booking| %>
-          <div class="flex">
-            <div class="message-left">
-              <p><%= booking.run.title.split.map {|r| r.upcase}.join(" ") %> - Hosted by <%= booking.run.user.first_name.capitalize %></p>
-              <p><%= booking.run.location.upcase.match(/^(.+?),/).to_s %> <%= booking.run.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
-              </p>
-            </div>
-            <div class="message-middle">
-              <p><%= booking.run.date.strftime("%b %d %Y").upcase %></p>
-              <p><%= booking.run.time.strftime("%l:%M %p") %></p>
-            </div>
-            <div class="message-right">
-              <% if booking.run.messages.empty? %>
-                <p>There are no messages yet as of <%= @user.current_sign_in_at.strftime("%d %b %Y, %l:%M %p") %>.</p>
-              <% else %>
-                <% booking.run.messages.last(message_limit).each do |message| %>
-                  <p>
-                    <%= message.created_at.strftime("%d %b %Y, %l:%M %p") %>
-                    <%= message.user.first_name.capitalize %> <%= message.user.last_name.capitalize %>:
-                    <%= message.content %>
-                  </p>
-                <% end %>
-                <% if booking.run.messages.count > message_limit %>
-                  <h6><i>And <%= booking.run.messages.count - message_limit %> more...</i></h6>
-                <% end %>
-              <% end %>
-            </div>
-            <%= link_to "", run_path(booking.run), class: "flex-link" %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="interested-runs">
-      <h3><a href="#" class="message-title" id="interested-title">RUNS WHICH I'M TENTATIVELY INTERESTED IN (<%= scheduled_count.count %>)</a></h3>
-      <div class="log message-filter hidden" id="interested-message">
-        <% @user.messages.each do |booking| %>
-          <% if booking.run.user != current_user %>
+      <div class="scheduled-messages">
+        <h3><a href="#" class="message-title" id="scheduled-title">RUNS WHICH I'M SCHEDULED FOR (<%= @user.bookings.count %>)</a></h3>
+        <div class="log message-filter hidden" id="scheduled-message">
+          <% @user.bookings.each do |booking| %>
             <div class="flex">
               <div class="message-left">
                 <p><%= booking.run.title.split.map {|r| r.upcase}.join(" ") %> - Hosted by <%= booking.run.user.first_name.capitalize %></p>
                 <p><%= booking.run.location.upcase.match(/^(.+?),/).to_s %> <%= booking.run.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
+                </p>
               </div>
               <div class="message-middle">
                 <p><%= booking.run.date.strftime("%b %d %Y").upcase %></p>
                 <p><%= booking.run.time.strftime("%l:%M %p") %></p>
               </div>
               <div class="message-right">
-                <% booking.run.messages.last(message_limit).each do |message| %>
-                  <p>
-                    <%= message.created_at.strftime("%d %b %Y, %l:%M %p") %> |
-                    <%= message.user.first_name.capitalize %> <%= message.user.last_name.capitalize %>:
-                    <%= message.content %>
-                  </p>
+                <% if booking.run.messages.empty? %>
+                  <p>There are no messages yet as of <%= @user.current_sign_in_at.strftime("%d %b %Y, %l:%M %p") %>.</p>
+                <% else %>
+                  <% booking.run.messages.last(message_limit).each do |message| %>
+                    <p>
+                      <%= message.created_at.strftime("%d %b %Y, %l:%M %p") %>
+                      <%= message.user.first_name.capitalize %> <%= message.user.last_name.capitalize %>:
+                      <%= message.content %>
+                    </p>
+                  <% end %>
                   <% if booking.run.messages.count > message_limit %>
                     <h6><i>And <%= booking.run.messages.count - message_limit %> more...</i></h6>
                   <% end %>
@@ -119,13 +88,68 @@
               <%= link_to "", run_path(booking.run), class: "flex-link" %>
             </div>
           <% end %>
-        <% end %>
+        </div>
+      </div>
+
+      <div class="interested-runs">
+        <h3><a href="#" class="message-title" id="interested-title">RUNS WHICH I'M TENTATIVELY INTERESTED IN (<%= scheduled_count.count %>)</a></h3>
+        <div class="log message-filter hidden" id="interested-message">
+          <% @user.messages.each do |booking| %>
+            <% if booking.run.user != current_user %>
+              <div class="flex">
+                <div class="message-left">
+                  <p><%= booking.run.title.split.map {|r| r.upcase}.join(" ") %> - Hosted by <%= booking.run.user.first_name.capitalize %></p>
+                  <p><%= booking.run.location.upcase.match(/^(.+?),/).to_s %> <%= booking.run.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
+                </div>
+                <div class="message-middle">
+                  <p><%= booking.run.date.strftime("%b %d %Y").upcase %></p>
+                  <p><%= booking.run.time.strftime("%l:%M %p") %></p>
+                </div>
+                <div class="message-right">
+                  <% booking.run.messages.last(message_limit).each do |message| %>
+                    <p>
+                      <%= message.created_at.strftime("%d %b %Y, %l:%M %p") %> |
+                      <%= message.user.first_name.capitalize %> <%= message.user.last_name.capitalize %>:
+                      <%= message.content %>
+                    </p>
+                    <% if booking.run.messages.count > message_limit %>
+                      <h6><i>And <%= booking.run.messages.count - message_limit %> more...</i></h6>
+                    <% end %>
+                  <% end %>
+                </div>
+                <%= link_to "", run_path(booking.run), class: "flex-link" %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-    <%= javascript_pack_tag 'toggle_message.js' %>
+      <%= javascript_pack_tag 'toggle_message.js' %>
+</div>
 
 
 <%= content_for(:title, "My Messages") %>
+
+<footer>
+  <div class="footer-message-show">
+    <div class="footer-box">
+      <a href="https://github.com/lewagon"><i class="fa fa-github"></i></a>
+      <a href="https://www.instagram.com/lewagonlondon/"><i class="fa fa-instagram"></i></a>
+      <a href="https://www.facebook.com/lewagonlondon/"><i class="fa fa-facebook"></i></a>
+      <a href="https://twitter.com/lewagonlondon?lang=en"><i class="fa fa-twitter"></i></a>
+      <a href="https://www.linkedin.com/school/5046700/"><i class="fa fa-linkedin"></i></a>
+    </div>
+
+    <div class="footer-box">
+      <p><%= link_to "ABOUT", about_path %></p>
+      <p><%= link_to "PRIVACY POLICY", privacy_path %></p>
+      <p><%= link_to "TERMS OF SERVICE", terms_path %></p>
+    </div>
+
+    <div class="footer-copyright">
+      <p>COPYRIGHT &copy; 2017 SHARED.RUN</p>
+    </div>
+  </div>
+</footer>

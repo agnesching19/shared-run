@@ -1,7 +1,7 @@
 <div class="event-wrapper">
 <!-- Event details -->
   <ul class="event-display">
-    <li class="events">
+    <div class="events">
       <div class="event-content">
         <!-- Description of event -->
         <div class="event-description"><%= @event.description %></div>
@@ -23,12 +23,13 @@
         <br>
         <!-- Link connected with new run -->
         <div class="schedule-run">
-          <p>Start your training today!</p>
-          <%= link_to "SCHEDULE A RUN", new_run_path, class: "btn btn-default" %>
+          <div>
+            <p>Start your training today!</p> &nbsp &nbsp &nbsp <%= link_to "SCHEDULE A RUN", new_run_path, class: "btn btn-default" %>
+          </div>
         </div>
       </div>
 
-    </li>
+    </div>
   </ul>
 <!-- Event map -->
   <div id="show-event-map" class="event-map">This is ideally a map of event.
@@ -50,6 +51,27 @@
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.3/sweetalert2.all.min.js" integrity="sha256-Cc+yDzt4WAIOQNyXND0m3zCkxy8mSRJXLGy+5oGaHHM=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="app/assets/javascripts/sweetalert2.js"></script> -->
 
+<footer>
+  <div class="footer-event-show">
+    <div class="footer-box">
+      <a href="https://github.com/lewagon"><i class="fa fa-github"></i></a>
+      <a href="https://www.instagram.com/lewagonlondon/"><i class="fa fa-instagram"></i></a>
+      <a href="https://www.facebook.com/lewagonlondon/"><i class="fa fa-facebook"></i></a>
+      <a href="https://twitter.com/lewagonlondon?lang=en"><i class="fa fa-twitter"></i></a>
+      <a href="https://www.linkedin.com/school/5046700/"><i class="fa fa-linkedin"></i></a>
+    </div>
+
+    <div class="footer-box">
+      <p><%= link_to "ABOUT", about_path %></p>
+      <p><%= link_to "PRIVACY POLICY", privacy_path %></p>
+      <p><%= link_to "TERMS OF SERVICE", terms_path %></p>
+    </div>
+
+    <div class="footer-copyright">
+      <p>COPYRIGHT &copy; 2017 SHARED.RUN</p>
+    </div>
+  </div>
+</footer>
 
 <!-- JS for the map -->
 <% content_for(:after_js) do %>
