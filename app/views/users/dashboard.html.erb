@@ -16,17 +16,18 @@
         <% if @user.location? %>
           &nbsp | &nbsp <%= @user.location %>
         <% end %>
-        <br>Sociability:&nbsp
-         <% if @user.sociability === 1 %>
-           <i class="fa fa-headphones" aria-hidden="true"></i>
-         <% elsif @user.sociability === 2 %>
-           <i class="fa fa-smile-o" aria-hidden="true"></i>
-         <% else @user.sociability === 3 %>
-           <i class="fa fa-handshake-o" aria-hidden="true"></i>
-         <% end %>
+        <br>
       </p>
+      <div class="user-sociability" id="sociability" >Sociability:&nbsp
+         <% if @user.sociability === 1 %>
+           <a href="#" data-toggle="tooltip" data-placement="bottom"  title="Shy while running"> <i class="fa fa-headphones" aria-hidden="true"></i> </a>
+         <% elsif @user.sociability === 2 %>
+            <a href="#" data-toggle="tooltip" data-placement="bottom"  title="Occasionally"> <i class="fa fa-smile-o" aria-hidden="true"></i> </a>
+         <% else @user.sociability === 3 %>
+         <a href="#" data-toggle="tooltip" data-placement="bottom"  title="Love run & chat!"> <i class="fa fa-handshake-o" aria-hidden="true"></i> </a>
+         <% end %>
+      </div>
     </div>
-
     <!-- Logic #1 -->
     <% all_runs = [] %>
     <% @user.runs.each do |run| %>
