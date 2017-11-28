@@ -87,7 +87,7 @@
           <% if params[:search].present? %>
             <%= arr_social[(params[:search][:sociability].to_i)] %>
           <% else %>
-            <i class="fa fa-meh-o"></i>
+            <i class="fa fa-smile-o" aria-hidden="true"></i>
           <% end %>
         </span>
         <input class="range-slider__range form-control" name="search[sociability]" type="range" value="<%= params[:sociability] %>" min="0" max="2">
