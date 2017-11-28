@@ -13,7 +13,7 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    @reservation = Reservation.new(reservation_params)
+    @reservation = Reservation.new
     @reservation.event_id = @event.id
     @reservation.user = current_user
     authorize @reservation
@@ -38,7 +38,7 @@ class ReservationsController < ApplicationController
   private
 
   def reservation_params
-    params.require(:reservation).permit(:event, :user)
+    params.require(:reservation).permit(:event_id, :user_id)
   end
 
   def set_reservation
