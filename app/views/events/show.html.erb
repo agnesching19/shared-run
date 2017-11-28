@@ -5,8 +5,19 @@
       <div class="event-content">
         <!-- Date/Time of event -->
         <p>HOSTED BY <%= @event.user.first_name.upcase %> <%= cl_image_tag @event.user.photo, class: "event-avatar" %></p>
-        <!-- Location of event -->
-        <p>PARTICIPANTS: </p>
+        <!-- Participants of event -->
+
+      <div class="show-run-buddies">
+        <h4>PARTICIPANTS: (<%= @event.reservations.count %>)</h4>
+        <div class="buddy-avatars">
+            <% @event.reservations.each do |reservation| %>
+              <%= cl_image_tag reservation.user.photo, crop: :fill, class: "buddy-photo" %>
+            <% end %>
+        </div>
+      </div>
+    </div>
+
+
         <!-- Link to google form for joining event -->
         <%= link_to "Back to All Events", events_path, class: "btn btn-default" %>
       </div>
