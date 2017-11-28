@@ -18,14 +18,13 @@
   align-items: center;
 
   a {
+    text-decoration: none !important;
     font-size: 14px;
-    color: $light-gray;
-    opacity: 0.3;
-    text-decoration: none;
+    color: $light-gray !important;
     padding: 0px 10px;
 
     &:hover {
-      opacity: 1;
+      color: $dark-gray !important;
     }
 
     &:last-child {
@@ -35,9 +34,8 @@
 }
 
 .footer-copyright {
+  text-decoration: none !important;
   font-size: 14px;
-  color: $light-gray;
-  opacity: 0.3;
-  text-decoration: none;
-  padding: 5px 10px;
+  color: $light-gray !important;
+  padding: 5px 10px
 }
