@@ -103,7 +103,7 @@
     <div class="logs">
       <!-- All Runs -->
       <div class="non-host-runs content-filter" id="all-runs">
-        <% unless @all_runs == [] %>
+        <% if all_runs.any? %>
           <ul class="log">
             <% all_runs.each do |run| %>
               <li class="flex">
@@ -134,7 +134,7 @@
         </div>
       <!-- Hosting Runs -->
       <div class="host-runs content-filter hidden" id="hosting-runs">
-        <% unless @user.runs == [] %>
+        <% if @user.runs.any? { |r| r.date >= Date.today } %>
           <ul class="log">
             <% @user.runs.each do |run| %>
               <% if run.date > Date.today - 1 %>
@@ -207,7 +207,7 @@
       </div>
       <!-- Upcoming Runs -->
       <div class="non-host-runs content-filter hidden" id="upcoming-runs">
-        <% unless @user.bookings.count %>
+        <% if upcoming_count >= 1 %>
           <ul class="log">
             <% @user.bookings.each do |booking| %>
               <% if booking.run.date > Date.today - 1 %>
@@ -252,10 +252,10 @@
       </div>
       <!-- Past Runs -->
       <div class="non-host-runs content-filter hidden" id="past-runs">
-        <% unless @user.bookings == [] %>
+        <% if @user.bookings.any? { |b| b.run.date < Date.today } %>
           <ul class="log">
             <% @user.bookings.each do |booking| %>
-              <% if booking.run.date <= Date.today - 1 %>
+              <% if booking.run.date < Date.today %>
                 <li class="flex">
                   <div class="log-left">
                     <div class="left-photo">

@@ -1,10 +1,10 @@
 .logs {
   a {
     text-decoration: none;
-    color: white !important;
+    color: $light-gray !important;
 
     &:hover {
-      color: $light-gray !important;
+      color: white !important;
     }
   }
 }

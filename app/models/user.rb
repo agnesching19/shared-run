@@ -58,6 +58,10 @@ class User < ApplicationRecord
     return user
   end
 
+  def future_runs
+    runs.select { |r| r.date >= Date.today }
+  end
+
   private
 
   # def send_welcome_email
