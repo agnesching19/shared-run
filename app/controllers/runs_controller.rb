@@ -79,9 +79,12 @@ class RunsController < ApplicationController
         @search.user_id = current_user.id
         @search.save
         @last_search = @user.searches.order(created_at: :desc).first
+        # Date filtering
+        @runs = Run.near([@last_search.latitude, @last_search.longitude], proximity)
+        @runs = @runs.select { |r| r.date.strftime("%Y-%m-%d") == params[:search][:run_date] }
         # Distance filtering
         if distance == 10
-          @runs = Run.near([@last_search.latitude, @last_search.longitude], proximity)
+
           @runs = @runs.select { |r| r.run_distance > (arr[(params[:search][:run_distance].to_i)] - 5) && r.run_distance < (arr[(params[:search][:run_distance].to_i)] + 5)  }
         elsif distance == 5
           @runs = @runs.select { |r| r.run_distance <= arr[(params[:search][:run_distance].to_i)] }
@@ -103,6 +106,7 @@ class RunsController < ApplicationController
         date_time_to_parse = start_of_date + pace_formatted + end_of_time
         pace = Time.parse(date_time_to_parse)
         @runs = @runs.select { |r| r.pace <= pace}
+
 
         # if @runs.length == 0
         #   @runs = Run.near([@last_search.latitude, @last_search.longitude], proximity * 2 )
