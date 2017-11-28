@@ -16,7 +16,7 @@
 
     <div class="hosted-messages">
       <h3><a href="#" class="message-title" id="hosted-title">RUNS HOSTED BY ME (<%= @user.runs.count %>)</a></h3>
-      <div class="log message-filter" id="hosted-message hidden">
+      <div class="log message-filter hidden" id="hosted-message">
         <% @user.runs.each do |run| %>
           <div class="flex">
             <div class="message-left">
@@ -127,35 +127,3 @@
 </div>
 
 <%= content_for(:title, "My Messages") %>
-
-<% content_for(:after_js) do %>
-  <script>
-    // const hostedTitle = document.getElementById("hosted-title");
-    // hostedTitle.addEventListener("click", (event) => {
-    //   event.preventDefault();
-    //   const hostedMessages = document.getElementById("hosted-message");
-    //   if (hostedMessages.style.display === "snone") {
-    //     hostedMessages.style.display = "block";
-    //   } else {
-    //     hostedMessages.style.display = "none";
-    //   }
-    // });
-
-    // // document.getElementById("hosted-message").style.display = "none";
-    // const hostedTitle = document.getElementById("hosted-title");
-    // hostedTitle.addEventListener("click", (event) => {
-    //   console.log(event);
-    //   document.getElementById("hosted-message");
-    //   event.target.classList.toggle("show");
-    //   // console.log(event.target);
-    // //   event.preventDefault();
-    // //   const hostedMessages = document.getElementById("hosted-message");
-    // //   hostedMessages.classList.toggle("show");
-    // });
-
-    const hostedMessages = document.getElementById("hosted-message");
-    document.getElementById("hostedTitle").onclick = function() {
-      hostedMessages.classList.toggle("show");
-    };
-  </script>
-<% end %>
