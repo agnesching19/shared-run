@@ -3,7 +3,7 @@
   <div class="dashboard-header">
     <!-- Profile Summary -->
     <div class="profile">
-      <% avatar_url = current_user.facebook_picture_url || current_user.photo %>
+      <% avatar_url = @user.facebook_picture_url || @user.photo %>
       <%= cl_image_tag avatar_url, class: "dashboard-photo" %>
       <h4>
         <%= @user.first_name.upcase %> <%= @user.last_name.upcase %> &nbsp
