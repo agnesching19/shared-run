@@ -9,6 +9,7 @@ class MessagesController < ApplicationController
     @messages = Message.where(run: @run)
     authorize @messages
     authorize @message
+    @disable_footer = true
   end
 
   def create
