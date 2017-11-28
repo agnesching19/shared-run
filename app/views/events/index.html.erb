@@ -10,7 +10,7 @@
   <!-- Event card details -->
   <div class="row">
     <% @events.each do |event| %>
-      <div class="col-xs-12 col-sm-6">
+      <!-- <div class="col-xs-12 col-sm-6"> -->
         <div class="event-card">
           <!-- Event date -->
           <div class="event-card-date">
@@ -42,7 +42,7 @@
 
           <%= link_to "", event_path(event), class: "event-card-link" %>
         </div>
-      </div>
+      <!-- </div> -->
     <% end %>
   </div>
 
