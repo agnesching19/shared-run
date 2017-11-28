@@ -65,6 +65,11 @@ class RunsController < ApplicationController
 
   def search_run
      arr = [5, 10, 15]
+     arr_pace = ['3:00', '3:15', '3:30', '3:45',
+  '4:00','4:15','4:30', '4:45',
+  '5:00', '5:15', '5:30', '5:45',
+  '6:00', '6:15', '6:30', '6:45',
+  '7:00']
     if params[:search].present?
       unless params[:search][:location] == ""
         proximity = params[:search][:proximity].to_f
@@ -91,6 +96,14 @@ class RunsController < ApplicationController
         elsif sociability == 3
           @runs = @runs.select { |r| r.user.sociability == params[:search][:sociability].to_i}
         end
+        # Pace filtering
+        start_of_date = "Sat Jan 01 "
+        pace_formatted = "0" + arr_pace[(params[:search][:pace]).to_i] + ":00"
+        end_of_time = " UTC 2000"
+        date_time_to_parse = start_of_date + pace_formatted + end_of_time
+        pace = Time.parse(date_time_to_parse)
+        @runs = @runs.select { |r| r.pace <= pace}
+
         # if @runs.length == 0
         #   @runs = Run.near([@last_search.latitude, @last_search.longitude], proximity * 2 )
         #   @search_widened = "No runs found - we widened your search to #{proximity * 2} km"
