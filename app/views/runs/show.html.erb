@@ -51,7 +51,7 @@
           </p>
         </div>
         <div class="show-user-bio">
-          <% unless @run.user.bio.empty? %>
+          <% unless @run.user.bio.nil? %>
             <p><%= @run.user.bio %></p>
           <% else %>
             <p><%= @run.user.first_name.capitalize %> doesn't have a bio yet.</p>
