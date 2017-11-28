@@ -10,6 +10,7 @@ class ReservationsController < ApplicationController
   def new
     @reservation = Reservation.new
     authorize @reservation
+    @disable_footer = true
   end
 
   def create

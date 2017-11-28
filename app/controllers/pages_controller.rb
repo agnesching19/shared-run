@@ -12,5 +12,6 @@ end
   end
 
   def privacy
+    @disable_footer = true
   end
 end

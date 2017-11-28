@@ -1,14 +1,38 @@
-<div class="messages-container">
-  <h1><%= link_to @run.title.upcase, run_path(@run) %> - HOSTED BY <%= @run.user.first_name.upcase %></h1>
-  <h2><%= @run.location.upcase %> | <%= @run.date.strftime("%b %d %Y").upcase %> | <%= @run.time.strftime("%l:%M %p") %></h2>
+<div class="message-index">
+  <div class="messages-container">
+    <h1><%= link_to @run.title.upcase, run_path(@run) %> - HOSTED BY <%= @run.user.first_name.upcase %></h1>
+    <h2><%= @run.location.upcase %> | <%= @run.date.strftime("%b %d %Y").upcase %> | <%= @run.time.strftime("%l:%M %p") %></h2>
 
-  <div id="all-run-messages">
-    <%= render "messages/container", messages: @messages %>
-  </div>
+    <div id="all-run-messages">
+      <%= render "messages/container", messages: @messages %>
+    </div>
 
-  <div class="message-input">
-    <%= render "messages/form", run: @run, message: @message  %>
+    <div class="message-input">
+      <%= render "messages/form", run: @run, message: @message  %>
+    </div>
   </div>
 </div>
 
 <%= content_for(:title, "Messages") %>
+
+<footer>
+  <div class="footer-message-show">
+    <div class="footer-box">
+      <a href="https://github.com/lewagon"><i class="fa fa-github"></i></a>
+      <a href="https://www.instagram.com/lewagonlondon/"><i class="fa fa-instagram"></i></a>
+      <a href="https://www.facebook.com/lewagonlondon/"><i class="fa fa-facebook"></i></a>
+      <a href="https://twitter.com/lewagonlondon?lang=en"><i class="fa fa-twitter"></i></a>
+      <a href="https://www.linkedin.com/school/5046700/"><i class="fa fa-linkedin"></i></a>
+    </div>
+
+    <div class="footer-box">
+      <p><%= link_to "ABOUT", about_path %></p>
+      <p><%= link_to "PRIVACY POLICY", privacy_path %></p>
+      <p><%= link_to "TERMS OF SERVICE", terms_path %></p>
+    </div>
+
+    <div class="footer-copyright">
+      <p>COPYRIGHT &copy; 2017 SHARED.RUN</p>
+    </div>
+  </div>
+</footer>

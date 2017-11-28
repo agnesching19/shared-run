@@ -25,6 +25,7 @@ class EventsController < ApplicationController
 
   def show
     authorize @event
+    @disable_footer = true
   end
 
   def edit
