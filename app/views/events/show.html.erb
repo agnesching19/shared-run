@@ -4,30 +4,21 @@
     <li class="events">
       <div class="event-content">
         <!-- Date/Time of event -->
-        <p class="event-time"><i class="fa fa-clock-o" aria-hidden="true"></i> <%= @event.date %>  <%= @event.time.strftime("at %I:%M%p") %></p>
         <p>HOSTED BY <%= @event.user.first_name.upcase %> <%= cl_image_tag @event.user.photo, class: "event-avatar" %></p>
         <!-- Location of event -->
-        <h4><i class="fa fa-map-marker" aria-hidden="true"></i> <%= @event.location.upcase.match(/^(.+?),/).to_s %> <%= @event.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></h4>
-        <!-- Distance of event -->
-        <h4><i class="fa fa-road" aria-hidden="true"></i> <%= @event.distance %> KM</h4>
-        <!-- Surface of event -->
-        <h4><i class="fa fa-blind" aria-hidden="true"></i>  <%= @event.surface %></h4>
-        <!-- Price of event -->
-        <h4><i class="fa fa-gbp" aria-hidden="true"></i>  <%= @event.price %></h4>
-        <!-- Description of event -->
-        <h4 class="event-description"><%= @event.description %></h4>
+        <p>PARTICIPANTS: </p>
         <!-- Link to google form for joining event -->
         <%= link_to "Join now", "https://docs.google.com/forms/d/e/1FAIpQLSfz2RnPu1Taeovcg-WlWQ1pEjlx7ty_VjZhGxrEXawenKk7MA/viewform?c=0&w=1", class: "btn event-join" %>
+        <%= link_to "Back to All Events", events_path, class: "btn btn-default" %>
       </div>
     </li>
   </ul>
-
 <!-- Event map -->
   <div id="show-event-map" class="event-map">This is ideally a map of event.
   </div>
+
 </div>
 
-<%= link_to "Back to All Events", events_path, class: "btn btn-default" %>
 
 <%= content_for(:title, 'shared.run | Run Together - Anytime, Anywhere') %>
 

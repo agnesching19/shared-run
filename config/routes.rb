@@ -13,7 +13,11 @@ Rails.application.routes.draw do
     patch "users/:id/preferences", to: "preferences#update"
   end
 
-  resources :events
+  resources :events do
+    resources :reservations, only: [:index, :new, :create]
+  end
+
+  resources :reservations, only: [:destroy]
 
   resources :runs do
     resources :invites, only: [:new, :create]
