@@ -1,8 +1,4 @@
 <%= simple_form_for([@run, @message]) do |m| %>
   <%= m.input :content, as: :text, placeholder: "Please type your message." %>
-  <%= m.submit "Submit", class: "btn btn-default", onclick: "sweet();" %>
+  <%= m.submit "Submit", class: "btn btn-default" %>
 <% end %>
-
-<!-- JS for sweet alert -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.3/sweetalert2.all.min.js" integrity="sha256-Cc+yDzt4WAIOQNyXND0m3zCkxy8mSRJXLGy+5oGaHHM=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="app/assets/javascripts/sweetalert2.js"></script>

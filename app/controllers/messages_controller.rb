@@ -17,19 +17,19 @@ class MessagesController < ApplicationController
     @message.user = current_user
 
     authorize @message
-    @message.save
-    redirect_to run_messages_path(@run)
-    # if @message.save
-    #   respond_to do |format|
-    #     format.html { redirect_to run_messages_path(@message) }
-    #     format.js
-    #   end
-    # else
-    #   respond_to do |format|
-    #     format.html { render "messages/show" }
-    #     format.js
-    #   end
-    # end
+    # @message.save
+    # redirect_to run_messages_path(@run)
+    if @message.save
+      respond_to do |format|
+        format.html { redirect_to run_messages_path(@run) }
+        format.js
+      end
+    else
+      respond_to do |format|
+        format.html { render "messages/index" }
+        format.js
+      end
+    end
   end
 
   def show
