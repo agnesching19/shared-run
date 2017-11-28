@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_run, only: [:new, :create, :index]
+  before_action :set_user, only [:new, :create]
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
@@ -13,21 +14,21 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    @review.run_id = @run.id
-    @review.user_id = current_user.id
+    @review.run = @run
+    @review.user = current_user
     authorize @review
     if @review.save
-      redirect_to run_path(@run)
+      redirect_to run_path(@run), notice: "Thanks for reviewing!"
     else
-      render :new
+      redirect_to run_path(@run), alert: "You've already reviewed for this user!"
     end
   end
 
-  def show
-    @review = Review.find(params[:id])
-    authorize @review
-    @run = Run.find(@review.run_id)
-  end
+  # def show
+  #   @review = Review.find(params[:id])
+  #   authorize @review
+  #   @run = Run.find(@review.run_id)
+  # end
 
   private
 
