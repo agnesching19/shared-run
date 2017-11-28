@@ -64,16 +64,23 @@ class RunsController < ApplicationController
   end
 
   def search_run
-     arr = [5, 10, 15, 20, 25]
+     arr = [5, 10, 15]
     if params[:search].present?
       unless params[:search][:location] == ""
         proximity = params[:search][:proximity].to_f
+        distance =  arr[(params[:search][:run_distance].to_i)]
         @search = Search.new(search_params)
         @search.user_id = current_user.id
         @search.save
         @last_search = @user.searches.order(created_at: :desc).first
-        @runs = Run.near([@last_search.latitude, @last_search.longitude], proximity)
-        @runs = @runs.select { |r| r.run_distance >= arr[(params[:search][:run_distance].to_i)] }
+        if distance == 10
+          @runs = Run.near([@last_search.latitude, @last_search.longitude], proximity)
+          @runs = @runs.select { |r| r.run_distance > (arr[(params[:search][:run_distance].to_i)] - 5) && r.run_distance < (arr[(params[:search][:run_distance].to_i)] + 5)  }
+        elsif distance == 5
+          @runs = @runs.select { |r| r.run_distance <= arr[(params[:search][:run_distance].to_i)] }
+        elsif distance == 15
+          @runs = @runs.select { |r| r.run_distance >= arr[(params[:search][:run_distance].to_i)] }
+        end
         # if @runs.length == 0
         #   @runs = Run.near([@last_search.latitude, @last_search.longitude], proximity * 2 )
         #   @search_widened = "No runs found - we widened your search to #{proximity * 2} km"
