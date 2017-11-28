@@ -44,6 +44,16 @@
 
   .message-footer {
     text-align: right;
+
+    a {
+      text-decoration: none !important;
+      color: white;
+
+      &:hover {
+        text-decoration: none !important;
+        color: $light-gray !important;
+      }
+    }
   }
 }
 
