@@ -14,8 +14,8 @@
       <%= render "shared/page_search" %>
     </div>
       <% @runs.each do |run| %>
-        <% if run.capacity > 0 %>
-        <% photo_url = run.user.photo? ? run.user.photo : 'lix2bqmp4kzdpu4sqjiy' %>
+        <% if run.capacity > 0 && (run.bookings.count < run.capacity) %>
+          <% photo_url = run.user.photo? ? run.user.photo : 'lix2bqmp4kzdpu4sqjiy' %>
           <div class="result">
             <div class="result-user">
               <%= cl_image_tag photo_url, crop: :thumb, class: "result-user-photo" %>
@@ -27,11 +27,11 @@
             </div>
             <div class="result-details">
               <p><%= run.location.upcase.match(/^(.+?),/).to_s %> <%= run.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
-              <p><%= run.run_distance %> KM | CAPACITY: <%= run.capacity %></p>
+              <p><%= run.run_distance %> KM | RUNNERS: (<%= run.bookings.count %>/<%= run.capacity %>)</p>
             </div>
             <%= link_to "", run_path(run), class: "result-link-url" %>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       <% end %>
     </div>
     <div id="results-map"></div>
