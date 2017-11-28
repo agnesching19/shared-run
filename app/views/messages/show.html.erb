@@ -54,10 +54,8 @@
     </div>
 
     <div class="scheduled-messages">
-      <div class="message-title" id="scheduled-title">
-        <h3>RUNS WHICH I'M SCHEDULED FOR (<%= @user.bookings.count %>)</h3>
-      </div>
-      <div class="log message-filter" id="scheduled-message">
+      <h3><a href="#" class="message-title" id="scheduled-title">RUNS WHICH I'M SCHEDULED FOR (<%= @user.bookings.count %>)</a></h3>
+      <div class="log message-filter hidden" id="scheduled-message">
         <% @user.bookings.each do |booking| %>
           <div class="flex">
             <div class="message-left">
@@ -91,10 +89,8 @@
     </div>
 
     <div class="interested-runs">
-      <div class="message-title" id="interested-title">
-        <h3>RUNS WHICH I'M TENTATIVELY INTERESTED IN (<%= scheduled_count.count %>)</h3>
-      </div>
-      <div class="log message-filter" id="interested-message">
+      <h3><a href="#" class="message-title" id="interested-title">RUNS WHICH I'M TENTATIVELY INTERESTED IN (<%= scheduled_count.count %>)</a></h3>
+      <div class="log message-filter hidden" id="interested-message">
         <% @user.messages.each do |booking| %>
           <% if booking.run.user != current_user %>
             <div class="flex">
