@@ -3,10 +3,6 @@ class ReviewsController < ApplicationController
   before_action :set_user, only: [:index, :new, :create]
   skip_before_action :authenticate_user!, only: [:index, :new, :create]
 
-  def index
-    @reviews = policy_scope(Review)
-  end
-
   def new
     @review = Review.new
     authorize @review
@@ -18,9 +14,17 @@ class ReviewsController < ApplicationController
     @review.user = current_user
     authorize @review
     if @review.save
-      redirect_to run_path(@run), notice: "Thanks for reviewing!"
+      redirect_to dashboard_path(current_user), notice: "Thanks for reviewing!"
+      # respond_to do |format|
+      #   format.js
+      #   format.html {
+      #     redirect_to dashboard_path(current_user), notice: "Thanks for reviewing!"
+      #   }
     else
-      redirect_to run_path(@run), alert: "You've already reviewed for this user!"
+      # respond_to do |format|
+      # format.html {
+      redirect_to dashboard_path(current_user), alert: "You've added a review already!"
+      # }
     end
   end
 

@@ -2,34 +2,36 @@
   <h1><%= link_to @run.title.upcase, run_path(@run) %> - HOSTED BY <%= @run.user.first_name.upcase %></h1>
   <h2><%= @run.location.upcase %> | <%= @run.date.strftime("%b %d %Y").upcase %> | <%= @run.time.strftime("%l:%M %p") %></h2>
 
-  <% if @messages.blank? %>
-    <p>There are currently no messages - be the first to leave a message!</p>
-  <% else %>
-    <% @messages.each do |message| %>
-      <% message_class = [] %>
-      <% message_class << "current" if message.user == current_user %>
-      <% message_class << "host" if message.user == @run.user %>
+  <div id="all-run-messages">
+    <% if @messages.blank? %>
+      <p>There are currently no messages - be the first to leave a message!</p>
+    <% else %>
+      <% @messages.each do |message| %>
+        <% message_class = [] %>
+        <% message_class << "current" if message.user == current_user %>
+        <% message_class << "host" if message.user == @run.user %>
 
-      <div class="message <%= message_class.join(" ") %>">
-          <div class="message-content">
-            <%= cl_image_tag message.user.photo, crop: :thumb, class: "message-avatar" %>
-            <div class="message-box">
-              <div class="message-body">
-                <h4><%= message.content %></h4>
-              </div>
-            <div class="message-footer">
-              <p><strong><%= message.user.first_name.capitalize %></strong>&nbsp | &nbsp<%= message.created_at.strftime("%d %b %Y, %l:%M %p") %>
-                <% if message.user == current_user %>
-                  | <%= link_to run_message_path(@run, message), method: :delete, data: { confirm: "Are you sure you want to delete?" } do %>
-                    <i class="fa fa-trash-o" aria-hidden="true"></i></p>
+        <div class="message <%= message_class.join(" ") %>">
+            <div class="message-content">
+              <%= cl_image_tag message.user.photo, crop: :thumb, class: "message-avatar" %>
+              <div class="message-box">
+                <div class="message-body">
+                  <h4><%= message.content %></h4>
+                </div>
+              <div class="message-footer">
+                <p><strong><%= message.user.first_name.capitalize %></strong>&nbsp | &nbsp<%= message.created_at.strftime("%d %b %Y, %l:%M %p") %>
+                  <% if message.user == current_user %>
+                    | <%= link_to run_message_path(@run, message), method: :delete, data: { confirm: "Are you sure you want to delete?" } do %>
+                      <i class="fa fa-trash-o" aria-hidden="true"></i></p>
+                    <% end %>
                   <% end %>
-                <% end %>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 
   <div class="message-input">
     <%= render "messages/form", run: @run, message: @message  %>

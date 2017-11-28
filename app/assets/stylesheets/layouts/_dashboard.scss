@@ -12,9 +12,41 @@
   padding-top: 20px;
 }
 
+.review-breather {
+  padding-top: 32.5px;
+}
+
 .dashboard-header {
   display: flex;
   justify-content: space-around;
+}
+
+// Review Box
+.review-box {
+  background-color: #E57C77;
+  margin-top: 30px;
+  border-radius: 3px;
+  width: 80%;
+  margin: auto;
+}
+
+.review-content {
+  padding: 30px;
+
+  h3 {
+    margin-top: 0px !important;
+  }
+
+  h5 {
+    margin: 0px !important;
+    font-size: 18px;
+    font-family: "Source Sans Pro", "sans serif";
+  }
+
+  p {
+    font-size: 16px;
+    margin: 0px !important;
+  }
 }
 
 // Profile Summary

@@ -1,4 +1,33 @@
 <%= simple_form_for([run, review]) do |r| %>
-  <%= r.input :punctuality %>
+<div class="form-group">
+  <div class="punctuality-form">
+    <!-- True -->
+    <input type="hidden" name="review[punctuality]" value="">
+      <div class="punctuality-choice">
+        <label for="review_punctuality_true">
+          <input class="hidden" type="radio" value="true" name="review[punctuality]" id="review_punctuality_true">
+          <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+        </label>
+      </div>
+      <!-- False -->
+      <div class="punctuality-choice">
+        <label for="review_punctuality_false">
+          <input class="hidden" readonly="readonly" type="radio" value="false" name="review[punctuality]" id="review_punctuality_false">
+          <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+        </label>
+      </div>
+    </div>
+  </div>
   <%= r.submit "Submit", class: "btn btn-default" %>
+<% end %>
+</div>
+
+<% content_for(:after_js) do %>
+  <script>
+    $(document).ready(function() {
+      $(".fa").click(function(){
+        $(this).toggleClass("active");
+      });
+    });
+  </script>
 <% end %>
