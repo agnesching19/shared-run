@@ -1,6 +1,6 @@
 
 // Distance slider
-var arrDistance = ['<5km', '<10km', '<15km']
+var arrDistance = ['<5km', '5-15km', '>15km']
 
 var sliders = document.querySelectorAll('.distance');
 sliders.forEach(slider => {
@@ -14,7 +14,7 @@ sliders.forEach(slider => {
 })
 
 // Distance slider
-var arrSocial = ['<i class="fa fa-headphones" aria-hidden="true"></i>', '<i class="fa fa-smile-o" aria-hidden="true"></i>', '<i class="fa fa-handshake-o" aria-hidden="true"></i>']
+var arrSocial = ['','<i class="fa fa-headphones" aria-hidden="true"></i>', '<i class="fa fa-smile-o" aria-hidden="true"></i>', '<i class="fa fa-handshake-o" aria-hidden="true"></i>']
 
 var sliders = document.querySelectorAll('.sociability');
 sliders.forEach(slider => {
