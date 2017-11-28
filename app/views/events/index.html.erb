@@ -20,9 +20,9 @@
           <div class="event-card-content">
             <ul class="list-inline event-icons">
             <!-- Event time -->
-              <li><i class="fa fa-clock-o" aria-hidden="true"></i> <%= event.time.strftime("%I:%M%p") %></li>
+              <li><i class="fa fa-clock-o" aria-hidden="true"></i><%= event.time.strftime("%I:%M%p") %></li>
             <!-- Event location -->
-              <li><i class="fa fa-map-marker" aria-hidden="true"></i> <%= event.location %></li>
+              <li><i class="fa fa-map-marker" aria-hidden="true"></i><%= event.location %></li>
               <br>
             <!-- Event distance -->
               <li><i class="fa fa-road" aria-hidden="true"></i> <%= event.distance %>km</li>
