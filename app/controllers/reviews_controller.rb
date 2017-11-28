@@ -1,9 +1,10 @@
 class ReviewsController < ApplicationController
-  before_action :set_run, only: [:new, :create, :index]
-  skip_before_action :authenticate_user!, only: [:index]
+  before_action :set_run, only: [:new, :create]
+  before_action :set_user, only: [:index, :new, :create]
+  skip_before_action :authenticate_user!, only: [:index, :new, :create]
 
   def index
-    @reviews = policy_scope(@run.reviews).order(created_at: :desc)
+    @reviews = policy_scope(Review)
   end
 
   def new
@@ -13,26 +14,30 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    @review.run_id = @run.id
-    @review.user_id = current_user.id
+    @review.run = @run
+    @review.user = current_user
     authorize @review
     if @review.save
-      redirect_to run_path(@run)
+      redirect_to run_path(@run), notice: "Thanks for reviewing!"
     else
-      render :new
+      redirect_to run_path(@run), alert: "You've already reviewed for this user!"
     end
   end
 
-  def show
-    @review = Review.find(params[:id])
-    authorize @review
-    @run = Run.find(@review.run_id)
-  end
+  # def show
+  #   @review = Review.find(params[:id])
+  #   authorize @review
+  #   @run = Run.find(@review.run_id)
+  # end
 
   private
 
   def set_run
     @run = Run.find(params[:run_id])
+  end
+
+  def set_user
+    @user = current_user
   end
 
   def review_params

@@ -117,6 +117,7 @@
 }
 
 .flex {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -126,6 +127,20 @@
   &:last-child {
     border-bottom: none;
   }
+
+  &:hover {
+    background-color: $dark-gray;
+    transition: 0.5s;
+  }
+}
+
+.flex-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  z-index: 2;
 }
 
 .log-left {

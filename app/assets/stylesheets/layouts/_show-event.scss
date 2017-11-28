@@ -1,6 +1,6 @@
 .event-avatar {
-  height: 40px;
-  width: 40px;
+  height: 45px;
+  width: 45px;
   border-radius: 50%;
 }
 
@@ -22,7 +22,8 @@
 .event-display {
   padding: 0px 10px 0px 10px;
   list-style: none;
-  width: 80%;
+  width: 50%;
+  margin-left: 100px;
 
 }
 
@@ -40,37 +41,26 @@
   height: 500px;
   width: 750px;
   border: 1px solid rgba(0,0,0,0.3);
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 10px 10px 5px #888888;
   h4, p {
     overflow-wrap: break-word;
     word-wrap: break-word;
     margin: 15px;
     font-size: 25px;
-    color: $gray;
+    color: white;
   }
 }
 
 .event-content {
-  background-color: transparentize(white, .2);
+  background-color: transparentize($dark-gray, .2);
 }
 
 .event-description {
   width: 480px;
-  padding: 20px;
-  border-radius: 30px;
-  font-size: 30px;
-  text-align: center;
-  letter-spacing: 2px;
-  background-color: transparentize(white, .5);
-}
-
-.event-join {
-  background-color: $yellow;
-  padding: 10px;
-  color: $gray;
-  border-radius: 5px;
-  margin-left: 15px;
+  font-size: 40px;
+  letter-spacing: 3px;
+  padding-left: 5px;
 }
 
 #show-event-map {
@@ -84,4 +74,8 @@
   border: 1px solid rgba(0,0,0,0.5);
   border-radius: 10px;
   position: sticky !important;
+}
+
+.schedule-run {
+  display: flex;
 }

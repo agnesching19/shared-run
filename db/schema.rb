@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171127142055) do
+ActiveRecord::Schema.define(version: 20171128110958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,15 @@ ActiveRecord::Schema.define(version: 20171127142055) do
     t.index ["user_id"], name: "index_preferences_on_user_id"
   end
 
+  create_table "reservations", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_reservations_on_event_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "run_id"
@@ -107,7 +116,7 @@ ActiveRecord::Schema.define(version: 20171127142055) do
     t.float "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "proximity"
+    t.float "proximity", default: 3.0
     t.date "run_date"
     t.time "run_time"
     t.integer "sociability"
@@ -157,6 +166,8 @@ ActiveRecord::Schema.define(version: 20171127142055) do
   add_foreign_key "invites", "users"
   add_foreign_key "messages", "runs"
   add_foreign_key "preferences", "users"
+  add_foreign_key "reservations", "events"
+  add_foreign_key "reservations", "users"
   add_foreign_key "reviews", "runs"
   add_foreign_key "reviews", "users"
   add_foreign_key "runs", "users"

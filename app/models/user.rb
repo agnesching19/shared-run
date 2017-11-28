@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, omniauth_providers: [:facebook]
 
+  has_many :reservations
   has_many :runs
   has_many :bookings
   has_many :events
@@ -56,6 +57,20 @@ class User < ApplicationRecord
     end
 
     return user
+  end
+
+  def future_runs
+    runs.select { |r| r.date >= Date.today }
+  end
+
+  def past_bookings
+    bookings.select { |b| b.run.date < Date.today }.sort_by { |b| b.run.date }
+  end
+
+  def past_bookings_without_reviews
+    past_bookings.select do |b|
+      b.run.reviews.empty?
+    end
   end
 
   private

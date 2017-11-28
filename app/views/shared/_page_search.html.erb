@@ -17,15 +17,16 @@
         <% end %>
          </div>
    </div>
+
      <!-- Proximity Setting - defines km's from location -->
-   <!--      <div class="input-group mb-2 mb-sm-0 page-search">
+        <div class="input-group mb-2 mb-sm-0 page-search">
        <div class="input-group-addon"><i class="fa fa-map-signs" aria-hidden="true"></i></div>
        <% if current_user %>
          <input class="form-control" type="number" name="search[proximity]" value="<%= @user.searches.empty? ? "" : @user.searches.last.proximity %>" type="number" name="search[proximity]" step="0.5" value="0.5" min="0">
        <% else %>
          <input class="form-control" type="number" name="search[proximity]" step="0.5" value="0.5" min="0">
        <% end %>
-       </div> -->
+       </div>
        <!-- Date Picker -->
    <div class="row text-center">
      <div class="input-group mb-2 mb-sm-0 page-search">
@@ -61,7 +62,7 @@
      </div>
    </div>
 
-   <div class="form-group">
+<!--    <div class="form-group">
      <div class="row text-center slider-padding">
        <div class="range-slider sociability">
          <div class="slider-id"><label for="sociability">Sociability</label></div>
@@ -73,9 +74,9 @@
            <% end %>
          </span>
          <input class="range-slider__range form-control" name="search[sociability]" type="range" value="<%= params[:sociability] %>" min="0" max="2">
-  </div>
-   </div>
-  </div>
+        </div>
+    </div>
+  </div> -->
 
   <!-- Sociability slider -->
   <div class="row text-center slider-padding">
@@ -86,15 +87,15 @@
           <% if params[:search].present? %>
             <%= arr_social[(params[:search][:sociability].to_i)] %>
           <% else %>
-            <i class="fa fa-meh-o"></i>
+            <i class="fa fa-smile-o" aria-hidden="true"></i>
           <% end %>
         </span>
         <input class="range-slider__range form-control" name="search[sociability]" type="range" value="<%= params[:sociability] %>" min="0" max="2">
       </div>
-       </div>
+    </div>
    </div>
       <!-- Pace slider -->
-       <div class="form-group">
+    <div class="form-group">
      <div class="row text-center slider-padding">
        <div class="range-slider pace">
          <div class="slider-id"><label for="pace">Pace</label></div>
@@ -103,11 +104,11 @@
         </span>
         <input class="range-slider__range form-control" name="search[pace]" type="range" value="<%= params[:pace] %>" min="0" max="16">
       </div>
-        </div>
-</div>
-<div class="row text-center slider-padding">
+    </div>
+  </div>
+  <div class="row text-center slider-padding">
      <button type="submit" class="btn btn-default slide-left" style="border-radius: 50%; font-size: 12px; padding: 5px 10px !important" %>
       <i class="fa fa-search" aria-hidden="true"></i>
     </button>
-    </div>
+  </div>
  </form>

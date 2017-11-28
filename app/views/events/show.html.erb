@@ -3,33 +3,39 @@
   <ul class="event-display">
     <li class="events">
       <div class="event-content">
-        <!-- Date/Time of event -->
-        <p class="event-time"><i class="fa fa-clock-o" aria-hidden="true"></i> <%= @event.date %>  <%= @event.time.strftime("at %I:%M%p") %></p>
-        <p>HOSTED BY <%= @event.user.first_name.upcase %> <%= cl_image_tag @event.user.photo, class: "event-avatar" %></p>
-        <!-- Location of event -->
-        <h4><i class="fa fa-map-marker" aria-hidden="true"></i> <%= @event.location.upcase.match(/^(.+?),/).to_s %> <%= @event.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></h4>
-        <!-- Distance of event -->
-        <h4><i class="fa fa-road" aria-hidden="true"></i> <%= @event.distance %> KM</h4>
-        <!-- Surface of event -->
-        <h4><i class="fa fa-blind" aria-hidden="true"></i>  <%= @event.surface %></h4>
-        <!-- Price of event -->
-        <h4><i class="fa fa-gbp" aria-hidden="true"></i>  <%= @event.price %></h4>
         <!-- Description of event -->
-        <h4 class="event-description"><%= @event.description %></h4>
-        <!-- Link to google form for joining event -->
-        <%= link_to "Join now", "https://docs.google.com/forms/d/e/1FAIpQLSfz2RnPu1Taeovcg-WlWQ1pEjlx7ty_VjZhGxrEXawenKk7MA/viewform?c=0&w=1", class: "btn event-join" %>
+        <div class="event-description"><%= @event.description %></div>
+        <hr>
+        <!-- Participants of event -->
+        <div class="participants">
+          <p>HOSTED BY <%= @event.user.first_name.upcase %> <%= @event.user.last_name.camelcase %>
+            <% unless @event.user.photo = nil %>
+              <%= cl_image_tag @event.user.photo, class: "event-avatar" %>
+            <% end %>
+          </p>
+          <h4>PARTICIPANTS: (<%= @event.reservations.count %>)</h4>
+          <div class="buddy-avatars">
+              <% @event.reservations.each do |reservation| %>
+                <%= cl_image_tag reservation.user.photo, crop: :fill, class: "buddy-photo" %>
+              <% end %>
+          </div>
+        </div>
+        <br>
+        <!-- Link connected with new run -->
+        <div class="schedule-run">
+          <p>Start your training today!</p>
+          <%= link_to "SCHEDULE A RUN", new_run_path, class: "btn btn-default" %>
+        </div>
       </div>
+
     </li>
   </ul>
-
 <!-- Event map -->
   <div id="show-event-map" class="event-map">This is ideally a map of event.
   </div>
 </div>
 
-<%= link_to "Back to All Events", events_path, class: "btn btn-default" %>
-
-<%= content_for(:title, 'shared.run | Run Together - Anytime, Anywhere') %>
+<%= content_for(:title, 'Event - shared.run') %>
 
 <!-- Event policy scope -->
 <% if policy(@event).destroy? %>
@@ -41,8 +47,8 @@
 <% end %>
 
 <!-- JS for sweet alert -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.3/sweetalert2.all.min.js" integrity="sha256-Cc+yDzt4WAIOQNyXND0m3zCkxy8mSRJXLGy+5oGaHHM=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="app/assets/javascripts/sweetalert2.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.3/sweetalert2.all.min.js" integrity="sha256-Cc+yDzt4WAIOQNyXND0m3zCkxy8mSRJXLGy+5oGaHHM=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="app/assets/javascripts/sweetalert2.js"></script> -->
 
 
 <!-- JS for the map -->

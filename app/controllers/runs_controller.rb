@@ -13,6 +13,7 @@ class RunsController < ApplicationController
     #     @runs = @runs.select { |r| r.time <= Time.parse("19:00") }
     #     # @runs = @runs.select { |r| r.time <= Time.parse(params[:time]) }
     # end
+
     search_run
     set_runs
   end
@@ -64,16 +65,62 @@ class RunsController < ApplicationController
   end
 
   def search_run
-     arr = [5, 10, 15, 20, 25]
+     arr = [5, 10, 15]
+     arr_pace = ['3:00', '3:15', '3:30', '3:45',
+  '4:00','4:15','4:30', '4:45',
+  '5:00', '5:15', '5:30', '5:45',
+  '6:00', '6:15', '6:30', '6:45',
+  '7:00']
     if params[:search].present?
       unless params[:search][:location] == ""
         proximity = params[:search][:proximity].to_f
+        distance =  arr[(params[:search][:run_distance].to_i)] if params[:search][:run_distance]
+        sociability = (params[:search][:sociability].to_i)
         @search = Search.new(search_params)
         @search.user_id = current_user.id
         @search.save
         @last_search = @user.searches.order(created_at: :desc).first
-        @runs = Run.near([@last_search.latitude, @last_search.longitude], proximity)
-        @runs = @runs.select { |r| r.run_distance >= arr[(params[:search][:run_distance].to_i)] }
+        # Date filtering
+        @runs = Run.near([@last_search.latitude, @last_search.longitude], 3)
+        @runs = Run.near([@last_search.latitude, @last_search.longitude], proximity) if params[:search][:proximity].to_f
+        @runs = @runs.select { |r| r.date.strftime("%Y-%m-%d") == params[:search][:run_date] }
+        # Time filtering
+        if  params[:search][:run_time]
+        start_of_date = "Sat Jan 01 "
+        time_formatted = (params[:search][:run_time]) + ":00"
+        end_of_time = " UTC 2000"
+        date_time_to_parse = start_of_date + time_formatted + end_of_time
+        time = Time.parse(date_time_to_parse)
+        @runs = @runs.select { |r| r.time == time}
+        end
+        # Distance filtering
+        if distance == 10
+          @runs = @runs.select { |r| r.run_distance > (arr[(params[:search][:run_distance].to_i)] - 5) && r.run_distance < (arr[(params[:search][:run_distance].to_i)] + 5)  }
+        elsif distance == 5
+          @runs = @runs.select { |r| r.run_distance <= arr[(params[:search][:run_distance].to_i)] }
+        elsif distance == 15
+          @runs = @runs.select { |r| r.run_distance >= arr[(params[:search][:run_distance].to_i)] }
+        end
+
+        # Sociability filtering
+        if sociability == 1
+          @runs = @runs.select { |r| r.user.sociability == params[:search][:sociability].to_i}
+        elsif sociability == 2
+          @runs = @runs.select { |r| r.user.sociability == params[:search][:sociability].to_i}
+        elsif sociability == 3
+          @runs = @runs.select { |r| r.user.sociability == params[:search][:sociability].to_i}
+        end
+        # Pace filtering
+        if  params[:search][:pace]
+          start_of_date = "Sat Jan 01 "
+          pace_formatted = "0" + arr_pace[(params[:search][:pace]).to_i] + ":00"
+          end_of_time = " UTC 2000"
+          date_time_to_parse = start_of_date + pace_formatted + end_of_time
+          pace = Time.parse(date_time_to_parse)
+          @runs = @runs.select { |r| r.pace <= pace}
+        end
+
+
         # if @runs.length == 0
         #   @runs = Run.near([@last_search.latitude, @last_search.longitude], proximity * 2 )
         #   @search_widened = "No runs found - we widened your search to #{proximity * 2} km"

@@ -1,4 +1,4 @@
-class ReviewPolicy < ApplicationPolicy
+class ReservationPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope
@@ -6,11 +6,7 @@ class ReviewPolicy < ApplicationPolicy
   end
 
   def create?
-    record.user == user
-  end
-
-  def update?
-    record.user == user
+    return true
   end
 
   def destroy?
