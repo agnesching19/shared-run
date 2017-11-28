@@ -17,8 +17,6 @@ Rails.application.routes.draw do
     resources :reservations, only: [:index, :new, :create]
   end
 
-  resources :reservations, only: [:destroy]
-
   resources :runs do
     resources :invites, only: [:new, :create]
     resources :reviews, only: [:index, :new, :create]
@@ -31,6 +29,7 @@ Rails.application.routes.draw do
   resources :reviews, only: [:show, :edit, :update, :destroy]
   resources :messages, only: [:show]
   resources :bookings, only: [:destroy]
+  resources :reservations, only: [:destroy]
 
   root to: "pages#home"
 

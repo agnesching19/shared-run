@@ -10,7 +10,6 @@
   <!-- Event card details -->
   <div class="row">
     <% @events.each do |event| %>
-      <!-- <div class="col-xs-12 col-sm-6"> -->
         <div class="event-card">
           <!-- Event date -->
           <div class="event-card-date">
@@ -39,10 +38,11 @@
                 <h4 class="event-text"><%= event.description.first(50) %></h4>
             </ul>
           </div>
-
-          <%= link_to "", event_path(event), class: "event-card-link" %>
+          <!-- Event join button -->
+          <div class="event-join">
+            <%= link_to "JOIN NOW", new_event_reservation_path(event), class: "btn btn-default" %>
+          </div>
         </div>
-      <!-- </div> -->
     <% end %>
   </div>
 

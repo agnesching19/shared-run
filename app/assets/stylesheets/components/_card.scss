@@ -35,6 +35,8 @@
 }
 
 .event-card-content {
+  flex-grow: 1;
+  padding-right: 30px;
   .event-icons {
     font-size: 14px;
     opacity: .7;
@@ -60,6 +62,6 @@
 }
 
 .event-text {
-  text-decoration-style: wavy;
+  font-weight: bold;
   letter-spacing: 3px;
 }
