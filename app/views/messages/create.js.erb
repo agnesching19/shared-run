@@ -3,16 +3,6 @@ const newMessage = document.getElementById("new_message");
   newMessage.innerHTML = "<%= j render 'messages/form', run: @run, message: @message %>";
 <% else %>
   const messages = document.getElementById("all-run-messages");
-  messages.insertAdjacentHTML("beforeend", "<%= j render 'messages/index' %>");
+  messages.innerHTML = "<%= j render 'messages/container', messages: @messages %>";
   newMessage.innerHTML = "<%= j render 'messages/form', run: @run, message: Message.new %>";
 <% end %>
-
-
-// const newReviewForm = document.getElementById('new_review');
-// <% if @review.errors.any? %>
-//   newReviewForm.innerHTML = "<%= j render 'reviews/form', restaurant: @restaurant, review: @review %>";
-// <% else %>
-//   const reviews = document.getElementById('reviews');
-//   reviews.insertAdjacentHTML("beforeend", "<%= j render 'reviews/show', review: @review %>");
-//   newReviewForm.innerHTML = "<%= j render 'reviews/form', restaurant: @restaurant, review: Review.new %>";
-// <% end %>
