@@ -16,6 +16,14 @@
         <% if @user.location? %>
           &nbsp | &nbsp <%= @user.location %>
         <% end %>
+        <br>Sociability:&nbsp
+         <% if @user.sociability === 1 %>
+           <i class="fa fa-headphones" aria-hidden="true"></i>
+         <% elsif @user.sociability === 2 %>
+           <i class="fa fa-smile-o" aria-hidden="true"></i>
+         <% else @user.sociability === 3 %>
+           <i class="fa fa-handshake-o" aria-hidden="true"></i>
+         <% end %>
       </p>
     </div>
 
