@@ -2,7 +2,7 @@
 $range-width: 100% !default;
 $range-handle-size: 15px !default;
 $range-track-height: 5px !default;
-$range-label-width: 70px !default;
+$range-label-width: 100px !default;
 
 .slider-padding {
   padding-top: 5px !important;
@@ -12,16 +12,13 @@ $range-label-width: 70px !default;
 .slider-id {
   font-size: 12px;
   font-weight: lightest;
-  padding: 0 80px 0px 30px;
-  position: relative;
-  top: 20px;
-  left: 25px;
+  width: 130px;
 }
 
 .range-slider {
   display: flex;
   align-items: center;
-  padding: 10px 80px 10px 55px;
+  padding: 15px 80px 15px 30px;
   label {
     margin-bottom: 0px;
     margin-right: 10px;
@@ -91,8 +88,6 @@ $range-label-width: 70px !default;
   padding: 5px 10px;
   margin-left: 8px;
   font-size: 14px;
-  width: 80px;
-
 }
 
 // Firefox Overrides
