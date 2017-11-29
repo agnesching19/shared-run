@@ -45,10 +45,23 @@
 }
 
 .message-right {
-
   h6 {
     font-family: "Source Sans Pro", "sans serif";
     font-size: 12px;
     margin: 12.5px 0px 0px 0px !important;
+  }
+}
+
+.no-messages {
+  padding: 15px 0px;
+
+  a {
+    text-decoration: none !important;
+    color: white !important;
+
+    &:hover {
+      text-decoration: none;
+      color: $light-gray !important;
+    }
   }
 }

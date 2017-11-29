@@ -18,7 +18,8 @@
       <div class="hosted-messages">
         <h3><a href="#" class="message-title" id="hosted-title">RUNS HOSTED BY ME (<%= @user.runs.count %>)</a></h3>
         <div class="log message-filter hidden" id="hosted-message">
-          <% @user.runs.each do |run| %>
+          <% if @user.runs.any? %>
+            <% @user.runs.each do |run| %>
             <div class="flex">
               <div class="message-left">
                 <p><%= run.title.split.map {|r| r.upcase}.join(" ") %></p>
@@ -51,6 +52,11 @@
               </div>
               <%= link_to "", run_path(run), class: "flex-link" %>
             </div>
+            <% end %>
+          <% else %>
+            <div class="no-messages">
+              <p><%= link_to "You are not hosting any runs yet. Would you like to host a run?", new_run_path %></p>
+            </div>
           <% end %>
         </div>
       </div>
@@ -58,7 +64,8 @@
       <div class="scheduled-messages">
         <h3><a href="#" class="message-title" id="scheduled-title">RUNS WHICH I'M SCHEDULED FOR (<%= @user.bookings.count %>)</a></h3>
         <div class="log message-filter hidden" id="scheduled-message">
-          <% @user.bookings.each do |booking| %>
+          <% if @user.bookings.any? %>
+            <% @user.bookings.each do |booking| %>
             <div class="flex">
               <div class="message-left">
                 <p><%= booking.run.title.split.map {|r| r.upcase}.join(" ") %> - Hosted by <%= booking.run.user.first_name.capitalize %></p>
@@ -87,6 +94,11 @@
               </div>
               <%= link_to "", run_path(booking.run), class: "flex-link" %>
             </div>
+            <% end %>
+          <% else %>
+            <div class="no-messages">
+              <p><%= link_to "You have no scheduled runs yet. Would you like to schedule a run?", runs_path %></p>
+            </div>
           <% end %>
         </div>
       </div>
@@ -94,8 +106,9 @@
       <div class="interested-runs">
         <h3><a href="#" class="message-title" id="interested-title">RUNS WHICH I'M TENTATIVELY INTERESTED IN (<%= scheduled_count.count %>)</a></h3>
         <div class="log message-filter hidden" id="interested-message">
-          <% @user.messages.each do |booking| %>
-            <% if booking.run.user != current_user %>
+          <% if @user.messages.any? %>
+            <% @user.messages.each do |booking| %>
+              <% if booking.run.user != current_user %>
               <div class="flex">
                 <div class="message-left">
                   <p><%= booking.run.title.split.map {|r| r.upcase}.join(" ") %> - Hosted by <%= booking.run.user.first_name.capitalize %></p>
@@ -119,7 +132,12 @@
                 </div>
                 <%= link_to "", run_path(booking.run), class: "flex-link" %>
               </div>
+              <% end %>
             <% end %>
+          <% else %>
+            <div class="no-messages">
+              <p><%= link_to "You currently don't have any messages for runs in which you haven't scheduled for. Are any of the runs listed of interest to you?", runs_path %></p>
+            </div>
           <% end %>
         </div>
       </div>
