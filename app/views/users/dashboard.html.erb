@@ -20,13 +20,16 @@
       </p>
       <div class="user-sociability" id="sociability" >
         <p>
-          Sociability: &nbsp
+          <!-- Profile Sociability/Review -->
           <% unless @user.sociability.nil? %>
             <% if @user.sociability === 1 %>
+            Sociability: &nbsp
               <a href="#" data-toggle="tooltip" data-placement="bottom"  title="I'm fully focused on the run!"><i class="fa fa-headphones" aria-hidden="true"></i></a>
             <% elsif @user.sociability === 2 %>
+            Sociability: &nbsp
               <a href="#" data-toggle="tooltip" data-placement="bottom"  title="I occasionally enjoy a brief chat"><i class="fa fa-smile-o" aria-hidden="true"></i></a>
-             <% else @user.sociability === 3 %>
+            <% else @user.sociability === 3 %>
+            Sociability: &nbsp
               <a href="#" data-toggle="tooltip" data-placement="bottom"  title="What's a run without any banter?"><i class="fa fa-handshake-o" aria-hidden="true"></i> </a>
             <% end %> &nbsp | &nbsp
             <i class="fa fa-thumbs-up" aria-hidden="true"></i> &nbsp
