@@ -81,16 +81,16 @@
 .results-filters {
   background: #393939;
   position: absolute;
-   top: 0;
-   bottom: 0;
-   left: 0;
-   width: 0%;
-   transition: 0.3s ease;
-   display: none;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  transition: 0.3s ease;
+  display: none;
 
  }
 
- .results-filters.toggled {
+  .results-filters.toggled {
     width: 100%;
     display: block;
     z-index: 10;
