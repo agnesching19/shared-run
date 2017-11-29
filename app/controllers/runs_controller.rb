@@ -13,7 +13,6 @@ class RunsController < ApplicationController
     #     @runs = @runs.select { |r| r.time <= Time.parse("19:00") }
     #     # @runs = @runs.select { |r| r.time <= Time.parse(params[:time]) }
     # end
-
     search_run
     set_runs
   end
@@ -92,26 +91,24 @@ class RunsController < ApplicationController
         @search.save
         @runs = Run.near([@search.latitude, @search.longitude], 3)
         @runs = Run.near([@search.latitude, @search.longitude], proximity) if params[:search][:proximity].to_f
+        # Removing runs in the past
+        @runs = @runs.select { |r| r.date >= Date.today}
         # Date filtering
-
         @runs = @runs.select { |r| r.date.strftime("%Y-%m-%d") == params[:search][:run_date] }
-
         # Time filtering
         if params[:search][:run_time].present?
           unless params[:search][:run_time] == ""
-        start_of_date = "Sat Jan 01 "
-        time_formatted = (params[:search][:run_time]) + ":00"
-        end_of_time = " UTC 2000"
-        date_time_to_parse = start_of_date + time_formatted + end_of_time
-        time = Time.parse(date_time_to_parse)
-        thirty_mins = 30*60
-        start_window = time - thirty_mins
-        end_window = time + thirty_mins
-        @runs = @runs.select { |r| r.time >= start_window && r.time <= end_window}
+            start_of_date = "Sat Jan 01 "
+            time_formatted = (params[:search][:run_time]) + ":00"
+            end_of_time = " UTC 2000"
+            date_time_to_parse = start_of_date + time_formatted + end_of_time
+            time = Time.parse(date_time_to_parse)
+            thirty_mins = 30*60
+            start_window = time - thirty_mins
+            end_window = time + thirty_mins
+            @runs = @runs.select { |r| r.time >= start_window && r.time <= end_window}
+          end
         end
-      end
-
-
         # Distance filtering
         if distance == 10
           @runs = @runs.select { |r| r.run_distance >= (arr[(params[:search][:run_distance].to_i)] - 5) && r.run_distance < (arr[(params[:search][:run_distance].to_i)] + 5)  }
@@ -120,7 +117,6 @@ class RunsController < ApplicationController
         elsif distance == 15
           @runs = @runs.select { |r| r.run_distance >= arr[(params[:search][:run_distance].to_i)] }
         end
-
         # Sociability filtering
         if sociability == 1
           @runs = @runs.select { |r| r.user.sociability == params[:search][:sociability].to_i}
@@ -129,24 +125,17 @@ class RunsController < ApplicationController
         elsif sociability == 3
           @runs = @runs.select { |r| r.user.sociability == params[:search][:sociability].to_i}
         end
-
         # Pace filtering
         if params[:search][:pace].present?
           unless params[:search][:pace] == ""
-          start_of_date = "Sat Jan 01 "
-          pace_formatted = "0" + arr_pace[(params[:search][:pace]).to_i] + ":00"
-          end_of_time = " UTC 2000"
-          date_time_to_parse = start_of_date + pace_formatted + end_of_time
-          pace = Time.parse(date_time_to_parse)
-          @runs = @runs.select { |r| r.pace == pace }
-
+            start_of_date = "Sat Jan 01 "
+            pace_formatted = "0" + arr_pace[(params[:search][:pace]).to_i] + ":00"
+            end_of_time = " UTC 2000"
+            date_time_to_parse = start_of_date + pace_formatted + end_of_time
+            pace = Time.parse(date_time_to_parse)
+            @runs = @runs.select { |r| r.pace == pace }
+          end
         end
-
-
-
-
-        end
-
         # if @runs.length == 0
         #   @runs = Run.near([@last_search.latitude, @last_search.longitude], proximity * 2 )
         #   @search_widened = "No runs found - we widened your search to #{proximity * 2} km"
@@ -158,7 +147,7 @@ class RunsController < ApplicationController
         # end
       end
     else
-      @runs = Run.all
+        @runs = @runs.select { |r| r.date >= Date.today}
       #policy_scope(Run).where.not(latitude: nil, longitude: nil).order(created_at: :desc)
     # @runs = params[:search][:location].present? ? Run.global_search(params[:search][:run_date]) : Run.all
     end
