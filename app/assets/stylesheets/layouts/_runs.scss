@@ -4,6 +4,10 @@
   display: flex;
   background-color: $background;
   height: calc(100vh - 100px);
+
+  .fa-arrow-circle-right {
+    font-size: 30px;
+  }
 }
 
 #results-map {
@@ -140,3 +144,5 @@
     width: 100%;
   }
 }
+
+
