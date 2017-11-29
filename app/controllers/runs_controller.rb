@@ -7,6 +7,7 @@ class RunsController < ApplicationController
 
   def index
     @runs = policy_scope(Run)
+    @disable_footer = true
 
     # if params[:time].present?
     #   # @runs = @runs.select { |r| r.run_distance <= arr[(params[:distance].to_i)] }

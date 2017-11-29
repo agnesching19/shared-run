@@ -3,8 +3,6 @@
 .results-wrapper {
   display: flex;
   background-color: $background;
-  height: calc(100vh - 100px);
-
   .fa-arrow-circle-right {
     font-size: 30px;
   }
@@ -145,4 +143,15 @@
   }
 }
 
+.footer-run-index {
+  position: sticky !important;
+  align-items: center;
+  bottom: 0 !important;
+  display: flex;
+  width: 100%;
+  background-color: transparent;
+  text-align: center;
+  height: 50px;
+  justify-content: space-between;
+}
 
