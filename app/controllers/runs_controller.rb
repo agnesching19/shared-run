@@ -66,6 +66,7 @@ class RunsController < ApplicationController
 
   def search_run
      arr = [5, 10, 15]
+     arr_proximity = [1,3,5]
      arr_pace = ['3:00', '3:15', '3:30', '3:45',
   '4:00','4:15','4:30', '4:45',
   '5:00', '5:15', '5:30', '5:45',
@@ -73,7 +74,7 @@ class RunsController < ApplicationController
   '7:00']
     if params[:search].present?
       unless params[:search][:location] == ""
-        proximity = params[:search][:proximity].to_f
+        proximity = arr_proximity[(params[:search][:proximity].to_f)]
         distance =  arr[(params[:search][:run_distance].to_i)] if params[:search][:run_distance]
         sociability = (params[:search][:sociability].to_i)
         @search = Search.new(search_params)
