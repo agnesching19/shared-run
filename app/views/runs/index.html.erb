@@ -9,7 +9,8 @@
     <div class="results-display">
       <div class="results-action">
         <h1>ALL RUNS</h1>
-        <h1><%= link_to "+", new_run_path %></h1>
+
+        <h1><%= link_to "+", new_run_path, {:class => 'tooltips', 'data-toggle' => 'tooltip', 'data-placement' => 'left', :title => 'Add a run' } %></h1>
       </div>
       <div class="results-filters" id="filters">
         <%= render "shared/page_search" %>
