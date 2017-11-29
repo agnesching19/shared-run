@@ -47,18 +47,38 @@
         <h3><%= link_to @run.user.first_name.upcase, dashboard_path(@run.user) %></h3>
         <div class="show-user-reviews">
           <p>
-            <% unless @run.user.sociability.nil? %>
-              <% if @user.sociability === 1 %>
-                <a href="#" data-toggle="tooltip" data-placement="bottom"  title="I'm fully focused on the run!"><i class="fa fa-headphones" aria-hidden="true"></i></a>
-              <% elsif @user.sociability === 2 %>
-                <a href="#" data-toggle="tooltip" data-placement="bottom"  title="I occasionally enjoy a brief chat"><i class="fa fa-smile-o" aria-hidden="true"></i></a>
-              <% else @user.sociability === 3 %>
-                <a href="#" data-toggle="tooltip" data-placement="bottom"  title="What's a run without any banter?"><i class="fa fa-handshake-o" aria-hidden="true"></i> </a>
+
+            <% if @run.user.sociability.nil? %>
+              <a href="#" data-toggle="tooltip" data-placement="bottom"  title="No review yet.">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> &nbsp
+                <%= @run.user.reviews.where(punctuality: true).count %>
+              </a>
+            <% else %>
+              <% if @run.user.sociability === 1 %>
+                <a href="#" data-toggle="tooltip" data-placement="bottom"  title="I'm fully focused on the run!">Sociability: &nbsp
+                  <i class="fa fa-headphones" aria-hidden="true"></i>
+                </a>
+              <% elsif @run.user.sociability === 2 %>
+                <a href="#" data-toggle="tooltip" data-placement="bottom"  title="I occasionally enjoy a brief chat">Sociability: &nbsp
+                  <i class="fa fa-smile-o" aria-hidden="true"></i>
+                </a>
+              <% else @run.user.sociability === 3 %>
+                <a href="#" data-toggle="tooltip" data-placement="bottom"  title="What's a run without any banter?">Sociability: &nbsp
+                  <i class="fa fa-handshake-o" aria-hidden="true"></i>
+                </a>
+              <% end %> &nbsp | &nbsp
+              <!-- Profile Review -->
+              <% if @run.user.reviews.where(punctuality: true).count === 0 %>
+                <a href="#" data-toggle="tooltip" data-placement="bottom"  title="No review yet.">
+                  <i class="fa fa-thumbs-up" aria-hidden="true"></i> &nbsp
+                  <%= @run.user.reviews.where(punctuality: true).count %></a>
+              <% else %>
+                <a href="#" data-toggle="tooltip" data-placement="bottom"  title="Punctuality is my middle name!">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> &nbsp
+                <%= @run.user.reviews.where(punctuality: true).count %></a>
               <% end %>
             <% end %>
 
-            <i class="fa fa-thumbs-up user-rating" aria-hidden="true"></i> &nbsp
-            <%= @run.user.reviews.where(punctuality: true).count %>
           </p>
         </div>
         <div class="show-user-bio">
