@@ -94,7 +94,7 @@
             <%= render "bookings/form" %> &nbsp &nbsp
           <% end %>
           <%= link_to "MESSAGE", run_messages_path(@run), class: "btn btn-default" %> &nbsp &nbsp
-          <div class="fb-share-button btn btn-default" data-href="https://developers.facebook.com/docs/plugins/" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcamper-rentals.herokuapp.com%2Fplugins%2F&amp;src=sdkpreparse"><i class="fa fa-facebook-square" aria-hidden="true"></i> SHARE</a></div>
+          <div class="fb-share-button btn btn-default" data-href="https://developers.facebook.com/docs/plugins/" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.shareddotrun.com/runs/<%= @run.id %>%2Fplugins%2F&amp;src=sdkpreparse"><i class="fa fa-facebook-square" aria-hidden="true"></i> SHARE</a></div>
         </div>
       </div>
     </div>
@@ -109,10 +109,6 @@
           <% if @run.bookings.empty? %>
             <p>Be the first to schedule a run with <%= @run.user.first_name.capitalize %>!</p>
           <% else %>
-
-
-
-
             <% @run.bookings.first(10).each do |booking| %>
               <%= link_to dashboard_path(booking.user) do %>
               <a data-toggle="tooltip" data-placement="bottom" title="<%= booking.user.first_name %>">
