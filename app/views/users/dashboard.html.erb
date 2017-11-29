@@ -350,8 +350,8 @@
   </div>
 
   <div class="event-results">
-    <!-- ALl Events -->
-    <div class="events-list content-filter" id="all-events">
+    <!-- All Events -->
+    <div class="events-list event-filter" id="all-events">
       <% if all_events.any? %>
         <ul class="event-log ">
           <% all_events.each do |event| %>
@@ -365,12 +365,14 @@
           <% end %>
         </ul>
       <% else %>
-        <p><% link_to "Would you like to take part in your first event?", events_path %></p>
+        <div class="no-events">
+          <p><% link_to "Would you like to take part in your first event?", events_path %></p>
+        </div>
       <% end %>
     </div>
 
     <!-- Upcoming Events -->
-    <div class="upcoming-events-list content-filter" id="upcoming-events">
+    <div class="upcoming-events-list event-filter hidden" id="upcoming-events">
       <% if upcoming_events.any? %>
         <ul class="event-log ">
           <% upcoming_events.each do |event| %>
@@ -384,16 +386,18 @@
           <% end %>
         </ul>
       <% else %>
-        <p><%= link_to "You don't have any upcoming events. Would you like to find an event to take part in?", events_path %></p>
+        <div class="no-events">
+          <p><%= link_to "You don't have any upcoming events. Would you like to find an event to take part in?", events_path %></p>
+        </div>
       <% end %>
     </div>
 
     <!-- Past Events -->
-    <div class="upcoming-events-list content-filter" id="upcoming-events">
+    <div class="past-events-list event-filter hidden" id="past-events">
       <% if past_events.any? %>
         <ul class="event-log ">
           <% past_events.each do |event| %>
-            <li class="event-flex col-xs-12">
+            <li class="col-xs-12">
               <div class="event-result">
                 <h5><%= event.description.upcase %></h5>
                 <p><%= event.location.upcase.match(/^(.+?),/).to_s %> <%= event.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
@@ -403,7 +407,9 @@
           <% end %>
         </ul>
       <% else %>
-        <p>You haven't taken part in any events before.</p>
+        <div class="no-events">
+          <p>You haven't taken part in any events before.</p>
+        </div>
       <% end %>
     </div>
   </div>
@@ -495,40 +501,60 @@
 
 <% content_for(:after_js) do %>
   <script>
-    const all = document.getElementById("all-tab");
-    all.addEventListener("click", (event) => {
+    const allRuns = document.getElementById("all-tab");
+    allRuns.addEventListener("click", (event) => {
       event.preventDefault();
       $(".content-filter").addClass("hidden")
       $("#all-runs").removeClass("hidden")
     });
 
-    const hosting = document.getElementById("hosting-tab");
-    hosting.addEventListener("click", (event) => {
+    const hostingRuns = document.getElementById("hosting-tab");
+    hostingRuns.addEventListener("click", (event) => {
       event.preventDefault();
       $(".content-filter").addClass("hidden")
       $("#hosting-runs").removeClass("hidden")
     });
 
-    const hosted = document.getElementById("hosted-tab");
-    hosted.addEventListener("click", (event) => {
+    const hostedRuns = document.getElementById("hosted-tab");
+    hostedRuns.addEventListener("click", (event) => {
       event.preventDefault();
       $(".content-filter").addClass("hidden")
       $("#hosted-runs").removeClass("hidden")
     });
 
-    const upcoming = document.getElementById("upcoming-tab");
-    upcoming.addEventListener("click", (event) => {
+    const upcomingRuns = document.getElementById("upcoming-tab");
+    upcomingRuns.addEventListener("click", (event) => {
       event.preventDefault();
       $(".content-filter").addClass("hidden")
       $("#upcoming-runs").removeClass("hidden")
     });
 
-    const past = document.getElementById("past-tab");
-    past.addEventListener("click", (event) => {
+    const pastRuns = document.getElementById("past-tab");
+    pastRuns.addEventListener("click", (event) => {
       event.preventDefault();
       $(".content-filter").addClass("hidden")
       $("#past-runs").removeClass("hidden")
     });
 
+    const allEvents = document.getElementById("all-events-tab");
+    allEvents.addEventListener("click", (event) => {
+      event.preventDefault();
+      $(".event-filter").addClass("hidden")
+      $("#all-events").removeClass("hidden")
+    });
+
+    const upcomingEvents = document.getElementById("upcoming-events-tab");
+    upcomingEvents.addEventListener("click", (event) => {
+      event.preventDefault();
+      $(".event-filter").addClass("hidden")
+      $("#upcoming-events").removeClass("hidden")
+    });
+
+    const pastEvents = document.getElementById("past-events-tab");
+    pastEvents.addEventListener("click", (event) => {
+      event.preventDefault();
+      $(".event-filter").addClass("hidden")
+      $("#past-events").removeClass("hidden")
+    });
   </script>
 <% end %>
