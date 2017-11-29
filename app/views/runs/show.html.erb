@@ -47,7 +47,8 @@
         <h3><%= link_to @run.user.first_name.upcase, dashboard_path(@run.user) %></h3>
         <div class="show-user-reviews">
           <p>
-            <i class="fa fa-thumbs-up user-rating" aria-hidden="true"></i> &nbsp 21
+            <i class="fa fa-thumbs-up user-rating" aria-hidden="true"></i> &nbsp
+            <%= @user.reviews.where(punctuality: true).count %>
           </p>
         </div>
         <div class="show-user-bio">

@@ -19,9 +19,24 @@
 .dashboard-header {
   display: flex;
   justify-content: space-around;
+
+  .user-sociability {
+    font-size: 18px;
+
+    a {
+      text-decoration: none !important;
+      color: white;
+    }
+
+    &:hover {
+      text-decoration: none !important;
+      color: white !important;
+    }
+  }
 }
 
 // Review Box
+
 .review-box {
   background-color: #E57C77;
   margin-top: 30px;
@@ -274,11 +289,8 @@
   padding: 15px !important;
 
   a {
-    text-decoration: none;
-    color: white;
+    text-decoration: none !important;
+    color: white !important;
   }
 }
 
-.user-sociability {
-  font-size: 18px;
-}
