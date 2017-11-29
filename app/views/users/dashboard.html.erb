@@ -202,13 +202,14 @@
                     <p><%= run.date.strftime("%b %d %Y").upcase %></p>
                     <p><%= run.time.strftime("%l:%M %p") %></p>
                   </div>
+                  <%= link_to "", run_path(run), class: "flex-link" %>
                 </li>
               <% end %>
             <% end %>
           </ul>
         <% else %>
           <div class="log no-runs">
-            <p>You're not hosting any runs in the future yet. Do you want to host a run?</p>
+            <p><%= link_to "You're not hosting any runs in the future yet. Do you want to host a run?", new_run_path %></p>
           </div>
         <% end %>
       </div>
@@ -230,6 +231,7 @@
                     <p><%= run.date.strftime("%b %d %Y").upcase %></p>
                     <p><%= run.time.strftime("%l:%M %p") %></p>
                   </div>
+                  <%= link_to "", run_path(run), class: "flex-link" %>
                 </li>
               <% end %>
             <% end %>
@@ -275,6 +277,7 @@
                     <p><%= booking.run.date.strftime("%b %d %Y").upcase %></p>
                     <p><%= booking.run.time.strftime("%l:%M %p") %></p>
                   </div>
+                  <%= link_to "", run_path(booking.run), class: "flex-link" %>
                 </li>
               <% end %>
             <% end %>
@@ -308,6 +311,7 @@
                     <p><%= booking.run.date.strftime("%b %d %Y").upcase %></p>
                     <p><%= booking.run.time.strftime("%l:%M %p") %></p>
                   </div>
+                  <%= link_to "", run_path(booking.run), class: "flex-link" %>
                 </li>
               <% end %>
             <% end %>
@@ -355,11 +359,12 @@
       <% if all_events.any? %>
         <ul class="event-log ">
           <% all_events.each do |event| %>
-            <li class="event-flex col-xs-12">
+            <li class="col-xs-12">
               <div class="event-result">
                 <h5><%= event.description.upcase %></h5>
                 <p><%= event.location.upcase.match(/^(.+?),/).to_s %> <%= event.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
                 <p><%= event.date.strftime("%b %d %Y").upcase %> | <%= event.time.strftime("%l:%M %p").upcase %></p>
+                <%= link_to "", event_path(event), class: "flex-link" %>
               </div>
             </li>
           <% end %>
@@ -376,11 +381,12 @@
       <% if upcoming_events.any? %>
         <ul class="event-log ">
           <% upcoming_events.each do |event| %>
-            <li class="event-flex col-xs-12">
+            <li class="col-xs-12">
               <div class="event-result">
                 <h5><%= event.description.upcase %></h5>
                 <p><%= event.location.upcase.match(/^(.+?),/).to_s %> <%= event.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
                 <p><%= event.date.strftime("%b %d %Y").upcase %> | <%= event.time.strftime("%l:%M %p").upcase %></p>
+                <%= link_to "", event_path(event), class: "flex-link" %>
               </div>
             </li>
           <% end %>
@@ -402,6 +408,7 @@
                 <h5><%= event.description.upcase %></h5>
                 <p><%= event.location.upcase.match(/^(.+?),/).to_s %> <%= event.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
                 <p><%= event.date.strftime("%b %d %Y").upcase %> | <%= event.time.strftime("%l:%M %p").upcase %></p>
+                <%= link_to "", event_path(event), class: "flex-link" %>
               </div>
             </li>
           <% end %>
