@@ -92,7 +92,7 @@ h1 {
   color: #FFC93C;
 }
 
-.btn-default {
+.btn-event {
   color: #fff;
   background-color: $yellow;
   font-weight: bold;
@@ -100,7 +100,7 @@ h1 {
   border-width: 2px;
 }
 
-.btn-default:hover {
+.btn-event:hover {
   color: $background !important;
   border-color: $event-card-text;
 }
