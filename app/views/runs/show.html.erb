@@ -48,7 +48,7 @@
         <div class="show-user-reviews">
           <p>
             <i class="fa fa-thumbs-up user-rating" aria-hidden="true"></i> &nbsp
-            <%= @user.reviews.where(punctuality: true).count %>
+            <%= @run.user.reviews.where(punctuality: true).count %>
           </p>
         </div>
         <div class="show-user-bio">
