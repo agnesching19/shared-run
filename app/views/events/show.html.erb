@@ -38,11 +38,11 @@
   </div>
 </div>
 
-<%= content_for(:title, 'Event - shared.run') %>
+<%= content_for(:title, "shared.run | EVENT") %>
 
 <!-- Event policy scope -->
 <% if policy(@event).destroy? %>
-  <%= link_to "Delete", event_path(@event), class: "btn btn-default", onclick: "sweetDelete();", method: :delete %>
+  <%= link_to "Delete", event_path(@event), class: "btn btn-default", method: :delete %>
 <% end %>
 
 <% if policy(@event).edit? %>

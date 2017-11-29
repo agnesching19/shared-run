@@ -1,19 +1,16 @@
-<div class="all-runs">
-
-<!-- Search bar -->
-
-  <div class="results-wrapper">
-    <div class="side-bar">
-      <a href="#" id="searchExpandBtn" class="search-expand">
-        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-      </a>
-    </div>
+<div class="results-wrapper">
+  <div class="side-bar" id="side-bar">
+    <a href="#" id="searchExpandBtn" class="search-expand">
+      <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+    </a>
+  </div>
 
     <!-- Results Display -->
     <div class="results-display">
       <div class="results-action">
         <h1>ALL RUNS</h1>
-        <h1><%= link_to "+", new_run_path %></h1>
+
+        <h1><%= link_to "+", new_run_path, {:class => 'tooltips', 'data-toggle' => 'tooltip', 'data-placement' => 'left', :title => 'Add a run' } %></h1>
       </div>
       <div class="results-filters" id="filters">
         <%= render "shared/page_search" %>
@@ -47,32 +44,27 @@
 
 <%= content_for(:title, "shared.run | All Runs") %>
 
-<!-- Only show footer while there are less than/equal to 7 results -->
-<% if @runs.length <= 7 %>
-  <footer>
-    <div class="footer-run-index">
-      <div class="footer-box">
-        <a href="https://github.com/lewagon"><i class="fa fa-github"></i></a>
-        <a href="https://www.instagram.com/lewagonlondon/"><i class="fa fa-instagram"></i></a>
-        <a href="https://www.facebook.com/lewagonlondon/"><i class="fa fa-facebook"></i></a>
-        <a href="https://twitter.com/lewagonlondon?lang=en"><i class="fa fa-twitter"></i></a>
-        <a href="https://www.linkedin.com/school/5046700/"><i class="fa fa-linkedin"></i></a>
-      </div>
-
-      <div class="footer-box">
-        <p><%= link_to "ABOUT", about_path %></p>
-        <p><%= link_to "PRIVACY POLICY", privacy_path %></p>
-        <p><%= link_to "TERMS OF SERVICE", terms_path %></p>
-      </div>
-
-      <div class="footer-copyright">
-        <p>COPYRIGHT &copy; 2017 SHARED.RUN</p>
-      </div>
+<footer>
+  <div class="footer-run-index">
+    <div class="footer-box">
+      <a href="https://github.com/lewagon"><i class="fa fa-github"></i></a>
+      <a href="https://www.instagram.com/lewagonlondon/"><i class="fa fa-instagram"></i></a>
+      <a href="https://www.facebook.com/lewagonlondon/"><i class="fa fa-facebook"></i></a>
+      <a href="https://twitter.com/lewagonlondon?lang=en"><i class="fa fa-twitter"></i></a>
+      <a href="https://www.linkedin.com/school/5046700/"><i class="fa fa-linkedin"></i></a>
     </div>
-  </footer>
-<% else %>
-  <footer></footer>
-<% end %>
+
+    <div class="footer-box">
+      <p><%= link_to "ABOUT", about_path %></p>
+      <p><%= link_to "PRIVACY POLICY", privacy_path %></p>
+      <p><%= link_to "TERMS OF SERVICE", terms_path %></p>
+    </div>
+
+    <div class="footer-copyright">
+      <p>COPYRIGHT &copy; 2017 SHARED.RUN</p>
+    </div>
+  </div>
+</footer>
 
 <% content_for(:after_js) do %>
   <%= javascript_pack_tag 'slider' %>
@@ -482,9 +474,12 @@
 
    const searchExpandBtn = document.getElementById("searchExpandBtn");
    const filtersDiv = document.getElementById("filters");
+   const sideBarDiv = document.getElementById("side-bar");
    searchExpandBtn.addEventListener("click", (event) => {
-     filtersDiv.classList.toggle("toggled");
+    filtersDiv.classList.toggle("toggled");
+    sideBarDiv.classList.toggle("toggled");
    });
+
   </script>
 <% end %>
 
