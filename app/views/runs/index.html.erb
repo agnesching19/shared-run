@@ -10,10 +10,14 @@
 
   <!-- Results Display -->
   <div class="results-display">
-    <h1>ALL RUNS <%= link_to "+", new_run_path %></h1>
+    <div class="results-action">
+      <h1>ALL RUNS</h1>
+      <h1><%= link_to "+", new_run_path %></h1>
+    </div>
     <div class="results-filters" id="filters">
       <%= render "shared/page_search" %>
     </div>
+    <div class="results-box">
       <% @runs.each do |run| %>
         <% if run.capacity > 0 && (run.bookings.count < run.capacity) %>
           <% photo_url = run.user.photo? ? run.user.photo : 'lix2bqmp4kzdpu4sqjiy' %>
@@ -33,10 +37,11 @@
             <%= link_to "", run_path(run), class: "result-link-url" %>
           </div>
         <% end %>
-      <% end %>
-    </div>
-    <div id="results-map"></div>
+    <% end %>
   </div>
+</div>
+
+<div id="results-map"></div>
 
 <%= content_for(:title, "shared.run | Runs List") %>
 

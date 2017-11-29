@@ -2,7 +2,7 @@
 
 .results-wrapper {
   display: flex;
-  background-color: #393939;
+  background-color: $background;
   height: calc(100vh - 100px);
 }
 
@@ -24,25 +24,37 @@
 }
 
 .results-display {
-  padding: 40px 10px 10px 10px;
   list-style: none;
   width: 100%;
   position: relative;
 
-  h1 {
-    font-size: 50px;
-  }
+  .results-action {
+    display: flex;
+    justify-content: space-between;
+    margin: 0px !important;
+    padding: 0px !important;
 
-  a {
-    text-decoration: none !important;
-    color: white !important;
+    h1 {
+      font-size: 50px;
+      margin-top: 20px !important;
+      padding-right: 15px;
+    }
 
-    &:hover {
+    a {
       text-decoration: none !important;
-      color: $light-gray !important;
-      transition: 0.3s;
+      color: white !important;
+
+      &:hover {
+        text-decoration: none !important;
+        color: $light-gray !important;
+        transition: 0.3s;
+      }
     }
   }
+}
+
+.results-box {
+  height: calc(100vh - 187.5px);
 }
 
 .results-filters {
