@@ -13,6 +13,20 @@ sliders.forEach(slider => {
   })
 })
 
+// Proximity slider
+var arrProximity = ['1km', '3km', '5km']
+
+var sliders = document.querySelectorAll('.proximity');
+sliders.forEach(slider => {
+  slider.addEventListener('input', event => {
+    console.log(event);
+    var currentValue = event.target.value;
+
+    var span = event.currentTarget.querySelector('span').innerText = arrProximity[currentValue];
+
+  })
+})
+
 // Distance slider
 var arrSocial = ['','<i class="fa fa-headphones" aria-hidden="true"></i>', '<i class="fa fa-smile-o" aria-hidden="true"></i>', '<i class="fa fa-handshake-o" aria-hidden="true"></i>']
 
