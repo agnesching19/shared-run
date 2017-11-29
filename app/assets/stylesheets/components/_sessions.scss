@@ -3,6 +3,7 @@
   justify-content: space-between;
   padding: 20px;
   align-items: center;
+  height: calc(100vh - 100px);
 }
 
 .block {
@@ -20,6 +21,10 @@
   background-color: rgba(255,255,255,0.2);
 }
 
+.right {
+    border: 1px solid #535353;
+}
+
 .session-links {
   padding-top: 10px;
   font-size: 16px;
@@ -34,7 +39,32 @@
   color: #fff;
   background-color: #3b5998;
   border-color: rgba(0,0,0,0.2);
-  padding: 15px;
+  padding-top: 11px;
   text-align: center;
   border-radius: 3px;
+}
+
+.btn-wider {
+  width: 159px;
+  padding-right: 10px;
+  margin-right: 22px;
+}
+
+.btn-min-width{
+  min-width: 271px;
+  height: 41px;
+}
+
+.form-max-width {
+  max-width: 470px;
+  padding-left: 10px;
+}
+
+.form-container {
+  display:flex;
+  justify-content: space-around;
+}
+
+.form-padding-top {
+  padding-top: 15px;
 }
