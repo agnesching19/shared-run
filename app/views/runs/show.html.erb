@@ -109,9 +109,15 @@
           <% if @run.bookings.empty? %>
             <p>Be the first to schedule a run with <%= @run.user.first_name.capitalize %>!</p>
           <% else %>
+
+
+
+
             <% @run.bookings.first(10).each do |booking| %>
               <%= link_to dashboard_path(booking.user) do %>
+              <a data-toggle="tooltip" data-placement="bottom" title="<%= booking.user.first_name %>">
                 <%= cl_image_tag booking.user.photo, crop: :fill, class: "buddy-photo" %>
+              </a>
               <% end %>
             <% end %>
             <% if @run.bookings.count > 10 %>
