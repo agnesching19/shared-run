@@ -47,6 +47,16 @@
         <h3><%= link_to @run.user.first_name.upcase, dashboard_path(@run.user) %></h3>
         <div class="show-user-reviews">
           <p>
+            <% unless @run.user.sociability.nil? %>
+              <% if @user.sociability === 1 %>
+                <a href="#" data-toggle="tooltip" data-placement="bottom"  title="I'm fully focused on the run!"><i class="fa fa-headphones" aria-hidden="true"></i></a>
+              <% elsif @user.sociability === 2 %>
+                <a href="#" data-toggle="tooltip" data-placement="bottom"  title="I occasionally enjoy a brief chat"><i class="fa fa-smile-o" aria-hidden="true"></i></a>
+              <% else @user.sociability === 3 %>
+                <a href="#" data-toggle="tooltip" data-placement="bottom"  title="What's a run without any banter?"><i class="fa fa-handshake-o" aria-hidden="true"></i> </a>
+              <% end %>
+            <% end %>
+
             <i class="fa fa-thumbs-up user-rating" aria-hidden="true"></i> &nbsp
             <%= @run.user.reviews.where(punctuality: true).count %>
           </p>
@@ -80,7 +90,9 @@
             <p>Be the first to schedule a run with <%= @run.user.first_name.capitalize %>!</p>
           <% else %>
             <% @run.bookings.first(10).each do |booking| %>
-              <%= cl_image_tag booking.user.photo, crop: :fill, class: "buddy-photo" %>
+              <%= link_to dashboard_path(booking.user) do %>
+                <%= cl_image_tag booking.user.photo, crop: :fill, class: "buddy-photo" %>
+              <% end %>
             <% end %>
             <% if @run.bookings.count > 10 %>
               <p><i>And <%= @run.bookings.count - 10 %> more...</i></p>
