@@ -17,11 +17,23 @@
     <div class="results-box">
       <% @events.each do |event| %>
         <div class="result">
-          <div class="result-description">
-            <h4><%= event.description.upcase.first(50) %></h4>
-            <h5><%= event.location.upcase.match(/^(.+?),/).to_s %> <%= event.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></h5>
-            <h5><%= event.date.strftime("%b %d %Y") %> @ <%= event.time.strftime("%l:%M %p") %></h5>
-            <p>PRICE: £<%= number_with_precision(event.price, precision: 2) %></p>
+          <div class="event-result-description">
+            <h4>
+              <% if event.description.upcase.chars.count > 50 %>
+                <%= event.description.upcase.chars.first(50).join %> ...</h4>
+              <% else %>
+                <%= event.description.upcase.chars.first(50).join %>
+              <% end %>
+            <div class="event-result-flex">
+              <div class="event-flex">
+                <h5><%= event.location.upcase.match(/^(.+?),/).to_s %> <%= event.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></h5>
+                <h5><%= event.date.strftime("%b %d %Y").upcase %> @ <%= event.time.strftime("%l:%M %p").upcase %></h5>
+              </div>
+              <div class="event-flex">
+                <p>SURFACE: <%= event.surface.upcase %></p>
+                <p>PRICE: £<%= number_with_precision(event.price, precision: 2) %></p>
+              </div>
+            </div>
           </div>
           <%= link_to "", new_event_reservation_path(event), class: "result-link-url" %>
         </div>
