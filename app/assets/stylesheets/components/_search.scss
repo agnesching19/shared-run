@@ -17,16 +17,13 @@
   height: 30px;
 }
 
-.search-home-page {
-  width: 277px;
-}
-
 .btn-primary {
-  background-color: #FF006C;
+  background-color: $btn-primary;
   border-color: $dark-gray;
   border-width: 1.5px;
   color: $dark-gray;
-  font-weight: bold;
+  font-weight: 600;
+  width: 282px;
 }
 
 .btn-primary:hover {
@@ -43,7 +40,12 @@
 
 .input-group .form-control {
   border-radius: 3px;
-  width: 235px;
+  width: 240px;
+  font-weight: 300;
+}
+.input-group {
+  display: flex;
+  justify-content: center;
 }
 
 .page-search {
@@ -56,7 +58,6 @@
   border-width: 1.5px;
   color: $dark-gray !important;
 }
-
 
  .search-expand {
    font-size: 20px;
@@ -71,7 +72,6 @@
  .side-bar {
   width: 125px;
   }
-
 
   .input-with-icon{
     padding: 20px 80px 20px 30px;
