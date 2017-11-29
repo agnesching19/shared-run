@@ -5,11 +5,19 @@
 .alert {
   margin: 0;
   text-align: center;
-  color: white;
+  color: $dark-gray;
+  z-index: 9999;
+  border: none !important;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
+
 .alert-info {
   background: $alert-info;
+  z-index: 9999;
 }
 .alert-warning {
   background: $alert-warning;
+  z-index: 9999;
 }
