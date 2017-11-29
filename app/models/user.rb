@@ -60,16 +60,16 @@ class User < ApplicationRecord
   end
 
   def future_runs
-    runs.select { |r| r.date >= Date.today }
+    runs.select { |run| run.date >= Date.today }
   end
 
   def past_bookings
-    bookings.select { |b| b.run.date < Date.today }.sort_by { |b| b.run.date }
+    bookings.select { |booking| booking.run.date < Date.today }.sort_by { |booking| booking.run.date }
   end
 
   def past_bookings_without_reviews
-    past_bookings.select do |b|
-      b.run.reviews.empty?
+    past_bookings.select do |booking|
+      booking.run.reviews.empty?
     end
   end
 
