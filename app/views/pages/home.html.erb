@@ -1,15 +1,14 @@
 <div class="main">
   <div class="right-flex text-center">
     <div id="landing-buttons">
-      <%= link_to runs_path, class: "landing-button" do  %>
-        <i class="fa fa-location-arrow" aria-hidden="true"></i>
-      <% end %>
-      <%= link_to runs_path, class: "landing-button" do   %>
-        <i class="fa fa-cube" aria-hidden="true"></i>
-      <% end %>
-      <%= link_to runs_path, class: "landing-button" do  %>
-        <i class="fa fa-user-o" aria-hidden="true"></i>
-      <% end %>
+        <!-- Link to runs -->
+        <a href="runs#index" data-toggle="tooltip" data-placement="auto" title="Seeking a Run"><i class="fa fa-cube landing-button" aria-hidden="true"></i></a>
+        <!-- Link to events -->
+        <a href="events#index" data-toggle="tooltip" data-placement="auto" title="Seeking an Event"><i class="fa fa-calendar landing-button" aria-hidden="true"></i></a>
+        <!-- Link to log in -->
+        <%= link_to user_session_path do %>
+          <div data-toggle="tooltip" data-placement="auto" title="Join / Log In"><i class="fa fa-user-o landing-button" aria-hidden="true"></i></div>
+        <% end %>
     </div>
     <div class="website-main-text margin-top">
       <div class="website-name">

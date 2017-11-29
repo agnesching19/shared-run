@@ -1,6 +1,6 @@
 
 // Distance slider
-var arrDistance = ['<5km', '5-15km', '>15km']
+var arrDistance = ['<5', '5 - 15', '>15']
 
 var sliders = document.querySelectorAll('.distance');
 sliders.forEach(slider => {
@@ -9,6 +9,20 @@ sliders.forEach(slider => {
     var currentValue = event.target.value;
 
     var span = event.currentTarget.querySelector('span').innerText = arrDistance[currentValue];
+
+  })
+})
+
+// Proximity slider
+var arrProximity = ['1', '3', '5']
+
+var sliders = document.querySelectorAll('.proximity');
+sliders.forEach(slider => {
+  slider.addEventListener('input', event => {
+    console.log(event);
+    var currentValue = event.target.value;
+
+    var span = event.currentTarget.querySelector('span').innerText = arrProximity[currentValue];
 
   })
 })

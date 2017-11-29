@@ -105,12 +105,14 @@ form {
 }
 
 .landing-button {
-  padding: 10px 17px;
+  padding: 13px 17px;
   background-color: rgba(255,255,255,0.6);
   color: black;
   font-size: 20px;
   border-radius: 50%;
   text-decoration: none;
+  width: 50px;
+  height: 50px;
   z-index: 600;
 
   &:link, &:hover, &:active, &:focus, &:visited {
