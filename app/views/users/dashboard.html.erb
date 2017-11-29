@@ -22,7 +22,7 @@
         <p>
           <!-- Profile Sociability -->
           <% if @user.sociability.nil? %>
-            <a href="#" data-toggle="tooltip" data-placement="bottom"  title="No review yet.">
+            <a href="#" data-toggle="tooltip" data-placement="bottom"  title="No reviews yet.">
               <i class="fa fa-thumbs-up" aria-hidden="true"></i> &nbsp
               <%= @user.reviews.where(punctuality: true).count %>
             </a>
