@@ -31,7 +31,7 @@
                 <h5><%= event.date.strftime("%b %d %Y").upcase %> @ <%= event.time.strftime("%l:%M %p").upcase %></h5>
               </div>
               <div class="event-flex">
-                <p>SURFACE: <%= event.surface.upcase %></p>
+                <p>SURFACE: <%= event.surface ? event.surface.upcase : "NOT LISTED"  %></p>
                 <p>PRICE: £<%= number_with_precision(event.price, precision: 2) %></p>
               </div>
             </div>
