@@ -189,6 +189,10 @@
     background-color: $dark-gray;
     transition: 0.5s;
   }
+
+  a {
+    z-index: 4;
+  }
 }
 
 .flex-link {

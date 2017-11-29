@@ -455,7 +455,7 @@
           <% else %>
             <div class="border">
               <h4><%= distances.max %></h4>
-              <h5>KILOMETRES</h5>
+              <h5><%= distances.max == 1 ? "KILOMETRE" : "KILOMETRES" %></h5>
               <p>FARTHEST RUN</p>
             </div>
           <% end %>
@@ -482,7 +482,7 @@
           <% else %>
             <div class="border">
               <h4><%= times.max %></h4>
-              <h5>MINUTES</h5>
+              <h5><%= times.max == 1 ? "MINUTE" : "MINUTES" %></h5>
               <p>LONGEST RUN</p>
             </div>
           <% end %>
