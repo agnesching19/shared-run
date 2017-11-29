@@ -181,12 +181,12 @@
               </li>
             <% end %>
           </ul>
-          <% else %>
-            <div class="log no-runs">
-              <p>You haven't hosted/scheduled any runs yet. Would you like to schedule a run?</p>
-            </div>
-          <% end %>
-        </div>
+        <% else %>
+          <div class="log no-runs">
+            <p><%= link_to "Would you like to start your first run?", runs_path %></p>
+          </div>
+        <% end %>
+      </div>
       <!-- Hosting Runs -->
       <div class="host-runs content-filter hidden" id="hosting-runs">
         <% if @user.runs.any? { |r| r.date >= Date.today } %>
@@ -341,6 +341,93 @@
     </div>
   </div>
 
+  <!-- Event History -->
+  <h3>EVENT HISTORY</h3>
+  <!-- Logic -->
+  <% all_events = [] %>
+  <% @user.events.each do |event| %>
+    <% all_events << event %>
+  <% end %>
+  <% @user.reservations.each do |reservation| %>
+    <% all_events << reservation.event %>
+  <% end %>
+
+  <% upcoming_events = [] %>
+  <% past_events = [] %>
+  <% all_events.each do |event| %>
+    <% if event.date >= Date.today %>
+      <% upcoming_events << event %>
+    <% else %>
+      <% past_events << event %>
+    <% end %>
+  <% end %>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <a href="#" class="tab" id="all-events-tab">ALL (<%= all_events.count %>)</a>
+    <a href="#" class="tab" id="upcoming-events-tab">UPCOMING (<%= upcoming_events.count %>)</a>
+    <a href="#" class="tab" id="past-events-tab">PAST (<%= past_events.count %>)</a>
+  </div>
+
+  <div class="event-results">
+    <!-- ALl Events -->
+    <div class="events-list content-filter" id="all-events">
+      <% if all_events.any? %>
+        <ul class="event-log ">
+          <% all_events.each do |event| %>
+            <li class="event-flex col-xs-12">
+              <div class="event-result">
+                <h5><%= event.description.upcase %></h5>
+                <p><%= event.location.upcase.match(/^(.+?),/).to_s %> <%= event.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
+                <p><%= event.date.strftime("%b %d %Y").upcase %> | <%= event.time.strftime("%l:%M %p").upcase %></p>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p><% link_to "Would you like to take part in your first event?", events_path %></p>
+      <% end %>
+    </div>
+
+    <!-- Upcoming Events -->
+    <div class="upcoming-events-list content-filter" id="upcoming-events">
+      <% if upcoming_events.any? %>
+        <ul class="event-log ">
+          <% upcoming_events.each do |event| %>
+            <li class="event-flex col-xs-12">
+              <div class="event-result">
+                <h5><%= event.description.upcase %></h5>
+                <p><%= event.location.upcase.match(/^(.+?),/).to_s %> <%= event.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
+                <p><%= event.date.strftime("%b %d %Y").upcase %> | <%= event.time.strftime("%l:%M %p").upcase %></p>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p><%= link_to "You don't have any upcoming events. Would you like to find an event to take part in?", events_path %></p>
+      <% end %>
+    </div>
+
+    <!-- Past Events -->
+    <div class="upcoming-events-list content-filter" id="upcoming-events">
+      <% if past_events.any? %>
+        <ul class="event-log ">
+          <% past_events.each do |event| %>
+            <li class="event-flex col-xs-12">
+              <div class="event-result">
+                <h5><%= event.description.upcase %></h5>
+                <p><%= event.location.upcase.match(/^(.+?),/).to_s %> <%= event.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></p>
+                <p><%= event.date.strftime("%b %d %Y").upcase %> | <%= event.time.strftime("%l:%M %p").upcase %></p>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>You haven't taken part in any events before.</p>
+      <% end %>
+    </div>
+  </div>
+
   <!-- Achievements -->
   <div class="achievements breather">
     <h3>ACHIEVEMENTS</h3>
@@ -367,7 +454,6 @@
           <% end %>
         </div>
         <div class="achievement-footer">
-
         </div>
       </div>
 
@@ -395,7 +481,6 @@
           <% end %>
         </div>
         <div class="achievement-footer">
-          <%  %>
         </div>
       </div>
 
@@ -420,10 +505,8 @@
             </div>
           <% end %>
         </div>
-        <div class="achievement-footer">
-
-        </div>
       </div>
+
     </div>
   </div>
 </div>
@@ -467,8 +550,5 @@
       $("#past-runs").removeClass("hidden")
     });
 
-    // $(document).ready(function () {
-    //   $('#memberModal').modal('show');
-    // });
   </script>
 <% end %>
