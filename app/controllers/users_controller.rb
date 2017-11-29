@@ -23,16 +23,6 @@ class UsersController < ApplicationController
     @run.capacity -= 1
   end
 
-  def status
-    @next_run = @user.runs.order(date: :desc).first
-    @days_to_go = (@next_run.date - Date.today + 1).to_i
-    if @days_to_go < 0
-      @status = "It's been #{-@days_to_go} days since your last run!"
-    else
-      @status = "#{@days_to_go} days until your next run!"
-    end
-  end
-
   private
 
   def user_params
