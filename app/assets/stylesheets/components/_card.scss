@@ -8,7 +8,7 @@
   box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
   position: relative;
   height: 200px;
-  color: $event-card-text;
+  color: #E6E6E6;
   border-radius: 5px;
   border-top-style: dashed;
   width: 80%;
@@ -32,8 +32,10 @@
     margin: 0;
     font-size: 30px;
   }
+   h3:hover {
+    color: $yellow;
+   }
 }
-
 .event-card-content {
   flex-grow: 1;
   padding-right: 30px;
@@ -81,3 +83,30 @@
   height: 50px;
   justify-content: space-between;
 }
+
+h1 {
+  text-align: center;
+}
+
+.fa-plus:before {
+  color: #FFC93C;
+}
+
+.btn-default {
+  color: #fff;
+  background-color: $yellow;
+  font-weight: bold;
+  border-color: $yellow;
+  border-width: 2px;
+}
+
+.btn-default:hover {
+  color: $background !important;
+  border-color: $event-card-text;
+}
+
+
+.btn {
+  margin-right: 18px;
+}
+
