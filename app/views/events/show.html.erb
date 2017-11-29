@@ -13,13 +13,12 @@
               <%= cl_image_tag @event.user.photo, class: "event-avatar" %>
             <% end %>
           </p>
-
-         <a data-toggle="tooltip" data-placement="auto" title=" <%= @event.user.first_name %>"><i class="fa fa-user-o landing-button" aria-hidden="true"></i></a>
-
           <h4>PARTICIPANTS: (<%= @event.reservations.count %>)</h4>
           <div class="buddy-avatars">
               <% @event.reservations.each do |reservation| %>
-                <%= cl_image_tag reservation.user.photo, crop: :fill, class: "buddy-photo" %>
+                <a data-toggle="tooltip" data-placement="bottom" title=" <%= reservation.user.first_name %>">
+                  <%= cl_image_tag reservation.user.photo, crop: :fill, class: "buddy-photo" %>
+                </a>
               <% end %>
           </div>
         </div>
