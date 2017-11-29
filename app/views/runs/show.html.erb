@@ -134,6 +134,28 @@
 
 <%= content_for(:title, @run.title.split.map {|r| r.capitalize}.join(" ")) %>
 
+<footer>
+  <div class="footer-run-show">
+    <div class="footer-box">
+      <a href="https://github.com/lewagon"><i class="fa fa-github"></i></a>
+      <a href="https://www.instagram.com/lewagonlondon/"><i class="fa fa-instagram"></i></a>
+      <a href="https://www.facebook.com/lewagonlondon/"><i class="fa fa-facebook"></i></a>
+      <a href="https://twitter.com/lewagonlondon?lang=en"><i class="fa fa-twitter"></i></a>
+      <a href="https://www.linkedin.com/school/5046700/"><i class="fa fa-linkedin"></i></a>
+    </div>
+
+    <div class="footer-box">
+      <p><%= link_to "ABOUT", about_path %></p>
+      <p><%= link_to "PRIVACY POLICY", privacy_path %></p>
+      <p><%= link_to "TERMS OF SERVICE", terms_path %></p>
+    </div>
+
+    <div class="footer-copyright">
+      <p>COPYRIGHT &copy; 2017 SHARED.RUN</p>
+    </div>
+  </div>
+</footer>
+
 <!-- JavaScript -->
 
 <% content_for(:after_js) do %>
