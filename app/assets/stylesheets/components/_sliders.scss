@@ -5,22 +5,31 @@ $range-track-height: 5px !default;
 $range-label-width: 70px !default;
 
 .slider-padding {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
 }
 
 .slider-id {
-  position: absolute;
-  top: -50%;
-  left: 50%;
+  font-size: 12px;
+  font-weight: lightest;
+  padding: 0 80px 0px 30px;
+  position: relative;
+  top: 20px;
+  left: 25px;
 }
 
 .range-slider {
-  width: $range-width;
-  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 10px 80px 10px 55px;
+  label {
+    margin-bottom: 0px;
+    margin-right: 10px;
+  }
 }
 
 .range-slider__range {
+  flex-grow: 1;
   -webkit-appearance: none;
   width: calc(100% - (#{$range-label-width + 13px}));
   height: $range-track-height;
@@ -70,6 +79,7 @@ $range-label-width: 70px !default;
 
 // Range Label
 .range-slider__value {
+  margin-left: 10px;
   display: inline-block;
   position: relative;
   width: $range-label-width;
@@ -80,6 +90,8 @@ $range-label-width: 70px !default;
   background: $range-label-color;
   padding: 5px 10px;
   margin-left: 8px;
+  font-size: 14px;
+  width: 80px;
 
 }
 

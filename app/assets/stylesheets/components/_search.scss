@@ -1,3 +1,14 @@
+.form-filter {
+  h2 {
+    margin-right: 50px;
+    font-size: 25px;
+    font-weight: 100;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.4;
+  }
+}
+
 .search-button {
   font-size: 12px;
   padding: 5px 10px !important;
@@ -57,6 +68,23 @@
 
  .side-bar {
   width: 125px;
+  }
+
+
+  .input-with-icon{
+    padding: 20px 80px 20px 30px;
+
+    display: flex;
+    align-items: center;
+    input {
+      flex-grow: 1;
+      border-radius: 5px;
+    }
+    i {
+      font-size: 25px;
+      opacity: 0.8;
+      padding-right: 10px;
+    }
   }
 
 
