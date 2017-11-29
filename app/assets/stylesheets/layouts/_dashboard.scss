@@ -190,8 +190,9 @@
     transition: 0.5s;
   }
 
-  a {
+  li {
     z-index: 4;
+    position: relative;
   }
 }
 
