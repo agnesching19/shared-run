@@ -13,7 +13,7 @@
     </div>
 
     <div class="form-actions">
-      <%= f.button :submit, "Sign Up", class: "btn btn-default", onclick: "sweet();" %>
+      <%= f.button :submit, "Sign Up", class: "btn btn-default" %>
     </div>
   <% end %>
 
@@ -21,7 +21,3 @@
 
   <%= link_to "Sign Up with Facebook", user_facebook_omniauth_authorize_path %>
 </div>
-
-<!-- JS for sweet alert -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.3/sweetalert2.all.min.js" integrity="sha256-Cc+yDzt4WAIOQNyXND0m3zCkxy8mSRJXLGy+5oGaHHM=" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="app/assets/javascripts/sweetalert2.js"></script>
