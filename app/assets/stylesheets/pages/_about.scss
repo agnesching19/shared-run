@@ -62,7 +62,7 @@
 }
 
 .member {
-  padding: 5px 20px;
+  padding: 10px 20px;
   color: $gray;
 
 }
@@ -82,8 +82,7 @@
 }
 
 .member-text {
-  padding: 10px;
-  background-color: rgb(214,214,214);
+  color: white;
 
   &:hover {
     background-color: #E4E6E4;
@@ -98,7 +97,6 @@
 }
 
 .member-links {
-  background-color: $dark-blue;
   display: flex;
   justify-content: space-around;
   align-items: center;
