@@ -36,12 +36,12 @@
         <%= f.input :location, placeholder: "Where are you based?" %>
       </div>
 
-      <div class="col-xs-6">
+<!--       <div class="col-xs-6">
         <%= f.input :strava, label: "Strava ID" %>
       </div>
 
       <div class="col-xs-6">
-        <%= f.input :nike, label: "Nike+ ID" %>
+        <%= f.input :nike, label: "Nike+ ID" %> -->
       </div>
 
       <div class="col-xs-12">
@@ -63,13 +63,16 @@
         <h4>Confirm Changes</h4>
         <%= f.input :current_password, placeholder: "Please confirm your changes by inputting your current password.", required: true, label: "Current Password" %>
       </div>
-    </div>
 
-    <div class="form-actions col-xs-12">
-      <%= f.button :submit, "Update", class: "btn btn-default" %>
-      <%= link_to "Cancel", :back, class: "btn btn-default" %>
-    </div>
-  <% end %>
+      <br>
+
+      <div class="form-actions col-xs-12">
+        <%= f.button :submit, "Update", class: "btn btn-default" %>
+        <%= link_to "Cancel", :back, class: "btn btn-default" %>
+      </div>
+    <% end %>
+  </div>
+
 
   <div class="col-xs-12"><hr></div>
 
