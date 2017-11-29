@@ -1,94 +1,52 @@
-.event-avatar {
-  height: 45px;
-  width: 45px;
-  border-radius: 50%;
-}
-
-.event-wrapper {
-  min-height: calc(100vh - 50px - 50px);
+.show-event-details {
+  padding: 20px;
   display: flex;
-  background: {
-     image: asset_url("runner.png");
-     size: cover;
+  justify-content: space-around;
+
+  // display: grid;
+  // grid-template-columns: 20% 20% 20% 20% 20%;
+
+  .event-detail {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    .fa {
+      padding-right: 15px;
+      font-size: 45px;
+    }
+
+    h3 {
+      // font-weight: bold;
+      font-size: 25px;
+      font-family: "Source Sans Pro", "sans serif";
+      margin: 0px !important;
+    }
+
+    p {
+      margin: 0px !important;
+    }
   }
 }
 
-.event-time {
-  background-color: $yellow;
-  width: 280px;
-  padding-left: 10px;
-  border-radius: 8px;
-}
+.show-event-participants {
+  padding: 20px 50px;
 
-.event-display {
-  padding: 0px 10px 0px 10px;
-  list-style: none;
-  width: 50%;
-  margin-left: 100px;
+  h3 {
+    margin: 12.5px 0px !important;
+  }
 
-}
-
-.events {
-  display: flex;
-  align-items: center;
-  padding: 40px 30px;
-}
-
-.event-content {
-  flex: 1 0 auto;
-  padding: 10px 10px;
-  margin-left: 50px;
-  align-items: center;
-  height: 450px;
-  width: 750px;
-  border: 1px solid rgba(0,0,0,0.3);
-  border-radius: 5px;
-  box-shadow: 10px 10px 5px #888888;
-  h4, p {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    margin: 15px;
-    font-size: 25px;
-    color: white;
+  p {
+    margin: 0px !important;
   }
 }
 
-.event-content {
-  background-color: transparentize($dark-gray, .2);
-}
-
-.event-description {
-  width: 480px;
-  font-size: 40px;
-  letter-spacing: 3px;
-  padding-left: 5px;
-}
-
-#show-event-map {
-  color: $gray;
-  height: 400px;
-  width: 400px;
-  position: absolute;
-  top: 120px;
-  right: 120px;
-  flex: 0 0 auto;
-  border: 1px solid rgba(0,0,0,0.5);
-  border-radius: 10px;
-  position: sticky !important;
-}
-
-.schedule-run {
+.show-event-action {
+  padding: 20px 0px;
   display: flex;
+  justify-content: flex-start;
 }
 
-.footer-event-show {
-  position: sticky !important;
-  align-items: center;
-  bottom: 0 !important;
-  display: flex;
-  width: 100%;
-  background-color: transparent;
-  text-align: center;
-  height: 50px;
-  justify-content: space-between;
+.reserve-btn {
+  width: 100px;
 }
