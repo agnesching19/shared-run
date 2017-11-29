@@ -19,11 +19,12 @@
         <div class="result">
           <div class="event-result-description">
             <h4>
-              <% if event.description.upcase.chars.count > 50 %>
-                <%= event.description.upcase.chars.first(50).join %> ...</h4>
+              <% if event.description.upcase.chars.count > 45 %>
+                <%= event.description.upcase.chars.first(45).join %> ...
               <% else %>
-                <%= event.description.upcase.chars.first(50).join %>
+                <%= event.description.upcase.chars.first(45).join %>
               <% end %>
+            </h4>
             <div class="event-result-flex">
               <div class="event-flex">
                 <h5><%= event.location.upcase.match(/^(.+?),/).to_s %> <%= event.location.upcase.match(/,\s*([^,]+)$/).to_s.gsub(", ","") %></h5>
