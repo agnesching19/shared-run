@@ -27,7 +27,22 @@
   padding: 10px 10px;
   list-style: none;
   width: 100%;
-  position: relative
+  position: relative;
+
+  h1 {
+    font-size: 50px;
+  }
+
+  a {
+    text-decoration: none !important;
+    color: white !important;
+
+    &:hover {
+      text-decoration: none !important;
+      color: $light-gray !important;
+      transition: 0.3s;
+    }
+  }
 }
 
 .results-filters {
@@ -80,7 +95,7 @@
   padding: 0px 15px;
   text-align: left;
   align-items: center;
-  max-width: 55%;
+  width: 55%;
 
   h4 {
     overflow-wrap: break-word;
