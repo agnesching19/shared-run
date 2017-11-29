@@ -27,7 +27,7 @@ svg {
     position: absolute;
 
     &:after {
-      animation-duration: 8s;
+      animation-duration: 7s;
       animation-iteration-count: infinite;
       animation-name: pop;
       border-radius: 50%;
@@ -46,9 +46,10 @@ svg {
       background-color: $btn-primary;
       border-radius: 50%;
       height: 1em;
+      width: 1em;
       display: block;
       text-indent: -9999px;
-      width: 1em;
+
     }
   }
 
@@ -57,7 +58,7 @@ svg {
     top: -135px;
 
     &:after {
-      animation-delay: 3s;
+      animation-delay: 2s;
     }
   }
 
@@ -75,7 +76,7 @@ svg {
     top: -41px;
 
     &:after {
-      animation-delay: 3s;
+      animation-delay: 4s;
     }
   }
 
@@ -84,7 +85,7 @@ svg {
     top: -152px;
 
     &:after {
-      animation-delay: 3s;
+      animation-delay: 5s;
     }
   }
 
@@ -93,7 +94,7 @@ svg {
     top: -74px;
 
     &:after {
-      animation-delay: 3s;
+      animation-delay: 6s;
     }
   }
 }
