@@ -1,5 +1,5 @@
 // Import Google fonts
-@import url('https://fonts.googleapis.com/css?family=PT+Sans:100,400,700|Source+Sans+Pro:300,600,700');
+@import url('https://fonts.googleapis.com/css?family=PT+Sans:100,400,700|Source+Sans+Pro:200, 200i,300, 400,600,700');
 
 // Default fonts for body and headers
 $body-font: "Source Sans Pro", "sans-serif";
@@ -7,5 +7,5 @@ $headers-font: "PT Sans", "Helvetica", "sans-serif";
 
 // Home page fonts
 $font-family-fallback: sans-serif;
-$font-family: "Source Sans";
+$font-family: "Source Sans Pro";
 $line-height: 1.5em;
