@@ -18,15 +18,10 @@
         <% end %>
         <br>
       </p>
+      <!-- Profile Sociability -->
       <div class="user-sociability" id="sociability" >
         <p>
-          <!-- Profile Sociability -->
-          <% if @user.sociability.nil? %>
-            <a href="#" data-toggle="tooltip" data-placement="bottom"  title="No review yet.">
-              <i class="fa fa-thumbs-up" aria-hidden="true"></i> &nbsp
-              <%= @user.reviews.where(punctuality: true).count %>
-            </a>
-          <% else %>
+          <% unless @user.sociability.nil? %>
             <% if @user.sociability === 1 %>
               <a href="#" data-toggle="tooltip" data-placement="bottom"  title="I'm fully focused on the run!">Sociability: &nbsp
                 <i class="fa fa-headphones" aria-hidden="true"></i>
@@ -40,18 +35,17 @@
                 <i class="fa fa-handshake-o" aria-hidden="true"></i>
               </a>
             <% end %> &nbsp | &nbsp
-            <!-- Profile Review -->
-            <% if @user.reviews.where(punctuality: true).count === 0 %>
-              <a href="#" data-toggle="tooltip" data-placement="bottom"  title="No review yet.">
-                <i class="fa fa-thumbs-up" aria-hidden="true"></i> &nbsp
-                <%= @user.reviews.where(punctuality: true).count %></a>
-            <% else %>
-              <a href="#" data-toggle="tooltip" data-placement="bottom"  title="Punctuality is my middle name!">
+          <% end %>
+          <!-- User Review -->
+          <% if @user.reviews.where(punctuality: true).count === 0 %>
+            <a href="#" data-toggle="tooltip" data-placement="bottom"  title="No review yet.">
               <i class="fa fa-thumbs-up" aria-hidden="true"></i> &nbsp
               <%= @user.reviews.where(punctuality: true).count %></a>
-            <% end %>
+          <% else %>
+            <a href="#" data-toggle="tooltip" data-placement="bottom"  title="Punctuality is my middle name!">
+            <i class="fa fa-thumbs-up" aria-hidden="true"></i> &nbsp
+            <%= @user.reviews.where(punctuality: true).count %></a>
           <% end %>
-
         </p>
       </div>
     </div>
@@ -483,7 +477,7 @@
 
           <% if times == [] %>
             <div class="no-border">
-              <h2><i class="fa fa-meh-o" aria-hidden="true"></i></h2>
+              <h5>No achievements yet - but never too late to get started! 💪🏼</i></h5>
             </div>
           <% else %>
             <div class="border">
