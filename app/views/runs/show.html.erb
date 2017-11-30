@@ -49,13 +49,15 @@
                 <a href="#" data-toggle="tooltip" data-placement="bottom"  title="What's a run without any banter?">Sociability: &nbsp
                   <i class="fa fa-handshake-o" aria-hidden="true"></i>
                 </a>
-                &nbsp | &nbsp
               <% end %>
+               &nbsp | &nbsp
               <!-- Profile Review -->
-              <% if @run.user.reviews.where(punctuality: true).count > 0 %>
-                <a href="#" data-toggle="tooltip" data-placement="bottom"  title="No review yet.">
-                  <i class="fa fa-thumbs-up" aria-hidden="true"></i> &nbsp
-                  <%= @run.user.reviews.where(punctuality: true).count %></a>
+              <% if @run.user.reviews.where(punctuality: true).count === 0 %>
+                <a href="#" data-toggle="tooltip" data-placement="bottom" title="No reviews yet">No reviews yet</a>
+              <% else %>
+                <a href="#" data-toggle="tooltip" data-placement="bottom" title="Punctuality is my middle name!">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> &nbsp
+                <%= @run.user.reviews.where(punctuality: true).count %></a>
               <% end %>
             <% end %>
           </p>
@@ -143,7 +145,29 @@
     </div>
   </div>
 </div>
+<!--
+<footer>
+  <div class="footer-run-show">
+    <div class="footer-box">
+      <a href="https://github.com/lewagon"><i class="fa fa-github"></i></a>
+      <a href="https://www.instagram.com/lewagonlondon/"><i class="fa fa-instagram"></i></a>
+      <a href="https://www.facebook.com/lewagonlondon/"><i class="fa fa-facebook"></i></a>
+      <a href="https://twitter.com/lewagonlondon?lang=en"><i class="fa fa-twitter"></i></a>
+      <a href="https://www.linkedin.com/school/5046700/"><i class="fa fa-linkedin"></i></a>
+    </div>
 
+    <div class="footer-box">
+      <p><%= link_to "ABOUT", about_path %></p>
+      <p><%= link_to "PRIVACY POLICY", privacy_path %></p>
+      <p><%= link_to "TERMS OF SERVICE", terms_path %></p>
+    </div>
+
+    <div class="footer-copyright">
+      <p>COPYRIGHT &copy; 2017 SHARED.RUN</p>
+    </div>
+  </div>
+</footer>
+ -->
 <%= content_for(:title, @run.title.split.map {|r| r.capitalize}.join(" ")) %>
 
 <!-- JavaScript -->

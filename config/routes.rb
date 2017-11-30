@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" } do
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", registrations: "users/registrations" } do
     get "logout" => "devise/sessions#destroy"
   end
 
@@ -37,3 +37,4 @@ Rails.application.routes.draw do
   get "pages/terms", to: "pages#terms", as: "terms"
   get "pages/privacy", to: "pages#privacy", as: "privacy"
 end
+
