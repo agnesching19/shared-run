@@ -27,8 +27,18 @@
 }
 
 .btn-primary:hover {
-  background-color: #C16670;
-  border-color: #C16670;
+  background-color: $btn-primary;
+  border-color: $dark-gray;
+  opacity: 0.8;
+  color: $dark-gray;
+}
+
+.btn-primary:focus,.btn-primary:active {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: $btn-primary !important;
+  border-color: $dark-gray !important;
+  color: $dark-gray !important;
 }
 
 .input-group-addon {

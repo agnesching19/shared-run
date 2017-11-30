@@ -28,15 +28,15 @@
   text-align: right;
 
   h1 {
-    font-size: 72px;
-    font-weight: bold;
+    font-size: 72px !important;
+    font-weight: 400 !important;
     font-family: $font-family !important;
   }
 
   h6 {
-    font-size: 22px;
-    opacity: 0.8;
-    font-weight: bold;
+    font-size: 22px !important;
+    opacity: 0.8 !important;
+    font-weight: 400 !important;
     font-family: $font-family !important;
   }
 }
