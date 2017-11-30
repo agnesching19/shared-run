@@ -1,6 +1,6 @@
 <div class="message-index">
   <div class="messages-container">
-    <h1><%= link_to @run.title.upcase, run_path(@run) %> - HOSTED BY <%= @run.user.first_name.upcase %></h1>
+    <h1><%= link_to @run.title.upcase, run_path(@run) %> - HOSTED BY <%= link_to @run.user.first_name.upcase, dashboard_path(@run.user) %></h1>
     <h2><%= @run.location.upcase %> | <%= @run.date.strftime("%b %d %Y").upcase %> | <%= @run.time.strftime("%l:%M %p") %></h2>
 
     <div id="all-run-messages">
