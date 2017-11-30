@@ -3,6 +3,7 @@
   display: flex;
   justify-content: space-around;
   font-weight: light;
+  margin-top: 20px;
 
   // display: grid;
   // grid-template-columns: 20% 20% 20% 20% 20%;
@@ -43,11 +44,37 @@
 }
 
 .show-event-action {
-  padding: 20px 0px;
+  padding: 0;
   display: flex;
   justify-content: flex-start;
 }
 
-.reserve-btn {
-  width: 100px;
+.event-action-button {
+  margin: 5px;
+}
+
+.btn-share {
+  width: 150px;
+  background-color: white;
+  color: black;
+}
+
+// .reserve-btn {
+//   width: 100px;
+// }
+
+.footer-event-show {
+  position: sticky !important;
+  align-items: center;
+  bottom: 0 !important;
+  display: flex;
+  width: 100%;
+  background-color: transparent;
+  text-align: center;
+  height: 50px;
+  justify-content: space-between;
+}
+
+.show-wrapper {
+  min-height: calc(100vh - 50px - 50px);
 }

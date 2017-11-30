@@ -21,23 +21,23 @@
 }
 
 .website-main-text {
-  color: $dark-gray;
+  color: $color-number-counter;
 }
 
 .website-name {
-  text-align: right;
+  text-align: center;
 
   h1 {
-    font-size: 72px;
-    font-weight: bold;
-    font-family: $font-family !important;
+    font-size: 72px !important;
+    font-weight: 400 !important;
+    font-family: $color-number-counter!important;
   }
 
   h6 {
-    font-size: 22px;
-    opacity: 0.8;
-    font-weight: bold;
-    font-family: $font-family !important;
+    font-size: 22px !important;
+    opacity: 0.8 !important;
+    font-weight: 400 !important;
+    font-family: $color-number-counter !important;
   }
 }
 
@@ -62,14 +62,14 @@ form {
 .counters-container {
   display: flex;
   font-size:24px;
-  color: #393939;
+  color: $color-number-counter;
   justify-content: space-around;
 }
 
 .number-counter-text {
   a {
     text-decoration: none;
-    color: $dark-gray;
+    color: $color-number-counter;
     font-family: $font-family;
     opacity: 0.7;
     font-size: 20px;
@@ -128,27 +128,36 @@ form {
 }
 
 .logo-small {
-  height: 30px;
-  width: 30px;
+  height: 25px;
+  width: 25px;
   position: relative;
-  bottom: 5px;
-  right: 7px;
+  bottom: 7px;
+  right: 4px;
+  color: $color-number-counter;
 }
 
-.fa-calendar:before {
+#home-calendar:before {
   position: relative;
   bottom: -1px;
   left: 0px;
+  color: $color-number-counter;
 }
 
-.fa-map-marker:before {
+#home-marker:before {
   position: relative;
   top: 2px;
+  color: $color-number-counter;
 }
 
+#home-calendar:before {
+  position: relative;
+  right: 1px;
+  color: $color-number-counter;
+}
 
-
-
+.fa-user-o:before {
+  color: $color-number-counter;
+}
 
 
 

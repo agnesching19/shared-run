@@ -22,6 +22,19 @@ ActiveRecord::Schema.define(version: 20171130174233) do
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
+  create_table "event_searches", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "location"
+    t.float "proximity", default: 10.0
+    t.integer "run_distance"
+    t.date "run_date"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_event_searches_on_user_id"
+  end
+
   create_table "events", force: :cascade do |t|
     t.date "date"
     t.time "time"
@@ -171,6 +184,7 @@ ActiveRecord::Schema.define(version: 20171130174233) do
 
   add_foreign_key "bookings", "runs"
   add_foreign_key "bookings", "users"
+  add_foreign_key "event_searches", "users"
   add_foreign_key "events", "users"
   add_foreign_key "invites", "runs"
   add_foreign_key "invites", "users"
