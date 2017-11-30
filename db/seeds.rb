@@ -136,7 +136,7 @@ def scrape_events(number)
     description = comp.search('.events--title').text
     distance = (5..20).to_a.sample
     surface = ['Trail', 'Road', 'Track'].sample
-    event = Event.new(date: actual_date, time: time, location: location, description: description, distance: distance, surface: surface)
+    event = Event.new(date: actual_date, time: time, location: location, description: description, run_distance: distance, surface: surface)
     event.user = User.first
     event.save
     puts "----- #{description} created"
