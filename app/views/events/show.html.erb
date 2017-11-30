@@ -42,7 +42,7 @@
       </div>
       <div class="event-detail">
         <div class="detail-icon">
-          <i class="fa fa-calendar-o" aria-hidden="true"></i>
+          <i class="fa fa-calendar" aria-hidden="true"></i>
         </div>
         <div class="detail-content">
           <h3>DATE</h3>
@@ -102,9 +102,9 @@
     <!-- Booking/Share Buttons -->
       <div class="show-event-action">
         <div class="event-action-button">
-        <% if policy(@event).edit? == false %>
-          <%= render "reservations/form", event: @event, reservation: Reservation.new %> &nbsp
-        <% end %>
+          <% if policy(@event).edit? == false %>
+            <%= render "reservations/form", event: @event, reservation: Reservation.new %> &nbsp
+          <% end %>
         </div>
         <div class="event-action-button">
           <%= link_to "START TRAINING", runs_path, class: "btn btn-share" %> &nbsp
