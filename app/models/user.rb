@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :messages
   has_many :searches
+  has_many :event_searches
   validates :email, :first_name, :last_name, presence: true
 
   mount_uploader :photo, PhotoUploader

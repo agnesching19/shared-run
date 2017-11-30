@@ -7,15 +7,14 @@
   '7:00'] %>
   <% arr_proximity = [1,3,5] %>
 
-
 <form action="/events" class="form-filter">
   <h2 class="text-center">Filter to find events near you</h2>
   <div class="input-with-icon">
     <i class="fa fa-map-marker" aria-hidden="true"></i>
     <% if current_user %>
-      <input class="form-control" type="text" name="search[location]" value="<%= @user.searches.empty? ? "" : @user.searches.last.location %>" placeholder="Where?">
+      <input class="form-control" type="text" name="event_search[location]" value="<%= @user.event_searches.empty? ? "" : @user.event_searches.last.location %>" placeholder="Where?">
     <% else %>
-      <input class="form-control" type="text" name="search[location]" placeholder="Where?">
+      <input class="form-control" type="text" name="event_search[location]" placeholder="Where?">
     <% end %>
   </div>
 
@@ -24,9 +23,9 @@
   <div class="input-with-icon">
     <i class="fa fa-calendar" aria-hidden="true"></i>
     <% if current_user %>
-      <input class="form-control datepicker" type="date" name="search[run_date]" value="<%= @user.searches.empty? ? "" : @user.searches.last.run_date %>" name="search[run_date]" value= <%Date.today %>>
+      <input class="form-control" type="date" name="event_search[run_date]" value="<%= @user.event_searches.empty? ? "" : @user.event_searches.last.run_date %>" name="event_search[run_date]" value= <%Date.today %>>
     <% else %>
-      <input class="form-control" type="date" name="search[run_date]" value= <%Date.today %>>
+      <input class="form-control" type="date" name="event_search[run_date]" value= <%Date.today %>>
     <% end %>
   </div>
 
@@ -34,10 +33,10 @@
 
   <div class="range-slider proximity">
       <div class="slider-id"><label for="proximity">Proximity km</label></div>
-    <input class="range-slider__range form-control" name="search[proximity]" type="range" value="<%= params[:proximity] %>" min="0" max="2">
+    <input class="range-slider__range form-control" name="event_search[proximity]" type="range" value="<%= params[:proximity] %>" min="0" max="2">
     <span class="range-slider__value">
       <% if params[:proximity].present? %>
-        <%= arr_proximity[(params[:search][:proximity]).to_i] %>
+        <%= arr_proximity[(params[:event_search][:proximity]).to_i] %>
       <% else %>
         <%= "#{arr_proximity[(arr_proximity.length/2).to_i]}" %>
       <% end %>
@@ -47,11 +46,11 @@
     <!-- Distance slider -->
 
   <div class="range-slider distance">
-    <div class="slider-id"><label for="proximity">Distance km</label></div>
-    <input class="range-slider__range form-control" name="search[distance]" type="range" value="<%= params[:distance] %>" min="0" max="2">
+    <div class="slider-id"><label for="distance">Distance km</label></div>
+    <input class="range-slider__range form-control" name="event_search[run_distance]" type="range" value="<%= params[:run_distance] %>" min="0" max="2">
     <span class="range-slider__value">
-      <% if params[:distance].present? %>
-        <%= arr_distance[(params[:search][:distance]).to_i] %>
+      <% if params[:run_distance].present? %>
+        <%= arr_distance[(params[:event_search][:run_distance]).to_i] %>
       <% else %>
         <%= "#{arr_distance[(arr_distance.length/2).to_i]}" %>
       <% end %>

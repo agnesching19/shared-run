@@ -1,18 +1,19 @@
 <div class="search-home-page">
-<form action="/runs">
-  <div class="form-group">
-    <div class="input-group mb-2 mb-sm-0">
-      <div class="input-group-addon"><i class="fa fa-map-marker" id="home-marker" aria-hidden="true"></i></div>
-      <input type="text" name="search[location]" class="form-control" placeholder="Where would you like to run?">
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="input-group mb-2 mb-sm-0">
-      <div class="input-group-addon"><i class="fa fa-calendar" id="home-calendar" aria-hidden="true"></i></div>
-        <input type="date" class="form-control datepicker" name="search[run_date]" placeholder="When?">
+  <form action="/runs">
+    <div class="form-group">
+      <div class="input-group mb-2 mb-sm-0">
+        <div class="input-group-addon"><i class="fa fa-map-marker" id="home-marker" aria-hidden="true"></i></div>
+          <input type="text" name="search[location]" class="form-control" placeholder="Where would you like to run?">
+        </div>
       </div>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+      <div class="form-group">
+        <div class="input-group mb-2 mb-sm-0">
+          <div class="input-group-addon">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+          </div>
+          <input type="date" class="form-control" name="search[run_date]" placeholder="When?">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 </div>
-
