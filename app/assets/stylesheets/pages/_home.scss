@@ -8,25 +8,16 @@
   }
 
 .margin-top {
-  margin-top: 75px;
+  margin-top: 70px;
   align-items: center;
 }
 
 .right-flex{
-  padding: 50px 265px;
+  padding: 80px 250px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  justify-content: center;
-}
-
-h1 {
-  font-size: 68px;
-}
-
-h6 {
-  font-size: 19px;
-  opacity: 0.8;
+  // justify-content: flex-end;
+  align-content: center;
 }
 
 .website-main-text {
@@ -34,16 +25,19 @@ h6 {
 }
 
 .website-name {
-  font-weight: bold;
-}
 
-a {
-  text-decoration: none;
-  color: $dark-gray;
-}
+  h1 {
+    font-size: 72px;
+    font-weight: 400;
+    font-family: $font-family !important;
+  }
 
-a:hover {
-  color: #C16670 !important;
+  h6 {
+    font-size: 22px;
+    opacity: 0.8;
+    font-weight: 400;
+    font-family: $font-family !important;
+  }
 }
 
 .search-container {
@@ -68,31 +62,33 @@ form {
   display: flex;
   font-size:24px;
   color: #393939;
-  margin-bottom: 100px;
-}
-
-.number-counter-text a {
-  color: #393939;
-  font-weight: bold;
-  opacity: 0.8;
+  justify-content: space-around;
 }
 
 .number-counter-text {
-  margin-left: 22px;
-  margin-top: 80px;
+  a {
+    text-decoration: none;
+    color: $dark-gray;
+    font-family: $font-family;
+    opacity: 0.7;
+    font-size: 20px;
+  }
 }
 
 .counter {
   font-size: 45px !important;
   opacity: 0.8;
+  font-weight: 400;
 }
 .counter1 {
   font-size: 45px !important;
   opacity: 0.8;
+  font-weight: 400;
 }
 .counter2 {
   font-size: 45px !important;
   opacity: 0.8;
+  font-weight: 400;
 }
 
 #landing-buttons {
@@ -130,8 +126,13 @@ form {
   right: 80px;
 }
 
-
-
+.logo-small {
+  height: 30px;
+  width: 30px;
+  position: relative;
+  bottom: 5px;
+  right: 7px;
+}
 
 
 

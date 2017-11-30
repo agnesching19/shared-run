@@ -13,6 +13,7 @@ $dark-blue: #3E434E;
 $background: rgb(40,40,40);
 $btn-primary: #FF006C;
 
+
 // Home page colours --- NB the map on the homepage is an svg and colours are set in the views/shared/_svg_map.html.erb
 $color-background: #FFC93C;
 $color-number-counter: #393939;
@@ -21,8 +22,8 @@ $color-link: #fff;
 $color-map-marker: #C16670;
 
 // Sweet alerts
-$alert-warning: $red;
-$alert-info: $green;
+$alert-warning: $yellow;
+$alert-info: $yellow;
 
 // Event cards
 $event-card-background: white;

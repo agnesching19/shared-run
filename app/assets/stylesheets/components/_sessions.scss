@@ -3,13 +3,12 @@
   justify-content: space-between;
   padding: 20px;
   align-items: center;
+  min-height: calc(100vh - 100px);
 }
 
 .block {
   height: 625px;
-  width: 750px;
   padding: 25px 40px;
-
   h1 {
     margin-top: 0px !important;
     text-align: center;
@@ -18,6 +17,10 @@
 
 .left {
   background-color: rgba(255,255,255,0.2);
+}
+
+.right {
+    border: 1px solid #535353;
 }
 
 .session-links {
@@ -34,7 +37,39 @@
   color: #fff;
   background-color: #3b5998;
   border-color: rgba(0,0,0,0.2);
-  padding: 15px;
+  padding-top: 11px;
   text-align: center;
   border-radius: 3px;
+}
+
+.btn-wider {
+  width: 200px;
+  padding-right: 15px;
+  margin-right: 3px;
+  margin-bottom: 5px;
+}
+
+.btn-min-width{
+  width: 200px;
+  height: 41px;
+}
+
+.form-max-width {
+  max-width: 400px;
+  padding-left: 10px;
+}
+
+.form-container {
+  display:flex;
+  justify-content: space-around;
+}
+
+.form-padding-top {
+  padding-top: 15px;
+}
+
+.btn-signup {
+  width: 200px;
+  text-align: center;
+  margin-bottom: 5px;
 }

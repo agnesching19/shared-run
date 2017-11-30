@@ -30,6 +30,11 @@
               <% end %>
             </li>
             <li>
+              <%= link_to edit_user_registration_path do %>
+                <i class="fa fa-user-circle"></i> &nbsp <%= t(".edit-profile", default: "EDIT PROFILE") %>
+              <% end %>
+            </li>
+            <li>
               <%= link_to message_path(current_user), method: :get do %>
                 <i class="fa fa-envelope-o"></i> &nbsp <%= t(".dashboard", default: "MESSAGES") %>
               <% end %>
@@ -59,7 +64,12 @@
           <% end %>
         </li>
         <li>
-          <%= link_to runs_path, method: :get do %>
+          <%= link_to edit_user_registration_path do %>
+            <i class="fa fa-user-circle"></i>&nbsp <%= t(".edit-profile", default: "EDIT PROFILE") %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to message_path(current_user), method: :get do %>
             <i class="fa fa-envelope-o"></i> &nbsp <%= t(".dashboard", default: "MESSAGES") %>
           <% end %>
         </li>
