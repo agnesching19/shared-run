@@ -128,7 +128,7 @@
       <div class="review-box">
         <div class="review-content">
           <h3>ADD A REVIEW</h3>
-          <h5><strong><%= booking.run.title.split.map {|r| r.capitalize}.join(" ") %> - Hosted by <%= booking.run.user.first_name.capitalize %> // <%= booking.run.run_distance %>km</strong></h5>
+          <h5><strong><%= booking.run.title.split.map {|r| r.capitalize}.join(" ") %> - Hosted by <%= link_to booking.run.user.first_name.capitalize, dashboard_path(booking.run.user) %> // <%= booking.run.run_distance %>km</strong></h5>
           <p><%= booking.run.location %> | <%= booking.run.date.strftime("%b %d %Y") %> @ <%= booking.run.time.strftime("%l:%M %p") %></p>
           <br>
           <p>Hope you had a good run! Did <%= booking.run.user.first_name.capitalize %> show up on time?</p>
