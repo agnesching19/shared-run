@@ -47,10 +47,10 @@
 
   <div class="range-slider distance">
     <div class="slider-id"><label for="distance">Distance km</label></div>
-    <input class="range-slider__range form-control" name="event_search[distance]" type="range" value="<%= params[:distance] %>" min="0" max="2">
+    <input class="range-slider__range form-control" name="event_search[run_distance]" type="range" value="<%= params[:run_distance] %>" min="0" max="2">
     <span class="range-slider__value">
-      <% if params[:distance].present? %>
-        <%= arr_distance[(params[:event_search][:distance]).to_i] %>
+      <% if params[:run_distance].present? %>
+        <%= arr_distance[(params[:event_search][:run_distance]).to_i] %>
       <% else %>
         <%= "#{arr_distance[(arr_distance.length/2).to_i]}" %>
       <% end %>

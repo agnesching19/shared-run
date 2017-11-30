@@ -36,10 +36,13 @@
     <i class="fa fa-clock-o" aria-hidden="true"></i>
      <% if current_user %>
          <input class="form-control" type="time" name="search[run_time]" value="<%= @user.searches.empty? ? "" : @user.searches.last.run_time %>" name="search[run_time]" value= <%= Time.now.strftime("%H %M") %>>
-       <% else %>s
-         <input class="form-control" type="time" name="search[run_time]" value= <%= Time.now.strftime("%H %M") %>>
+       <% else %>
+<!-- <<<<<<< HEAD -->
+         <input class="form-control" type="time" name="search[run_time]" value= <%= Time.now %>
+<!-- ======= -->
+   <!--       <input class="form-control" type="time" name="search[run_time]" value= <%= Time.now.strftime("%H %M") %>>
        <% end %>
-  </div>
+  </div> -->
 
   <!-- Proximity slider -->
 
@@ -58,11 +61,11 @@
     <!-- Distance slider -->
 
   <div class="range-slider distance">
-    <div class="slider-id"><label for="proximity">Distance km</label></div>
-    <input class="range-slider__range form-control" name="search[distance]" type="range" value="<%= params[:distance] %>" min="0" max="2">
+    <div class="slider-id"><label for="distance">Distance km</label></div>
+    <input class="range-slider__range form-control" name="search[run_distance]" type="range" value="<%= params[:run_distance] %>" min="0" max="2">
     <span class="range-slider__value">
-      <% if params[:distance].present? %>
-        <%= arr_distance[(params[:search][:distance]).to_i] %>
+      <% if params[:run_distance].present? %>
+        <%= arr_distance[(params[:search][:run_distance]).to_i] %>
       <% else %>
         <%= "#{arr_distance[(arr_distance.length/2).to_i]}" %>
       <% end %>
