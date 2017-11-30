@@ -37,7 +37,7 @@
      <% if current_user %>
          <input class="form-control" type="time" name="search[run_time]" value="<%= @user.searches.empty? ? "" : @user.searches.last.run_time %>" name="search[run_time]" value= <%= Time.now.strftime("%H %M") %>>
        <% else %>
-         <input class="form-control" type="date" name="search[run_time]" value= <%= Time.now.strftime("%H %M") %>>
+         <input class="form-control" type="time" name="search[run_time]" value= <%= Time.now.strftime("%H %M") %>>
        <% end %>
   </div>
 
