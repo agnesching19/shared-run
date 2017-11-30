@@ -61,27 +61,27 @@ class EventsController < ApplicationController
       if params[:event_search].present?
         unless params[:event_search][:location] == ""
           proximity = arr_proximity[(params[:event_search][:proximity].to_f)]
-          distance =  arr[(params[:event_search][:run_distance].to_i)] if params[:event_search][:run_distance]
-          @event_search = Event_Search.new(event_search_params)
+          distance =  arr[(params[:event_search][:distance].to_i)] if params[:event_search][:distance]
+          @event_search = EventSearch.new(event_search_params)
           if current_user
             @user = current_user
             @event_search.user_id = @user.id
             @event_search.save
             @last_event_search = @user.event_searches.order(created_at: :desc).first
-            @events = event.near([@last_event_search.latitude, @last_event_search.longitude], 3)
-            @events = event.near([@last_event_search.latitude, @last_event_search.longitude], proximity) if params[:event_search][:proximity].to_f
+            @events = Event.near([@last_event_search.latitude, @last_event_search.longitude], 3)
+            @events = Event.near([@last_event_search.latitude, @last_event_search.longitude], proximity) if params[:event_search][:proximity].to_f
           else
             @user = User.new
           end
+
+
           @event_search.user_id = @user.id
           @event_search.save
-          @events = event.near([@event_search.latitude, @event_search.longitude], 3)
-          @events = event.near([@event_search.latitude, @event_search.longitude], proximity) if params[:event_search][:proximity].to_f
+          @events = Event.near([@event_search.latitude, @event_search.longitude], 3)
+          @events = Event.near([@event_search.latitude, @event_search.longitude], proximity) if params[:event_search][:proximity].to_f
           # Removing events in the past
           @events = @events.select { |r| r.date >= Date.today}
-          # Date filtering
-          @events = @events.select { |r| r.date.strftime("%Y-%m-%d") == params[:event_search][:event_date] }
-
+          raise
           # Distance filtering
           if distance == 10
             @events = @events.select { |r| r.run_distance >= (arr[(params[:event_search][:run_distance].to_i)] - 5) && r.run_distance < (arr[(params[:event_search][:run_distance].to_i)] + 5)  }
@@ -110,7 +110,11 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:date, :time, :location, :description, :distance, :surface, :price)
+    params.require(:event).permit(:date, :time, :location, :description, :run_distance, :surface, :price)
+  end
+
+   def event_search_params
+    params.require(:event_search).permit(:location, :proximity, :run_date, :run_distance)
   end
 
   def set_event
@@ -127,7 +131,7 @@ class EventsController < ApplicationController
         {
           lat: event.latitude,
           lng: event.longitude,
-          infowindow: render_to_string(partial: "events/infowindow", locals: {event: event}),
+          # infowindow: render_to_string(partial: "events/infowindow", locals: {event: event}),
         }
       end
     end
