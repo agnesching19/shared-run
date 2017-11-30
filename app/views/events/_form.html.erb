@@ -1,4 +1,5 @@
 <%= simple_form_for(@event) do |e| %>
+  <%= e.input :description, placeholder: "e.g. London Marathon 2017" %>
   <%= e.input :date %>
   <%= e.input :time %>
   <%= e.input :location, priority: ["EN"], input_html: {id: "locationInput"}, placeholder: "Enter a location"  %>

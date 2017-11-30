@@ -136,20 +136,20 @@ form {
   color: $color-number-counter;
 }
 
-.fa-calendar:before {
+#home-calendar:before {
   position: relative;
   bottom: -1px;
   left: 0px;
   color: $color-number-counter;
 }
 
-.fa-map-marker:before {
+#home-marker:before {
   position: relative;
   top: 2px;
   color: $color-number-counter;
 }
 
-.fa-calendar-o:before {
+#home-calendar:before {
   position: relative;
   right: 1px;
   color: $color-number-counter;
