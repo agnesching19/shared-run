@@ -10,11 +10,11 @@
     <%= link_to "ABOUT", about_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <!-- All Events -->
     <%= link_to "EVENTS", events_path, class: "navbar-wagon-item navbar-wagon-link" %>
-    <% if user_signed_in? %>
 
     <!-- Links when Logged In -->
       <!-- All Runs -->
       <%= link_to "RUNS", runs_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <% if user_signed_in? %>
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
