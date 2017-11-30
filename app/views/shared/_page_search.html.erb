@@ -24,7 +24,7 @@
   <div class="input-with-icon">
     <i class="fa fa-calendar" aria-hidden="true"></i>
     <% if current_user %>
-      <input class="form-control" type="date" name="search[run_date]" value="<%= @user.searches.empty? ? "" : @user.searches.last.run_date %>" name="search[run_date]" value= <%Date.today %>>
+      <input class="form-control datepicker" type="date" name="search[run_date]" value="<%= @user.searches.empty? ? "" : @user.searches.last.run_date %>" name="search[run_date]" value= <%Date.today %>>
     <% else %>
       <input class="form-control" type="date" name="search[run_date]" value= <%Date.today %>>
     <% end %>
@@ -35,9 +35,9 @@
   <div class="input-with-icon">
     <i class="fa fa-clock-o" aria-hidden="true"></i>
      <% if current_user %>
-         <input class="form-control" type="time" name="search[run_time]" value="<%= @user.searches.empty? ? "" : @user.searches.last.run_time %>" name="search[run_time]" value= <%= Time.now %>>
+         <input class="form-control" type="time" name="search[run_time]" value="<%= @user.searches.empty? ? "" : @user.searches.last.run_time %>" name="search[run_time]" value= <%= Time.now.strftime("%H %M") %>>
        <% else %>
-         <input class="form-control" type="date" name="search[run_time]" value= <%= Time.now %>>
+         <input class="form-control" type="time" name="search[run_time]" value= <%= Time.now.strftime("%H %M") %>>
        <% end %>
   </div>
 

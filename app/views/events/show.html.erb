@@ -1,5 +1,4 @@
 <div class="show-wrapper">
-
   <!-- Banner -->
   <div class="show-banner">
     <!-- Map Background -->
@@ -30,7 +29,6 @@
 
   <!-- Content -->
   <div class="event-show-info">
-
     <!-- Event Details -->
     <div class="show-event-details ">
       <div class="event-detail">
@@ -44,7 +42,7 @@
       </div>
       <div class="event-detail">
         <div class="detail-icon">
-          <i class="fa fa-calendar-o" aria-hidden="true"></i>
+          <i class="fa fa-calendar" aria-hidden="true"></i>
         </div>
         <div class="detail-content">
           <h3>DATE</h3>
@@ -66,12 +64,12 @@
         </div>
         <div class="detail-content">
           <h3>PRICE</h3>
-          <p>£<%= number_with_precision(@event.price, precision: 2) %></p>
+          <p><%= number_with_precision(@event.price, precision: 2) %></p>
         </div>
       </div>
       <div class="event-detail">
         <div class="detail-icon">
-          <i class="fa fa-map-marker" aria-hidden="true"></i>
+          <i class="fa fa-road" aria-hidden="true"></i>
         </div>
         <div class="detail-content">
           <h3>SURFACE</h3>
@@ -80,7 +78,7 @@
       </div>
     </div>
 
-    <!-- Run Description -->
+    <!-- Event Description -->
     <div class="show-event-participants">
       <div class="show-run-buddies">
         <h3>EVENT PARTICIPANTS (<%= @event.reservations.count %>)</h3>
@@ -104,12 +102,12 @@
     <!-- Booking/Share Buttons -->
       <div class="show-event-action">
         <div class="event-action-button">
-        <% if policy(@event).edit? == false %>
-          <%= render "reservations/form", event: @event, reservation: Reservation.new %> &nbsp
-        <% end %>
+          <% if policy(@event).edit? == false %>
+            <%= render "reservations/form", event: @event, reservation: Reservation.new %> &nbsp
+          <% end %>
         </div>
         <div class="event-action-button">
-          <%= link_to "START TRAINING", runs_path, class: "btn btn-default" %> &nbsp
+          <%= link_to "START TRAINING", runs_path, class: "btn btn-share" %> &nbsp
         </div>
         <div class="event-action-button">
           <div class="fb-share-button" data-href="http://www.shared.run/" data-layout="button" data-size="large" data-mobile-iframe="false"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.shared.run%2F&amp;src=sdkpreparse">Share</a></div>
@@ -119,7 +117,28 @@
 
   </div>
 </div>
- <%= render "shared/footer" %>
+
+<footer>
+  <div class="footer-run-show">
+    <div class="footer-box">
+      <a href="https://github.com/lewagon"><i class="fa fa-github"></i></a>
+      <a href="https://www.instagram.com/lewagonlondon/"><i class="fa fa-instagram"></i></a>
+      <a href="https://www.facebook.com/lewagonlondon/"><i class="fa fa-facebook"></i></a>
+      <a href="https://twitter.com/lewagonlondon?lang=en"><i class="fa fa-twitter"></i></a>
+      <a href="https://www.linkedin.com/school/5046700/"><i class="fa fa-linkedin"></i></a>
+    </div>
+
+    <div class="footer-box">
+      <p><%= link_to "ABOUT", about_path %></p>
+      <p><%= link_to "PRIVACY POLICY", privacy_path %></p>
+      <p><%= link_to "TERMS OF SERVICE", terms_path %></p>
+    </div>
+
+    <div class="footer-copyright">
+      <p>COPYRIGHT &copy; 2017 SHARED.RUN</p>
+    </div>
+  </div>
+</footer>
 
 <%= content_for(:title, @event.description.split.map {|d| d.capitalize}.join(" ")) %>
 

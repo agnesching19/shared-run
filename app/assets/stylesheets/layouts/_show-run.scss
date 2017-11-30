@@ -140,7 +140,8 @@ body {
 }
 
 .padding {
-  padding: 25px;
+  padding: 10px;
+  margin: 3px;
 }
 
 .footer-run-show {
@@ -153,4 +154,8 @@ body {
   text-align: center;
   height: 50px;
   justify-content: space-between;
+}
+
+.show-wrapper {
+  height: calc(100vh - 50px);
 }
