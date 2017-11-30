@@ -49,10 +49,11 @@
                 <a href="#" data-toggle="tooltip" data-placement="bottom"  title="What's a run without any banter?">Sociability: &nbsp
                   <i class="fa fa-handshake-o" aria-hidden="true"></i>
                 </a>
-                &nbsp | &nbsp
+
               <% end %>
               <!-- Profile Review -->
               <% if @run.user.reviews.where(punctuality: true).count > 0 %>
+                 &nbsp | &nbsp
                 <a href="#" data-toggle="tooltip" data-placement="bottom"  title="No review yet.">
                   <i class="fa fa-thumbs-up" aria-hidden="true"></i> &nbsp
                   <%= @run.user.reviews.where(punctuality: true).count %></a>
