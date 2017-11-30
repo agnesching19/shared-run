@@ -8,13 +8,15 @@
 
     <div class="message <%= message_class.join(" ") %>">
         <div class="message-content">
-          <%= cl_image_tag message.user.photo, crop: :thumb, class: "message-avatar" %>
+          <%= link_to dashboard_path(message.user) do %>
+            <%= cl_image_tag message.user.photo, crop: :thumb, class: "message-avatar" %>
+          <% end %>
           <div class="message-box">
             <div class="message-body">
               <h4><%= message.content %></h4>
             </div>
           <div class="message-footer">
-            <p><strong><%= message.user.first_name.capitalize %></strong>&nbsp | &nbsp<%= message.created_at.strftime("%d %b %Y, %l:%M %p") %>
+            <p><strong><%= link_to message.user.first_name.capitalize, dashboard_path(message.user) %></strong>&nbsp | &nbsp<%= message.created_at.strftime("%d %b %Y, %l:%M %p") %>
               <% if message.user == current_user %>
                 | <%= link_to run_message_path(@run, message), method: :delete, data: { confirm: "Are you sure you want to delete this message?" } do %>
                   <i class="fa fa-trash-o" aria-hidden="true"></i></p>
