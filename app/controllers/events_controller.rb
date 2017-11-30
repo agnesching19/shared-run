@@ -19,7 +19,7 @@ class EventsController < ApplicationController
     @event.user_id = current_user.id
     authorize @event
     if @event.save
-      redirect_to events_path
+      redirect_to event_path(@event)
     else
       render :new
     end
@@ -44,7 +44,6 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    @event.user_id = current_user.id
     authorize @event
     @event.destroy
     redirect_to events_path
@@ -112,7 +111,7 @@ class EventsController < ApplicationController
     params.require(:event).permit(:date, :time, :location, :description, :run_distance, :surface, :price)
   end
 
-   def event_search_params
+  def event_search_params
     params.require(:event_search).permit(:location, :proximity, :run_date, :run_distance)
   end
 
