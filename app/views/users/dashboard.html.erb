@@ -475,7 +475,7 @@
               <% time_calc = run.run_distance.to_i % run.pace.to_i %>
               <%= times << time_calc.to_i %>
             <% end %>
-          <% end %>
+          <% end %> --
 
           <% if times == [] %>
             <div class="no-border">
