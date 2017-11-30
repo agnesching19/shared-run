@@ -9,11 +9,11 @@
             <%= f.input :password, required: false %>
             <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
             <div class="form-actions form-padding-top">
-              <%= f.button :submit, "LOG IN", class: "btn btn-default btn-wider" %>
+              <%= f.button :submit, "LOG IN", class: "btn btn-wider" %>
 
               <% if devise_mapping.omniauthable? %>
                 <% resource_class.omniauth_providers.each do |provider| %>
-                  <%= link_to " SIGN IN WITH #{OmniAuth::Utils.camelize(provider).upcase}", omniauth_authorize_path(resource_name, provider), class: "fa fa-facebook-square btn-facebook btn-min-width" %>
+                  <%= link_to " SIGN IN", omniauth_authorize_path(resource_name, provider), class: "fa fa-facebook-square btn-facebook btn-min-width" %>
                 <% end %>
               <% end %>
             </div>
@@ -41,8 +41,8 @@
             <%= f.input :password_confirmation, label: "Password Confirmation", required: true %>
 
             <div class="form-actions form-padding-top">
-              <%= f.button :submit, "CREATE ACCOUNT", class: "btn btn-default" %> &nbsp
-              <%= link_to " SIGN UP WITH FACEBOOK", user_facebook_omniauth_authorize_path, class: "fa fa-facebook-square btn-facebook btn-min-width" %>
+              <%= f.button :submit, "CREATE ACCOUNT", class: "btn btn-signup" %>&nbsp
+              <%= link_to " SIGN UP", user_facebook_omniauth_authorize_path, class: "fa fa-facebook-square btn-facebook btn-min-width" %>
             </div>
           </div>
         <% end %>
