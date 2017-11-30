@@ -24,9 +24,18 @@ class ApplicationController < ActionController::Base
     { host: ENV["HOST"] || "localhost:3000" }
   end
 
+  protected
+
+  def after_sign_in_path_for(resource)
+    dashboard_path(resource)
+  end
+
   private
 
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
   end
+
+
+
 end
