@@ -25,11 +25,11 @@ ActiveRecord::Schema.define(version: 20171130133503) do
   create_table "event_searches", force: :cascade do |t|
     t.bigint "user_id"
     t.string "location"
+    t.float "proximity", default: 10.0
+    t.integer "run_distance"
+    t.date "run_date"
     t.float "latitude"
     t.float "longitude"
-    t.float "proximity", default: 10.0
-    t.date "run_date"
-    t.integer "run_distance"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_event_searches_on_user_id"
