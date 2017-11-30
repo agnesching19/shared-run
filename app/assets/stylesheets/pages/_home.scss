@@ -25,17 +25,18 @@
 }
 
 .website-name {
+  text-align: right;
 
   h1 {
     font-size: 72px;
-    font-weight: 400;
+    font-weight: bold;
     font-family: $font-family !important;
   }
 
   h6 {
     font-size: 22px;
     opacity: 0.8;
-    font-weight: 400;
+    font-weight: bold;
     font-family: $font-family !important;
   }
 }
