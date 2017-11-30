@@ -18,7 +18,7 @@
       <div class="results-box">
         <% @runs.each do |run| %>
           <% if run.capacity > 0 && (run.bookings.count < run.capacity) %>
-            <% photo_url = run.user.photo? ? run.user.photo : 'lix2bqmp4kzdpu4sqjiy' %>
+            <% photo_url = run.user.photo? ? run.user.photo : 'yhnajtoozaumudbgjnph' %>
             <div class="result">
               <div class="result-user">
                 <%= cl_image_tag photo_url, crop: :thumb, class: "result-user-photo" %>
