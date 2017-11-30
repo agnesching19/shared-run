@@ -136,7 +136,7 @@ form {
   color: $color-number-counter;
 }
 
-.fa-calendar:before {
+#home-calendar:before {
   position: relative;
   bottom: -1px;
   left: 0px;
@@ -149,7 +149,7 @@ form {
   color: $color-number-counter;
 }
 
-.fa-calendar-o:before {
+#home-calendar:before {
   position: relative;
   right: 1px;
   color: $color-number-counter;
