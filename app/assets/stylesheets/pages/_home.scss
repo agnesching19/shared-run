@@ -8,7 +8,7 @@
   }
 
 .margin-top {
-  margin-top: 70px;
+  margin-top: 63px;
   align-items: center;
 }
 
@@ -25,17 +25,18 @@
 }
 
 .website-name {
+  text-align: right;
 
   h1 {
     font-size: 72px;
-    font-weight: 400;
+    font-weight: bold;
     font-family: $font-family !important;
   }
 
   h6 {
     font-size: 22px;
     opacity: 0.8;
-    font-weight: 400;
+    font-weight: bold;
     font-family: $font-family !important;
   }
 }
@@ -134,9 +135,16 @@ form {
   right: 7px;
 }
 
+.fa-calendar:before {
+  position: relative;
+  bottom: -1px;
+  left: 0px;
+}
 
-
-
+.fa-map-marker:before {
+  position: relative;
+  top: 2px;
+}
 
 
 
