@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
 
   resources :events do
-    resources :reservations, only: [:index, :new, :create]
+    resources :reservations, only: [:index, :new, :create, :destroy]
   end
 
   resources :runs do

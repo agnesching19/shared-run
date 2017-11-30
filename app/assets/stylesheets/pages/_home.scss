@@ -1,19 +1,24 @@
 // CSS for Landing Page
 
 .main {
-  background-color: $color-background;
+  // background-color: $background;
+  background-color: $yellow;
   height: 100vh;
   display: flex;
   justify-content: flex-end;
   }
+
+.padding-right {
+  padding-right: 25px;
+}
 
 .margin-top {
   margin-top: 63px;
   align-items: center;
 }
 
-.right-flex{
-  padding: 80px 250px;
+.right-flex {
+  padding: 80px 50px;
   display: flex;
   flex-direction: column;
   // justify-content: flex-end;
@@ -28,16 +33,19 @@
   text-align: right;
 
   h1 {
-    font-size: 72px;
+    padding-top: 50px;
+    font-size: 75px;
     font-weight: bold;
     font-family: $font-family !important;
+    // color: $yellow;
   }
 
   h6 {
-    font-size: 22px;
+    font-size: 35px;
     opacity: 0.8;
     font-weight: bold;
     font-family: $font-family !important;
+    // color: $yellow;
   }
 }
 
@@ -51,7 +59,7 @@
   top: 0;
   right: 50%;
   z-index: 1;
-  transform: scale(1.5);
+  transform: scale(1.65);
 }
 
 form {
@@ -61,35 +69,48 @@ form {
 
 .counters-container {
   display: flex;
-  font-size:24px;
-  color: #393939;
-  justify-content: space-around;
+  font-size: 24px;
+  // color: #393939;
+  justify-content: space-between;
+  padding-top: 50px;
 }
 
 .number-counter-text {
   a {
     text-decoration: none;
+    // color: $yellow;
     color: $dark-gray;
     font-family: $font-family;
     opacity: 0.7;
-    font-size: 20px;
+    font-size: 25px;
+    // font-weight: bold;
+    text-align: right;
   }
 }
 
 .counter {
   font-size: 45px !important;
   opacity: 0.8;
-  font-weight: 400;
+  font-weight: bold;
+  // color: $yellow;
+  color: $dark-gray;
+  text-align: right;
 }
 .counter1 {
   font-size: 45px !important;
   opacity: 0.8;
-  font-weight: 400;
+  font-weight: bold;
+  // color: $yellow;
+  color: $dark-gray;
+  text-align: right;
 }
 .counter2 {
   font-size: 45px !important;
   opacity: 0.8;
-  font-weight: 400;
+  font-weight: bold;
+  // color: $yellow;
+  color: $dark-gray;
+  text-align: right;
 }
 
 #landing-buttons {
@@ -145,16 +166,3 @@ form {
   position: relative;
   top: 2px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
