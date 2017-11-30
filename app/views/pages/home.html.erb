@@ -75,7 +75,6 @@
   $({ countNum: $this.text()}).animate({
     countNum: countTo
   },
-
   {
     duration: 8000,
     easing:'linear',
@@ -87,17 +86,13 @@
       //alert('finished');
     }
   });
-
 });
-
 $('.counter1').each(function() {
   var $this = $(this),
       countTo = $this.attr('data-count');
-
   $({ countNum: $this.text()}).animate({
     countNum: countTo
   },
-
   {
     duration: 8000,
     easing:'linear',
@@ -109,15 +104,12 @@ $('.counter1').each(function() {
     }
   });
 });
-
 $('.counter2').each(function() {
   var $this = $(this),
       countTo = $this.attr('data-count');
-
   $({ countNum: $this.text()}).animate({
     countNum: countTo
   },
-
   {
     duration: 8000,
     easing:'linear',
@@ -128,7 +120,6 @@ $('.counter2').each(function() {
       // $this.text("");
          $this.text(this.countNum);
     }
-
   });
 });
   </script>
