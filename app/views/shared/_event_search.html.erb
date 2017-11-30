@@ -23,7 +23,7 @@
   <div class="input-with-icon">
     <i class="fa fa-calendar" aria-hidden="true"></i>
     <% if current_user %>
-      <input class="form-control datepicker" type="date" name="event_search[run_date]" value="<%= @user.event_searches.empty? ? "" : @user.event_searches.last.run_date %>" name="event_search[run_date]" value= <%Date.today %>>
+      <input class="form-control" type="date" name="event_search[run_date]" value="<%= @user.event_searches.empty? ? "" : @user.event_searches.last.run_date %>" name="event_search[run_date]" value= <%Date.today %>>
     <% else %>
       <input class="form-control" type="date" name="event_search[run_date]" value= <%Date.today %>>
     <% end %>
@@ -57,9 +57,9 @@
     </span>
   </div>
 
-  <div class="apply-filters-event_search">
+  <div class="apply-filters-search">
      <button type="submit" class="filters-button"%>
-      <i class="fa fa-event_search" aria-hidden="true"></i>
+      <i class="fa fa-search" aria-hidden="true"></i>
     </button>
   </div>
  </form>
