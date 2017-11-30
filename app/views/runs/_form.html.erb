@@ -4,7 +4,7 @@
   <%= r.input :date %>
   <%= r.input :time %>
   <%= r.input :location, priority: ["EN"], input_html: {id: "locationInput"} %>
-  <%= r.input :run_distance, placeholder: "Kilometre(s)" %>
+  <%= r.input :run_distance, label: "Distance", placeholder: "Kilometre(s)" %>
   <%= r.input :pace, placeholder: "MM:SS / Kilometre" %>
   <%= r.input :capacity, placeholder: "Number of people" %>
   <%= r.submit "Submit", class: "btn btn-default" %>
