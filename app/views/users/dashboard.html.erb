@@ -471,7 +471,7 @@
         <div class="achievement-body">
           <% times = [] %>
           <% all_runs.each do |run| %>
-            <% if run.date <= Date.today - 1 %>
+            <% if (run.date <= Date.today - 1) && (run.pace > 0) %>
               <% time_calc = run.run_distance.to_i % run.pace.to_i %>
               <% times << time_calc.to_i %>
             <% end %>
