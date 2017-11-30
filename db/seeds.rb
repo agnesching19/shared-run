@@ -136,7 +136,7 @@ def scrape_events(number)
     description = comp.search('.events--title').text
     distance = (5..20).to_a.sample
     surface = ['Trail', 'Road', 'Track'].sample
-    event = Event.new(date: actual_date, time: time, location: location, description: description, distance: distance, surface: surface)
+    event = Event.new(date: actual_date, time: time, location: location, description: description, run_distance: distance, surface: surface)
     event.user = User.first
     event.save
     puts "----- #{description} created"
@@ -149,13 +149,13 @@ puts "--- seeding the database ---"
 # Creating the static user for the user journey
 static_user
 # Creating 5 users
-users(15)
+# users(15)
 # Creating 5 runs belonging to the random 5 users for the user journey
-runs(15)
+# runs(15)
 # Creating 5 events belonging to the random 5 users for the user journey
-events(10)
+# events(10)
 # Creating random reviews for seeded users
-reviews(5)
+# reviews(5)
 # Creating scraped events for seeded users
 
 scrape_events(10)

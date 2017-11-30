@@ -1,7 +1,17 @@
+.message-list {
+  font-weight: 300;
+
+  h1 {
+    text-align: left !important;
+  }
+}
+
 .logs {
   a {
     text-decoration: none;
     color: $light-gray !important;
+    font-weight: 300;
+
 
     &:hover {
       color: white !important;

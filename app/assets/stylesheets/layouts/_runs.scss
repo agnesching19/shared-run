@@ -4,6 +4,9 @@
   display: flex;
   background-color: $background;
   min-height: calc(100vh - 50px - 50px);
+  font-weight: 300;
+
+
   .fa-arrow-circle-right {
     font-size: 30px;
   }

@@ -118,6 +118,7 @@ class RunsController < ApplicationController
         elsif distance == 15
           @runs = @runs.select { |r| r.run_distance >= arr[(params[:search][:run_distance].to_i)] }
         end
+
         # Sociability filtering
         if sociability == 1
           @runs = @runs.select { |r| r.user.sociability == params[:search][:sociability].to_i}

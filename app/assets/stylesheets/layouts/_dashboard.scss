@@ -2,6 +2,8 @@
   padding: 30px;
   width: 90%;
   margin: auto;
+  font-weight: 300;
+
 
   h1 {
     margin: 0px 0px 15px 0px !important;
@@ -61,6 +63,15 @@
   p {
     font-size: 16px;
     margin: 0px !important;
+  }
+
+  a {
+    text-decoration: none !important;
+    color: white;
+
+    &:hover {
+      opacity: 0.5;
+    }
   }
 }
 

@@ -4,7 +4,7 @@
         <!-- Link to runs -->
         <a href="runs#index" data-toggle="tooltip" data-placement="auto" title="Find a Run" class="landing-button"> <%= image_tag "shoe-gray.png", class: "logo-small" %></a>
         <!-- Link to events -->
-        <a href="events#index" data-toggle="tooltip" data-placement="auto" title="Find an Event"><i class="fa fa-calendar-o landing-button" aria-hidden="true"></i></a>
+        <a href="events#index" data-toggle="tooltip" data-placement="auto" title="Find an Event"><i class="fa fa-calendar landing-button" id="home-calendar" aria-hidden="true"></i></a>
         <!-- Link to log in -->
         <%= link_to user_session_path do %>
           <div data-toggle="tooltip" data-placement="auto" title="Log In / Sign Up"><i class="fa fa-user-o landing-button" aria-hidden="true"></i></div>

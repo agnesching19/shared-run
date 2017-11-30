@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171128194934) do
+ActiveRecord::Schema.define(version: 20171130174233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,12 +22,25 @@ ActiveRecord::Schema.define(version: 20171128194934) do
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
+  create_table "event_searches", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "location"
+    t.float "proximity", default: 10.0
+    t.integer "run_distance"
+    t.date "run_date"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_event_searches_on_user_id"
+  end
+
   create_table "events", force: :cascade do |t|
     t.date "date"
     t.time "time"
     t.string "location"
     t.text "description"
-    t.integer "distance"
+    t.integer "run_distance"
     t.integer "price"
     t.string "surface"
     t.bigint "user_id"
@@ -54,6 +67,7 @@ ActiveRecord::Schema.define(version: 20171128194934) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "read", default: false
     t.index ["run_id"], name: "index_messages_on_run_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
@@ -67,6 +81,17 @@ ActiveRecord::Schema.define(version: 20171128194934) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_preferences_on_user_id"
+  end
+
+  create_table "read_marks", id: :serial, force: :cascade do |t|
+    t.string "readable_type"
+    t.integer "readable_id"
+    t.string "reader_type"
+    t.integer "reader_id"
+    t.datetime "timestamp"
+    t.index ["readable_type", "readable_id"], name: "index_read_marks_on_readable_type_and_readable_id"
+    t.index ["reader_id", "reader_type", "readable_type", "readable_id"], name: "read_marks_reader_readable_index", unique: true
+    t.index ["reader_type", "reader_id"], name: "index_read_marks_on_reader_type_and_reader_id"
   end
 
   create_table "reservations", force: :cascade do |t|
@@ -159,6 +184,7 @@ ActiveRecord::Schema.define(version: 20171128194934) do
 
   add_foreign_key "bookings", "runs"
   add_foreign_key "bookings", "users"
+  add_foreign_key "event_searches", "users"
   add_foreign_key "events", "users"
   add_foreign_key "invites", "runs"
   add_foreign_key "invites", "users"

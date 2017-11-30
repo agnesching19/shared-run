@@ -1,9 +1,9 @@
 <%= simple_form_for(@event) do |e| %>
+  <%= e.input :description, label: "Title", placeholder: "e.g. London Marathon 2018" %>
   <%= e.input :date %>
   <%= e.input :time %>
   <%= e.input :location, priority: ["EN"], input_html: {id: "locationInput"}, placeholder: "Enter a location"  %>
-  <%= e.input :distance, placeholder: "Kilometre(s)" %>
-  <%= e.input :description, placeholder: "e.g. A casual Saturday run along with local bar exploration afterwards" %>
+  <%= e.input :run_distance, label: "Distance", placeholder: "Kilometre(s)" %>
   <%= e.input :surface, collection: [ "Grass", "Earth", "Woodland Trails", "Synthetic Track", "Sand", "Asphalt", "Treadmill", "Concrete", "Snow"], prompt: "Select"%>
   <%= e.input :price, prompt: "£" %>
 
