@@ -83,19 +83,20 @@ class RunsController < ApplicationController
           @search.user_id = @user.id
           @search.save
           @last_search = @user.searches.order(created_at: :desc).first
-          @runs = Run.near([@last_search.latitude, @last_search.longitude], 3)
-          @runs = Run.near([@last_search.latitude, @last_search.longitude], proximity) if params[:search][:proximity].to_f
+          @runs = Run.near([@last_search.latitude, @last_search.longitude], 5)
+          @runs = Run.near([@last_search.latitude, @last_search.longitude], proximity) if params[:search][:proximity]
         else
           @user = User.new
         end
         @search.user_id = @user.id
         @search.save
         @runs = Run.near([@search.latitude, @search.longitude], 3)
-        @runs = Run.near([@search.latitude, @search.longitude], proximity) if params[:search][:proximity].to_f
+        @runs = Run.near([@search.latitude, @search.longitude], proximity) if params[:search][:proximity]
         # Removing runs in the past
         @runs = @runs.select { |r| r.date >= Date.today}
         # Date filtering
         @runs = @runs.select { |r| r.date.strftime("%Y-%m-%d") == params[:search][:run_date] }
+
         # Time filtering
         if params[:search][:run_time].present?
           unless params[:search][:run_time] == ""

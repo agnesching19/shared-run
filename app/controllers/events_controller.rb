@@ -68,7 +68,7 @@ class EventsController < ApplicationController
             @event_search.save
             @last_event_search = @user.event_searches.order(created_at: :desc).first
             @events = Event.near([@last_event_search.latitude, @last_event_search.longitude], 3)
-            @events = Event.near([@last_event_search.latitude, @last_event_search.longitude], proximity) if params[:event_search][:proximity].to_f
+            @events = Event.near([@last_event_search.latitude, @last_event_search.longitude], proximity) if params[:event_search][:proximity]
           else
             @user = User.new
           end
@@ -76,7 +76,7 @@ class EventsController < ApplicationController
           @event_search.user_id = @user.id
           @event_search.save
           @events = Event.near([@event_search.latitude, @event_search.longitude], 3)
-          @events = Event.near([@event_search.latitude, @event_search.longitude], proximity) if params[:event_search][:proximity].to_f
+          @events = Event.near([@event_search.latitude, @event_search.longitude], proximity) if params[:event_search][:proximity]
           # Removing events in the past
           @events = @events.select { |r| r.date >= Date.today}
 
