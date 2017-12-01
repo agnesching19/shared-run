@@ -1,14 +1,16 @@
-<%= simple_form_for(@event) do |e| %>
-  <%= e.input :description, label: "Title", placeholder: "e.g. London Marathon 2018" %>
-  <%= e.input :date %>
-  <%= e.input :time %>
-  <%= e.input :location, priority: ["EN"], input_html: {id: "locationInput"}, placeholder: "Enter a location"  %>
-  <%= e.input :run_distance, label: "Distance", placeholder: "Kilometre(s)" %>
-  <%= e.input :surface, collection: [ "Grass", "Earth", "Woodland Trails", "Synthetic Track", "Sand", "Asphalt", "Treadmill", "Concrete", "Snow"], prompt: "Select"%>
-  <%= e.input :price, prompt: "£" %>
+<div class="form-event">
+  <%= simple_form_for(@event) do |e| %>
+    <%= e.input :description, label: "Title", placeholder: "e.g. London Marathon 2018" %>
+    <%= e.input :date %>
+    <%= e.input :time %>
+    <%= e.input :location, priority: ["EN"], input_html: {id: "locationInput"}, placeholder: "Enter a location"  %>
+    <%= e.input :run_distance, label: "Distance", placeholder: "Kilometre(s)" %>
+    <%= e.input :surface, collection: [ "Grass", "Earth", "Woodland Trails", "Synthetic Track", "Sand", "Asphalt", "Treadmill", "Concrete", "Snow"], prompt: "Select"%>
+    <%= e.input :price, prompt: "£" %>
 
-  <%= e.submit "Submit", class: "btn btn-default" %>
-<% end %>
+    <%= e.submit "Submit", class: "btn btn-default" %>
+  <% end %>
+</div>
 
 <!-- JS for sweet alert -->
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.3/sweetalert2.all.min.js" integrity="sha256-Cc+yDzt4WAIOQNyXND0m3zCkxy8mSRJXLGy+5oGaHHM=" crossorigin="anonymous"></script>
