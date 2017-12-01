@@ -6,15 +6,15 @@
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
-    <!-- About -->
-    <%= link_to "ABOUT", about_path, class: "navbar-wagon-item navbar-wagon-link" %>
-    <!-- All Events -->
-    <%= link_to "EVENTS", events_path, class: "navbar-wagon-item navbar-wagon-link" %>
-
     <!-- Links when Logged In -->
       <!-- All Runs -->
       <%= link_to "RUNS", runs_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <% if user_signed_in? %>
+    <!-- All Events -->
+    <%= link_to "EVENTS", events_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <!-- About -->
+    <%= link_to "ABOUT", about_path, class: "navbar-wagon-item navbar-wagon-link" %>
+
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
