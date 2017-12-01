@@ -1,14 +1,24 @@
-<%= simple_form_for(@run) do |r| %>
-  <%= r.input :title, placeholder: "e.g. Casual Saturday jog by the River Thames" %>
-  <%= r.input :description, placeholder: "Please give a more detailed description of your run - e.g. meeting locations, points of interest, level of difficulty." %>
-  <%= r.input :date %>
-  <%= r.input :time %>
-  <%= r.input :location, priority: ["EN"], input_html: {id: "locationInput"} %>
-  <%= r.input :run_distance, label: "Distance", placeholder: "Kilometre(s)" %>
-  <%= r.input :pace, placeholder: "MM:SS / Kilometre" %>
-  <%= r.input :capacity, placeholder: "Number of people" %>
-  <%= r.submit "Submit", class: "btn btn-default" %>
-<% end %>
+<div class="form-run">
+  <%= simple_form_for(@run) do |r| %>
+    <%= r.input :title, placeholder: "e.g. Casual Saturday jog by the River Thames" %>
+    <%= r.input :description, placeholder: "Please give a more detailed description of your run - e.g. meeting locations, points of interest, level of difficulty." %>
+  <div class="run-features container">
+    <div class="date-time">
+      <!-- put date picker in -->
+      <%= r.input :date, as: :string, placeholder: "Select date" %>
+      <!-- >>>>>> -->
+      <%= r.input :location, priority: ["EN"], input_html: {id: "locationInput", class: "middle-form"} %>
+      <%= r.input :time %>
+    </div>
+    <div class="distance-pace-capacity">
+      <%= r.input :run_distance, placeholder: "Kilometre(s)" %>
+      <%= r.input :capacity, placeholder: "Number of people", input_html: {class: "middle-form"} %>
+      <%= r.input :pace, placeholder: "MM:SS / Kilometre" %>
+    </div>
+  </div>
+  <%= r.submit "SUBMIT", class: "btn btn-form" %>
+  <% end %>
+</div>
 
 <%= content_for(:title, "Add New Run") %>
 
@@ -24,7 +34,6 @@
         }
       });
     }
-
     // Date Picker
   </script>
 <% end %>
