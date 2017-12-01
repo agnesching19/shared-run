@@ -1,70 +1,21 @@
 .form-event {
+   form {
+    width:856px;
+    margin:0 auto;
+    text-align: left;
+ }
+}
 
-//   form {
-//     width:856px;
-//     margin:0 auto;
-//     text-align: left;
-//   }
+.container-event {
 
-//   .date-time {
-//     display: flex;
-//     width: 800px;
-//     justify-content: space-around;
-//     align-items: baseline;
-//     flex-wrap: wrap;
-//     margin-bottom: 22px;
-//     margin-top: 22px;
-//   }
+  h1 {
+  color: $yellow;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 44px;
+  margin-bottom: 34px;
+  font-family: $font-family !important;
+  }
 
-//   .distance-pace-capacity {
-//     display: flex;
-//     width: 800px;
-//     justify-content: space-around;
-//     align-items: baseline;
-//     flex-wrap: wrap;
-//     margin-bottom: 22px;
-//     margin-top: 22px;
-//   }
-
-//   .middle-form {
-//     min-width: 290px;
-//   }
-
-//   .run-features {
-//     margin-top: 15px;
-//     height: 234px;
-//     width: 856px;
-//     background-color: $navbar;
-//   }
-//   .btn-form {
-//     width: 400px;
-//     margin:0 auto;
-//     margin-top: 44px;
-//     margin-bottom: 66px;
-//     background-color: $yellow;
-//     color: $background;
-//     font-weight: bold;
-//   }
-
-//   .btn-form:hover {
-//     opacity: 0.8;
-//   }
-
-//   .btn-form:focus,.btn-form:active {
-//     outline: none !important;
-//     box-shadow: none !important;
-//   }
-// }
-
-// .container-run {
-
-//   h1 {
-//   color: $yellow;
-//   text-align: center;
-//   font-weight: bold;
-//   margin-top: 44px;
-//   margin-bottom: 34px;
-//   font-family: $font-family !important;
-//   }
 
 }
