@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   before_action :set_user, only: [:index, :destroy, :update]
 
   def index
-    @events = policy_scope(Event.all).order(created_at: :desc)
+    @events = policy_scope(Event.all).order(date: :asc)
     search_event
     set_events
   end
@@ -135,3 +135,4 @@ class EventsController < ApplicationController
     end
   end
 end
+

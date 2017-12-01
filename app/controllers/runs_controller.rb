@@ -6,7 +6,7 @@ class RunsController < ApplicationController
   require "time"
 
   def index
-    @runs = policy_scope(Run)
+    @runs = policy_scope(Run.all.order(date: :asc))
     @disable_footer = true
 
     # if params[:time].present?
@@ -14,6 +14,7 @@ class RunsController < ApplicationController
     #     @runs = @runs.select { |r| r.time <= Time.parse("19:00") }
     #     # @runs = @runs.select { |r| r.time <= Time.parse(params[:time]) }
     # end
+
     search_run
     set_runs
   end
