@@ -6,7 +6,7 @@ class RunsController < ApplicationController
   require "time"
 
   def index
-    @runs = policy_scope(Run)
+    @runs = policy_scope(Run.all.order(date: :asc))
     @disable_footer = true
 
     # if params[:time].present?
